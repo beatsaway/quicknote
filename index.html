@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB Design Technology Interview Cheat Sheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        
+        .section {
+            padding: 30px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .section:nth-child(odd) {
+            background: #f8f9fa;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .section h3 {
+            color: #e74c3c;
+            font-size: 1.3em;
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #e74c3c;
+        }
+        
+        .critical {
+            background: linear-gradient(120deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #ff4757;
+            font-weight: 600;
+        }
+        
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .assessment-box {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .skill-tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        
+        .qa-section {
+            background: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .question {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .answer {
+            color: #27ae60;
+            font-style: italic;
+            background: #f1f2f6;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #27ae60;
+        }
+        
+        .quick-facts {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .quick-facts h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .quick-facts ul {
+            list-style: none;
+        }
+        
+        .quick-facts li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .quick-facts li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #fdcb6e;
+            font-weight: bold;
+        }
+        
+        .acronym-box {
+            display: inline-block;
+            background: #6c5ce7;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .assessment-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 IB Design Technology Interview Cheat Sheet</h1>
+            <p>Kenneth Wong - Quick Reference Guide</p>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>🚀 Your Opening Statement</h2>
+                <div class="highlight">
+                    <strong>30-Second Pitch:</strong><br>
+                    "I'm Kenneth Wong, qualified DT teacher with QTS PGCE, currently at Hendon School London. I bring 12+ years interactive technology and game design experience, with exact skills match: micro-controller programming (micro:bit C++/Python/JavaScript) + 3D web development (Three.js). My experience teaching Hong Kong students online provides strong EAL support perfect for international schools."
+                </div>
+                
+                <h3>🎯 Top 4 Selling Points</h3>
+                <div class="skills-list">
+                    <div class="skill-tag">Micro-controller Programming</div>
+                    <div class="skill-tag">3D Web Development</div>
+                    <div class="skill-tag">12 Years Game Industry</div>
+                    <div class="skill-tag">EAL Experience</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>📚 IB Acronyms - Essential</h2>
+                <div class="quick-facts">
+                    <div><span class="acronym-box">DP</span> Diploma Programme (Ages 16-19, what you'll teach)</div><br>
+                    <div><span class="acronym-box">CP</span> Career-related Programme (Alternative to DP)</div><br>
+                    <div><span class="acronym-box">HL</span> Higher Level (Advanced subjects, 3-4 per student)</div><br>
+                    <div><span class="acronym-box">SL</span> Standard Level (Core subjects, rest of 6 subjects)</div><br>
+                    <div><span class="acronym-box">IA</span> Internal Assessment (Teacher-marked coursework)</div>
+                </div>
+            </div>
+            
+            <div class="section full-width">
+                <h2>🔥 CRITICAL: New 2025 Curriculum</h2>
+                <div class="critical">
+                    <strong>NEW IB DT curriculum launched February 2025 for first teaching August 2025</strong><br>
+                    • First assessment: May 2027 (you'd teach the NEW curriculum)<br>
+                    • Three themes: Design in Theory, Design in Practice, Design in Context<br>
+                    • Major change: Interconnected learning vs isolated topics<br>
+                    • Assessment: "REDESIGN" is starting point for design project
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>📊 Assessment Structure</h2>
+                <div class="assessment-grid">
+                    <div class="assessment-box">
+                        <h3>Standard Level (SL)</h3>
+                        • Paper 1: 30 multiple choice (30%)<br>
+                        • Paper 2: Short answers (30%)<br>
+                        • <strong>IA: Design project (40%)</strong>
+                    </div>
+                    <div class="assessment-box">
+                        <h3>Higher Level (HL)</h3>
+                        • Paper 1: 40 multiple choice (20%)<br>
+                        • Paper 2: Short answers (20%)<br>
+                        • Paper 3: HL extension (20%)<br>
+                        • <strong>IA: Design project (40%)</strong>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>🔄 IB Design Cycle (ESSENTIAL)</h2>
+                <div class="highlight">
+                    <strong>The backbone of IB DT - you MUST know this:</strong><br>
+                    1. <strong>Inquiring and Analyzing</strong> - Research and problem identification<br>
+                    2. <strong>Developing Ideas</strong> - Brainstorming and concept development<br>
+                    3. <strong>Creating the Solution</strong> - Prototyping and making<br>
+                    4. <strong>Evaluating</strong> - Testing and reflection
+                </div>
+                <p><strong>Your connection:</strong> "This mirrors exactly the iterative design process I used in 12 years of game development - research, ideation, prototyping, user testing, refinement."</p>
+            </div>
+            
+            <div class="section">
+                <h2>🎯 Core Topics to Mention</h2>
+                <div class="skills-list">
+                    <div class="skill-tag">Human Factors & Ergonomics</div>
+                    <div class="skill-tag">Resource Management</div>
+                    <div class="skill-tag">Modelling</div>
+                    <div class="skill-tag">Innovation & Design</div>
+                    <div class="skill-tag">Final Production</div>
+                </div>
+                
+                <h3>HL Additional Topics</h3>
+                <div class="skills-list">
+                    <div class="skill-tag">User-Centered Design</div>
+                    <div class="skill-tag">Sustainability</div>
+                    <div class="skill-tag">Innovation & Markets</div>
+                    <div class="skill-tag">Commercial Production</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>🎪 Your Project Examples</h2>
+                <div class="highlight">
+                    <h3>Smart City Project (Year 8)</h3>
+                    Students create solutions using micro:bit sensors to monitor environmental conditions
+                </div>
+                <div class="highlight">
+                    <h3>Assistive Technology (3D Printing)</h3>
+                    Students design assistive devices combining empathy mapping with technical skills
+                </div>
+                <div class="highlight">
+                    <h3>Gamified Learning Tools</h3>
+                    Design challenges with levels, achievements, collaborative problem-solving
+                </div>
+            </div>
+            
+            <div class="section full-width">
+                <h2>❓ Key Interview Q&A</h2>
+                
+                <div class="qa-section">
+                    <div class="question">Q: "How familiar are you with IB assessment criteria?"</div>
+                    <div class="answer">A: "I understand the IA contributes 40% of the final grade using specific criteria including research, development, and evaluation. The new 2025 curriculum emphasizes redesigning existing products, which suits my approach of analyzing current solutions before creating improvements. My game industry background helps students understand real-world design constraints."</div>
+                </div>
+                
+                <div class="qa-section">
+                    <div class="question">Q: "Why move from London to Hong Kong?"</div>
+                    <div class="answer">A: "Hong Kong is where I completed my undergraduate studies, so it feels like coming home. I'm excited about working in an international school environment with global perspectives. The opportunity to work with diverse students while applying my game design and interactive technology experience is exactly the career growth I'm seeking."</div>
+                </div>
+                
+                <div class="qa-section">
+                    <div class="question">Q: "How would you support students through the design project?"</div>
+                    <div class="answer">A: "I'd scaffold using the IB Design Cycle - thorough user research and problem analysis, then iterative prototyping. From game development, I know how to help students balance ambitious ideas with practical constraints. I'd use digital portfolios to document their design thinking with photos, sketches, and reflections."</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>🎯 Questions to Ask Them</h2>
+                <div class="highlight">
+                    • What technology resources are available in the DT department?<br>
+                    • How does the school support teaching innovation?<br>
+                    • What's the student demographic in terms of technical experience?<br>
+                    • What CPD opportunities for emerging technologies?<br>
+                    • How does DT collaborate with other subjects?
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>🚫 Red Flags to Avoid</h2>
+                <div class="critical">
+                    • Don't mention PhD discontinuation negatively<br>
+                    • Don't oversell unfamiliar areas (materials/textiles)<br>
+                    • Don't criticize current school<br>
+                    • Don't admit knowing nothing about IB DT<br>
+                    • Don't focus only on technology - emphasize design thinking
+                </div>
+            </div>
+            
+            <div class="section full-width">
+                <h2>🎯 Closing Statement</h2>
+                <div class="highlight">
+                    "I'm excited about the new 2025 IB DT curriculum because it emphasizes the interconnected thinking I've used throughout my career. My combination of industry design experience and classroom teaching will help students understand both the theory behind great design and the practical skills to create solutions that truly meet user needs. I'm particularly looking forward to preparing students for the rapidly evolving digital landscape while maintaining strong foundations in design thinking."
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
