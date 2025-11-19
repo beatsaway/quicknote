@@ -3,374 +3,484 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IB Design Technology Interview Cheat Sheet</title>
+    <title>How the Rise of AI Mental Support Chatbot Affects Job Engagement</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Georgia', 'Times New Roman', serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            padding: 40px 20px;
+            background-color: #fafafa;
+            color: #333;
         }
-        
-        .header {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .header p {
-            font-size: 1.2em;
-            opacity: 0.9;
-        }
-        
-        .content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-        }
-        
-        .section {
-            padding: 30px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .section:nth-child(odd) {
-            background: #f8f9fa;
-        }
-        
-        .section h2 {
+        h1 {
             color: #2c3e50;
-            font-size: 1.8em;
-            margin-bottom: 20px;
             border-bottom: 3px solid #3498db;
             padding-bottom: 10px;
+            margin-bottom: 30px;
+            font-size: 2em;
         }
-        
-        .section h3 {
-            color: #e74c3c;
-            font-size: 1.3em;
-            margin: 20px 0 10px 0;
-            font-weight: 600;
-        }
-        
-        .highlight {
-            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 15px 0;
-            border-left: 5px solid #e74c3c;
-        }
-        
-        .critical {
-            background: linear-gradient(120deg, #ff9a9e 0%, #fecfef 100%);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 15px 0;
-            border-left: 5px solid #ff4757;
-            font-weight: 600;
-        }
-        
-        .assessment-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .assessment-box {
-            background: #ecf0f1;
-            padding: 15px;
-            border-radius: 8px;
+        h2 {
+            color: #34495e;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
             border-left: 4px solid #3498db;
+            padding-left: 15px;
         }
-        
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 15px 0;
+        h3 {
+            color: #555;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 1.2em;
         }
-        
-        .skill-tag {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: 500;
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
         }
-        
-        .qa-section {
-            background: #fff;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .question {
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-        
-        .answer {
-            color: #27ae60;
-            font-style: italic;
-            background: #f1f2f6;
-            padding: 10px;
-            border-radius: 5px;
-            border-left: 3px solid #27ae60;
-        }
-        
-        .quick-facts {
-            background: linear-gradient(135deg, #74b9ff, #0984e3);
-            color: white;
+        .abstract {
+            background-color: #ecf0f1;
             padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
+            border-left: 4px solid #3498db;
+            margin-bottom: 30px;
+            font-style: italic;
         }
-        
-        .quick-facts h3 {
-            color: white;
+        ul {
+            margin-left: 30px;
             margin-bottom: 15px;
         }
-        
-        .quick-facts ul {
-            list-style: none;
+        li {
+            margin-bottom: 8px;
         }
-        
-        .quick-facts li {
-            padding: 5px 0;
-            padding-left: 20px;
-            position: relative;
-        }
-        
-        .quick-facts li:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: #fdcb6e;
+        .research-question {
             font-weight: bold;
+            color: #2980b9;
         }
-        
-        .acronym-box {
+        .hypothesis {
+            font-weight: bold;
+            color: #27ae60;
+        }
+        .gap-item {
+            margin-bottom: 10px;
+        }
+        .gap-item strong {
+            color: #e74c3c;
+        }
+        /* Feedback tooltip styles */
+        .feedback-badge {
             display: inline-block;
-            background: #6c5ce7;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
+            position: relative;
+            margin-left: 10px;
+            cursor: help;
+        }
+        .feedback-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
             font-weight: bold;
-            margin-right: 10px;
+            color: white;
+            vertical-align: middle;
         }
-        
-        .full-width {
-            grid-column: 1 / -1;
+        .feedback-icon.needs-improvement {
+            background-color: #f39c12;
         }
-        
-        @media (max-width: 768px) {
-            .content {
-                grid-template-columns: 1fr;
-            }
-            
-            .header h1 {
-                font-size: 2em;
-            }
-            
-            .section {
-                padding: 20px;
-            }
-            
-            .assessment-grid {
-                grid-template-columns: 1fr;
-            }
+        .feedback-icon.excellent {
+            background-color: #27ae60;
+        }
+        .feedback-icon.meets-requirement {
+            background-color: #3498db;
+        }
+        .feedback-icon.missing {
+            background-color: #e74c3c;
+        }
+        .feedback-tooltip {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            z-index: 1000;
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            width: 350px;
+            max-width: 90vw;
+            left: 30px;
+            top: 0;
+            font-size: 13px;
+            line-height: 1.5;
+            transition: opacity 0.3s, visibility 0.3s;
+            pointer-events: none;
+        }
+        .feedback-tooltip::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 15px;
+            border: 8px solid transparent;
+            border-right-color: #2c3e50;
+        }
+        .feedback-badge:hover .feedback-tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        .feedback-tooltip h4 {
+            margin: 0 0 10px 0;
+            color: #3498db;
+            font-size: 14px;
+            border-bottom: 1px solid #34495e;
+            padding-bottom: 5px;
+        }
+        .feedback-tooltip ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        .feedback-tooltip li {
+            margin-bottom: 5px;
+        }
+        .feedback-tooltip .status {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .feedback-tooltip .status.missing {
+            color: #e74c3c;
+        }
+        .feedback-tooltip .status.excellent {
+            color: #27ae60;
+        }
+        .feedback-tooltip .status.needs-improvement {
+            color: #f39c12;
+        }
+        .feedback-tooltip .status.meets-requirement {
+            color: #3498db;
+        }
+        .missing-section {
+            background-color: #fff3cd;
+            border: 2px dashed #e74c3c;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .missing-section h2 {
+            color: #e74c3c;
+            border-left: 4px solid #e74c3c;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🎯 IB Design Technology Interview Cheat Sheet</h1>
-            <p>Kenneth Wong - Quick Reference Guide</p>
-        </div>
-        
-        <div class="content">
-            <div class="section">
-                <h2>🚀 Your Opening Statement</h2>
-                <div class="highlight">
-                    <strong>30-Second Pitch:</strong><br>
-                    "I'm Kenneth Wong, qualified DT teacher with QTS PGCE, currently at Hendon School London. I bring 12+ years interactive technology and game design experience, with exact skills match: micro-controller programming (micro:bit C++/Python/JavaScript) + 3D web development (Three.js). My experience teaching Hong Kong students online provides strong EAL support perfect for international schools."
-                </div>
-                
-                <h3>🎯 Top 4 Selling Points</h3>
-                <div class="skills-list">
-                    <div class="skill-tag">Micro-controller Programming</div>
-                    <div class="skill-tag">3D Web Development</div>
-                    <div class="skill-tag">12 Years Game Industry</div>
-                    <div class="skill-tag">EAL Experience</div>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2>📚 IB Acronyms - Essential</h2>
-                <div class="quick-facts">
-                    <div><span class="acronym-box">DP</span> Diploma Programme (Ages 16-19, what you'll teach)</div><br>
-                    <div><span class="acronym-box">CP</span> Career-related Programme (Alternative to DP)</div><br>
-                    <div><span class="acronym-box">HL</span> Higher Level (Advanced subjects, 3-4 per student)</div><br>
-                    <div><span class="acronym-box">SL</span> Standard Level (Core subjects, rest of 6 subjects)</div><br>
-                    <div><span class="acronym-box">IA</span> Internal Assessment (Teacher-marked coursework)</div>
-                </div>
-            </div>
-            
-            <div class="section full-width">
-                <h2>🔥 CRITICAL: New 2025 Curriculum</h2>
-                <div class="critical">
-                    <strong>NEW IB DT curriculum launched February 2025 for first teaching August 2025</strong><br>
-                    • First assessment: May 2027 (you'd teach the NEW curriculum)<br>
-                    • Three themes: Design in Theory, Design in Practice, Design in Context<br>
-                    • Major change: Interconnected learning vs isolated topics<br>
-                    • Assessment: "REDESIGN" is starting point for design project
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2>📊 Assessment Structure</h2>
-                <div class="assessment-grid">
-                    <div class="assessment-box">
-                        <h3>Standard Level (SL)</h3>
-                        • Paper 1: 30 multiple choice (30%)<br>
-                        • Paper 2: Short answers (30%)<br>
-                        • <strong>IA: Design project (40%)</strong>
-                    </div>
-                    <div class="assessment-box">
-                        <h3>Higher Level (HL)</h3>
-                        • Paper 1: 40 multiple choice (20%)<br>
-                        • Paper 2: Short answers (20%)<br>
-                        • Paper 3: HL extension (20%)<br>
-                        • <strong>IA: Design project (40%)</strong>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2>🔄 IB Design Cycle (ESSENTIAL)</h2>
-                <div class="highlight">
-                    <strong>The backbone of IB DT - you MUST know this:</strong><br>
-                    1. <strong>Inquiring and Analyzing</strong> - Research and problem identification<br>
-                    2. <strong>Developing Ideas</strong> - Brainstorming and concept development<br>
-                    3. <strong>Creating the Solution</strong> - Prototyping and making<br>
-                    4. <strong>Evaluating</strong> - Testing and reflection
-                </div>
-                <p><strong>Your connection:</strong> "This mirrors exactly the iterative design process I used in 12 years of game development - research, ideation, prototyping, user testing, refinement."</p>
-            </div>
-            
-            <div class="section">
-                <h2>🎯 Core Topics to Mention</h2>
-                <div class="skills-list">
-                    <div class="skill-tag">Human Factors & Ergonomics</div>
-                    <div class="skill-tag">Resource Management</div>
-                    <div class="skill-tag">Modelling</div>
-                    <div class="skill-tag">Innovation & Design</div>
-                    <div class="skill-tag">Final Production</div>
-                </div>
-                
-                <h3>HL Additional Topics</h3>
-                <div class="skills-list">
-                    <div class="skill-tag">User-Centered Design</div>
-                    <div class="skill-tag">Sustainability</div>
-                    <div class="skill-tag">Innovation & Markets</div>
-                    <div class="skill-tag">Commercial Production</div>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2>🎪 Your Project Examples</h2>
-                <div class="highlight">
-                    <h3>Smart City Project (Year 8)</h3>
-                    Students create solutions using micro:bit sensors to monitor environmental conditions
-                </div>
-                <div class="highlight">
-                    <h3>Assistive Technology (3D Printing)</h3>
-                    Students design assistive devices combining empathy mapping with technical skills
-                </div>
-                <div class="highlight">
-                    <h3>Gamified Learning Tools</h3>
-                    Design challenges with levels, achievements, collaborative problem-solving
-                </div>
-            </div>
-            
-            <div class="section full-width">
-                <h2>❓ Key Interview Q&A</h2>
-                
-                <div class="qa-section">
-                    <div class="question">Q: "How familiar are you with IB assessment criteria?"</div>
-                    <div class="answer">A: "I understand the IA contributes 40% of the final grade using specific criteria including research, development, and evaluation. The new 2025 curriculum emphasizes redesigning existing products, which suits my approach of analyzing current solutions before creating improvements. My game industry background helps students understand real-world design constraints."</div>
-                </div>
-                
-                <div class="qa-section">
-                    <div class="question">Q: "Why move from London to Hong Kong?"</div>
-                    <div class="answer">A: "Hong Kong is where I completed my undergraduate studies, so it feels like coming home. I'm excited about working in an international school environment with global perspectives. The opportunity to work with diverse students while applying my game design and interactive technology experience is exactly the career growth I'm seeking."</div>
-                </div>
-                
-                <div class="qa-section">
-                    <div class="question">Q: "How would you support students through the design project?"</div>
-                    <div class="answer">A: "I'd scaffold using the IB Design Cycle - thorough user research and problem analysis, then iterative prototyping. From game development, I know how to help students balance ambitious ideas with practical constraints. I'd use digital portfolios to document their design thinking with photos, sketches, and reflections."</div>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2>🎯 Questions to Ask Them</h2>
-                <div class="highlight">
-                    • What technology resources are available in the DT department?<br>
-                    • How does the school support teaching innovation?<br>
-                    • What's the student demographic in terms of technical experience?<br>
-                    • What CPD opportunities for emerging technologies?<br>
-                    • How does DT collaborate with other subjects?
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2>🚫 Red Flags to Avoid</h2>
-                <div class="critical">
-                    • Don't mention PhD discontinuation negatively<br>
-                    • Don't oversell unfamiliar areas (materials/textiles)<br>
-                    • Don't criticize current school<br>
-                    • Don't admit knowing nothing about IB DT<br>
-                    • Don't focus only on technology - emphasize design thinking
-                </div>
-            </div>
-            
-            <div class="section full-width">
-                <h2>🎯 Closing Statement</h2>
-                <div class="highlight">
-                    "I'm excited about the new 2025 IB DT curriculum because it emphasizes the interconnected thinking I've used throughout my career. My combination of industry design experience and classroom teaching will help students understand both the theory behind great design and the practical skills to create solutions that truly meet user needs. I'm particularly looking forward to preparing students for the rapidly evolving digital landscape while maintaining strong foundations in design thinking."
-                </div>
-            </div>
-        </div>
+    <div style="background-color: #e8f4f8; padding: 15px; margin-bottom: 30px; border-left: 4px solid #3498db; border-radius: 4px;">
+        <p style="margin: 0; font-size: 14px;"><strong>📋 Feedback System:</strong> Hover over the colored badges (✓, !, ✗) next to section headers to view detailed feedback comments from the review.</p>
     </div>
+    <h1>How the Rise of AI Mental Support Chatbot Affects Job Engagement</h1>
+
+    <section>
+        <h2>Abstract
+            <span class="feedback-badge">
+                <span class="feedback-icon needs-improvement">!</span>
+                <div class="feedback-tooltip">
+                    <h4>Abstract Feedback</h4>
+                    <div class="status needs-improvement">Status: Present but needs improvement</div>
+                    <p><strong>Current:</strong> ~250 words</p>
+                    <p><strong>Required:</strong> 150-200 words</p>
+                    <p><strong>Issue:</strong> Too long - needs condensing</p>
+                    <p><strong>Action:</strong> Remove redundant phrases, focus on core findings and contributions</p>
+                </div>
+            </span>
+        </h2>
+        <div class="abstract">
+            <p>The integration of artificial intelligence (AI) in workplace mental health support has significantly transformed employee dynamics, particularly through AI-powered mental support chatbots. This research proposal investigates the relationship between these chatbots and job engagement among employees across various industries. By employing a quantitative research design, the study aims to explore how chatbot utilization correlates with employee engagement levels, emphasizing the mediating role of employee perceptions regarding chatbot effectiveness. Furthermore, key barriers to effective implementation, such as organizational culture and user discomfort, will be identified. This proposal aims to provide actionable insights for organizations seeking to enhance employee well-being through AI technologies. Additionally, a comprehensive literature review will encompass existing research, identify gaps necessitating further investigation, and discuss the mechanisms behind chatbot effectiveness. Ethical considerations related to user privacy and informed consent will be scrutinized. The findings of this research are expected to contribute valuable insights for the effective application of AI in the workplace and its potential for improving employee engagement and mental health.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Introduction
+            <span class="feedback-badge">
+                <span class="feedback-icon needs-improvement">!</span>
+                <div class="feedback-tooltip">
+                    <h4>Introduction Feedback</h4>
+                    <div class="status needs-improvement">Status: Present but needs improvement</div>
+                    <p><strong>Strengths:</strong></p>
+                    <ul>
+                        <li>Good background context</li>
+                        <li>Clear research problem identification</li>
+                        <li>Importance of job engagement well explained</li>
+                    </ul>
+                    <p><strong>Missing:</strong></p>
+                    <ul>
+                        <li>Explicit statement of research contributions (both academic and practical)</li>
+                        <li>Should clearly state what gaps this research fills</li>
+                    </ul>
+                    <p><strong>Recommendation:</strong> Add 1-2 paragraphs explicitly stating:</p>
+                    <ul>
+                        <li>Academic contribution (e.g., extends SDT theory, addresses mediation gap)</li>
+                        <li>Practical contribution (e.g., actionable insights for HR managers)</li>
+                    </ul>
+                </div>
+            </span>
+        </h2>
+        
+        <h3>Background</h3>
+        <p>The rapid advancement of artificial intelligence (AI) technologies is reshaping workplace dynamics, especially in the domain of employee mental health support. The introduction of AI-powered mental support chatbots is providing innovative and accessible assistance for employees grappling with stress and anxiety. These conversational agents offer immediate responses and resources, enhancing access to mental health support and substantially reducing the stigma associated with traditional avenues (Fitzgerald et al., 2021). As organizations increasingly prioritize mental health, understanding the role of AI chatbots in supporting employee engagement has become essential.</p>
+
+        <h3>Importance of Job Engagement</h3>
+        <p>Job engagement is recognized as a pivotal element in organizational success. Engaged employees—those who display enthusiasm, dedication, and deep absorption in their work—are associated with heightened productivity and overall organizational health (Schaufeli & Bakker, 2004). High mental well-being is directly correlated with increased job satisfaction and retention rates, making mental health support crucial for fostering engagement (Hakanen et al., 2006). Studies indicate that employees feeling supported in their mental health are more likely to demonstrate elevated engagement levels, underscoring the need for effective mental health initiatives in contemporary work settings.</p>
+
+        <h3>Research Problem</h3>
+        <p>Despite the proliferation of AI technologies in various sectors, there remains limited understanding regarding their specific impact on employee engagement. Existing literature primarily highlights the mental health benefits of AI tools but rarely delves into their influence on job engagement rates. While studies demonstrate that AI can improve mental health outcomes, the extent to which mental support chatbots specifically affect employee engagement is not adequately explored. This discrepancy highlights a critical gap that this research aims to address.</p>
+
+        <h3>Research Questions / Objectives
+            <span class="feedback-badge">
+                <span class="feedback-icon meets-requirement">✓</span>
+                <div class="feedback-tooltip">
+                    <h4>Research Questions Feedback</h4>
+                    <div class="status meets-requirement">Status: ✓ MEETS REQUIREMENT</div>
+                    <p><strong>Quality:</strong> Clear and well-structured</p>
+                    <p><strong>Note:</strong> 3 RQs (more than minimum of 2), objectives align well with RQs</p>
+                </div>
+            </span>
+        </h3>
+        <p>To explore this subject, the following research questions are proposed:</p>
+        <ul>
+            <li><span class="research-question">RQ1:</span> How do AI mental support chatbots influence job engagement across various industries?</li>
+            <li><span class="research-question">RQ2:</span> What perceptions do employees hold regarding the effectiveness and usability of mental support chatbots?</li>
+            <li><span class="research-question">RQ3:</span> How does employee perception of chatbot effectiveness mediate the relationship between chatbot utilization and job engagement levels?</li>
+        </ul>
+        <p>The objectives of this study will be to:</p>
+        <ul>
+            <li>Assess the relationship between AI mental support chatbot usage and job engagement levels among employees.</li>
+            <li>Analyze employee perceptions of chatbot effectiveness as a mediator in influencing engagement levels.</li>
+            <li>Identify barriers to successful implementation.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Literature Review
+            <span class="feedback-badge">
+                <span class="feedback-icon meets-requirement">✓</span>
+                <div class="feedback-tooltip">
+                    <h4>Literature Review Feedback</h4>
+                    <div class="status meets-requirement">Status: Present with good citations</div>
+                    <p><strong>Strengths:</strong></p>
+                    <ul>
+                        <li>Good definition of key concepts</li>
+                        <li>Comprehensive coverage of relevant literature</li>
+                        <li>Proper APA citations throughout</li>
+                        <li>Well-organized subsections</li>
+                        <li>Good identification of gaps</li>
+                    </ul>
+                    <p><strong>Minor improvements:</strong></p>
+                    <ul>
+                        <li>Could strengthen theoretical framework section</li>
+                        <li>Consider adding a conceptual model/figure</li>
+                    </ul>
+                </div>
+            </span>
+        </h2>
+        
+        <h3>Definition of Key Concepts</h3>
+        <p><strong>AI Mental Support Chatbots:</strong> These AI-powered virtual agents are designed to provide mental health support through conversational interactions. They offer immediate responses, resources, and coping strategies for managing stress and anxiety.</p>
+        <p><strong>Job Engagement:</strong> Defined as the level of enthusiasm and connection an employee feels toward their work, job engagement signifies the extent to which employees are invested in their tasks and the organization (Schaufeli & Bakker, 2004).</p>
+
+        <h3>Previous and Current Findings</h3>
+        
+        <h3>The Role of AI in Mental Health Support</h3>
+        <p>AI technologies are increasingly acknowledged for their transformative potential in mental health support within workplace settings. AI-powered mental support chatbots have emerged as innovative tools designed to aid employees in managing stress, anxiety, and other mental health concerns. Current research supports the efficacy of AI interventions. For instance, Fottrell et al. (2020) conducted a meta-analysis demonstrating that AI-driven tools can effectively deliver cognitive behavioral therapy (CBT), essential for addressing various mental health issues. Moreover, studies by Tzeng et al. (2022) emphasize that chatbots can engage users in therapeutic activities by providing customized resources tailored to individual needs.</p>
+
+        <h3>Employee Engagement and Mental Health</h3>
+        <p>Job engagement has gained recognition as a vital indicator of employee performance and satisfaction. Engaged employees demonstrate enthusiasm, dedication, and a sense of immersion in their work, often linked to improved organizational outcomes (Schaufeli & Bakker, 2004). Research substantiates that workplaces prioritizing mental health initiatives exhibit enhanced engagement levels among employees (Sonnentag et al., 2017). Leka et al. (2015) found that implementing mental health initiatives leads to lower absenteeism and higher job commitment, highlighting the importance of comprehensive mental health support.</p>
+
+        <h3>Impact of Chatbot Utilization on Engagement</h3>
+        <p>Despite recognizing the potential benefits of AI chatbots, existing studies often overlook their effectiveness in enhancing employee engagement. A study by Ben-Zur et al. (2019) found that while chatbots can provide crucial mental health support, user perceptions significantly affect their effectiveness. Factors like trust, perceived usefulness, and ease of use play critical roles in shaping employee engagement. Resistance to adopting chatbot technologies can arise when users perceive these tools as impersonal or lacking the emotional nuance necessary in mental health discussions (Jones et al., 2022). This indicates a need for nuanced research to understand how user perceptions mediate the relationship between chatbot utilization and job engagement.</p>
+
+        <h3>Mechanisms Behind Chatbot Effectiveness</h3>
+        <p>Understanding the mechanisms by which chatbots influence employee engagement is crucial for developing effective models. The role of employee perceptions is central to this understanding. According to Self-Determination Theory (SDT), fulfilling intrinsic psychological needs—such as autonomy, competence, and relatedness—enhances motivation and engagement (Ryan & Deci, 2000). Chatbots offering personalized interactions can address these needs, facilitating a sense of control over mental health. When employees feel chatbot interactions are tailored to their preferences, they are likely to perceive these tools as more effective, thus increasing their likelihood of engagement (Ryan et al., 2019).</p>
+
+        <h3>Gaps in Existing Literature</h3>
+        <p>Despite advancements in research regarding AI mental support chatbots, significant gaps remain:</p>
+        <ul>
+            <li class="gap-item"><strong>Limited Examination of Direct Effects:</strong> Most studies focus primarily on technical aspects without adequately examining the direct impact on employee engagement (Fitzgerald et al., 2021).</li>
+            <li class="gap-item"><strong>Demographic Variability:</strong> Limited research exists on how demographic factors (age, gender, cultural background) influence perceptions of AI mental health tools (Wang et al., 2020).</li>
+            <li class="gap-item"><strong>Integrated User Experience:</strong> Relevant studies often treat user experience and chatbot effectiveness separately, failing to connect these dimensions to overall engagement levels (López et al., 2021).</li>
+            <li class="gap-item"><strong>Cultural Context and Resistance:</strong> Cultural attitudes significantly affect how employees perceive mental health support options, yet these factors are frequently overlooked (Zhang et al., 2023).</li>
+            <li class="gap-item"><strong>Barriers to Implementation:</strong> Organizational challenges, including culture and user discomfort, are insufficiently explored in existing literature (Huang et al., 2021).</li>
+        </ul>
+
+        <h3>Ethical Considerations</h3>
+        <p>The ethical implications of using AI in mental health are paramount, particularly regarding user privacy and informed consent. Scherer et al. (2018) assert that organizations must adhere to high ethical standards to foster trust in AI applications, critical for their efficacy as mental health resources. Transparency in handling user data and ensuring cultural sensitivity in chatbot interactions are essential for maximizing user engagement and acceptance (Saldaña et al., 2021).</p>
+
+        <h3>Hypotheses Development
+            <span class="feedback-badge">
+                <span class="feedback-icon excellent">✓</span>
+                <div class="feedback-tooltip">
+                    <h4>Hypotheses Development Feedback</h4>
+                    <div class="status excellent">Status: ✓ EXCELLENT</div>
+                    <ul>
+                        <li>4 clear hypotheses</li>
+                        <li>Well-grounded in literature</li>
+                        <li>Properly stated (testable, directional)</li>
+                        <li>H3 (mediation) is sophisticated</li>
+                    </ul>
+                </div>
+            </span>
+        </h3>
+        <p>Based on the reviewed literature, the following hypotheses are proposed:</p>
+        <ul>
+            <li><span class="hypothesis">H1:</span> The use of AI mental support chatbots positively influences job engagement levels among employees.</li>
+            <li><span class="hypothesis">H2:</span> Employee perceptions of the effectiveness and usability of mental support chatbots correlate with higher job engagement levels.</li>
+            <li><span class="hypothesis">H3:</span> Employee perceptions of chatbot effectiveness mediate the relationship between chatbot utilization and job engagement levels.</li>
+            <li><span class="hypothesis">H4:</span> Barriers such as organizational culture and user discomfort significantly impede the successful integration of AI mental support chatbots in enhancing job engagement.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Methodology
+            <span class="feedback-badge">
+                <span class="feedback-icon meets-requirement">✓</span>
+                <div class="feedback-tooltip">
+                    <h4>Methodology Feedback</h4>
+                    <div class="status meets-requirement">Status: Present and detailed</div>
+                    <p><strong>Strengths:</strong></p>
+                    <ul>
+                        <li>Comprehensive coverage of all required elements</li>
+                        <li>Clear research design</li>
+                        <li>Detailed sampling strategy</li>
+                        <li>Appropriate analysis methods</li>
+                    </ul>
+                    <p><strong>Minor note:</strong></p>
+                    <ul>
+                        <li>Consider mentioning ethical approval process</li>
+                        <li>Could specify measurement instruments/scales</li>
+                    </ul>
+                </div>
+            </span>
+        </h2>
+        
+        <h3>Research Plan</h3>
+        <p>This study will employ a quantitative cross-sectional design to examine the relationship between AI mental support chatbots and job engagement among employees across various sectors. This design allows for the collection of substantial data from a diverse sample within a short timeframe, facilitating broad insights into the topic. The mediating role of employee perceptions regarding the effectiveness of chatbots will also be analyzed.</p>
+
+        <h3>Target Sample</h3>
+        <p>The sample will consist of 400 employees from sectors utilizing AI technologies, particularly focusing on industries such as IT, healthcare, and finance. This diversity will enhance the study's applicability across different work environments. The stratified selection will account for variations in workplace culture, ensuring a comprehensive understanding of the impact of AI chatbots.</p>
+
+        <h3>How to Contact Respondents</h3>
+        <p>Respondents will be contacted through professional networks, company email lists, and social media platforms within industry-specific forums. Invitations will detail the study's purpose, confidentiality measures, and participation incentives, such as gift cards or feedback summaries, to encourage participation. Clear communication about the study's aims will help build trust and motivate potential participants to contribute.</p>
+
+        <h3>Ways to Collect Data</h3>
+        <p>Data collection will occur via an online survey platform, ensuring accessibility and anonymity. The survey will consist of structured questions reflecting key variables: demographic information, chatbot utilization, job engagement, perceptions of effectiveness, and barriers to use. This method is chosen to facilitate ease of response and increase the response rate.</p>
+
+        <h3>Non-Probability Sampling Methods</h3>
+        <p>A non-probability sampling method, specifically convenience sampling, will be employed. This approach maximizes participation across various sectors but carries limitations regarding generalizability. Participants will self-select, and their experiences may not represent the broader workforce, leading to potential biases in interpreting results.</p>
+
+        <h3>Analysis by SPSS System</h3>
+        <p>Data analysis will be conducted using SPSS (Statistical Package for the Social Sciences) software. Descriptive statistics will summarize the findings, while correlation analyses will assess relationships among the variables. Multiple regression analyses will be utilized to test the proposed hypotheses, providing comprehensive insights into the data collected.</p>
+    </section>
+
+    <section>
+        <h2>Results
+            <span class="feedback-badge">
+                <span class="feedback-icon needs-improvement">!</span>
+                <div class="feedback-tooltip">
+                    <h4>Results Feedback</h4>
+                    <div class="status needs-improvement">Status: Present but describes anticipated results</div>
+                    <p><strong>Current status:</strong> Describes anticipated results</p>
+                    <p><strong>For a proposal:</strong> This is acceptable, but should be clearer</p>
+                    <p><strong>Recommendation:</strong> Add section header "Anticipated Results" or "Expected Results"</p>
+                </div>
+            </span>
+        </h2>
+        
+        <h3>Descriptive Results</h3>
+        <p>Upon completion of data collection, descriptive statistics will summarize key demographic characteristics of the sample, categorizing data by age, gender, and job role. This information will provide context for the analyses and facilitate understanding of how demographic variables may influence responses.</p>
+
+        <h3>Correlation Analysis</h3>
+        <p>Correlation analyses will examine relationships between AI mental support chatbot utilization and employee job engagement levels. It is anticipated that higher levels of chatbot utilization will correlate with increased job engagement scores, supporting the hypotheses that these tools serve as effective resources for enhancing employee well-being and motivation. Insights derived from these analyses will contribute significantly to understanding the nuanced interplay between AI technologies and employee engagement.</p>
+    </section>
+
+    <section class="missing-section">
+        <h2>Discussion and Managerial Implications
+            <span class="feedback-badge">
+                <span class="feedback-icon missing">✗</span>
+                <div class="feedback-tooltip">
+                    <h4>Discussion and Managerial Implications Feedback</h4>
+                    <div class="status missing">Status: ✗ MISSING - CRITICAL</div>
+                    <p><strong>Required content:</strong></p>
+                    <p><strong>a) Refer back to contributions</strong><br>
+                    - How results achieve stated contributions</p>
+                    <p><strong>b) Elaborate on results</strong><br>
+                    - Interpret findings in context of literature<br>
+                    - Discuss unexpected findings</p>
+                    <p><strong>c) Theoretical implications</strong><br>
+                    - How findings extend/contradict existing theory<br>
+                    - Contribution to SDT, engagement literature</p>
+                    <p><strong>d) Managerial/Practical implications</strong><br>
+                    - Specific recommendations for organizations<br>
+                    - How HR managers can implement findings<br>
+                    - Best practices for chatbot deployment<br>
+                    - Addressing barriers to implementation</p>
+                </div>
+            </span>
+        </h2>
+        <p style="color: #e74c3c; font-weight: bold;">⚠️ This section is MISSING and is REQUIRED per ppt guidance.</p>
+    </section>
+
+    <section class="missing-section">
+        <h2>Conclusion
+            <span class="feedback-badge">
+                <span class="feedback-icon missing">✗</span>
+                <div class="feedback-tooltip">
+                    <h4>Conclusion Feedback</h4>
+                    <div class="status missing">Status: ✗ MISSING</div>
+                    <p><strong>Required:</strong> Brief summary of key points, limitations, future research</p>
+                </div>
+            </span>
+        </h2>
+        <p style="color: #e74c3c; font-weight: bold;">⚠️ This section is MISSING and is REQUIRED per ppt guidance.</p>
+    </section>
+
+    <section class="missing-section">
+        <h2>Reference List
+            <span class="feedback-badge">
+                <span class="feedback-icon missing">✗</span>
+                <div class="feedback-tooltip">
+                    <h4>Reference List Feedback</h4>
+                    <div class="status missing">Status: ✗ MISSING - CRITICAL</div>
+                    <p><strong>Required:</strong></p>
+                    <ul>
+                        <li>Separate pages</li>
+                        <li>APA 7th edition format</li>
+                        <li>All cited works must be included</li>
+                        <li>Alphabetical order</li>
+                        <li>Hanging indent</li>
+                    </ul>
+                </div>
+            </span>
+        </h2>
+        <p style="color: #e74c3c; font-weight: bold;">⚠️ This section is MISSING and is REQUIRED. All in-text citations must be included.</p>
+    </section>
+
+    <section class="missing-section" style="margin-top: 40px;">
+        <h2>Cover Page
+            <span class="feedback-badge">
+                <span class="feedback-icon missing">✗</span>
+                <div class="feedback-tooltip">
+                    <h4>Cover Page Feedback</h4>
+                    <div class="status missing">Status: ✗ MISSING - REQUIRED</div>
+                    <p><strong>Required elements:</strong></p>
+                    <ul>
+                        <li>Subject Name: BHMS4418 Applied Business Research</li>
+                        <li>Proposed research topic</li>
+                        <li>Student name with student ID</li>
+                    </ul>
+                </div>
+            </span>
+        </h2>
+        <p style="color: #e74c3c; font-weight: bold;">⚠️ Cover Page is MISSING and is REQUIRED.</p>
+    </section>
+
 </body>
 </html>
+
