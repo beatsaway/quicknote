@@ -304,6 +304,15 @@ code {
   margin-bottom: 0.45rem;
   padding-left: 1.1rem;
   text-indent: -1.1rem;
+  scroll-margin-top: 5rem;
+  transition: background-color 0.25s ease;
+}
+
+.refs li:target {
+  background-color: #fef9c3;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  border-radius: 0.35rem;
 }
 
 /* Highlight helpers for draft placeholders
