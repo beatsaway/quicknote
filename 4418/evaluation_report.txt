@@ -1,0 +1,120 @@
+================================================================================
+  BHMS4418 PROGRESS REPORT: EVALUATION OF V1 vs V2 & HONG KONG CONTEXT
+  Comparison: progressreport1.html | progressreport2.html
+  Date: 15 March 2026
+================================================================================
+
+1. SUMMARY OF DIFFERENCES BETWEEN V1 AND V2
+--------------------------------------------------------------------------------
+
+STRUCTURAL / LABELLING
+  - V1: Title "BHMS4418 Progress Report"
+  - V2: Title "BHMS4418 Progress Report (v2)" (same body structure otherwise)
+
+LITERATURE REVIEW (Section 3)
+  - Paragraph 1 (workplace mental health + Hong Kong):
+    V1 ends with: "...emotional support."
+    V2 adds a sentence + citation: "...emotional support; real-world programmes have demonstrated feasibility and uptake in large workforces, with chatbots used for triage and navigation to live support (Jackson-Triche et al., 2023)."
+
+  - Paragraph 2 (AI chatbot evidence):
+    V1: Li et al., Yuan et al., West et al. only.
+    V2: Adds Baek et al. (2025) – scoping review of AI chatbots for health professionals’ psychological health (anxiety, burnout, depression, variability, standardised protocols).
+
+  - Paragraph 4 (ethics/implementation):
+    V1: Opens with "At the same time, ethical and implementation challenges..." then Rahsepar Meadi, Grabb.
+    V2: Inserts a sentence + citation before the scoping reviews: "Qualitative work on bots for mental health in organisations emphasises that human and technology agency interact—leadership, HR practices, and organisational context shape how chatbot insights are acted upon and thus how much they affect wellbeing (Dutta & Mishra, 2023)." Then same Rahsepar Meadi, Grabb.
+
+PROGRESS UPDATE (Section 4)
+  - "Literature base" bullet:
+    V1: Lists Li, García-Madurga, West, Rahsepar Meadi, Yuan.
+    V2: Adds Baek et al. 2025; Dutta & Mishra 2023; Jackson-Triche et al. 2023.
+
+REFERENCES (Section 5)
+  - V1: 12 references (AXA, Bakker, García-Madurga, Grabb, Kroenke, Li, Rahsepar Meadi, Schaufeli, SCMP, Spitzer, West, Yuan).
+  - V2: 15 references. New entries (APA order): Baek et al. 2025; Dutta & Mishra 2023; Jackson-Triche et al. 2023.
+
+All other sections (Title, Objectives, theoretical paragraph, measures, problems, next steps, timeline) are identical between V1 and V2.
+
+
+2. CITATION EVALUATION
+--------------------------------------------------------------------------------
+
+BENCHMARK: "About one citation per 100 words" (for main report body, excluding references and timeline).
+
+V1 (progressreport1.html)
+  - Approximate word count (Sections 2–4 only): ~600–650 words.
+  - Unique references: 12.
+  - In-text citation instances: ~20+ (some sentences cite 2 sources).
+  - Citation density: Well above 1 per 100 words (roughly 1 per 30–40 words).
+  - Verdict: GOOD. Citations are sufficient and appropriately placed for theory (Bakker, Schaufeli), measures (Kroenke, Spitzer), general workplace/AI (García-Madurga, Li, Yuan, West), ethics (Rahsepar Meadi, Grabb), and Hong Kong (AXA, SCMP).
+
+V2 (progressreport2.html)
+  - Approximate word count (Sections 2–4 only): ~640–700 words (slightly longer due to added sentences).
+  - Unique references: 15.
+  - In-text citation instances: ~24+ (additional citations in lit review + progress bullet).
+  - Citation density: Still well above 1 per 100 words.
+  - Verdict: GOOD. Same as V1 plus: stronger workplace/organisational evidence (Jackson-Triche, Dutta & Mishra) and an extra review for health-professional/worker mental health (Baek et al.). No over-citation; new refs are thematically relevant.
+
+CITATION QUALITY (both versions)
+  - Theory: JD–R (Bakker), engagement definition (Schaufeli) – strong.
+  - Measures: PHQ-9, GAD-7 (Kroenke, Spitzer) – standard.
+  - HK-specific: AXA 2024, SCMP 2023 – appropriate for local context.
+  - AI/chatbot literature: mix of reviews (Li, Yuan, García-Madurga, Rahsepar Meadi, Grabb) and workplace studies (West; in V2 also Jackson-Triche, Baek, Dutta & Mishra) – appropriate.
+  - No citation is misplaced or irrelevant.
+
+CONCLUSION ON CITATIONS: Both versions have good citations. V2 has a richer set of workplace/organisational and implementation-focused sources without diluting quality.
+
+
+3. HONG KONG CONTEXT EVALUATION
+--------------------------------------------------------------------------------
+
+CURRENT HK CONTENT (identical in V1 and V2)
+  - One explicit Hong Kong sentence in the Literature Review: "In Hong Kong specifically, survey evidence suggests that employees work some of the longest hours in the world and report high rates of work-related stress and burnout (AXA, 2024; South China Morning Post, 2023)."
+  - One mention in the closing gap statement: "especially in high-pressure contexts such as Hong Kong."
+  - Next steps: "(a) Strengthen the Hong Kong background section using local statistics and industry reports; ..."
+  - Timeline: "polish HK context and implications" in a later phase.
+
+HK-RELATED REFERENCES
+  - AXA (2024): Hong Kong–specific report (stress, mind health).
+  - South China Morning Post (2023): Hong Kong–specific (overwork, hours).
+  - No other references are Hong Kong–specific. Remaining refs are international (workplace well-being, JD–R, chatbots, measures, ethics).
+
+ASSESSMENT
+  - Strength: The study explicitly frames Hong Kong as the context and uses two local sources for stress/overwork. The research gap is clearly tied to "high-pressure contexts such as Hong Kong."
+  - Limitation: Hong Kong appears in only two places in the main text. There is no mention of:
+    - Hong Kong labour market, sector mix, or EAP/wellness adoption.
+    - Local regulations or norms regarding workplace mental health or data privacy.
+    - Any Hong Kong–based studies on AI, chatbots, or employee wellbeing (if available).
+  - For a 600–1,000 word progress report, the current HK emphasis is acceptable but could be strengthened in a full report or in a Version 3 if the goal is to maximise local relevance now.
+
+WHICH VERSION RELATES TO HONG KONG MORE?
+  - Neither V1 nor V2 differs in Hong Kong content. The amount and type of Hong Kong context are the same. The only difference is that V2 adds more international workplace/implementation citations (Jackson-Triche, Dutta & Mishra, Baek); these do not reduce HK relevance but do not add HK-specific evidence either.
+
+
+4. RECOMMENDATION: IS A VERSION 3 (progressreport3.html) NEEDED?
+--------------------------------------------------------------------------------
+
+  - If the sole aim is "good citations" and "Hong Kong relevance as currently stated": No. Either V1 or V2 is acceptable; V2 is slightly stronger on citations and organisational/implementation nuance.
+
+  - If the aim is to "relate more to the context of Hong Kong" within the progress report itself: Yes. A Version 3 could make targeted adjustments to strengthen Hong Kong context without rewriting the whole report.
+
+SUGGESTED ADJUSTMENTS FOR A POTENTIAL PROGRESSREPORT3.HTML (Hong Kong–focused)
+  (a) Expand the Hong Kong sentence slightly (e.g. one extra clause on long hours or sector context) and keep AXA + SCMP; optionally add one more local or regional source if you have it (e.g. government or NGO statistic on workplace stress/mental health).
+  (b) In the "Next steps" bullet, keep (a) as is; optionally add a concrete HK example for "strengthen the Hong Kong background" (e.g. "including labour force and sector-specific stress data" or "and local EAP/wellness adoption rates if available").
+  (c) Optionally add one short sentence in the ethics/implementation paragraph noting that in Hong Kong, concerns about data privacy and career repercussions may be especially salient (without needing a new HK-only reference if none is at hand).
+  (d) Base Version 3 on V2 (retain Baek, Dutta & Mishra, Jackson-Triche) so that both citation richness and HK emphasis improve in one document.
+
+SUMMARY TABLE
+--------------------------------------------------------------------------------
+Criterion              | V1        | V2        | Better for HK? (V1 vs V2)
+-----------------------|-----------|-----------|---------------------------
+Citation count         | 12 refs   | 15 refs   | V2 (more sources)
+Citation density       | High      | High      | Tie (both sufficient)
+Citation relevance     | Good      | Good      | V2 (workplace/org focus)
+Hong Kong in text      | 2 mentions| 2 mentions| Tie (identical)
+HK-specific refs       | 2 (AXA,SCMP)| 2       | Tie (identical)
+Need for Version 3?    | —         | —         | Only if strengthening HK context is desired
+
+================================================================================
+  END OF EVALUATION REPORT
+================================================================================
