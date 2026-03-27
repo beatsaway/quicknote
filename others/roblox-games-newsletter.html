@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roblox games — primary newsletter writing</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.1rem; margin: 0 0 0.35rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.88rem; opacity: 0.95; }
+    nav { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    nav a {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+    }
+    nav a:hover { background: rgba(255,255,255,0.35); }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: var(--accent); }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter h3 {
+      margin: 1.15rem 0 0.5rem;
+      font-size: 1.05rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .letter h3:first-of-type { margin-top: 0.5rem; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .model {
+      font-size: 0.95rem;
+      white-space: pre-wrap;
+    }
+    .fb-intro { font-size: 0.88rem; color: var(--muted); margin: 0 0 1rem; line-height: 1.5; }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-next {
+      margin-top: 1rem;
+      padding: 0.75rem 0.85rem;
+      background: #f5f9ff;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .fb-next h3 { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-next ul { margin: 0; padding-left: 1.15rem; font-size: 0.88rem; }
+    .fb-next li { margin: 0.3rem 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Primary writing — school newsletter</h1>
+    <p>Roblox games to recommend to friends (Easter). Yellow = click phrase to see a suggested correction.</p>
+    <nav>
+      <a href="index.html">Home</a>
+    </nav>
+  </header>
+  <main>
+    <section class="box">
+      <h2>Task</h2>
+      <p class="topic">Roblox games to play with friends</p>
+      <p class="prompt">To have fun socialising while not being in school this Easter, many students want to stay in touch with their friends on Roblox. Write an <strong>article</strong> to <strong>recommend</strong> at least <strong>2</strong> such games for your school <strong>newsletter</strong>.</p>
+      <p class="prompt">Give at least <strong>3 reasons</strong> for each. You could mention the gameplay, visuals, sounds, characters, scenes, actions, items, tasks, special events, etc.</p>
+      <div class="word-list">
+        <strong>Useful words</strong>
+        recommend, newsletter, hang out, socialise, gameplay, vivid, character, scene, sound effect, task, special event, multiplayer, co-op, avatar, reason, audience, holiday
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Teacher notes (for checking)</h2>
+      <p class="fb-intro">Quick checklist while reading a <strong>primary</strong> pupil’s piece — not exam marking.</p>
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <ul>
+            <li>Two games named: <em>Adopt Me!</em> and <em>Brookhaven RP</em>.</li>
+            <li>Each game has <strong>three clear parts</strong> with headings — matches “at least 3 reasons”.</li>
+            <li>Friendly tone and a clear <strong>start</strong> and <strong>end</strong>; fits hanging out in the holidays.</li>
+            <li>Mentions <strong>tasks</strong>, <strong>events</strong>, building together — good link to the task wording.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>Add a sentence or two about <strong>what it looks or sounds like</strong> (colours, music, sound effects) — the task invited that.</li>
+            <li>Make it sound more like a <strong>newsletter</strong> (e.g. “Hi everyone,” or a one-line hello to readers).</li>
+            <li>One line mixes <strong>you</strong> and <strong>we</strong> — pick one and stick to it.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="fb-next">
+        <h3>Ideas for sharing with the pupil</h3>
+        <ul>
+          <li>Use one or two words from the useful list in your own sentence (<em>gameplay</em>, <em>multiplayer</em>, <em>special event</em>).</li>
+          <li>Between the two games, add one short joining sentence (e.g. “Another game my friends and I like is …”).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Pupil’s writing</h2>
+      <div class="letter">
+        <p>Easter is here! School is out, and this is the perfect time to stay connected with your friends. One of the best ways to do this is Roblox. Roblox is an amazing platform to virtually hang out with your friends. Here are two top Roblox games that you can play with your friends this Easter:</p>
+
+        <h3>Adopt Me!</h3>
+        <p><strong>Shared Goals:</strong> Play together and <span class="flip" tabindex="0" role="button" data-w="help each other in raising cute pets" data-r="help each other raise cute pets">help each other in raising cute pets</span>, earning Bucks by completing tasks, and exploring this <span class="flip" tabindex="0" role="button" data-w="colorful" data-r="colourful">colorful</span> world. Playing together is super fun!</p>
+        <p><strong>Creative Hangout:</strong> Build and decorate your dream home together. You can let your imagination run wild and create your own space to virtually hang out together!</p>
+        <p><strong>Mini Games and Events:</strong> Play various mini-games like Egg Hunt and enjoy events. These mini-games and events are constantly updated with new and exciting content.</p>
+
+        <h3>Brookhaven RP</h3>
+        <p><strong>Endless Roleplay:</strong> You can make up any story you want in this huge open world! You can be <span class="flip" tabindex="0" role="button" data-w="neighbors" data-r="neighbours">neighbors</span>, detectives, or explorers with your friends. The options are endless.</p>
+        <p><strong>In Interactive World,</strong> you can drive cool cars, fly helicopters, cook in houses, or visit different places like the police station or hospital. <span class="flip" tabindex="0" role="button" data-w="We can always find" data-r="You can always find">We can always find</span> something to do together.</p>
+        <p><strong>Collaborative Building:</strong> Work together to build and furnish your own house plot in Brookhaven. This will help you be creative and work together with others.</p>
+
+        <p>Get your friends together and play Adopt Me! or Brookhaven RP to make some great memories over Easter break!</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>For reference</h2>
+      <div class="model">Hello everyone,
+
+During the Easter holiday lots of us want to socialise even when we are not at school. My friends and I use Roblox to hang out online, and I would like to recommend two games that work really well in multiplayer.
+
+The first one is Adopt Me! You can team up to care for pets and complete daily tasks to earn Bucks — the co-op gameplay keeps everyone involved. I also like how vivid the map looks: bright buildings, cute animals, and holiday scenes when there is a special event. A third reason to try it is the housing part — you and your friends can decorate rooms together and show off items you collected, which feels creative and relaxing.
+
+Another game I enjoy is Brookhaven RP. First, it is great for roleplay because you choose your own story and avatar, and every session can be different. Second, the town is huge: you can drive around, visit places like the café or hospital, and there are little sound effects that make each scene feel alive. Third, you can share a house plot and furnish it as a group, so you practise planning and helping each other.
+
+If you are bored over the break, invite a few classmates and try these two — they are easy to learn and good for staying in touch.
+
+Happy Easter!
+Chris Wong</div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+  function toggle(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.textContent = el.textContent === r ? w : r;
+    syncClass(el);
+  }
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(el);
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>
