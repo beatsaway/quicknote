@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2018 Paper 2 Part B Q4 — Advice letter (interactive)</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #6a3d7c;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.1rem; margin: 0 0 0.35rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.88rem; opacity: 0.95; }
+    nav { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    nav a {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+    }
+    nav a:hover { background: rgba(255,255,255,0.35); }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    .hint {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.65rem 0.85rem;
+      background: #eee8;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .module { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0 0 0.85rem;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #f9f6fb;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .task-instruction { font-size: 0.95rem; color: var(--text); margin: 0; font-weight: 600; }
+    .word-note { font-weight: 400; color: var(--muted); font-size: 0.88rem; }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .model {
+      font-size: 0.95rem;
+      white-space: pre-wrap;
+    }
+    .clo-note { font-size: 0.85rem; color: var(--muted); margin: 0 0 1rem; line-height: 1.5; }
+    .clo-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .clo-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .clo-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .clo-item h3 { margin: 0 0 0.4rem; font-size: 0.82rem; color: var(--accent); }
+    .clo-item ul { margin: 0; padding-left: 1.1rem; font-size: 0.84rem; }
+    .clo-item li { margin: 0.2rem 0; }
+    .clo-overall {
+      margin: 0.9rem 0 0;
+      font-size: 0.86rem;
+      padding: 0.55rem 0.7rem;
+      background: #f3e8f7;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+    .clo-advice {
+      margin-top: 1rem;
+      padding: 0.75rem 0.85rem;
+      background: #f9f6fb;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .clo-advice h3 { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--accent); }
+    .clo-advice ul { margin: 0; padding-left: 1.15rem; font-size: 0.86rem; }
+    .clo-advice li { margin: 0.3rem 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DSE 2018 English — Paper 2 Part B Question 4</h1>
+    <p>Advice letter to J.C. Yellow = click to swap original ↔ correction.</p>
+    <nav>
+      <a href="index.html">Hub</a>
+    </nav>
+  </header>
+  <main>
+    <p class="hint"><strong>How to use:</strong> Click any highlighted phrase to toggle between your version and a corrected version. Press Tab + Enter on a highlight if you prefer the keyboard.</p>
+
+    <section class="box">
+      <h2>The task</h2>
+      <p class="module">Learning English through Social Issues</p>
+      <p class="prompt">You write an advice column for <em>Teen</em> magazine and you have received the following letter:</p>
+      <div class="stimulus">
+        <p style="margin:0">I’ve been thinking about my future. I love animals and I’ve always wanted to be a vet. But when I told my parents, the first thing they said was ‘No’. I feel really frustrated. What should I do?</p>
+        <p style="margin:0.5rem 0 0">— J.C., 16 years old</p>
+      </div>
+      <p class="task-instruction">Write a letter of advice. <span class="word-note">(About 400 words.)</span></p>
+    </section>
+
+    <section class="box clo-box">
+      <h2>Marking (CLO)</h2>
+      <p class="clo-note">HKDSE Paper 2 Part B is assessed on <strong>Content</strong> (ideas, relevance, task fulfilment), <strong>Language</strong> (accuracy, range, tone/register) and <strong>Organisation</strong> (structure, cohesion, paragraphing). The levels below are <strong>indicative only</strong> for study — not official HKEAA marks.</p>
+      <div class="clo-grid">
+        <div class="clo-item">
+          <h3>Content — Level 4</h3>
+          <ul>
+            <li>Responds directly to J.C.’s worry; tone is <strong>supportive</strong> and appropriate for an advice / agony-aunt column.</li>
+            <li>Gives <strong>several concrete steps</strong>: understand parents, communicate calmly, research and visits, plan for money/time, backup subjects.</li>
+            <li>Some parts repeat “show seriousness / keep talking” without much <strong>new depth</strong>; adding one HK-specific worry (e.g. course length, cost) would strengthen Level 5 content.</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Language — Level 3−</h3>
+          <ul>
+            <li>Frequent errors in <strong>grammar, prepositions and collocations</strong>; many sentences need rephrasing for natural English.</li>
+            <li>Meaning generally survives, but errors would distract a reader and cap the Language dimension.</li>
+            <li>Closing sign-off is wrong form (<strong>Yours sincerely</strong> needed); fix basic letter conventions.</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Organisation — Level 4</h3>
+          <ul>
+            <li>Logical <strong>time order</strong>: listen → how to speak → evidence and visits → plans if still worried → backup plan → encouragement.</li>
+            <li><strong>Paragraphs</strong> match stages of advice; reader can follow the line of thought.</li>
+            <li>Could merge a couple of short paragraphs for smoother <strong>flow</strong> at Level 5.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="clo-advice">
+        <h3>How to do better next time</h3>
+        <ul>
+          <li><strong>Content:</strong> In the opening, <strong>echo J.C.’s words</strong> (animals, parents said no, frustration) so the reader sees you are answering <em>this</em> letter, not giving generic tips.</li>
+          <li><strong>Content:</strong> For a higher band, name <strong>one realistic parent worry</strong> (years of study, tuition, job outlook) and answer it with a concrete step — that shows depth and empathy.</li>
+          <li><strong>Language:</strong> Build a <strong>mini checklist</strong> from recurring error types: prepositions after <em>listen/share/give up</em>, <em>may</em> vs <em>maybe</em>, adjective vs adverb after <em>be</em>, and correct closings (<em>Yours sincerely</em>). Proofread once per category.</li>
+          <li><strong>Language:</strong> Read each paragraph <strong>aloud</strong>: if a line sounds unnatural in speech, rewrite it into two shorter sentences rather than one long, tangled one.</li>
+          <li><strong>Organisation:</strong> Keep <strong>one main suggestion per paragraph</strong>; if two ideas feel similar, merge them or cut the weaker one so each paragraph adds something new.</li>
+        </ul>
+      </div>
+      <p class="clo-overall"><strong>Overall (indicative):</strong> about <strong>Level 3</strong> — strong structure and ideas; language accuracy holds the piece back.</p>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <p>Dear J.C.,</p>
+        <p>Thank you for <span class="flip" tabindex="0" role="button" data-w="sharing your situation to me" data-r="sharing your situation with me">sharing your situation to me</span>. <span class="flip" tabindex="0" role="button" data-w="I can observe that" data-r="I can see that">I can observe that</span> you want to be a vet and it is great that you know what you really love. It is normal to feel so frustrated when your parents <span class="flip" tabindex="0" role="button" data-w="refuse your dream job" data-r="disapprove of your dream career">refuse your dream job</span>. But remember, do not <span class="flip" tabindex="0" role="button" data-w="give up to chase" data-r="give up chasing">give up to chase</span> your dream. Let me give you some advice <span class="flip" tabindex="0" role="button" data-w="to try talk to them" data-r="on how to talk to them">to try talk to them</span>.</p>
+        <p>First, you need to try to understand <span class="flip" tabindex="0" role="button" data-w="the reason of your parents refuse you" data-r="why your parents refuse to support you">the reason of your parents refuse you</span>. Sometimes, parents <span class="flip" tabindex="0" role="button" data-w="maybe worry" data-r="may worry">maybe worry</span> about you that it is too difficult to <span class="flip" tabindex="0" role="button" data-w="study vet or finding" data-r="study veterinary medicine or find">study vet or finding</span> a good job after graduation. They may also worry about the money that they need to spend for school. Although they seem to be annoying, <span class="flip" tabindex="0" role="button" data-w="they worries are come from their love" data-r="their worries come from love">they worries are come from their love</span>. Therefore, it is necessary to <span class="flip" tabindex="0" role="button" data-w="listen their thoughts" data-r="listen to their thoughts">listen their thoughts</span> and understand their situation and <span class="flip" tabindex="0" role="button" data-w="stands" data-r="stance">stands</span>.</p>
+        <p>Next, when you talk to your parents, <span class="flip" tabindex="0" role="button" data-w="be calm and respect" data-r="be calm and respectful">be calm and respect</span>. Tell them directly why you <span class="flip" tabindex="0" role="button" data-w="wwant" data-r="want">wwant</span> to be a vet.</p>
+        <p>Explain how much you love animals and <span class="flip" tabindex="0" role="button" data-w="how happy when you successfully save them" data-r="how happy you feel when you successfully save them">how happy when you successfully save them</span>. Share your <span class="flip" tabindex="0" role="button" data-w="goods and dreams" data-r="goals and dreams">goods and dreams</span> and tell them that you are willing to work hard for reaching your goal. Show more about how serious you are to become a vet.</p>
+        <p>It can also help by doing research and finding out what you need to study and the programs to become a vet. Furthermore, bring your parents to visit <span class="flip" tabindex="0" role="button" data-w="some local animal hospital" data-r="a local animal hospital">some local animal hospital</span> or talk to a vet. Seeing the work they do can help your parents understand your passion better and <span class="flip" tabindex="0" role="button" data-w="the working content" data-r="what the job involves">the working content</span>.</p>
+        <p>If your parents <span class="flip" tabindex="0" role="button" data-w="are still worry about it" data-r="are still worried about it">are still worry about it</span>, talk about <span class="flip" tabindex="0" role="button" data-w="how your plan that can overcome" data-r="how your plan can overcome">how your plan that can overcome</span> the challenges of being a vet. For example, discuss some ways to save money for school like <span class="flip" tabindex="0" role="button" data-w="part time" data-r="part-time">part time</span> work. If they are worried about how long it takes <span class="flip" tabindex="0" role="button" data-w="to be success" data-r="to succeed">to be success</span>, explain to them that many vets have successful careers and they all have a bright future. Showing them that you have different solutions to deal with can make them feel more comfortable and gain more <span class="flip" tabindex="0" role="button" data-w="trusts" data-r="trust">trusts</span>.</p>
+        <p>However, sometimes it is good to have a backup plan while aiming for your dream. You can now study related subjects like biology or animal science in schools.</p>
+        <p>In this way, you can still stay close to animals and keep chasing your dream. It can also show your parents that you are serious about your future.</p>
+        <p>Remember many people face difficulties when they try to follow their dreams. The most important thing is to stay respectful, patient, and determined. Keep talking to your parents and show them how good you are. <span class="flip" tabindex="0" role="button" data-w="After time pass" data-r="After some time has passed">After time pass</span>, they might understand <span class="flip" tabindex="0" role="button" data-w="how much vet means to you" data-r="how much becoming a vet means to you">how much vet means to you</span>.</p>
+        <p>Most of all, believe in yourself. Your dream of saving animals is a wonderful thing. <span class="flip" tabindex="0" role="button" data-w="I believe in you can achieve your dream" data-r="I believe you can achieve your dream">I believe in you can achieve your dream</span>. Don't give up, and keep working on the things that <span class="flip" tabindex="0" role="button" data-w="makes you happy" data-r="make you happy">makes you happy</span>.</p>
+        <p>I wish you the best and I hope your dream comes true someday.</p>
+        <p><span class="flip" tabindex="0" role="button" data-w="Your sincerely" data-r="Yours sincerely">Your sincerely</span>,<br>Chris Wong</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>For reference</h2>
+      <p style="font-size:0.88rem;color:var(--muted);margin-top:0">Sample letter for comparison — same task, not the only correct answer. Compare <em>tone</em>, <em>structure</em> and <em>accuracy</em> with your own.</p>
+      <div class="model">Dear J.C.,
+
+Thank you for sharing your situation with me. I can see how much you want to become a veterinarian, and it is wonderful that you already know what you love. It is natural to feel frustrated when your parents will not support that dream, but please do not abandon it. Here is some practical advice on how to talk to them.
+
+First, try to understand exactly what they fear. They may worry that the course is demanding, that jobs are competitive or that tuition will be heavy. Even if they sound negative, their concerns usually come from care for your future. Listen carefully and acknowledge their viewpoint.
+
+When you speak to them, stay calm and respectful. Explain clearly why you want this career, how deeply you care for animals and how rewarding you find it when an animal recovers because of skilled treatment. Share your longer-term goals and say honestly that you are prepared to work hard. It also helps to research entry requirements and degree programmes in advance, and perhaps arrange a visit to a local clinic or a short meeting with a practising vet so they can see what the work involves day to day.
+
+If anxiety remains, present realistic plans — for example how you might save for fees through part-time work, or what a typical training pathway looks like. If they fret about how long success takes, reassure them that many veterinarians build stable, satisfying careers. Showing that you have thought problems through thoughtfully can build trust.
+
+While holding to your main aim, a sensible fallback — such as excelling in biology or animal-related subjects at school — keeps you close to your interest and shows maturity.
+
+Many young people meet resistance when they pursue a dream. Stay patient, respectful and persistent, and keep the conversation alive. In time, your parents may better grasp what this vocation means to you.
+
+Above all, believe in yourself. Your wish to protect animals is admirable, and I believe you can move towards that goal if you keep going. Keep investing in what genuinely motivates you.
+
+I wish you every success.
+
+Yours sincerely,
+Chris Wong</div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+  function toggle(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.textContent = el.textContent === r ? w : r;
+    syncClass(el);
+  }
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(el);
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>

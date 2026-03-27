@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2015 Paper 2 Part B Q5 — Harbour letter (interactive)</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #0d5c4a;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.1rem; margin: 0 0 0.35rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.88rem; opacity: 0.95; }
+    nav { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    nav a {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+    }
+    nav a:hover { background: rgba(255,255,255,0.35); }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    .hint {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.65rem 0.85rem;
+      background: #eee8;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .module { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .model {
+      font-size: 0.95rem;
+      white-space: pre-wrap;
+    }
+    .clo-note { font-size: 0.85rem; color: var(--muted); margin: 0 0 1rem; line-height: 1.5; }
+    .clo-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .clo-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .clo-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .clo-item h3 { margin: 0 0 0.4rem; font-size: 0.82rem; color: var(--accent); }
+    .clo-item ul { margin: 0; padding-left: 1.1rem; font-size: 0.84rem; }
+    .clo-item li { margin: 0.2rem 0; }
+    .clo-overall {
+      margin: 0.9rem 0 0;
+      font-size: 0.86rem;
+      padding: 0.55rem 0.7rem;
+      background: #fff8e6;
+      border-radius: 6px;
+      border-left: 3px solid #c9a227;
+    }
+    .clo-advice {
+      margin-top: 1rem;
+      padding: 0.75rem 0.85rem;
+      background: #f0f7f4;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .clo-advice h3 { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--accent); }
+    .clo-advice ul { margin: 0; padding-left: 1.15rem; font-size: 0.86rem; }
+    .clo-advice li { margin: 0.3rem 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DSE 2015 English — Paper 2 Part B Question 5</h1>
+    <p>Letter to the editor (harbour front / open space). Yellow = click to swap original ↔ correction.</p>
+    <nav>
+      <a href="index.html">Hub</a>
+    </nav>
+  </header>
+  <main>
+    <p class="hint"><strong>How to use:</strong> Click any highlighted phrase to toggle between your version and a corrected version. Click again to bring the original back.</p>
+
+    <section class="box">
+      <h2>The task</h2>
+      <p class="module">Learning English through Debating</p>
+      <p class="prompt">Many parts of Hong Kong’s harbour front are still undeveloped. Some suggest using these areas for housing and commercial use, while others argue that such areas should be left as open space for public use. Write to the editor of the <em>Hong Kong Daily</em> stating your opinion either <strong>for</strong> or <strong>against</strong> leaving these areas open for public use. Justify your point of view with <strong>three reasons</strong>.</p>
+    </section>
+
+    <section class="box clo-box">
+      <h2>Marking (CLO)</h2>
+      <p class="clo-note">HKDSE Paper 2 Part B is assessed on <strong>Content</strong> (ideas, relevance, task fulfilment), <strong>Language</strong> (accuracy, range, tone/register) and <strong>Organisation</strong> (structure, cohesion, paragraphing). The levels below are <strong>indicative only</strong> for study — not official HKEAA marks.</p>
+      <div class="clo-grid">
+        <div class="clo-item">
+          <h3>Content — Level 4</h3>
+          <ul>
+            <li>Takes a clear side (for keeping the harbour open) and gives <strong>three distinct reasons</strong>, as required.</li>
+            <li>Ideas — wellbeing, space for families, tourism/economy — are <strong>relevant</strong> to Hong Kong.</li>
+            <li>One body paragraph is slightly muddled: it sounds like “building” open space rather than <strong>not developing</strong> the waterfront — tighten the logic.</li>
+            <li>Could add brief <strong>local specifics</strong> (e.g. promenade use, skyline) to move towards Level 5.</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Language — Level 3</h3>
+          <ul>
+            <li>Meaning is usually clear, but <strong>grammar and word choice</strong> slip often (agreement, prepositions, wrong words).</li>
+            <li>Some sentences are clunky; <strong>vocabulary</strong> is adequate but not yet wide or precise enough for Level 4.</li>
+            <li><strong>Register</strong> is mostly appropriate for a letter to the editor; closing is correct.</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Organisation — Level 4</h3>
+          <ul>
+            <li>Clear <strong>introduction</strong>, sequenced reasons (First / Also / Furthermore) and a <strong>short conclusion</strong>.</li>
+            <li><strong>Paragraphing</strong> works; one short paragraph could merge with the next for smoother development.</li>
+            <li>Basic <strong>cohesion</strong> is present; more varied links would match Level 5.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="clo-advice">
+        <h3>How to do better next time</h3>
+        <ul>
+          <li><strong>Content:</strong> Open each body paragraph with a <strong>clear topic sentence</strong> that names one reason only; for the environment point, frame it explicitly as avoiding overbuilding on the shore, not “creating” open space from nothing.</li>
+          <li><strong>Content:</strong> Add one or two <strong>Hong Kong-focused details</strong> (e.g. crowded districts vs. need for breathing room, harbour as a postcard image) so arguments feel grounded, not generic.</li>
+          <li><strong>Language:</strong> After drafting, do a pass only for <strong>agreement, articles and prepositions</strong> (e.g. along the harbour, the noise, visitors). Keep a personal <strong>error list</strong> from the yellow highlights and revise new essays against it.</li>
+          <li><strong>Language:</strong> Replace loose word choices with <strong>set collocations</strong> (fast-paced city, green/open space, boost the economy) — short vocabulary notes help more than rare “fancy” words.</li>
+          <li><strong>Organisation:</strong> Vary connectors beyond <em>First / Also / Furthermore</em> (<em>In addition, Moreover, Above all</em>) and use one sentence at the end of the intro to <strong>preview</strong> your three reasons.</li>
+        </ul>
+      </div>
+      <p class="clo-overall"><strong>Overall (indicative):</strong> about <strong>Level 3–4</strong> — content and organisation outpace language; accuracy limits the overall band.</p>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <p>Dear Editor,</p>
+        <p>In recent years, <span class="flip" tabindex="0" role="button" data-w="there are more undeveloped harbour in Hong Kong" data-r="much of Hong Kong&amp;#39;s harbour front remains undeveloped">there are more undeveloped harbour in Hong Kong</span>. I am writing to share my opinion about the undeveloped areas. I believe that these areas should be left open for public use. There are three main reasons to support my view.</p>
+        <p>First, <span class="flip" tabindex="0" role="button" data-w="pointing" data-r="keeping">pointing</span> open space along the harbour can give space for people to relax and enjoy the view of the sea. Hong Kong is a <span class="flip" tabindex="0" role="button" data-w="first pace" data-r="fast-paced">first pace</span> city. Everyone has a busy life and they all work very hard. They need a <span class="flip" tabindex="0" role="button" data-w="phone" data-r="place">phone</span> to escape <span class="flip" tabindex="0" role="button" data-w="those noise" data-r="the noise">those noise</span> and lights. <span class="flip" tabindex="0" role="button" data-w="Open areas of harbour" data-r="Open areas along the harbour">Open areas of harbour</span> can provide fresh air and a perfect environment for people. They can walk near the sea, sit on the benches or have picnics with friends or families <span class="flip" tabindex="0" role="button" data-w="in there" data-r="there">in there</span>.</p>
+        <p>Open spaces also give children a safe place to play and run around. If the areas are turned into buildings, there will be less <span class="flip" tabindex="0" role="button" data-w="place" data-r="space">place</span> for recreational use.</p>
+        <p>Also, <span class="flip" tabindex="0" role="button" data-w="building an open space in the harbour can help protect the environment as sea is" data-r="not building on the waterfront can help protect the environment, as the sea is">building an open space in the harbour can help protect the environment as sea is</span> the habitat of fish and other sea creatures. If people develop the land into housing or commercial areas, this may harm the wildlife. The construction may also cause pollution and <span class="flip" tabindex="0" role="button" data-w="structure damage of land" data-r="structural damage to the land">structure damage of land</span>. Therefore, keeping the harbour open can maintain the natural environment of Hong Kong which is not only good for the animals <span class="flip" tabindex="0" role="button" data-w="but also benefit for people who lives nature" data-r="but is also beneficial for people who love nature">but also benefit for people who lives nature</span>.</p>
+        <p>Furthermore, open spaces along the harbour can boost tourism and even can boost the economy. Many tourists <span class="flip" tabindex="0" role="button" data-w="visit Hong Kong always want" data-r="who visit Hong Kong always want">visit Hong Kong always want</span> to find a place to enjoy the view and buildings. Walking paths and <span class="flip" tabindex="0" role="button" data-w="seats in harbour" data-r="seats along the harbour">seats in harbour</span> can make the open space more attractive. Tourists can take photos and <span class="flip" tabindex="0" role="button" data-w="having" data-r="have">having</span> a walk in there. This can attract more <span class="flip" tabindex="0" role="button" data-w="vistors" data-r="visitors">vistors</span> to Hong Kong and also <span class="flip" tabindex="0" role="button" data-w="more people spending money on" data-r="encourage more people to spend money at">more people spending money on</span> the local shops nearby the harbour.</p>
+        <p>In conclusion, I strongly believe that the undeveloped parts of Hong Kong harbour should be open for public use. I think we should think carefully about how we use our land. Sometimes having open spaces for people is better than having housing or commercial areas, as open spaces are good for <span class="flip" tabindex="0" role="button" data-w="people health" data-r="people&amp;#39;s health">people health</span>, environment and economy.</p>
+        <p>Yours sincerely,<br>Chris Wong</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>For reference</h2>
+      <p style="font-size:0.88rem;color:var(--muted);margin-top:0">Sample letter for comparison — same task, not the only correct answer. Compare <em>structure</em>, <em>precision</em> and <em>links</em> with your own.</p>
+      <div class="model">Dear Editor,
+
+Much of Hong Kong’s harbour front is still undeveloped. I am writing to argue that these stretches should stay open for public use rather than be turned mainly into housing or offices. I have three reasons for this view.
+
+First, a clear waterfront gives residents room to relax and enjoy the sea. Hong Kong is a fast-paced city where many people work long hours; they need places to escape the noise and glare of the urban core. Wide promenades offer fresher air and a calmer setting for walking, sitting on benches or picnicking with family and friends.
+
+Open recreational space also matters for children. If every spare strip is built over, families lose safe outdoor areas within easy reach.
+
+Second, limiting hard development along sensitive shoreline protects marine habitats. Heavy construction may disturb wildlife, add pollution and damage fragile coastal land. Keeping the harbour more natural supports biodiversity and benefits residents who value nature in the city.
+
+Third, an attractive harbour lifts tourism and the wider economy. Visitors often seek classic harbour views; thoughtful paths and seating make the experience more welcoming. That can draw more visitors and spending at shops and cafés nearby, supporting local employment.
+
+In short, undeveloped harbour frontage should remain publicly accessible. Used wisely, open space improves health, safeguards the environment and strengthens the economy in ways that relentless building alone cannot.
+
+Yours sincerely,
+Chris Wong</div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+  function toggle(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.textContent = el.textContent === r ? w : r;
+    syncClass(el);
+  }
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(el);
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>
