@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spa / Villas — comparison table &amp; script (粵 / EN)</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #1f2937;
+      --muted: #6b7280;
+      --accent: #111827;
+      --line: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--fg);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3rem;
+    }
+    header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+    h1 {
+      font-size: 1.35rem;
+      font-weight: 650;
+      letter-spacing: 0.02em;
+      margin: 0 0 0.35rem;
+    }
+    .sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 650;
+      margin: 2rem 0 0.75rem;
+    }
+    .table-scroll {
+      overflow-x: auto;
+      margin: 0 0 0.5rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      min-width: 52rem;
+    }
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid var(--line);
+    }
+    th {
+      background: #f9fafb;
+      font-weight: 650;
+      white-space: nowrap;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .opt {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .script-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+    @media (min-width: 52rem) {
+      .script-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+    }
+    .script-card {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 1rem 1.15rem;
+      background: #fafafa;
+    }
+    .script-card h3 {
+      margin: 0 0 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 650;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .script-card p {
+      margin: 0 0 0.65rem;
+    }
+    .script-card p:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Accommodation overview</h1>
+      <p class="sub">Table + presenter script (粵語 | English)</p>
+    </header>
+
+    <h2>Comparison table</h2>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th>Bedrooms / scale</th>
+            <th>Setting / view</th>
+            <th>Butler</th>
+            <th>Stand-out features</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="opt">3-Bedroom Mansion</td>
+            <td>3 suites</td>
+            <td>“Resort within a resort,” separate entrance; gardens, ocean glimpses</td>
+            <td>Full-time</td>
+            <td>Elevator; 2 staircases; private spa pavilion; crystal chandelier dining; 2-tier rice-terrace-style pool; BBQ &amp; in-villa massage setups</td>
+          </tr>
+          <tr>
+            <td class="opt">5-Bedroom Mansion</td>
+            <td>5 suites (2 buildings)</td>
+            <td>Same mansion concept as 3-bed</td>
+            <td>Full-time</td>
+            <td>Everything in 3-bed plus private gym &amp; personal training; spa pavilion</td>
+          </tr>
+          <tr>
+            <td class="opt">Ocean Cliff Villa</td>
+            <td>1 or 2 bedroom</td>
+            <td>Closest to cliff edge; dense garden; full ocean panorama</td>
+            <td>Not stated</td>
+            <td>8 villas; Italianate; infinity pool, minibar, shaded outdoor living; glass terrazzo bathroom</td>
+          </tr>
+          <tr>
+            <td class="opt">Ocean View Villa</td>
+            <td>1 bedroom</td>
+            <td>Garden; ocean + thatched-roof views</td>
+            <td>Not stated</td>
+            <td>Same overall 1-bed layout as cliff line; not positioned as cliff-edge</td>
+          </tr>
+          <tr>
+            <td class="opt">Premier Ocean View Villa</td>
+            <td>1 or 2 bedroom</td>
+            <td>Top of the resort; garden; ocean + thatched roofs</td>
+            <td>Not stated</td>
+            <td>Same interior template as Ocean View; highest elevation of this line</td>
+          </tr>
+          <tr>
+            <td class="opt">Serpenti Villa</td>
+            <td>1 bedroom<br>(~300 m²)</td>
+            <td>Garden; ocean framed by thatched roofs</td>
+            <td>Full-time</td>
+            <td>Serpenti-branded experience; patio, minibar, infinity pool, sunbeds</td>
+          </tr>
+          <tr>
+            <td class="opt">Bvlgari Villa</td>
+            <td>2 suites (~1,300 m²)</td>
+            <td>Exclusive entrance; cliff-top; sapphire ocean</td>
+            <td>Not stated in source</td>
+            <td>20 m heated pool cascading to second pool; spa room, cinema, meditation pergola, lawn, multiple pavilions</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Script</h2>
+    <div class="script-grid">
+      <div class="script-card" lang="yue-Hant">
+        <h3>粵語</h3>
+        <p>個Resort主要有三種房 單人床 雙人床 同埋Mansion。</p>
+        <p>單人床嘅房有4 款　雙人床嘅房有3 款　Mansion有分 3人房5人房</p>
+        <p>有啲位于懸崖 有啲近海 有隱蔽喺叢林花園</p>
+        <p>好多都有私人泳池　Bvlgari Villa同埋Mansion會有埋私人spa 私人按摩 甚至系私人GYM同埋trainer</p>
+        <p>Serpenti Villa同埋Mansion會有埋私人Butler Full Time 服務</p>
+      </div>
+      <div class="script-card" lang="en">
+        <h3>English</h3>
+        <p>The resort offers three main types of accommodation: single-bed rooms, double-bed rooms, and mansions.</p>
+        <p>There are 4 varieties of single-bed rooms and 3 varieties of double-bed rooms. The mansions are 2 story buildings with 3 or 5 suites.</p>
+        <p>Some of these accommodations are situated on cliffs, some close to the sea, and others are tucked away in jungle gardens.</p>
+        <p>Many feature private pools. The Bvlgari Villas and Mansions additionally offer a private spa, private massage facilities, and even a private gym with a personal trainer.</p>
+        <p>The Serpenti Villas and Mansions come with full-time private butler service.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

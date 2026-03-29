@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pages</title>
+  <style>
+    :root {
+      --bg: #f9fafb;
+      --fg: #111827;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --accent: #1d4ed8;
+      --accent-hover: #1e40af;
+      --header-h: 3.75rem;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      color: var(--fg);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      height: var(--header-h);
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .app-header nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .app-header a {
+      display: inline-block;
+      padding: 0.4rem 0.65rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 0.375rem;
+      border: 1px solid transparent;
+      transition: color 0.15s, background 0.15s, border-color 0.15s;
+    }
+
+    .app-header a:hover {
+      color: var(--fg);
+      background: var(--bg);
+    }
+
+    .app-header a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .app-header a.is-active {
+      color: #fff;
+      font-weight: 700;
+      background: var(--accent);
+      border-color: #1e3a8a;
+      box-shadow:
+        0 0 0 2px #fff,
+        0 0 0 4px var(--accent),
+        0 2px 8px rgba(29, 78, 216, 0.45);
+    }
+
+    .app-header a.is-active:hover {
+      background: var(--accent-hover);
+      border-color: #172554;
+      color: #fff;
+      box-shadow:
+        0 0 0 2px #fff,
+        0 0 0 4px var(--accent-hover),
+        0 2px 8px rgba(30, 64, 175, 0.5);
+    }
+
+    .frame-wrap {
+      position: fixed;
+      top: var(--header-h);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #fff;
+    }
+
+    .frame-wrap iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <nav id="nav" aria-label="Pages">
+      <a href="script.html" target="page-frame" data-page>Script</a>
+      <a href="task1e.html" target="page-frame" data-page>task1e</a>
+      <a href="task1eV2.html" target="page-frame" data-page>task1e V2</a>
+      <a href="task1eV2short.html" target="page-frame" data-page>task1e V2 short</a>
+      <a href="task1eV3.html" target="page-frame" data-page>task1e V3</a>
+      <a href="task1eV4.html" target="page-frame" data-page>task1e V4</a>
+      <a href="task1eV4s.html" target="page-frame" data-page>task1e V4s</a>
+      <a href="task2.html" target="page-frame" data-page>task2</a>
+    </nav>
+  </header>
+  <div class="frame-wrap">
+    <iframe
+      id="page-frame"
+      name="page-frame"
+      title="Selected page"
+      src="script.html"
+    ></iframe>
+  </div>
+  <script>
+    (function () {
+      var nav = document.getElementById("nav");
+      var links = nav.querySelectorAll("a[data-page]");
+      var frame = document.getElementById("page-frame");
+
+      function setActive(link) {
+        links.forEach(function (x) {
+          x.classList.toggle("is-active", x === link);
+          if (x === link) {
+            x.setAttribute("aria-current", "page");
+          } else {
+            x.removeAttribute("aria-current");
+          }
+        });
+      }
+
+      function fileNameFromHref(href) {
+        if (!href || href === "about:blank") {
+          return "";
+        }
+        try {
+          var u = new URL(href);
+          var segs = u.pathname.split("/").filter(Boolean);
+          var name = segs.length ? segs[segs.length - 1] : "";
+          return decodeURIComponent(name.split("?")[0] || "");
+        } catch (e) {
+          var norm = String(href).replace(/\\/g, "/");
+          var parts = norm.split("/");
+          var last = parts.pop() || "";
+          return decodeURIComponent(last.split("?")[0] || "");
+        }
+      }
+
+      function currentFrameFileName() {
+        var href = "";
+        try {
+          href = frame.contentWindow.location.href || "";
+        } catch (e) {
+          href = "";
+        }
+        /* property .src tracks navigations; getAttribute("src") does not */
+        if (!href) {
+          href = frame.src || "";
+        }
+        return fileNameFromHref(href);
+      }
+
+      function syncActive() {
+        var path = currentFrameFileName();
+        var matched = null;
+        links.forEach(function (a) {
+          var href = a.getAttribute("href").split("/").pop();
+          if (href === path) {
+            matched = a;
+          }
+        });
+        if (matched) {
+          setActive(matched);
+        } else if (links.length) {
+          var tail = fileNameFromHref(frame.src || "");
+          var bySrc = Array.prototype.find.call(links, function (a) {
+            return a.getAttribute("href") === tail;
+          });
+          setActive(bySrc || links[0]);
+        }
+      }
+
+      links.forEach(function (a) {
+        a.addEventListener("click", function (e) {
+          e.preventDefault();
+          var href = a.getAttribute("href");
+          if (href) {
+            /* Setting src keeps .src in sync; target=name navigation does not,
+               so syncActive() would fall back to the initial script.html. */
+            frame.src = href;
+          }
+          setActive(a);
+        });
+      });
+
+      frame.addEventListener("load", syncActive);
+      syncActive();
+    })();
+  </script>
+</body>
+</html>
