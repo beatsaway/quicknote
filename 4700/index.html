@@ -50,6 +50,25 @@
       min-width: 0;
     }
 
+    .viewing {
+      flex-shrink: 0;
+      font-size: 0.75rem;
+      line-height: 1.35;
+      color: var(--muted);
+      max-width: 14rem;
+      text-align: right;
+    }
+
+    .viewing strong {
+      display: block;
+      color: var(--fg);
+      font-weight: 650;
+      font-size: 0.8125rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
     .app-header a {
       display: inline-block;
       padding: 0.4rem 0.65rem;
@@ -125,13 +144,16 @@
       <a href="task1SpaFocus.html" target="page-frame" data-page>Task 1 spa focus</a>
       <a href="task2.html" target="page-frame" data-page>task2</a>
     </nav>
+    <div class="viewing" id="viewing" aria-live="polite" title="Current page in the frame below">
+      <span>Viewing</span>
+      <strong id="viewing-name">…</strong>
+    </div>
   </header>
   <div class="frame-wrap">
     <iframe
       id="page-frame"
       name="page-frame"
       title="Selected page"
-      src="script.html"
     ></iframe>
   </div>
   <script>
@@ -139,6 +161,12 @@
       var nav = document.getElementById("nav");
       var links = nav.querySelectorAll("a[data-page]");
       var frame = document.getElementById("page-frame");
+      var viewingName = document.getElementById("viewing-name");
+      var DEFAULT_PAGE = "script.html";
+
+      var allowed = Array.prototype.map.call(links, function (a) {
+        return a.getAttribute("href");
+      });
 
       function setActive(link) {
         links.forEach(function (x) {
@@ -175,43 +203,93 @@
         } catch (e) {
           href = "";
         }
-        /* property .src tracks navigations; getAttribute("src") does not */
         if (!href) {
           href = frame.src || "";
         }
         return fileNameFromHref(href);
       }
 
-      function syncActive() {
-        var path = currentFrameFileName();
+      function linkForFile(file) {
         var matched = null;
         links.forEach(function (a) {
-          var href = a.getAttribute("href").split("/").pop();
-          if (href === path) {
+          var h = a.getAttribute("href").split("/").pop();
+          if (h === file) {
             matched = a;
           }
         });
+        return matched;
+      }
+
+      function setQueryPage(file) {
+        try {
+          var u = new URL(window.location.href);
+          u.searchParams.set("page", file);
+          var next = u.pathname + u.search + (u.hash || "");
+          history.replaceState({ page: file }, "", next);
+        } catch (e) {
+          /* file:// or restricted environments */
+        }
+      }
+
+      function updateViewing(link, file) {
+        var label = link ? link.textContent.trim() : file;
+        viewingName.textContent = label || file || "…";
+        document.title = (label || file || "Pages") + " · 4700 hub";
+      }
+
+      function syncActive() {
+        var path = currentFrameFileName();
+        var matched = linkForFile(path);
         if (matched) {
           setActive(matched);
+          updateViewing(matched, path);
+          setQueryPage(path);
         } else if (links.length) {
           var tail = fileNameFromHref(frame.src || "");
           var bySrc = Array.prototype.find.call(links, function (a) {
             return a.getAttribute("href") === tail;
           });
-          setActive(bySrc || links[0]);
+          var fallback = bySrc || links[0];
+          setActive(fallback);
+          updateViewing(fallback, tail || DEFAULT_PAGE);
+          setQueryPage(fallback.getAttribute("href").split("/").pop());
         }
       }
+
+      function pickInitialSrc() {
+        var want = "";
+        try {
+          want = new URLSearchParams(window.location.search).get("page") || "";
+        } catch (e) {
+          want = "";
+        }
+        if (want && allowed.indexOf(want) !== -1) {
+          return want;
+        }
+        if (want) {
+          try {
+            var u = new URL(window.location.href);
+            u.searchParams.set("page", DEFAULT_PAGE);
+            history.replaceState(null, "", u.pathname + u.search + (u.hash || ""));
+          } catch (e2) {
+            /* ignore */
+          }
+        }
+        return DEFAULT_PAGE;
+      }
+
+      frame.src = pickInitialSrc();
 
       links.forEach(function (a) {
         a.addEventListener("click", function (e) {
           e.preventDefault();
           var href = a.getAttribute("href");
           if (href) {
-            /* Setting src keeps .src in sync; target=name navigation does not,
-               so syncActive() would fall back to the initial script.html. */
             frame.src = href;
           }
           setActive(a);
+          updateViewing(a, href);
+          setQueryPage(href.split("/").pop());
         });
       });
 
