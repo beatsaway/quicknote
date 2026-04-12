@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2016 Paper 2 Part B Q4 — Young Post / monitoring apps (interactive)</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.1rem; margin: 0 0 0.35rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.88rem; opacity: 0.95; }
+    nav { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    nav a {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+    }
+    nav a:hover { background: rgba(255,255,255,0.35); }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    .hint {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.65rem 0.85rem;
+      background: #eee8;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .module { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #e3f2fd;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .model {
+      font-size: 0.95rem;
+      white-space: pre-wrap;
+    }
+    .clo-note { font-size: 0.85rem; color: var(--muted); margin: 0 0 1rem; line-height: 1.5; }
+    .clo-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .clo-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .clo-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .clo-item h3 { margin: 0 0 0.4rem; font-size: 0.82rem; color: var(--accent); }
+    .clo-item ul { margin: 0; padding-left: 1.1rem; font-size: 0.84rem; }
+    .clo-item li { margin: 0.2rem 0; }
+    .clo-overall {
+      margin: 0.9rem 0 0;
+      font-size: 0.86rem;
+      padding: 0.55rem 0.7rem;
+      background: #e3f2fd;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+    .clo-advice {
+      margin-top: 1rem;
+      padding: 0.75rem 0.85rem;
+      background: #f5f9ff;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .clo-advice h3 { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--accent); }
+    .clo-advice ul { margin: 0; padding-left: 1.15rem; font-size: 0.86rem; }
+    .clo-advice li { margin: 0.3rem 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DSE 2016 English — Paper 2 Part B Question 4</h1>
+    <p>Letter to the <em>Young Post</em>. Yellow = click to swap original ↔ correction.</p>
+    <nav>
+      <a href="index.html">Hub</a>
+    </nav>
+  </header>
+  <main>
+    <p class="hint"><strong>How to use:</strong> Click any highlighted phrase to toggle between your version and a corrected version. Click again to bring the original back. <strong>Note:</strong> only the main fixes are highlighted — most of your sentences stay as you wrote them.</p>
+
+    <section class="box">
+      <h2>The task</h2>
+      <p class="module">Learning English through Debating</p>
+      <div class="stimulus">
+        <p style="margin:0">It has recently been reported that some parents in Asian countries are installing apps on their children’s mobile phones that monitor their activities to ensure that they use these devices responsibly.</p>
+      </div>
+      <p class="prompt" style="margin-top:0.85rem; margin-bottom:0">Write a letter to the <em>Young Post</em> stating whether you agree with these parents’ actions or not. Justify your position with <strong>three reasons</strong>.</p>
+    </section>
+
+    <section class="box clo-box">
+      <h2>Marking (CLO)</h2>
+      <p class="clo-note">HKDSE Paper 2 Part B is assessed on <strong>Content</strong> (ideas, relevance, task fulfilment), <strong>Language</strong> (accuracy, range, tone/register) and <strong>Organisation</strong> (structure, cohesion, paragraphing). The levels below are <strong>indicative only</strong> for study — not official HKEAA marks.</p>
+      <div class="clo-grid">
+        <div class="clo-item">
+          <h3>Content — Level 4</h3>
+          <ul>
+            <li>Takes a clear stance (<strong>not fully agree</strong>) and gives <strong>three supporting reasons</strong> before a counterbalance — matches the task.</li>
+            <li>Ideas — online safety, healthy phone habits, parental peace of mind — are <strong>relevant</strong> to the stimulus.</li>
+            <li>The <strong>However</strong> paragraph adds maturity (trust, independence); keep it clearly linked to why full agreement is risky.</li>
+            <li>Could name <strong>one concrete app feature</strong> or region example briefly to push towards Level 5.</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Language — Level 3</h3>
+          <ul>
+            <li>Meaning is usually clear, but <strong>grammar, articles and prepositions</strong> slip often (online/on the phone, relieve, plural agreement).</li>
+            <li>Some <strong>word choice</strong> is imprecise (relief, sex content, everyday); polish collocations for Level 4.</li>
+            <li><strong>Register</strong> fits a youth-paper letter; opening salutation should match a formal letter to an editor.</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Organisation — Level 4</h3>
+          <ul>
+            <li>Clear <strong>introduction</strong>, three reasons (<em>First of all / Also / Furthermore</em>), then <strong>However</strong> and <strong>conclusion</strong>.</li>
+            <li><strong>Paragraphing</strong> matches stages of argument; the line of thought is easy to follow.</li>
+            <li>Watch <strong>repetition</strong> (&ldquo;monitoring apps&rdquo;) — occasional synonyms help cohesion at Level 5.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="clo-advice">
+        <h3>How to do better next time</h3>
+        <ul>
+          <li><strong>Content:</strong> In the opening, <strong>name the newspaper</strong> and your position in one clean sentence so the examiner sees task engagement immediately.</li>
+          <li><strong>Content:</strong> For three reasons, make each paragraph <strong>one main idea</strong> (safety / habits / trust or similar) with a sharp topic sentence.</li>
+          <li><strong>Language:</strong> Build a proofread pass for <strong>prepositions</strong> (<em>online, on the phone, in the real world</em>) and <strong>word form</strong> (<em>relieve / relief</em>, <em>sexual content</em>).</li>
+          <li><strong>Language:</strong> Read the conclusion aloud — remove <strong>duplicated words</strong> (<em>should should</em>) and tighten vague phrases (<em>knowledge of using online</em> → <em>how to stay safe online</em>).</li>
+          <li><strong>Organisation:</strong> Signpost the counterargument (<em>That said, … / On the other hand, …</em>) so the move from pros to cons feels deliberate.</li>
+        </ul>
+      </div>
+      <p class="clo-overall"><strong>Overall (indicative):</strong> about <strong>Level 3–4</strong> — strong ideas and structure; language accuracy limits the overall band.</p>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <p><span class="flip" tabindex="0" role="button" data-w="Dear young post," data-r="Dear Editor,">Dear young post,</span></p>
+        <p><span class="flip" tabindex="0" role="button" data-w="I am writing to talk about parents installing monitoring apps on their children&amp;apos;s phones." data-r="I am writing to discuss whether parents should install monitoring apps on children&amp;apos;s phones.">I am writing to talk about parents installing monitoring apps on their children's phones.</span> <span class="flip" tabindex="0" role="button" data-w="I believe that these monitoring apps can be effective for children to use less phones." data-r="I believe these apps can help children use their phones more responsibly and cut down unhealthy screen time.">I believe that these monitoring apps can be effective for children to use less phones.</span> <span class="flip" tabindex="0" role="button" data-w="However, parents should be careful about using these apps. In my opinion, I do not fully agree with this action and I will explain my points in the following." data-r="However, parents should use these tools thoughtfully. I do not fully agree with simply installing them without communication with their kids, and I will explain why below.">However, parents should be careful about using these apps. In my opinion, I do not fully agree with this action and I will explain my points in the following.</span></p>
+        <p><span class="flip" tabindex="0" role="button" data-w="First of all, monitoring apps can help keep children safe in online. Nowadays, there are many dangers in online world like cyberbullying, sex content, and scams." data-r="First of all, monitoring apps can help keep children safer online. Nowadays there are many dangers online, such as cyberbullying, sexual content and scams.">First of all, monitoring apps can help keep children safe in online. Nowadays, there are many dangers in online world like cyberbullying, sex content, and scams.</span> <span class="flip" tabindex="0" role="button" data-w="If parents download a monitoring app in their children&amp;apos;s phones, these situations can be prevented before they become serious as monitoring apps usually can block these content by their ai scanning in their phone." data-r="Installing monitoring apps on their children&amp;apos;s phones often lets parents catch online risks before they escalate, since many such tools use AI to filter harmful content.">If parents download a monitoring app in their children's phones, these situations can be prevented before they become serious as monitoring apps usually can block these content by their ai scanning in their phone.</span> <span class="flip" tabindex="0" role="button" data-w="This can protect children from not only mental health but also their identity and money safe." data-r="This can protect children&amp;apos;s mental health and help keep their identity and money safer.">This can protect children from not only mental health but also their identity and money safe.</span></p>
+        <p>Also, these apps may help children learn how to use their phones wisely. <span class="flip" tabindex="0" role="button" data-w="Parents can set a time control in the app if their children spend too much time in their phone. For example, parents can set an everyday 2 hours game time and 3 hours social media time in their children&amp;apos;s phone." data-r="Parents can set time limits in the app if their children spend too much time on their phones. For example, they can allow two hours of games and three hours of social media per day on their children&amp;apos;s phones.">Parents can set a time control in the app if their children spend too much time in their phone. For example, parents can set an everyday 2 hours game time and 3 hours social media time in their children's phone.</span> This can remind them to focus on their study or spend more time outdoors. <span class="flip" tabindex="0" role="button" data-w="After they become adults, they are already trained to be able to control their electronic devices using time. This way, children can develop good habits and learn how to strike a balance between online world and real life." data-r="By the time they become adults, they may already have learned to manage screen time on their own. In this way, children can develop good habits and learn to balance the online world and real life.">After they become adults, they are already trained to be able to control their electronic devices using time. This way, children can develop good habits and learn how to strike a balance between online world and real life.</span></p>
+        <p><span class="flip" tabindex="0" role="button" data-w="Furthermore, monitoring apps can help parents relief their anxiety of knowing what they children doing." data-r="Furthermore, monitoring apps can help parents relieve anxiety about what their children are doing online.">Furthermore, monitoring apps can help parents relief their anxiety of knowing what they children doing.</span> As children will grow older, they start to make their own choices, but parents may still worry about their safety. If parents can check their children's phone activities whenever they want, they will feel more relaxed and confident that their children are not in danger. This can help build connections between parents and children.</p>
+        <p>However, I think that parents should not rely too much on monitoring apps. It is important for children to learn how to be independent and be responsible on their own. <span class="flip" tabindex="0" role="button" data-w="Keep monitoring may make children feel not trusted which could damage the relationships between parents and children." data-r="Constant monitoring may make children feel distrusted, which could damage the relationship between parents and children.">Keep monitoring may make children feel not trusted which could damage the relationships between parents and children.</span> Instead of relying on monitoring apps, parents should talk with their children and teach them about online safety which can solve the problem directly.</p>
+        <p><span class="flip" tabindex="0" role="button" data-w="In conclusion, I believe that monitoring apps can be helpful if parents use it correctly. They can surely bring a lot of benefit for children and parents but it is also important for parents to trust their children and teach them about the knowledge of using online. Balance is the main thing to maintain both relationships. Parents should should use these tools wisely to support their children&amp;apos;s growth and safety." data-r="In conclusion, I believe monitoring apps can be helpful if parents use them wisely. They can bring real benefits, but it is equally important for parents to trust their children and teach them how to stay safe online. Balance is the key to protecting both safety and family trust. Parents should use these tools wisely to support their children&amp;apos;s growth and safety.">In conclusion, I believe that monitoring apps can be helpful if parents use it correctly. They can surely bring a lot of benefit for children and parents but it is also important for parents to trust their children and teach them about the knowledge of using online. Balance is the main thing to maintain both relationships. Parents should should use these tools wisely to support their children's growth and safety.</span></p>
+        <p>Yours sincerely,<br>Chris Wong</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>For reference</h2>
+      <p style="font-size:0.88rem;color:var(--muted);margin-top:0">Sample letter for comparison — same task, not the only correct answer. Compare <em>stance</em>, <em>reasons</em> and <em>accuracy</em> with your own.</p>
+      <div class="model">Dear Editor,
+
+I am writing to discuss whether parents should install monitoring apps on children’s phones. I do not fully support installing such apps without careful thought. Parents mean well, but apps alone cannot replace trust and conversation. I will give three reasons why these tools can help, then explain why I still stop short of full agreement.
+
+First and foremost, such apps can make the online world safer. Young users face cyber-bullying, scams and inappropriate material. Software that filters content and flags risky contacts can reduce harm before it escalates, protecting both wellbeing and personal data.
+
+Secondly, parental controls can encourage healthier habits. Time limits on games or social media nudge teenagers back toward homework, sleep and face-to-face time. If limits are discussed openly, children gradually learn to manage screen time themselves.
+
+Last but not least, transparent checks may ease parents’ anxiety when adolescents gain independence. Knowing there is a safety net can help families stay calmer during a stressful stage—provided parents explain why the app exists and respect privacy as far as reasonable.
+
+That said, surveillance should not replace dialogue. Over-monitoring can breed resentment and stunt the very responsibility parents want to build. Talking honestly about digital risks, modelling good behaviour and agreeing house rules often work better than silent tracking.
+
+In short, monitoring apps can be useful supports, not substitutes for parenting. Balance, consent and education matter as much as the technology itself.
+
+Yours sincerely,
+Chris Wong</div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+  function toggle(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.textContent = el.textContent === r ? w : r;
+    syncClass(el);
+  }
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(el);
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>
