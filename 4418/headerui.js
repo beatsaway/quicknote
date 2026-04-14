@@ -16,8 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
           '<option value="index.html">Home / Hub</option>' +
           '<option value="plan.html">Project plan</option>' +
           '<option value="" disabled>──────────</option>' +
-          '<option value="finalreportv4e.html">Final report (v4) English ⭐</option>' +
-          '<option value="finalreportv4s.html">Final report (v4s) English (easy)</option>' +
+          '<option value="finalreportv5e.html">Final report (v5) English — Approach 2 ⭐</option>' +
+          '<option value="finalreportv5s.html">Final report (v5s) English (easy) — Approach 2</option>' +
+          '<option value="finalreportv4e.html">Final report (v4) English — Approach 1</option>' +
+          '<option value="finalreportv4s.html">Final report (v4s) English (easy) — Approach 1</option>' +
           '<option value="finalreportv4c.html">Final report (v4c) 粵語易讀版</option>' +
           '<option value="finalreportv3e.html">Final report (v3) English</option>' +
           '<option value="finalreportv3c.html">Final report (v3) 粵語版</option>' +
