@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
           '<option value="" disabled>──────────</option>' +
           '<option value="finalreportv5e.html">Final report (v5) English — Approach 2 ⭐</option>' +
           '<option value="finalreportv5s.html">Final report (v5s) English (easy) — Approach 2</option>' +
+          '<option value="finalreportv5c.html">Final report (v5c) 粵語易讀版 — Approach 2</option>' +
           '<option value="finalreportv4e.html">Final report (v4) English — Approach 1</option>' +
           '<option value="finalreportv4s.html">Final report (v4s) English (easy) — Approach 1</option>' +
           '<option value="finalreportv4c.html">Final report (v4c) 粵語易讀版</option>' +
