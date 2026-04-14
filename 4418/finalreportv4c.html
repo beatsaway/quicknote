@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BHMS4418 最終報告 (v4c) 粵語易讀版 – 蔡詠琳</title>
+  <link rel="stylesheet" href="report.css" />
+  <script src="headerui.js" defer></script>
+  <style>
+    .mini-note { margin: 0.5rem 0 0; font-size: 0.95rem; opacity: 0.95; }
+    .diagram {
+      margin: 1rem 0 1.25rem;
+      padding: 1rem;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 0.75rem;
+      background: rgba(0,0,0,0.015);
+    }
+    .diagram .row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+    .diagram .box {
+      flex: 1 1 12rem;
+      padding: 0.75rem 0.85rem;
+      border: 1px solid rgba(0,0,0,0.14);
+      border-radius: 0.75rem;
+      background: #fff;
+    }
+    .diagram .arrow { flex: 0 0 auto; font-weight: 700; opacity: 0.8; }
+    .diagram .mods { margin-top: 0.75rem; font-size: 0.95rem; opacity: 0.92; }
+    .diagram .mods strong { font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+    <h1>AI 心理健康支援聊天機械人點樣影響員工工作投入：</h1>
+    <h1>一個易明概念框架（配合 v4s 英文版）</h1>
+    <div class="meta">
+      BHMS4418 應用商業研究 – 個人項目<br />
+      <strong>取向一：文獻回顧與框架發展</strong><br />
+      姓名：蔡詠琳 (24057465S) • 班別：A07C • 導師：郭約翰博士<br />
+      字數：3,000–4,000 字（英文） • 交稿：2026年4月24日
+    </div>
+    <div class="line"></div>
+
+    <h2>摘要（用簡單說法）</h2>
+    <p>
+      愈來愈多公司會用 AI 心理健康聊天機械人（chatbot）幫員工減壓。研究顯示呢類工具可以幫到一啲人減輕抑鬱同焦慮症狀，但「減到症狀」係咪就等於「對工作更投入」，暫時仲唔係好清楚。
+    </p>
+    <p>
+      呢份報告用一個簡單框架去解釋：員工用 chatbot 之後，可能先令「心理困擾」下降（例如抑鬱／焦慮），然後就更有精神、更專注，從而提高「工作投入」。我哋用 JD–R（工作需求－資源）模型做底，將 chatbot 當成一種「個人資源」。
+    </p>
+    <p>
+      呢份係框架／概念報告，<strong>唔會做任何問卷或訪問</strong>。最後會提一個實務建議：如果公司想做日常監測，可以考慮用 PHQ-9（抑鬱）同 GAD-7（焦慮）做簡單、私密嘅自填量表。
+    </p>
+
+    <h2>1. 引言（點解要做呢個題目）</h2>
+    <p>
+      職場壓力、耗竭同心理困擾愈來愈常見，會影響員工同公司表現（<a href="#ref-garcia-madurga" class="citation">García-Madurga et al., 2024</a>）。所以有啲公司會試用 AI chatbot，提供 24/7、較少尷尬感嘅支援（<a href="#ref-li" class="citation">Li et al., 2023</a>；<a href="#ref-yuan" class="citation">Yuan et al., 2025</a>）。
+    </p>
+    <p>
+      香港情境特別有意思：工時長、壓力大（<a href="#ref-scmp" class="citation">南華早報, 2023</a>；<a href="#ref-axa" class="citation">AXA, 2024</a>），同時心理健康又係敏感話題。好多員工會擔心保密、擔心畀人標籤，所以未必想同真人（例如 HR、上司、輔導員）講。咁匿名同方便嘅工具就可能更易被接受（<a href="#ref-mak" class="citation">Mak et al., 2023</a>）。
+    </p>
+    <p class="section-label">我哋想解釋嘅問題。</p>
+    <ul>
+      <li>點解用 chatbot 可能同工作投入有關？</li>
+      <li>心理困擾會唔會係中間嘅「關鍵一步」？</li>
+      <li>有咩因素會令效果更強／更弱（例如使用頻率、覺得有冇用、公司支援）？</li>
+    </ul>
+
+    <h2>2. 主要概念（用人話講）</h2>
+    <p class="mini-note">
+      下面啲係框架入面最重要嘅概念，先定義清楚，後面先唔會講到好亂。
+    </p>
+
+    <p class="section-label">2.1 chatbot 使用（usage）</p>
+    <p>
+      呢度嘅「使用」唔止係「有冇用過」，仲可以包括：用得密唔密、每次用幾耐、用咩功能（例如放鬆練習、情緒記錄、心理教育）（<a href="#ref-li" class="citation">Li et al., 2023</a>；<a href="#ref-ni" class="citation">Ni &amp; Jia, 2025</a>）。
+    </p>
+
+    <p class="section-label">2.2 心理困擾（psychological distress）</p>
+    <p>
+      心理困擾可以包括抑鬱同焦慮相關症狀，例如情緒低落、冇興趣、過度擔心、緊張等（<a href="#ref-kroenke" class="citation">Kroenke et al., 2001</a>；<a href="#ref-spitzer" class="citation">Spitzer et al., 2006</a>）。
+      常見嘅自填量表例子係：<strong>PHQ-9</strong> 用嚟睇抑鬱嚴重程度、<strong>GAD-7</strong> 用嚟睇焦慮嚴重程度，兩者都係「過去兩星期」為主（<a href="#ref-kroenke" class="citation">Kroenke et al., 2001</a>；<a href="#ref-spitzer" class="citation">Spitzer et al., 2006</a>）。
+      呢份報告<strong>唔會做問卷</strong>，只係講：如果公司日後要監測，可考慮用呢啲工具。
+    </p>
+
+    <p class="section-label">2.3 工作投入（job engagement／UWES）</p>
+    <p>
+      工作投入可以簡單理解做：做嘢有精神、願意投入、做緊時好專注。學術上通常分三個面向：<strong>活力</strong>（vigour）、<strong>投入感／熱誠</strong>（dedication）、<strong>專注沉浸</strong>（absorption），常用 UWES 量度（<a href="#ref-schaufeli" class="citation">Schaufeli et al., 2006</a>）。
+    </p>
+
+    <p class="section-label">2.4 可能影響效果嘅因素</p>
+    <p>
+      效果可能會因人同情況唔同而變：例如用得密唔密、覺得有冇用、公司有冇提供支援同私隱保障（<a href="#ref-bakker" class="citation">Bakker &amp; Demerouti, 2017</a>；<a href="#ref-garcia-madurga" class="citation">García-Madurga et al., 2024</a>）。
+    </p>
+
+    <h2>3. 文獻重點（簡短版）</h2>
+    <p>
+      文獻顯示 chatbot 有機會幫到人減輕抑鬱／困擾（<a href="#ref-li" class="citation">Li et al., 2023</a>），亦有研究提到設計會影響效果，例如「社交線索」較多嘅 chatbot 可能更有效（以 PHQ-9、GAD-7 作量度）（<a href="#ref-xu" class="citation">Xu &amp; Ma, 2025</a>）。
+      不過，研究好多時集中喺「症狀有冇改善」，而唔係「對工作投入有冇提高」，所以需要一個清楚框架去連起兩者（<a href="#ref-yuan" class="citation">Yuan et al., 2025</a>）。
+    </p>
+
+    <h2>4. 概念框架（核心）</h2>
+    <p>
+      JD–R 模型講：工作需求（壓力／工作量）會帶來耗竭；但資源（支援／工具）可以幫人維持動力同投入（<a href="#ref-demerouti" class="citation">Demerouti et al., 2001</a>；<a href="#ref-bakker" class="citation">Bakker &amp; Demerouti, 2017</a>）。
+      我哋將 chatbot 當成「個人資源」，可能先幫人減低心理困擾，然後先有機會令工作投入提高。
+    </p>
+
+    <div class="diagram" role="group" aria-label="Conceptual framework diagram">
+      <div class="row">
+        <div class="box"><strong>chatbot 使用</strong><br />（有冇用／頻率／用途）</div>
+        <div class="arrow">→</div>
+        <div class="box"><strong>心理困擾</strong><br />（PHQ-9、GAD-7）</div>
+        <div class="arrow">→</div>
+        <div class="box"><strong>工作投入</strong><br />（UWES：活力／投入／專注）</div>
+      </div>
+      <div class="mods">
+        <strong>可能影響強弱：</strong>使用頻率、覺得有冇用、組織支援（同私隱／信任都有關）。
+      </div>
+    </div>
+
+    <p class="section-label">我哋提出 5 個「合理推論」（唔係結果）</p>
+    <ul>
+      <li><strong>推論 1：</strong>用 chatbot 越多，工作投入可能越高。</li>
+      <li><strong>推論 2：</strong>chatbot 可能先減低心理困擾，然後先提升工作投入（心理困擾做「中介」）。</li>
+      <li><strong>推論 3：</strong>用得越頻密，減困擾嘅效果可能越明顯。</li>
+      <li><strong>推論 4：</strong>覺得越有用，減困擾嘅效果可能越明顯。</li>
+      <li><strong>推論 5：</strong>公司支援越足（尤其私隱保障／信任），整體效果可能越明顯。</li>
+    </ul>
+
+    <h2>5. 實務建議：點解建議 PHQ-9 / GAD-7（香港職場）</h2>
+    <p>
+      香港職場入面，心理健康有時好敏感，員工可能驚畀人知、驚影響升遷／評績。香港本地研究同政策研究都提到：對精神健康有歧視同負面觀感並唔罕見（<a href="#ref-eoc" class="citation">EOC, 2023</a>），而一般文獻亦指出污名會令一啲人唔願意求助（<a href="#ref-corrigan" class="citation">Corrigan, 2004</a>）。
+      所以，如果公司要做「日常監測」，依賴員工公開講自己狀況嘅方法（例如訪談、小組討論）可能較難推行，亦容易出現「唔想講真話」嘅情況。
+    </p>
+    <p>
+      相比之下，PHQ-9 同 GAD-7 係簡短自填量表，可以私密完成，亦較容易用同一標準去理解分數（<a href="#ref-kroenke" class="citation">Kroenke et al., 2001</a>；<a href="#ref-spitzer" class="citation">Spitzer et al., 2006</a>）。
+      再強調一次：<strong>呢份報告唔會做任何問卷／調查</strong>，只係提出「如果日後要監測，可以考慮用」。
+    </p>
+
+    <h2>6. 限制（簡單講）</h2>
+    <p>
+      呢份係概念框架，唔係實證研究，所以唔可以證明因果。其次，不同 chatbot 設計差好遠，效果亦可能差好遠。最後，文化／情境解釋係合理推論，但仍然要更多研究先可以更肯定。
+    </p>
+
+    <h2>7. 參考文獻</h2>
+    <ul class="refs">
+      <li id="ref-axa">AXA. (2024). <em>AXA study: Hong Kong workers buckling under high stress and poor mind health</em>. AXA Hong Kong. https://www.axa.com.hk</li>
+      <li id="ref-baek">Baek, G., Cha, C., &amp; Han, J. (2025). AI chatbots for psychological health for health professionals: Scoping review. <em>JMIR Human Factors, 12</em>, e67682. https://doi.org/10.2196/67682</li>
+      <li id="ref-bakker">Bakker, A. B., &amp; Demerouti, E. (2017). Job demands-resources theory: Taking stock and looking forward. <em>Journal of Occupational Health Psychology, 22</em>(3), 273-285.</li>
+      <li id="ref-banerjee">Banerjee, S., Agarwal, A., &amp; Bar, A. K. (2024). Chatbot-enhanced Mental Health First Aid in corporate settings: Addressing risks, implementing crisis management, and promoting employee well-being. <em>American Journal of Software Engineering and Applications, 12</em>(1), 1-4.</li>
+      <li id="ref-corrigan">Corrigan, P. W. (2004). How stigma interferes with mental health care. <em>American Psychologist, 59</em>(7), 614-625. https://doi.org/10.1037/0003-066X.59.7.614</li>
+      <li id="ref-demerouti">Demerouti, E., Bakker, A. B., Nachreiner, F., &amp; Schaufeli, W. B. (2001). The job demands-resources model of burnout. <em>Journal of Applied Psychology, 86</em>(3), 499-512.</li>
+      <li id="ref-dutta">Dutta, D., &amp; Mishra, S. (2023). Bots for mental health: The boundaries of human and technology agencies for enabling mental well-being within organizations. <em>Personnel Review, 53</em>(5), 1129-1156. https://doi.org/10.1108/PR-11-2022-0832</li>
+      <li id="ref-eoc">Equal Opportunities Commission (EOC). (2023). <em>Study on perceptions of stigmatization and discrimination of persons with mental illness in the workplace</em>. Hong Kong SAR. Available from EOC research reports: https://www.eoc.org.hk</li>
+      <li id="ref-garcia-madurga">García-Madurga, M. Á., Gil-Lacruz, A.-I., Saz-Gil, I., &amp; Gil-Lacruz, M. (2024). The role of artificial intelligence in improving workplace well-being: A systematic review. <em>Businesses, 4</em>(3), 389-410.</li>
+      <li id="ref-grabb">Grabb, D., Lamparth, M., &amp; Vasan, N. (2024). Risks from language models for automated mental healthcare: Ethics and structure for implementation. <em>arXiv</em>. https://arxiv.org</li>
+      <li id="ref-jackson-triche">Jackson-Triche, M., Vetal, D., Turner, E., Dahiya, P., &amp; Mangurian, C. (2023). Meeting the behavioral health needs of health care workers during COVID-19 by leveraging chatbot technology: Development and usability study. <em>Journal of Medical Internet Research, 25</em>, e40635. https://doi.org/10.2196/40635</li>
+      <li id="ref-kim">Kim, B.-J., &amp; Lee, J. (2024). The mental health implications of artificial intelligence adoption: The crucial role of self-efficacy. <em>Humanities and Social Sciences Communications, 11</em>(1), 1-15.</li>
+      <li id="ref-kroenke">Kroenke, K., Spitzer, R. L., &amp; Williams, J. B. W. (2001). The PHQ-9: Validity of a brief depression severity measure. <em>Journal of General Internal Medicine, 16</em>(9), 606-613.</li>
+      <li id="ref-li">Li, H., Zhang, R., Lee, Y. C., et al. (2023). Systematic review and meta-analysis of AI-based conversational agents for promoting mental health and well-being. <em>npj Digital Medicine, 6</em>, 236.</li>
+      <li id="ref-mak">Mak, W. W. S., Ng, S. M., &amp; Leung, F. H. T. (2023). A web-based stratified stepped care platform for mental well-being (TourHeart+): User-centered research and design. <em>JMIR Formative Research, 7</em>, e38504. https://doi.org/10.2196/38504</li>
+      <li id="ref-meduri">Meduri, K., Nadella, G. S., Gonaygunta, H., Kumar, D., Addula, S. R., Satish, S., Maturi, M. H., &amp; Rehman, S. U. (2024). Human-centered AI for personalized workload management: A multimodal approach to preventing employee burnout. <em>Journal of Infrastructure, Policy and Development</em>.</li>
+      <li id="ref-ni">Ni, Y., &amp; Jia, F. (2025). A scoping review of AI-driven digital interventions in mental health care: Mapping applications across screening, support, monitoring, prevention, and clinical education. <em>Healthcare, 13</em>(10), 1205.</li>
+      <li id="ref-rahsepar">Rahsepar Meadi, M., Sillekens, T., Metselaar, S., van Balkom, A., Bernstein, J., &amp; Batelaan, N. (2025). Exploring the ethical challenges of conversational AI in mental health care: Scoping review. <em>JMIR Mental Health, 12</em>, e60432.</li>
+      <li id="ref-schaufeli">Schaufeli, W. B., Bakker, A. B., &amp; Salanova, M. (2006). The measurement of work engagement with a short questionnaire: A cross-national study. <em>Educational and Psychological Measurement, 66</em>(4), 701-716.</li>
+      <li id="ref-scmp">South China Morning Post. (2023, June 18). <em>How overworked are Hongkongers? More than half of employees log over 45 hours a week</em>.</li>
+      <li id="ref-spitzer">Spitzer, R. L., Kroenke, K., Williams, J. B. W., &amp; Löwe, B. (2006). A brief measure for assessing generalized anxiety disorder: The GAD-7. <em>Archives of Internal Medicine, 166</em>(10), 1092-1097.</li>
+      <li id="ref-west">West, A. B., Guo, Y. V., &amp; Bucher, A. (2023). Leveraging behavioral science and artificial intelligence to support mental health in the workplace: A pilot study. <em>Frontiers in Psychiatry, 14</em>, 1219229.</li>
+      <li id="ref-xu">Xu, S., &amp; Ma, T. (2025). Depression intervention using AI chatbots with social cues: A randomized trial of effectiveness. <em>Journal of Affective Disorders, 389</em>, 119760. https://doi.org/10.1016/j.jad.2025.119760</li>
+      <li id="ref-yuan">Yuan, A., Colato, E. G., Pescosolido, B., Song, H., &amp; Samtani, S. (2025). Improving workplace well-being in modern organizations: A review of large language model–based mental health chatbots. <em>ACM Transactions on Management Information Systems, 16</em>(1), Article 3.</li>
+    </ul>
+  </div>
+  </div>
+</body>
+</html>
+
