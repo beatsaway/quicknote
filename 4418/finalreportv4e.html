@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BHMS4418 Final Report (v4) - Tsoi Wing Lam</title>
+  <link rel="stylesheet" href="report.css" />
+  <script src="headerui.js" defer></script>
+  <style>
+    .mini-note { margin: 0.5rem 0 0; font-size: 0.95rem; opacity: 0.95; }
+    
+    .diagram {
+      margin: 1rem 0 1.25rem;
+      padding: 1rem;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 0.75rem;
+      background: rgba(0,0,0,0.015);
+    }
+    .diagram .row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+    .diagram .box {
+      flex: 1 1 12rem;
+      padding: 0.75rem 0.85rem;
+      border: 1px solid rgba(0,0,0,0.14);
+      border-radius: 0.75rem;
+      background: #fff;
+    }
+    .diagram .arrow { flex: 0 0 auto; font-weight: 700; opacity: 0.8; }
+    .diagram .mods { margin-top: 0.75rem; font-size: 0.95rem; opacity: 0.92; }
+    .diagram .mods strong { font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+    <h1>How the Rise of AI Mental Support Chatbots Affects Employee Job Engagement:</h1>
+    <h1>Developing a Conceptual Framework</h1>
+    <div class="meta">
+      BHMS4418 Applied Business Research - Individual Project<br />
+      <strong>Approach 1: Literature Review &amp; Framework Development</strong><br />
+      Name: Tsoi Wing Lam (24057465S) • Class: A07C • Subject Lecturer: Dr Johnthan Kwok<br />
+      Word limit: 3,000-4,000 words • Due date: 24 April 2026
+    </div>
+    <div class="line"></div>
+
+    <h2>Abstract</h2>
+    <p>
+      Organisations increasingly invest in AI-powered mental health chatbots to address workplace mental health crises.
+      While research shows that these tools can reduce depression and anxiety symptoms, much less is known about whether
+      such improvements translate into work engagement outcomes. This conceptual paper develops a clearer, more usable
+      framework that links employees’ AI mental health chatbot usage to job engagement (vigour, dedication, absorption).
+      Grounded in the Job Demands–Resources (JD–R) model, AI mental health chatbots are positioned as personal resources
+      that may reduce psychological distress and thereby enhance engagement. Psychological distress is proposed as a
+      mediator, while usage frequency, perceived usefulness, and organisational support are potential moderators. The paper
+      also considers Hong Kong as a high-pressure, service-oriented context in which stigma, confidentiality concerns, and
+      long working hours may shape both uptake and outcomes. Rather than conducting primary data collection, the paper ends
+      with practical recommendations for organisations, including recommending PHQ-9 and GAD-7 as established tools to
+      screen for and monitor depression and anxiety severity when evaluating mental health initiatives.
+    </p>
+
+    <h2>1. Introduction</h2>
+    <p>
+      Workplaces around the world face a growing mental health crisis, with rising levels of stress, burnout, and
+      psychological distress threatening organisational health and productivity (<a href="#ref-garcia-madurga" class="citation">García-Madurga et al., 2024</a>).
+      In response, employers are exploring technology-enabled mental health solutions, including AI-powered chatbots that
+      aim to deliver scalable, low-stigma psychological support. These tools promise 24/7 accessibility, perceived
+      anonymity, and relatively low marginal costs compared with traditional counselling, making them attractive additions
+      to employee well-being programmes (<a href="#ref-li" class="citation">Li et al., 2023</a>; <a href="#ref-yuan" class="citation">Yuan et al., 2025</a>).
+    </p>
+    <p>
+      The Hong Kong context is especially relevant. Hong Kong employees are known for long working hours, with union
+      surveys suggesting that more than half of workers log over 45 hours per week and a significant minority exceed
+      70 hours (<a href="#ref-scmp" class="citation">South China Morning Post, 2023</a>). Corporate reports indicate that many workers experience high levels of
+      stress, burnout, and concentration difficulties, with poor “mind health” emerging as a major concern (<a href="#ref-axa" class="citation">AXA, 2024</a>).
+      At the same time, stigma surrounding mental health and concerns about confidentiality may discourage employees from
+      seeking traditional face-to-face counselling, particularly when support is provided through their employer. In this
+      environment, digital tools such as mental health apps and AI-enabled chatbots are increasingly marketed as accessible,
+      bilingual, and less stigmatising options for support. User-centred development of web-based mental health platforms,
+      including chatbot-style interfaces, has been shown to support uptake and engagement when design aligns with users’
+      needs (<a href="#ref-mak" class="citation">Mak et al., 2023</a>), offering a relevant precedent for local adoption.
+    </p>
+    <p>
+      Cultural and contextual factors may also shape the relevance of AI chatbots in Hong Kong workplaces. In relatively
+      high power-distance settings, employees may worry that disclosing distress could affect performance evaluations,
+      promotion prospects, or job security. Norms around “saving face” and the stigma attached to mental health concerns
+      can further increase reluctance to seek help through visible, employer-linked channels. These conditions can make
+      anonymous, on-demand tools attractive, while simultaneously raising the importance of trust, privacy safeguards, and
+      credible organisational support.
+    </p>
+    <p>
+      Clinical and quasi-clinical research provides some evidence that AI conversational agents can reduce depression and
+      distress symptoms. For example, <a href="#ref-li" class="citation">Li et al. (2023)</a> report moderate reductions in depression and distress scores
+      across multiple randomised controlled trials of AI-based conversational agents. However, this body of work focuses
+      primarily on clinical outcomes and general well-being, rather than on work-related attitudes and behaviours.
+      Reviews of AI applications in workplace well-being highlight the growth of AI-based monitoring, coaching, and support
+      tools, but rarely establish clear links between these interventions and employee job engagement (<a href="#ref-garcia-madurga" class="citation">García-Madurga
+      et al., 2024</a>; <a href="#ref-yuan" class="citation">Yuan et al., 2025</a>). This creates a critical evidence gap for decision-makers who invest in AI mental
+      health chatbots in the hope of improving both well-being and engagement.
+    </p>
+    <p>
+      This paper addresses that gap by developing a conceptual framework that connects AI mental health chatbot usage,
+      psychological distress, and employee job engagement. Drawing on the JD–R model, the framework conceptualises AI
+      mental health chatbots as personal resources that can help employees manage psychological demands. Psychological
+      distress is proposed as a key mediator, while usage frequency, perceived usefulness, and organisational support are
+      considered as moderators that may strengthen or weaken the pathway from chatbot usage to engagement. The focus is on
+      employees in organisations that have access to AI mental health chatbots as part of formal well-being initiatives,
+      with particular attention to Hong Kong as a high-pressure, service-oriented economy.
+    </p>
+    <p class="section-label">Research objectives and questions.</p>
+    <p>
+      The paper pursues three objectives:
+    </p>
+    <ul>
+      <li>To examine the conceptual relationship between AI mental health chatbot usage and employee job engagement.</li>
+      <li>To examine whether psychological distress plausibly mediates the relationship between chatbot usage and job engagement.</li>
+      <li>To examine whether usage frequency, perceived usefulness, and organisational support are likely to moderate these relationships.</li>
+    </ul>
+
+    <h2>2. Key Definitions</h2>
+    <p class="mini-note">
+      This section defines the key concepts used in the framework (e.g., psychological distress, job engagement). Clear
+      definitions help keep the argument coherent and avoid ambiguity, even though this report does not conduct a survey.
+    </p>
+    <p class="section-label">AI mental health chatbot usage.</p>
+    <p>
+      AI mental health chatbots are software applications that use natural language processing and machine learning to
+      conduct therapeutic or supportive conversations, delivering interventions such as cognitive behavioural therapy,
+      mindfulness exercises, and psychoeducational content (<a href="#ref-li" class="citation">Li et al., 2023</a>; <a href="#ref-ni" class="citation">Ni &amp; Jia, 2025</a>). In workplace settings,
+      these chatbots may be embedded within employee assistance programmes or wellness platforms. For this framework,
+      chatbot usage refers to employees’ interaction with such tools, captured along several dimensions: access (whether
+      an employee has used the chatbot), frequency (how often it is used over a given period), duration (time spent per
+      session), and the types of features engaged (e.g., mood tracking, coping exercises, psychoeducation).
+    </p>
+    <p class="section-label">Psychological distress (and why PHQ-9 and GAD-7 matter).</p>
+    <p>
+      Psychological distress is defined as a state of emotional suffering that may include depressive symptoms
+      (e.g., hopelessness, loss of interest), anxiety symptoms (e.g., excessive worry, nervousness), and non-specific
+      complaints such as irritability or sleep disturbances (<a href="#ref-kroenke" class="citation">Kroenke et al., 2001</a>; <a href="#ref-spitzer" class="citation">Spitzer et al., 2006</a>). In workplace
+      contexts, distress can precede burnout and disengagement. Importantly, “distress” should be more than a descriptive
+      label: it should be linked to established measurement approaches. Two widely used self-administered tools are the
+      PHQ-9, which screens for and monitors depression severity, and the GAD-7, which screens for and monitors generalised
+      anxiety disorder severity, both referencing symptoms over the past two weeks (<a href="#ref-kroenke" class="citation">Kroenke et al., 2001</a>; <a href="#ref-spitzer" class="citation">Spitzer et al., 2006</a>).
+      Because depression and anxiety are often comorbid, it is commonly recommended to consider both tools to capture the
+      overall clinical picture. In this report, PHQ-9 and GAD-7 are included as recommended indicators that organisations
+      could use when evaluating mental health initiatives; this paper does not administer these questionnaires.
+    </p>
+    <p class="section-label">Job engagement.</p>
+    <p>
+      Job engagement is conceptualised as a positive, fulfilling, work-related state of mind characterised by vigour,
+      dedication, and absorption (<a href="#ref-schaufeli" class="citation">Schaufeli et al., 2006</a>). Vigour refers to high levels of energy, mental resilience, and
+      willingness to invest effort in one’s work; dedication captures a sense of significance, enthusiasm, and challenge;
+      and absorption reflects being fully concentrated and happily engrossed in work tasks. Engagement is typically
+      measured using the Utrecht Work Engagement Scale (UWES) (<a href="#ref-schaufeli" class="citation">Schaufeli et al., 2006</a>).
+    </p>
+    <p class="section-label">Moderators and contextual factors.</p>
+    <p>
+      Several factors may influence the extent to which AI mental health chatbots improve job engagement. Usage frequency
+      may determine whether meaningful changes in distress are achieved; perceived usefulness reflects the extent to which
+      employees believe the chatbot helps them cope or improve their well-being; and organisational support captures
+      signals from management and HR that mental health is valued and that chatbot usage is safe and encouraged
+      (<a href="#ref-bakker" class="citation">Bakker &amp; Demerouti, 2017</a>; <a href="#ref-garcia-madurga" class="citation">García-Madurga et al., 2024</a>). Additional contextual factors, such as privacy concerns,
+      trust in AI, and local cultural norms around help-seeking, may be particularly salient in Hong Kong, where
+      hierarchical workplace cultures and job insecurity can shape whether employees feel comfortable using employer-linked
+      mental health tools (<a href="#ref-axa" class="citation">AXA, 2024</a>; <a href="#ref-rahsepar" class="citation">Rahsepar Meadi et al., 2025</a>).
+    </p>
+
+    <h2>3. Critical Literature Review</h2>
+
+    <h3>3.1 Clinical Effectiveness of AI Mental Health Chatbots</h3>
+    <p>
+      A growing body of research evaluates AI conversational agents for mental health support. <a href="#ref-li" class="citation">Li et al. (2023)</a> synthesise
+      evidence from 35 studies, including 15 randomised controlled trials, and report moderate reductions in depression
+      (Hedges’ g ≈ 0.64) and distress (Hedges’ g ≈ 0.70) for users of AI-based conversational agents compared with
+      controls or baseline measures. These effects are strongest for multimodal, generative AI-based agents integrated
+      with mobile messaging, suggesting that continuous, convenient access enhances engagement and outcomes. A scoping review of AI chatbots for health professionals’ psychological health reported beneficial effects on anxiety, burnout, and depression in several studies, while noting variability in design and the need for standardised protocols (<a href="#ref-baek" class="citation">Baek et al., 2025</a>). A randomised trial comparing CBT-based chatbots with high versus low social cues found that designs richer in social cues led to greater reductions in depression and anxiety (measured by PHQ-9 and GAD-7) and to higher adherence, satisfaction, and therapeutic alliance (<a href="#ref-xu" class="citation">Xu &amp; Ma, 2025</a>).
+    </p>
+    <p>
+      The effectiveness of chatbots appears to depend on relational and design factors rather than technological
+      sophistication alone. <a href="#ref-li" class="citation">Li et al. (2023)</a> highlight the importance of human–AI therapeutic relationships, content
+      engagement, and effective communication for user satisfaction and clinical improvement. Other reviews map AI
+      interventions across screening, support, monitoring, prevention, and education, noting that AI tools are most
+      commonly used for support and self-management rather than as standalone treatments (<a href="#ref-ni" class="citation">Ni &amp; Jia, 2025</a>).
+    </p>
+    <p>
+      Despite encouraging evidence on symptom reduction, these studies rarely address whether improvements translate into
+      functional outcomes that matter to organisations, such as work performance or engagement. Moreover, general
+      psychological well-being measures sometimes show weaker or inconsistent improvements, raising questions about the
+      scope of benefits (<a href="#ref-li" class="citation">Li et al., 2023</a>). This gap is particularly problematic when organisations adopt chatbots with
+      the expectation that better mental health will lead to higher engagement.
+    </p>
+
+    <h3>3.2 Workplace Applications and Adoption Challenges</h3>
+    <p>
+      Within workplace settings, AI mental health chatbots are typically introduced as part of broader well-being
+      programmes or digital benefits. Real-world programmes have demonstrated feasibility and uptake in large workforces,
+      with chatbots used for triage and navigation to live support (<a href="#ref-jackson-triche" class="citation">Jackson-Triche et al., 2023</a>). A systematic review of AI in workplace well-being identifies applications in stress
+      monitoring, emotional support, and personalised interventions, but notes that many interventions are still at pilot
+      or case-study stages (<a href="#ref-garcia-madurga" class="citation">García-Madurga et al., 2024</a>). <a href="#ref-yuan" class="citation">Yuan et al. (2025)</a> document more than 50 mental health-related
+      chatbots, including 22 large language model-based tools, and argue that while these systems can provide accessible
+      support, they often deliver generic content that does not fully address job-specific stressors such as workload
+      pressures, role ambiguity, or interpersonal conflict.
+    </p>
+    <p>
+      Some workplace-focused studies offer promising but partial evidence. <a href="#ref-banerjee" class="citation">Banerjee et al. (2024)</a> describe how
+      chatbot-enhanced Mental Health First Aid can be integrated into corporate wellness frameworks, potentially
+      reducing stigma and improving early detection. <a href="#ref-west" class="citation">West et al. (2023)</a> show that behavioural science-informed AI
+      interventions can substantially increase employee assistance programme utilisation. However, these studies largely
+      focus on engagement with mental health services (e.g., EAP access rates) rather than engagement with work tasks.
+      The distinction is important: employees may become more engaged with support resources without necessarily becoming
+      more energetic, dedicated, or absorbed in their jobs.
+    </p>
+    <p>
+      Ethical and practical challenges further complicate workplace adoption. Qualitative work on bots for mental health in organisations emphasises that human and technology agency interact—leadership, HR practices, and organisational context shape how chatbot insights are acted upon and thus how much they affect wellbeing (<a href="#ref-dutta" class="citation">Dutta &amp; Mishra, 2023</a>). A scoping review of conversational AI in
+      mental health care identifies privacy and confidentiality as the most frequently discussed concerns, followed by
+      safety, harm, and the opacity of algorithmic decision-making (<a href="#ref-rahsepar" class="citation">Rahsepar Meadi et al., 2025</a>). <a href="#ref-grabb" class="citation">Grabb et al. (2024)</a>
+      evaluate several state-of-the-art language models in mental health emergency scenarios and conclude that many models
+      may cause harm or provide inadequate responses. In Hong Kong, where job insecurity and long hours are common, fears
+      that mental health data might be used against employees could strongly discourage authentic chatbot use (<a href="#ref-axa" class="citation">AXA, 2024</a>).
+      These issues suggest that even clinically effective chatbots may fail to deliver organisational benefits if employees
+      do not feel safe using them.
+    </p>
+
+    <h3>3.3 From Symptom Reduction to Job Engagement</h3>
+    <p>
+      The literature reveals a disconnect between what is known about AI mental health chatbots and what organisations
+      often hope to achieve. Clinical research demonstrates symptom reduction, and workplace pilots show improved
+      engagement with services, but the pathway from chatbot usage to job engagement remains under-explored (<a href="#ref-li" class="citation">Li et al.,
+      2023</a>; <a href="#ref-west" class="citation">West et al., 2023</a>; <a href="#ref-yuan" class="citation">Yuan et al., 2025</a>).
+    </p>
+    <p>
+      Existing research only partially addresses the mechanisms that might link chatbot usage to engagement. Studies of AI
+      adoption and mental health suggest that AI can both alleviate and exacerbate stress depending on implementation
+      strategy and employee perceptions of control and fairness (<a href="#ref-kim" class="citation">Kim &amp; Lee, 2024</a>; <a href="#ref-meduri" class="citation">Meduri et al., 2024</a>). If AI tools
+      are experienced as supportive, they may reduce distress and free up resources for work; if they are experienced as
+      intrusive or unfair, they may increase stress and undermine trust. Very few studies, however, explicitly examine
+      whether employees who use AI mental health chatbots report higher vigour, dedication, or absorption at work.
+    </p>
+    <p>
+      This gap motivates the framework in the next section: it connects chatbot usage to engagement through psychological
+      distress, and it clarifies why contextual moderators (e.g., trust and organisational support) may be decisive in
+      workplace implementations.
+    </p>
+
+    <h2>4. Conceptual Framework and Relationship Justification (and its contribution)</h2>
+    <p>
+      The proposed framework is grounded in the JD–R model, which posits that job demands can lead to strain and burnout,
+      whereas job and personal resources foster engagement (<a href="#ref-demerouti" class="citation">Demerouti et al., 2001</a>; <a href="#ref-bakker" class="citation">Bakker &amp; Demerouti, 2017</a>). In this framework, AI mental
+      health chatbots are conceptualised as personal resources that provide accessible coping strategies, emotional
+      support, and psychoeducation. The framework’s contribution is to translate clinical and usage-focused evidence into
+      a workplace-relevant mechanism: if chatbot use reduces distress, employees may regain cognitive and emotional
+      resources that support job engagement. Including established tools such as PHQ-9 and GAD-7 in the discussion also
+      clarifies how “distress” can be monitored in practice when organisations evaluate mental health initiatives.
+    </p>
+
+    <div class="diagram" role="group" aria-label="Conceptual framework diagram">
+      <div class="row">
+        <div class="box"><strong>AI chatbot usage</strong><br />(access, frequency, features)</div>
+        <div class="arrow">→</div>
+        <div class="box"><strong>Psychological distress</strong><br />(PHQ-9, GAD-7)</div>
+        <div class="arrow">→</div>
+        <div class="box"><strong>Job engagement</strong><br />(UWES: vigour, dedication, absorption)</div>
+      </div>
+      <div class="mods">
+        <strong>Potential moderators:</strong> usage frequency, perceived usefulness, organisational support (and context such as privacy concerns, trust, and local norms).
+      </div>
+    </div>
+
+    <p class="section-label">Direct relationship: Chatbot usage → Job engagement.</p>
+    <p>
+      One possibility is that employees who actively use AI mental health chatbots feel more supported and better equipped
+      to cope with stress, leading directly to higher engagement. For example, chatbot-guided breathing exercises or
+      cognitive reframing techniques may help employees recover from daily hassles more quickly, enabling them to sustain
+      energy and focus during demanding periods. In JD–R terms, chatbots provide a personal resource that can buffer the
+      effects of job demands on engagement (<a href="#ref-bakker" class="citation">Bakker &amp; Demerouti, 2017</a>).
+    </p>
+    <ul>
+      <li><strong>P1:</strong> AI mental health chatbot usage is positively associated with employee job engagement.</li>
+    </ul>
+    <p class="section-label">Mediated relationship: Chatbot usage → Psychological distress → Job engagement.</p>
+    <p>
+      A more nuanced view is that chatbot usage influences engagement primarily through its impact on psychological
+      distress. If employees use chatbots to process negative emotions, challenge unhelpful thoughts, or access timely
+      support, they may experience reduced distress (<a href="#ref-li" class="citation">Li et al., 2023</a>). In turn, lower distress can free cognitive and
+      emotional resources, allowing employees to invest more fully in their work and experience higher engagement
+      (<a href="#ref-schaufeli" class="citation">Schaufeli et al., 2006</a>).
+    </p>
+    <ul>
+      <li><strong>P2:</strong> Psychological distress mediates the relationship between AI mental health chatbot usage and job engagement.</li>
+    </ul>
+    <p class="section-label">Moderating factors.</p>
+    <ul>
+      <li><strong>P3:</strong> The relationship between chatbot usage and reduced psychological distress is stronger at higher levels of usage frequency.</li>
+      <li><strong>P4:</strong> The relationship between chatbot usage and reduced psychological distress is stronger when perceived usefulness is high.</li>
+      <li><strong>P5:</strong> The indirect effect of chatbot usage on job engagement via psychological distress is stronger when organisational support for mental health and AI tools is high.</li>
+    </ul>
+
+    <h2>5. Discussion</h2>
+    <p>
+      This paper links AI mental health chatbot usage, psychological distress, and job engagement in one coherent pathway.
+      While prior work often focuses on symptom reduction or service uptake, the proposed framework focuses on engagement
+      with work itself, using the JD–R model to explain why reduced distress may translate into higher engagement.
+    </p>
+
+    <h2>5.1 Practical implications</h2>
+    <p class="section-label">Proposed evaluation approach (Hong Kong workplace context).</p>
+    <p>
+      In Hong Kong workplaces, mental health is a sensitive topic and disclosure can be perceived as carrying career risk.
+      Hong Kong-specific evidence reports substantial perceived discrimination against people with mental illness and
+      concerns about workplace consequences (<a href="#ref-eoc" class="citation">EOC, 2023</a>). Separately, a widely cited general account of the
+      stigma literature explains how stigma can discourage people from seeking help in the first place (<a href="#ref-corrigan" class="citation">Corrigan, 2004</a>).
+      Taken together, these points suggest that methods relying on open disclosure, such as interviews, focus groups, or
+      open-ended reflective journals, may face
+      lower participation and higher social desirability bias in routine organisational monitoring.
+    </p>
+    <p>
+      For that reason, this report recommends PHQ-9 and GAD-7 as practical, self-administered tools that organisations can
+      use to screen for and monitor depression and anxiety severity over a two-week period. They can be completed
+      privately, scored consistently, and interpreted using well-established cut points (<a href="#ref-kroenke" class="citation">Kroenke et al., 2001</a>;
+      <a href="#ref-spitzer" class="citation">Spitzer et al., 2006</a>). This report does not conduct a survey; it recommends these measures as an
+      option for evaluation and monitoring when implementing mental health initiatives.
+    </p>
+    <p>
+      Implementation quality still matters: benefits are more plausible when employees perceive chatbots as useful, feel
+      safe using them, and see credible organisational support and privacy safeguards.
+    </p>
+
+    <h2>5.2 Limitations</h2>
+    <p>
+      First, the framework is conceptual and does not provide causal evidence. Second, chatbot effectiveness likely varies
+      by design quality and integration with human support. Third, cultural explanations should be treated as plausible
+      context-based mechanisms rather than definitive claims without empirical validation.
+    </p>
+
+    <h2>6. Conclusion</h2>
+    <p>
+      This report adopted a literature review and framework development approach. It critically evaluated evidence on AI
+      mental health chatbots in clinical and workplace settings and developed a conceptual model linking chatbot usage,
+      psychological distress, and employee job engagement. The JD–R model provides a coherent theoretical base: chatbots
+      are positioned as personal resources that may reduce distress and thereby support engagement, with mediation and
+      moderation specified in five propositions. The identified gap—that existing research rarely examines job engagement
+      directly, especially in high-pressure contexts such as Hong Kong—remains central. Finally, for organisations seeking
+      to monitor mental health initiatives, PHQ-9 and GAD-7 can be recommended as established, self-administered tools for
+      screening and monitoring depression and anxiety severity.
+    </p>
+
+    <h2>7. References</h2>
+    <ul class="refs">
+      <li id="ref-axa">AXA. (2024). <em>AXA study: Hong Kong workers buckling under high stress and poor mind health</em>. AXA Hong Kong. https://www.axa.com.hk</li>
+      <li id="ref-baek">Baek, G., Cha, C., &amp; Han, J. (2025). AI chatbots for psychological health for health professionals: Scoping review. <em>JMIR Human Factors, 12</em>, e67682. https://doi.org/10.2196/67682</li>
+      <li id="ref-bakker">Bakker, A. B., &amp; Demerouti, E. (2017). Job demands-resources theory: Taking stock and looking forward. <em>Journal of Occupational Health Psychology, 22</em>(3), 273-285.</li>
+      <li id="ref-banerjee">Banerjee, S., Agarwal, A., &amp; Bar, A. K. (2024). Chatbot-enhanced Mental Health First Aid in corporate settings: Addressing risks, implementing crisis management, and promoting employee well-being. <em>American Journal of Software Engineering and Applications, 12</em>(1), 1-4.</li>
+      <li id="ref-dutta">Dutta, D., &amp; Mishra, S. (2023). Bots for mental health: The boundaries of human and technology agencies for enabling mental well-being within organizations. <em>Personnel Review, 53</em>(5), 1129-1156. https://doi.org/10.1108/PR-11-2022-0832</li>
+      <li id="ref-demerouti">Demerouti, E., Bakker, A. B., Nachreiner, F., &amp; Schaufeli, W. B. (2001). The job demands-resources model of burnout. <em>Journal of Applied Psychology, 86</em>(3), 499-512.</li>
+      <li id="ref-eoc">Equal Opportunities Commission (EOC). (2023). <em>Study on perceptions of stigmatization and discrimination of persons with mental illness in the workplace</em>. Hong Kong SAR. (Mixed-method study: employee survey and employer interviews). Available from EOC research reports: https://www.eoc.org.hk</li>
+      <li id="ref-garcia-madurga">García-Madurga, M. Á., Gil-Lacruz, A.-I., Saz-Gil, I., &amp; Gil-Lacruz, M. (2024). The role of artificial intelligence in improving workplace well-being: A systematic review. <em>Businesses, 4</em>(3), 389-410.</li>
+      <li id="ref-grabb">Grabb, D., Lamparth, M., &amp; Vasan, N. (2024). Risks from language models for automated mental healthcare: Ethics and structure for implementation. <em>arXiv</em>. https://arxiv.org</li>
+      <li id="ref-kim">Kim, B.-J., &amp; Lee, J. (2024). The mental health implications of artificial intelligence adoption: The crucial role of self-efficacy. <em>Humanities and Social Sciences Communications, 11</em>(1), 1-15.</li>
+      <li id="ref-kroenke">Kroenke, K., Spitzer, R. L., &amp; Williams, J. B. W. (2001). The PHQ-9: Validity of a brief depression severity measure. <em>Journal of General Internal Medicine, 16</em>(9), 606-613.</li>
+      <li id="ref-li">Li, H., Zhang, R., Lee, Y. C., et al. (2023). Systematic review and meta-analysis of AI-based conversational agents for promoting mental health and well-being. <em>npj Digital Medicine, 6</em>, 236.</li>
+      <li id="ref-mak">Mak, W. W. S., Ng, S. M., &amp; Leung, F. H. T. (2023). A web-based stratified stepped care platform for mental well-being (TourHeart+): User-centered research and design. <em>JMIR Formative Research, 7</em>, e38504. https://doi.org/10.2196/38504</li>
+      <li id="ref-meduri">Meduri, K., Nadella, G. S., Gonaygunta, H., Kumar, D., Addula, S. R., Satish, S., Maturi, M. H., &amp; Rehman, S. U. (2024). Human-centered AI for personalized workload management: A multimodal approach to preventing employee burnout. <em>Journal of Infrastructure, Policy and Development</em>.</li>
+      <li id="ref-ni">Ni, Y., &amp; Jia, F. (2025). A scoping review of AI-driven digital interventions in mental health care: Mapping applications across screening, support, monitoring, prevention, and clinical education. <em>Healthcare, 13</em>(10), 1205.</li>
+      <li id="ref-rahsepar">Rahsepar Meadi, M., Sillekens, T., Metselaar, S., van Balkom, A., Bernstein, J., &amp; Batelaan, N. (2025). Exploring the ethical challenges of conversational AI in mental health care: Scoping review. <em>JMIR Mental Health, 12</em>, e60432.</li>
+      <li id="ref-schaufeli">Schaufeli, W. B., Bakker, A. B., &amp; Salanova, M. (2006). The measurement of work engagement with a short questionnaire: A cross-national study. <em>Educational and Psychological Measurement, 66</em>(4), 701-716.</li>
+      <li id="ref-scmp">South China Morning Post. (2023, June 18). <em>How overworked are Hongkongers? More than half of employees log over 45 hours a week</em>.</li>
+      <li id="ref-spitzer">Spitzer, R. L., Kroenke, K., Williams, J. B. W., &amp; Löwe, B. (2006). A brief measure for assessing generalized anxiety disorder: The GAD-7. <em>Archives of Internal Medicine, 166</em>(10), 1092-1097.</li>
+      <li id="ref-west">West, A. B., Guo, Y. V., &amp; Bucher, A. (2023). Leveraging behavioral science and artificial intelligence to support mental health in the workplace: A pilot study. <em>Frontiers in Psychiatry, 14</em>, 1219229.</li>
+      <li id="ref-corrigan">Corrigan, P. W. (2004). How stigma interferes with mental health care. <em>American Psychologist, 59</em>(7), 614-625. https://doi.org/10.1037/0003-066X.59.7.614</li>
+      <li id="ref-xu">Xu, S., &amp; Ma, T. (2025). Depression intervention using AI chatbots with social cues: A randomized trial of effectiveness. <em>Journal of Affective Disorders, 389</em>, 119760. https://doi.org/10.1016/j.jad.2025.119760</li>
+      <li id="ref-yuan">Yuan, A., Colato, E. G., Pescosolido, B., Song, H., &amp; Samtani, S. (2025). Improving workplace well-being in modern organizations: A review of large language model–based mental health chatbots. <em>ACM Transactions on Management Information Systems, 16</em>(1), Article 3.</li>
+    </ul>
+  </div>
+  </div>
+</body>
+</html>
+
