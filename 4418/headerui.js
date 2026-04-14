@@ -15,10 +15,19 @@ document.addEventListener("DOMContentLoaded", function () {
           '<option value="" selected>Go to…</option>' +
           '<option value="index.html">Home / Hub</option>' +
           '<option value="plan.html">Project plan</option>' +
+          '<option value="" disabled>──────────</option>' +
+          '<option value="finalreportv4e.html">Final report (v4) English ⭐</option>' +
+          '<option value="finalreportv4s.html">Final report (v4s) English (easy)</option>' +
+          '<option value="finalreportv4c.html">Final report (v4c) 粵語易讀版</option>' +
+          '<option value="finalreportv3e.html">Final report (v3) English</option>' +
+          '<option value="finalreportv3c.html">Final report (v3) 粵語版</option>' +
+          '<option value="finalreportv2.html">Final report (v2) English</option>' +
+          '<option value="finalreportv2c.html">Final report (v2) 粵語版</option>' +
           '<option value="progress-report-draft.html">Progress report – draft</option>' +
-          '<option value="progressreport1.html">Progress report – final</option>' +
+          '<option value="progressreport1.html">Progress report (v1)</option>' +
+          '<option value="progressreport2.html">Progress report (v2) ⭐</option>' +
+          '<option value="progressreport2c.html">Progress report (v2) 粵語版</option>' +
           '<option value="final-report-outline.html">Final report outline</option>' +
-          '<option value="versionC.html">Final report – long draft</option>' +
           '<option value="finalreport.html">Final report – clean version</option>' +
           '<option value="cantonese_guide.html">Cantonese guide</option>' +
         '</select>' +
