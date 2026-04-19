@@ -1,0 +1,23 @@
+Proofread feedback HTMLs — highlighting convention
+==================================================
+
+When you build these pages (flip-to-compare yellow highlights):
+
+• Only wrap the WORDS OR PHRASES that change in <span class="flip">…</span>.
+• Leave the rest of the student’s draft as normal text (not highlighted).
+
+Why
+---
+Students see their own wording most of the time. Yellow marks the exact spot to fix, like marginal notes — not a wall of highlighter over the whole paragraph.
+
+How
+---
+• data-w = student’s original (wrong) wording for that bit only
+• data-r = suggested replacement for that same bit
+• Same click/keyboard script as in easter-holiday-recount.html and letter-to-amy-walled-city-michelle.html
+
+Exceptions
+----------
+If a sentence is badly broken and every part must be rewritten together, one longer yellow span is OK so you don’t leave nonsense in plain text.
+
+Also mention in the page copy (About / Comments) that only the yellow parts are edits; the rest is their draft as written.
