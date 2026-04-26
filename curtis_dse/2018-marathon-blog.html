@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2018 DSE — Hong Kong Marathon blog (interactive)</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #0d5c4a;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.1rem; margin: 0 0 0.35rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.88rem; opacity: 0.95; }
+    nav { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    nav a {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+    }
+    nav a:hover { background: rgba(255,255,255,0.35); }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    .hint {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.65rem 0.85rem;
+      background: #eee8;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .module { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .stimulus {
+      margin: 0 0 0.85rem;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #f0f7f4;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: #1565c0; }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter h3 { margin: 0 0 0.85rem; font-size: 1.05rem; color: var(--accent); font-weight: 600; }
+    .stats { font-size: 0.82rem; color: var(--muted); margin-top: 0.5rem; }
+    .task-bullets { margin: 0.4rem 0 0; padding-left: 1.15rem; font-size: 0.88rem; }
+    .task-bullets li { margin: 0.25rem 0; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .clo-note { font-size: 0.85rem; color: var(--muted); margin: 0 0 1rem; line-height: 1.5; }
+    .clo-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .clo-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .clo-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .clo-item h3 { margin: 0 0 0.4rem; font-size: 0.82rem; color: var(--accent); }
+    .clo-item ul { margin: 0; padding-left: 1.1rem; font-size: 0.84rem; }
+    .clo-item li { margin: 0.2rem 0; }
+    .clo-overall {
+      margin: 0.9rem 0 0;
+      font-size: 0.86rem;
+      padding: 0.55rem 0.7rem;
+      background: #f0f7f4;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+    .clo-advice {
+      margin-top: 1rem;
+      padding: 0.75rem 0.85rem;
+      background: #f0f7f4;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .clo-advice h3 { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--accent); }
+    .clo-advice ul { margin: 0; padding-left: 1.15rem; font-size: 0.86rem; }
+    .clo-advice li { margin: 0.3rem 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DSE 2018 — Hong Kong Marathon blog (Curtis)</h1>
+    <p>Paper 2 blog task: encourage young people to join. Yellow = click original ↔ suggested wording.</p>
+    <nav>
+      <a href="index.html">Hub</a>
+    </nav>
+  </header>
+  <main>
+    <p class="hint">Only the <strong>yellow</strong> phrases are edits; the rest is Curtis&rsquo;s draft as written.</p>
+
+    <section class="box">
+      <h2>Task (2018-style)</h2>
+      <p class="module">Blog &mdash; Hong Kong Marathon website</p>
+      <div class="stimulus">
+        <p class="prompt" style="margin:0 0 0.5rem">You recently ran the Hong Kong Marathon for the <strong>first time</strong>.</p>
+        <p class="prompt" style="margin:0">Write a <strong>blog</strong> to be posted on the Hong Kong Marathon&rsquo;s <strong>website</strong> to <strong>encourage other young people to take part</strong> in the <strong>next</strong> marathon.</p>
+      </div>
+      <ul class="task-bullets">
+        <li>Audience: young people (and anyone reading the official site).</li>
+        <li>Register: positive and persuasive, but still sounds like a <strong>real</strong> blog, not a formal report.</li>
+      </ul>
+      <p class="stats">Draft length: about 310 words &middot; strong length for the task.</p>
+      <div class="word-list">
+        <strong>Useful angles for this genre</strong>
+        <span style="font-size:0.86rem;line-height:1.5;color:var(--text)">first-timer(新手) · community(社群) · atmosphere(氣氛) · route(路線) · iconic (標誌性的) · support team(支援隊) · sign up(報名) · call to action(呼籲行動)</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Marking (CLO)</h2>
+      <p class="clo-note">HKDSE Paper 2 is assessed on <strong>Content</strong> (ideas, relevance, task fulfilment), <strong>Language</strong> (accuracy, range, tone/register) and <strong>Organisation</strong> (structure, cohesion, paragraphing). The levels below are <strong>indicative only</strong> for study&mdash;not official HKEAA marks.</p>
+      <div class="clo-grid">
+        <div class="clo-item">
+          <h3>Content &mdash; Level 4</h3>
+          <ul>
+            <li>Clear <strong>first-timer</strong> voice and a sustained attempt to <strong>encourage young people</strong> to join the <strong>next</strong> marathon&mdash;matches the website blog task.</li>
+            <li>Ideas (route, atmosphere, personal gains, community, <strong>all levels</strong>) are <strong>relevant</strong> and build a persuasive case.</li>
+            <li>Strong <strong>call to action</strong> (sign up, &ldquo;see you&rdquo; at the start) rounds off the post well.</li>
+            <li>Could name <strong>one concrete detail</strong> (e.g. distance you ran, a moment on the course) to push towards Level 5.</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Language &mdash; Level 3</h3>
+          <ul>
+            <li>Meaning is usually clear, but <strong>grammar, tense, and agreement</strong> slip in several places (e.g. <em>helps / has helped</em>, <em>there is/are a team</em>, <em>must try</em> as compound adjective, <em>complete / completion</em>).</li>
+            <li>Some <strong>word choice and collocation</strong> need polish (<em>full of success, in our online website, lengths to choose and experience</em>) for Level 4.</li>
+            <li><strong>Register</strong> is generally right for a lively website blog; higher accuracy would match a <strong>public</strong> event page better.</li>
+            <li>Local <em>add oil</em> is vivid for HK readers; optional <strong>gloss</strong> in English for international site visitors (Level 4+ register flexibility).</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Organisation &mdash; Level 4</h3>
+          <ul>
+            <li>Clear <strong>opening</strong> (hook + why join) and logical build from <strong>what the event is</strong> to <strong>benefits</strong>, <strong>community</strong>, <strong>inclusivity</strong>, and <strong>how to sign up</strong>.</li>
+            <li><strong>Paragraphing</strong> matches stages of the pitch; <em>Also / Furthermore</em> help the line of thought.</li>
+            <li>Watch a few <strong>long or fused sentences</strong> (comma splices) &mdash; and add a <strong>bridge sentence</strong> before the &ldquo;connect with people&rdquo; paragraph&mdash;for Level 5 cohesion.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="clo-advice">
+        <h3>How to do better next time</h3>
+        <ul>
+          <li><strong>Content:</strong> In the opening, <strong>address young people</strong> directly once (e.g. fellow students / first-time runners) so task engagement is obvious in line 1.</li>
+          <li><strong>Content:</strong> Add <strong>one specific image or fact</strong> (bib, corral, one landmark on the course) so the &ldquo;I ran&rdquo; story feels more authentic.</li>
+          <li><strong>Language:</strong> After past time markers, <strong>check the next clause for tense</strong>; proofread <strong>articles, prepositions</strong>, and <strong>agreement</strong> with <em>team, crowd, marathon</em>.</li>
+          <li><strong>Language:</strong> In lists, keep verbs <strong>parallel</strong> (e.g. <em>build, improve, make</em>); read aloud for <strong>natural collocation</strong> on a &ldquo;read once&rdquo; web page.</li>
+          <li><strong>Organisation:</strong> Between the <strong>personal benefits</strong> and <strong>community</strong> sections, one <strong>signposting sentence</strong> can show how &ldquo;I gained X&rdquo; leads to &ldquo;we run together as a city&rdquo;.</li>
+        </ul>
+      </div>
+      <p class="clo-overall"><strong>Overall (indicative):</strong> about <strong>Level 3&ndash;4</strong> &mdash; strong content and organisation; language accuracy limits the overall band.</p>
+    </section>
+
+    <section class="box">
+      <h2>Student draft (blog post)</h2>
+      <div class="letter">
+        <p>Last month, I had an unforgettable experience of joining the Hong Kong Marathon for the first time. I can say that <span class="flip" tabindex="0" role="button" data-w="this event helps me explore new horizons and can challenge myself" data-r="this event has helped me explore new horizons and challenge myself">this event helps me explore new horizons and can challenge myself</span>. If you are considering taking part in the next marathon, I highly encourage you to join as it is <span class="flip" tabindex="0" role="button" data-w="a must try" data-r="a must-try">a must try</span>.</p>
+
+        <p><span class="flip" tabindex="0" role="button" data-w="Hong Kong Marathon is more than just a race, it is" data-r="The Hong Kong Marathon is more than just a race&mdash;it is">Hong Kong Marathon is more than just a race, it is</span> a group activity in our community. The route will take runners to some of the <span class="flip" tabindex="0" role="button" data-w="Hong Kong iconic locations or views for example from" data-r="Hong Kong&rsquo;s iconic locations and views&mdash;for example, from">Hong Kong iconic locations or views for example from</span> streets in Kowloon to <span class="flip" tabindex="0" role="button" data-w="Victoria harbour" data-r="Victoria Harbour">Victoria harbour</span>. The energy from other runners, the cheers from the crowd and the views around the route create an electrifying atmosphere that motivates you to push your limits.</p>
+
+        <p>Also, the marathon gave me an opportunity to learn skills. It helped me <span class="flip" tabindex="0" role="button" data-w="build a stronger body, having a better time management and meeting new friends" data-r="build a stronger body, improve my time management, and make new friends">build a stronger body, having a better time management and meeting new friends</span>. When I rushed to the finish line, it gave me a <span class="flip" tabindex="0" role="button" data-w="feeling of complete" data-r="feeling of completion">feeling of complete</span>. I had finally finished my goal and achieved a good result. <span class="flip" tabindex="0" role="button" data-w="I am full of success" data-r="I felt a deep sense of achievement">I am full of success</span> and happiness.</p>
+
+        <p>Furthermore, the marathon is a good way to connect with people in this city. When you are running or crossing the finish line, <span class="flip" tabindex="0" role="button" data-w="there are always a support team who will cheer for you in every step" data-r="there is always a support team to cheer for you at every step">there are always a support team who will cheer for you in every step</span>. I felt very grateful when I kept hearing people <span class="flip" tabindex="0" role="button" data-w="saying add oil" data-r="calling out, &ldquo;Add oil!&rdquo;">saying add oil</span>.</p>
+
+        <p>All levels of runners are able to join the marathon. <span class="flip" tabindex="0" role="button" data-w="Even you are" data-r="Even if you are">Even you are</span> a beginner, there are <span class="flip" tabindex="0" role="button" data-w="different lengths to choose and experience" data-r="different distances to choose from">different lengths to choose and experience</span>. You can also get a chance to explore the views of Hong Kong when running. I&rsquo;m sure that you will get a memorable adventure. Don&rsquo;t miss the chance to be a part of the marathon. Sign up for the next Hong Kong marathon <span class="flip" tabindex="0" role="button" data-w="in our online website" data-r="on the official event website">in our online website</span> and unlock a new achievement together. See you at the starting line!</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">Use the <strong>Marking (CLO)</strong> table above for band sense; use the <strong>yellow</strong> highlights in the draft for line-by-line upgrades. The overall band is only as strong as the <strong>weakest</strong> of the three strands for Paper 2.</p>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+  function toggle(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.textContent = el.textContent === r ? w : r;
+    syncClass(el);
+  }
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(el);
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>
