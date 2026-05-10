@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PTA letter — tablets replacing textbooks / school board (interactive)</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.1rem; margin: 0 0 0.35rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.88rem; opacity: 0.95; }
+    nav { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    nav a {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+    }
+    nav a:hover { background: rgba(255,255,255,0.35); }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    .hint {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.65rem 0.85rem;
+      background: #eee8;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .module { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #e3f2fd;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .model {
+      font-size: 0.95rem;
+      white-space: pre-wrap;
+    }
+    .clo-note { font-size: 0.85rem; color: var(--muted); margin: 0 0 1rem; line-height: 1.5; }
+    .clo-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .clo-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .clo-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .clo-item h3 { margin: 0 0 0.4rem; font-size: 0.82rem; color: var(--accent); }
+    .clo-item ul { margin: 0; padding-left: 1.1rem; font-size: 0.84rem; }
+    .clo-item li { margin: 0.2rem 0; }
+    .clo-overall {
+      margin: 0.9rem 0 0;
+      font-size: 0.86rem;
+      padding: 0.55rem 0.7rem;
+      background: #e3f2fd;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+    .clo-advice {
+      margin-top: 1rem;
+      padding: 0.75rem 0.85rem;
+      background: #f5f9ff;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .clo-advice h3 { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--accent); }
+    .clo-advice ul { margin: 0; padding-left: 1.15rem; font-size: 0.86rem; }
+    .clo-advice li { margin: 0.3rem 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>PTA letter — tablets replacing textbooks (practice)</h1>
+    <p>Letter to the <strong>school board</strong>. Yellow = click to swap original &harr; suggestion.</p>
+    <nav>
+      <a href="index.html">Hub</a>
+    </nav>
+  </header>
+  <main>
+    <p class="hint"><strong>How to use:</strong> Click any highlighted phrase to toggle between your version and a tightened version. <strong>Note:</strong> only the main fixes are highlighted &mdash; most of your sentences stay as you wrote them.</p>
+
+    <section class="box">
+      <h2>The task</h2>
+      <p class="module">School context / formal letter</p>
+      <div class="stimulus">
+        <p style="margin:0">Your school is considering replacing physical textbooks with tablets for all students next year.</p>
+        <p style="margin:0.65rem 0 0">You are the president of the parent-teacher association. Write a letter to the school board expressing the concerns of parents regarding screen time and digital distractions while also acknowledging the potential benefits.</p>
+      </div>
+    </section>
+
+    <section class="box clo-box">
+      <h2>Marking (CLO)</h2>
+      <p class="clo-note">HKDSE Paper 2 Part B is assessed on <strong>Content</strong>, <strong>Language</strong> and <strong>Organisation</strong>. The levels below are <strong>indicative only</strong> for study &mdash; not official HKEAA marks.</p>
+      <div class="clo-grid">
+        <div class="clo-item">
+          <h3>Content &mdash; Level 4</h3>
+          <ul>
+            <li><strong>Role and audience</strong> &mdash; PTA president to the <strong>school board</strong>; concerns + benefits both appear (balanced brief).</li>
+            <li><strong>Parents&rsquo; worries</strong> &mdash; screen time (health), distractions (games/social media), and concrete asks (guidelines, filtering, rules).</li>
+            <li><strong>Benefits</strong> &mdash; updated materials, interactivity, learning quality; links to &ldquo;careful planning.&rdquo;</li>
+            <li>To push higher: name <strong>one</strong> specific safeguard (e.g. MDM, homework-only profiles) in a single sentence.</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Language &mdash; Level 3</h3>
+          <ul>
+            <li>Ideas are clear; <strong>articles, prepositions and word form</strong> slip often (<em>access to</em>, <em>impact on</em>, <em>content</em>).</li>
+            <li><strong>Salutation</strong> should match a board letter (<em>Dear Members of the School Board</em>).</li>
+            <li><strong>Capital letters</strong> for proper nouns (Google, YouTube, Instagram).</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Organisation &mdash; Level 4</h3>
+          <ul>
+            <li>Logical flow: <strong>introduction</strong> &rarr; screen time &rarr; distractions &rarr; benefits &rarr; closing.</li>
+            <li><strong>Cohesion</strong> works (<em>First of all / Also / We understand</em>).</li>
+            <li>Minor repetition (<em>need</em>, <em>rules</em>) &mdash; synonyms would tighten Level 5.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="clo-advice">
+        <h3>How to do better next time</h3>
+        <ul>
+          <li><strong>Register:</strong> Open with the correct <strong>salutation</strong> and sign off with <strong>Parent-Teacher Association</strong> capped up.</li>
+          <li><strong>Accuracy:</strong> Proofread for <strong>collocations</strong> (<em>have an impact on</em>, <em>make it hard for someone to</em>) and <strong>countability</strong> (<em>content</em> vs <em>contents</em>).</li>
+          <li><strong>Consistency:</strong> Say <strong>tablets</strong> throughout if that is the school plan, rather than mixing in <strong>iPad</strong> unless the policy names one device.</li>
+          <li><strong>Tone:</strong> Keep concern <strong>firm but polite</strong>; pair &ldquo;punishments&rdquo; with <strong>clear expectations</strong> so it sounds constructive.</li>
+        </ul>
+      </div>
+      <p class="clo-overall"><strong>Overall (indicative):</strong> about <strong>Level 3&ndash;4</strong> &mdash; strong task fit and structure; language accuracy holds the band.</p>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <p><span class="flip" tabindex="0" role="button" data-w="Dear school members," data-r="Dear Members of the School Board,">Dear school members,</span></p>
+        <p>As the president of the parent-teacher association, <span class="flip" tabindex="0" role="button" data-w="I am writing to focus on the concern about the plan of replacing traditional physical textbooks with tablets for all students starting next year." data-r="I am writing to express parents&amp;apos; concerns about the plan to replace traditional textbooks with tablets for all students next year.">I am writing to focus on the concern about the plan of replacing traditional physical textbooks with tablets for all students starting next year.</span> Although this plan can surely bring benefits to both students and teachers, we need to be careful in considering some challenges that may happen and we need to <span class="flip" tabindex="0" role="button" data-w="strike a balance between students behaviour and academic." data-r="strike a balance between students&amp;apos; wellbeing and their studies.">strike a balance between students behaviour and academic.</span></p>
+
+        <p>First of all, one of the main concerns among parents is the <span class="flip" tabindex="0" role="button" data-w="increasing screen time in using tablets." data-r="increasing amount of screen time that comes with daily tablet use.">increasing screen time in using tablets.</span> Students need to <span class="flip" tabindex="0" role="button" data-w="focus on their iPad for a long time every day which will cause health issues including short sight, headaches, bad sleep quality and reducing of physical activity." data-r="look at their tablet screens for long stretches each day. This may lead to health problems, including shortsightedness, headaches, poor sleep and reduced physical activity.">focus on their iPad for a long time every day which will cause health issues including short sight, headaches, bad sleep quality and reducing of physical activity.</span> Our association believes that without proper management and monitoring systems, students may spend longer time staring at screens each day, which could <span class="flip" tabindex="0" role="button" data-w="lead to negative impact in their eyes and mental health." data-r="have a negative impact on their eyes and mental health.">lead to negative impact in their eyes and mental health.</span> We hope the school department can <span class="flip" tabindex="0" role="button" data-w="list a guideline about screen time and promote breaks during lessons" data-r="publish clear guidelines on screen time and encourage breaks during lessons">list a guideline about screen time and promote breaks during lessons</span> to reduce these risks.</p>
+
+        <p>Also, digital devices can be a distraction for students. <span class="flip" tabindex="0" role="button" data-w="There are different ways to access to online games and social media." data-r="Students can easily reach online games and social media.">There are different ways to access to online games and social media.</span> For example, <span class="flip" tabindex="0" role="button" data-w="students can use google to search YouTube, instagram and subway surfer website versions and use them." data-r="they can use Google to open YouTube and Instagram, or play browser games such as Subway Surfers.">students can use google to search YouTube, instagram and subway surfer website versions and use them.</span> <span class="flip" tabindex="0" role="button" data-w="These non-educational contents may cause students hard to stay focused on classes." data-r="Such non-educational content may make it hard for students to stay focused in class.">These non-educational contents may cause students hard to stay focused on classes.</span> <span class="flip" tabindex="0" role="button" data-w="This phenomenon is significant in the young students who have no mature self-regulation systems." data-r="This risk is especially serious for younger students, who may lack mature self-regulation.">This phenomenon is significant in the young students who have no mature self-regulation systems.</span> We recommend that the IT department in school should <span class="flip" tabindex="0" role="button" data-w="install block system in every device which can block the access to other non-educational contents." data-r="install filtering software on each device to limit access to non-educational sites and apps.">install block system in every device which can block the access to other non-educational contents.</span> Schools should also set rules and punishments for students who <span class="flip" tabindex="0" role="button" data-w="improperly using their devices." data-r="misuse their devices.">improperly using their devices.</span></p>
+
+        <p>We understand that this plan can bring benefits to students. It can provide updated information and educational resources to students and make lessons more interactive that can enhance the quality of learning. However, this policy needs some rules to ensure that students can use their digital devices wisely and effectively. We believe that careful planning and rules can make tablets be a powerful tool for students to learn. We appreciate <span class="flip" tabindex="0" role="button" data-w="the school commitment to improve the quality of education" data-r="the school&amp;apos;s commitment to improving the quality of education">the school commitment to improve the quality of education</span> and we look forward to working together to ensure that this policy can benefit students.</p>
+
+        <p>Yours sincerely,<br>Chris Wong<br><span class="flip" tabindex="0" role="button" data-w="President of the parent teacher association" data-r="President of the Parent-Teacher Association">President of the parent teacher association</span></p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>For reference</h2>
+      <p style="font-size:0.88rem;color:var(--muted);margin-top:0">Sample letter for comparison &mdash; same task, not the only correct answer. Compare <em>tone</em>, <em>balance</em> and <em>accuracy</em> with your own.</p>
+      <div class="model">Dear Members of the School Board,
+
+I am writing as President of the Parent-Teacher Association to share parents’ views on the proposal to replace physical textbooks with tablets for all students next year.
+
+Parents recognise possible benefits: fresher materials, richer resources and more interactive lessons can support teaching and learning. Many families nevertheless worry about two areas in particular.
+
+First, extended daily screen use may affect students’ health—eyesight, sleep and opportunities for physical activity—unless the school caps instructional screen time, adjusts fonts and brightness, and builds in movement breaks.
+
+Second, tablets open easy routes to games and social media. Younger students especially may struggle with self-control. We urge the school to deploy central filtering or mobile device management, clear usage rules, proportionate consequences for misuse, and ongoing education on responsible device habits.
+
+With transparent guidelines and safeguards, tablets can be powerful tools rather than sources of distraction. We appreciate the board’s commitment to raising educational quality and stand ready to work with staff on implementation that protects wellbeing as well as learning.
+
+Yours sincerely,
+Chris Wong
+President of the Parent-Teacher Association</div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+  function toggle(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.textContent = el.textContent === r ? w : r;
+    syncClass(el);
+  }
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(el);
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>
