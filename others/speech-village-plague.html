@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Village speech &mdash; plague &mdash; writing &amp; proofreading</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: var(--accent); }
+    .word-list-compact {
+      display: block;
+      line-height: 1.5;
+      font-size: 0.82rem;
+    }
+    .word-list .vocab-note {
+      display: inline;
+      margin: 0;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter h3 {
+      margin: 0 0 0.85rem;
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .letter ul { margin: 0 0 0.9rem; padding-left: 1.15rem; }
+    .letter li { margin: 0.35rem 0; }
+    .task-bullets {
+      margin: 0.5rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .task-bullets li { margin: 0.3rem 0; }
+    .stats { font-size: 0.82rem; color: var(--muted); margin-top: 0.65rem; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead {
+      margin: 0 0 0.5rem;
+      font-size: 0.88rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="box">
+      <h2>About this piece</h2>
+      <p class="topic">Village speech: what to do &mdash; and what not to do</p>
+      <p class="prompt">You are a doctor in a village during the Black Death. Villagers are scared. Write a short speech or letter in language they could understand (you may hint at isolation, cleanliness, rats or fleas in simple words). Say clearly: <strong>two things they should do</strong> to reduce the plague, and <strong>two things they should not do</strong>, with a short reason for each. Avoid modern textbook wording unless you explain it simply.</p>
+      <ul class="task-bullets">
+        <li>Audience: frightened villagers; tone of <strong>calm authority</strong>.</li>
+        <li>Only the <strong>yellow</strong> word groups are suggested edits; the rest is the student&rsquo;s draft as written.</li>
+      </ul>
+      <p class="stats">Draft length (student): about <strong>263 words</strong> &middot; about <strong>1,390 characters</strong> &middot; about <strong>40 sentences</strong> &middot; about <strong>14 paragraphs</strong> (including list lines).</p>
+      <div class="word-list">
+        <strong>Useful words (from the task)</strong> <span class="prompt vocab-note">(English &middot; 粵語)</span>
+        <span class="word-list-compact">plague / pestilence(瘟疫／鼠疫), quarantine / isolation(隔離), rumour / hearsay(謠言), hygiene(衞生), contagion(傳染), panic(恐慌), remedy(療法／藥方), calm authority(沉著權威)</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <p class="prompt fb-praise-lead">The task shape is clear: symptoms, fear, two &ldquo;do&rdquo; rules, two &ldquo;don&rsquo;t&rdquo; rules, and a practical close (call the doctor early, steady care).</p>
+          <ul>
+            <li>🎯 <strong>Content</strong> &mdash; cleaning, waste, fleas, separate bedding, bad smoke and potions, and not driving out the sick all match the brief.</li>
+            <li>🗣️ <strong>Voice</strong> &mdash; short sentences and plain words suit a village crowd; the ending with God reads as period-appropriate.</li>
+            <li>📏 <strong>Length</strong> &mdash; word count sits in a strong band for a classroom speech.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong>Sentences:</strong> fix a few <strong>fragments</strong> and <strong>run-ons</strong> (comma splices, broken lines after &ldquo;they&rdquo;).</li>
+            <li>💡 <strong>Punctuation:</strong> watch <strong>double full stops</strong> (<em>..</em>) and add commas after short lead-ins (<em>Today, …</em> / <em>If you are sick, …</em>).</li>
+            <li>💡 <strong>Word patterns:</strong> <em>as much as you can</em> needs <strong>as</strong>; <em>make things worse</em> needs <strong>things</strong> (or <em>you</em>).</li>
+            <li>💡 <strong>Task vocabulary:</strong> one or two careful uses of <em>pestilence</em>, <em>rumour</em>, or <em>remedy</em> (with a plain gloss) could lift the register without sounding like a textbook.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <h3>Speech to the village (draft)</h3>
+        <p>People of this village,</p>
+        <p>I am your doctor. I have seen how this sickness works. It starts with a fever. <span class="flip" tabindex="0" role="button" data-w="Makes you feel very weak." data-r="It makes you feel very weak.">Makes you feel very weak.</span> Then you get swelling in your groin or armpit. Many people die from it. You are scared. Fear makes you think of <span class="flip" tabindex="0" role="button" data-w="bad things.." data-r="bad things.">bad things..</span> We must be smart. We must do what helps and not make things worse.</p>
+
+        <p>Here are two things you should do:</p>
+        <ul>
+          <li>Keep your homes clean. Do not let filth pile up. <span class="flip" tabindex="0" role="button" data-w="The dirt and waste attract. Small pests." data-r="The dirt and waste attract small pests.">The dirt and waste attract. Small pests.</span> They carry the sickness from one person to another.</li>
+          <li>Wash your skin when you can. Change clothes when possible. Do not share bedding and clothes. The sickness often spreads through fleas and dirty habits. Fresh washing and separate bedding can slow it down.</li>
+        </ul>
+
+        <p>Here are two things you should not do:</p>
+        <ul>
+          <li>Do not burn mixtures or strong-smelling smoke in every room. Do not drink potions made by people who promise quick fixes. Some mixtures can <span class="flip" tabindex="0" role="button" data-w="make the worse." data-r="make things worse.">make the worse.</span> Smoke does not fix the problem. It only makes your body weaker.</li>
+          <li>Do not blame your neighbours. Do not drive out the sick in anger. <span class="flip" tabindex="0" role="button" data-w="When people are chased away they. Do not get help." data-r="When people are chased away, they do not get help.">When people are chased away they. Do not get help.</span> The sickness grows in secret. Fear makes more people sick.</li>
+        </ul>
+
+        <p><span class="flip" tabindex="0" role="button" data-w="If you feel well today keep yourself clean." data-r="If you feel well today, keep yourself clean.">If you feel well today keep yourself clean.</span> <span class="flip" tabindex="0" role="button" data-w="If you are sick stay away from others much as you can." data-r="If you are sick, stay away from others as much as you can.">If you are sick stay away from others much as you can.</span> Let me come to you early. We cannot stop the sickness <span class="flip" tabindex="0" role="button" data-w="at once.." data-r="at once.">at once..</span> We can make it less bad, with simple steady care.</p>
+
+        <p>May God give us strength to do what is right.</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">The ideas are strong and humane: hygiene, separation of bedding, warnings against fake cures and mob fear, and an offer to visit the sick. Tighten a handful of <strong>grammar and punctuation</strong> slips so the authority of the voice comes through without distraction. Yellow spans are optional <strong>upgrades</strong>&mdash;click to compare.</p>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+  function toggle(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.textContent = el.textContent === r ? w : r;
+    syncClass(el);
+  }
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(el);
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>
