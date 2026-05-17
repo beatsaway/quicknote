@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Almost one year at my school &mdash; writing &amp; proofreading</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: var(--accent); }
+    .word-list-compact {
+      display: block;
+      line-height: 1.5;
+      font-size: 0.82rem;
+    }
+    .word-list .vocab-note {
+      display: inline;
+      margin: 0;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter h3 {
+      margin: 0 0 0.85rem;
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .letter .draft-orphan {
+      margin: 0 0 0.35rem;
+      font-style: italic;
+      color: var(--muted);
+    }
+    .task-bullets {
+      margin: 0.5rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .task-bullets li { margin: 0.3rem 0; }
+    .stats { font-size: 0.82rem; color: var(--muted); margin-top: 0.65rem; }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.75rem 0.9rem;
+      background: #f3e5f5;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.85rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid #e1bee7;
+    }
+    .comment-bilingual .comment-pair:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue {
+      margin: 0 0 0.55rem;
+    }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child {
+      margin-bottom: 0;
+    }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead {
+      margin: 0 0 0.5rem;
+      font-size: 0.88rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="box">
+      <h2>About this piece</h2>
+      <p class="topic">Personal recount &mdash; first year at secondary school</p>
+      <p class="prompt">Write a short personal recount (about <strong>200&ndash;280 words</strong>) for your class magazine about your <strong>first year</strong> at SLCSS. Say what you like about the school, describe your <strong>most unforgettable moment</strong> (with enough detail for readers to picture it), and explain how <strong>teachers, classmates, or houses</strong> supported you. Use <strong>past tense</strong> for events and a warm, reflective tone at the end.</p>
+      <ul class="task-bullets">
+        <li>Focus on one main event (here: <strong>Sports Day</strong> over two days) rather than listing many activities.</li>
+        <li>Only the <strong>yellow</strong> word groups are suggested edits; the rest is the student&rsquo;s draft as written (including the short lines <em>try</em> / <em>sports</em>).</li>
+      </ul>
+      <p class="stats">Draft length (student): about <strong>230 words</strong> (including <em>try</em> / <em>sports</em> as separate lines).</p>
+      <div class="word-list">
+        <strong>Useful words (from the task)</strong> <span class="prompt vocab-note">(English &middot; 粵語)</span>
+        <span class="word-list-compact">unforgettable(難忘), opportunity(機會), participate(參與), qualifying round(預賽), final(決賽), relay(接力), champion(冠軍), house(社), cheer(打氣), effort(努力), reflect(反思), figurative language(修辭／比喻), simile(明喻), metaphor(隱喻)</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <p class="prompt fb-praise-lead">You answer the task: school life, a clear highlight (Sports Day), and thanks to people around you.</p>
+          <ul>
+            <li>🏫 <strong>Topic</strong> &mdash; one year at SLCSS, chances to try activities, and a positive ending.</li>
+            <li>🏃 <strong>Detail</strong> &mdash; 100 m, 4&times;100 m relay, silver in 400 m, and house cheering give real moments.</li>
+            <li>👥 <strong>Community</strong> &mdash; classmates, class teacher, friends, and houses show you notice support, not only medals.</li>
+            <li>✨ <strong>Opening</strong> &mdash; <em>In a blink of an eye</em> is a good figurative start (see Comments for how to use it even better).</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong>Sentence openings:</strong> avoid <em>What is my most unforgettable moment is that</em> &mdash; use <em>My most unforgettable moment was when …</em></li>
+            <li>💡 <strong>Past tense:</strong> keep Sports Day events in the past (<em>I got first</em>, <em>we were the fastest</em>).</li>
+            <li>💡 <strong>Spelling / word form:</strong> <em>participated</em>, <em>final</em> (not <em>finally</em>), <em>participants</em>, <em>proud of</em> (not <em>prouded by</em>).</li>
+            <li>💡 <strong>Articles &amp; grammar:</strong> <em>an inter-class</em>, <em>Sports Day</em>, <em>it offers many chances</em>; cut the stray <strong>5.</strong> and tidy <em>try</em> / <em>sports</em> into one sentence if that was your meaning.</li>
+            <li>💡 <strong>Repetition:</strong> <em>join … for me to join</em> at the end &mdash; say it once.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <h3>Almost One Year at My school</h3>
+        <p><span class="flip" tabindex="0" role="button" data-w="In a blink of an eye." data-r="In the blink of an eye,">In a blink of an eye.</span> I have been a student in SLCSS for a year already. The teachers and the students give me a lot of <span class="flip" tabindex="0" role="button" data-w="chances to which I like it very much." data-r="chances, which I like very much.">chances to which I like it very much.</span></p>
+        <p class="draft-orphan">try</p>
+        <p class="draft-orphan">sports</p>
+
+        <p><span class="flip" tabindex="0" role="button" data-w="What is my most unforgettable moment is that the first year I joined the s day in SLCSS and it held for 2 days." data-r="My most unforgettable moment was Sports Day in my first year at SLCSS; it lasted two days.">What is my most unforgettable moment is that the first year I joined the s day in SLCSS and it held for 2 days.</span> <span class="flip" tabindex="0" role="button" data-w="I remembered on the first day." data-r="On the first day,">I remembered on the first day.</span> I <span class="flip" tabindex="0" role="button" data-w="participanted" data-r="participated">participanted</span> in <span class="flip" tabindex="0" role="button" data-w="100m qualifying round" data-r="the 100 m qualifying round">100m qualifying round</span> and I <span class="flip" tabindex="0" role="button" data-w="get the 1st in my round" data-r="got first place in my heat">get the 1st in my round</span> so I could join the <span class="flip" tabindex="0" role="button" data-w="finally round" data-r="final">finally round</span> on the next day. After lunch, there was <span class="flip" tabindex="0" role="button" data-w="a inter class 4X100m competition" data-r="an inter-class 4 &times; 100 m relay">a inter class 4X100m competition</span> and I was one of the <span class="flip" tabindex="0" role="button" data-w="participant" data-r="participants">participant</span>. <span class="flip" tabindex="0" role="button" data-w="When the beep was sounded," data-r="When the starting signal sounded,">When the beep was sounded,</span> our class was the fastest one, especially <span class="flip" tabindex="0" role="button" data-w="boys" data-r="the boys">boys</span>. Therefore we got the champion in the competition. <span class="flip" tabindex="0" role="button" data-w="5." data-r="">5.</span> Our classmates and class teachers cheered for us happily. And I was <span class="flip" tabindex="0" role="button" data-w="prouded by our effort." data-r="proud of our effort.">prouded by our effort.</span></p>
+
+        <p>The next day I joined <span class="flip" tabindex="0" role="button" data-w="400m race" data-r="the 400 m race">400m race</span> and got the silver. My friends cheered me up excitedly. Meanwhile it was a cheering competition for four houses. Therefore our <span class="flip" tabindex="0" role="button" data-w="houses use" data-r="house used">houses use</span> the loudest, the most powerful voice to win the competition. To win competitions in sports day, not just my effort but also <span class="flip" tabindex="0" role="button" data-w="are teachers and classmates gave me a lot of courage, cheer and chance to me." data-r="my teachers and classmates gave me courage, cheers, and chances.">are teachers and classmates gave me a lot of courage, cheer and chance to me.</span></p>
+
+        <p>I like this school a lot because <span class="flip" tabindex="0" role="button" data-w="it a lot of chances to try and experiences." data-r="it offers many chances to try new things and gain experiences.">it a lot of chances to try and experiences.</span> I hope I can join more activities <span class="flip" tabindex="0" role="button" data-w="for me to join in the future." data-r="in the future.">for me to join in the future.</span></p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">Sports Day is a strong centre for this recount: readers can follow Day 1 and Day 2, and your pride in the relay is clear. Fix <strong>tense, articles, and a few sentence patterns</strong> so the excitement comes through without grammar distractions. Yellow spans are optional <strong>upgrades</strong>&mdash;click to compare; your events and feelings stay yours.</p>
+      <p class="prompt">If <em>try</em> and <em>sports</em> were meant to sit in the opening (e.g. <em>chances to try sports</em>), fold them into one sentence and delete the extra lines.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Figurative language</strong> &mdash; You already use an idiom like <em>In a blink of an eye</em> &mdash; good direction &mdash; but a full stop right after the opening breaks the flow, so readers don&rsquo;t feel the &ldquo;time flies&rdquo; effect. Add one or two <strong>similes or metaphors</strong> at key Sports Day moments to make scenes more vivid, without piling on fancy words.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>修辭建議</strong> &mdash; 你已經用咗「<em>In a blink of an eye</em>」呢類慣用語，方向啱，但開首用句號斷開咗，讀者未感受到「光陰似箭」嘅完整效果。可以喺一兩個關鍵場面再加<strong>比喻／明喻</strong>，令運動會畫面更立體，又唔使堆砌華麗詞藻。</p>
+        </div>
+        <div class="comment-pair">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Examples</strong><br>
+          &bull; Qualifying finish: &ldquo;I shot across the line like an arrow.&rdquo; / &ldquo;My heart thumped like a drum.&rdquo;<br>
+          &bull; Relay start: &ldquo;At the beep, our class burst forward like arrows from a bow.&rdquo;<br>
+          &bull; House cheering: &ldquo;Four houses&rsquo; shouts rolled together like waves hitting the shore.&rdquo;<br>
+          &bull; After the medal: &ldquo;The silver medal felt cold in my palm, but my chest felt warm.&rdquo;</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>例子</strong><br>
+          &bull; 預賽衝線：「我好似一支箭咁衝過終點。」／「心臟撲通撲通，像鼓聲一樣快。」<br>
+          &bull; 接力開跑：「嗶一聲，全班像離弦之箭衝出去。」<br>
+          &bull; 打氣台：「四社嘅吶喊匯成一片聲浪，像潮水拍岸。」<br>
+          &bull; 頒獎後：「銀牌喺手心冷冷地，心裡卻暖烘烘。」</p>
+        </div>
+        <div class="comment-pair">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Tip</strong> &mdash; One or two figures per paragraph is enough. Match your real feelings (nervous, proud, grateful to classmates) &mdash; don&rsquo;t use them just for show.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>寫法小貼士</strong> &mdash; 一個段落用<strong>一至兩個</strong>修辭就夠；要同你真實感受配合（緊張、驕傲、感激同學），唔好為用而用。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+  function toggle(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    if (r === '') {
+      el.textContent = '';
+      el.classList.remove('show-correct');
+      return;
+    }
+    el.textContent = el.textContent === r ? w : r;
+    syncClass(el);
+  }
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(el);
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>

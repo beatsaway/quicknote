@@ -21,3 +21,12 @@ Exceptions
 If a sentence is badly broken and every part must be rewritten together, one longer yellow span is OK so you don’t leave nonsense in plain text.
 
 Also mention in the page copy (About / Comments) that only the yellow parts are edits; the rest is their draft as written.
+
+Cantonese comments — always bilingual
+-------------------------------------
+When you add teacher comments in Cantonese (粵語), always give the same content in English in the same section.
+
+• Use a .comment-bilingual block in Comments (purple-tinted box is fine).
+• Pair EN and 粵 in .comment-pair rows: English first, then Cantonese (same meaning, same examples).
+• Label lines with .lang-tag (EN / 粵) so readers can scan either language.
+• Do not put Cantonese-only feedback in Comments without an English mirror.
