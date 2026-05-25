@@ -30,3 +30,7 @@ When you add teacher comments in Cantonese (粵語), always give the same conten
 • Pair EN and 粵 in .comment-pair rows: English first, then Cantonese (same meaning, same examples).
 • Label lines with .lang-tag (EN / 粵) so readers can scan either language.
 • Do not put Cantonese-only feedback in Comments without an English mirror.
+
+Page copy style
+---------------
+In feedback text, demo letters, and comments, avoid en dashes (— / &mdash;) and colons after labels. Use full stops, commas, or short separate sentences instead (e.g. "Health. Play basketball…" not "Health — …" or "Health: …").
