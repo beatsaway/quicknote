@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Munsang centenary diary (interactive)</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #0d5c4a;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.1rem; margin: 0 0 0.35rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.88rem; opacity: 0.95; }
+    nav { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    nav a {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+    }
+    nav a:hover { background: rgba(255,255,255,0.35); }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    .hint {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.65rem 0.85rem;
+      background: #eee8;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .module { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0 0 0.85rem;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #f0f7f4;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: #1565c0; }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .stats { font-size: 0.82rem; color: var(--muted); margin-top: 0.5rem; }
+    .task-bullets { margin: 0.4rem 0 0; padding-left: 1.15rem; font-size: 0.88rem; }
+    .task-bullets li { margin: 0.25rem 0; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .clo-note { font-size: 0.85rem; color: var(--muted); margin: 0 0 1rem; line-height: 1.5; }
+    .clo-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .clo-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .clo-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .clo-item h3 { margin: 0 0 0.4rem; font-size: 0.82rem; color: var(--accent); }
+    .clo-item ul { margin: 0; padding-left: 1.1rem; font-size: 0.84rem; }
+    .clo-item li { margin: 0.2rem 0; }
+    .clo-overall {
+      margin: 0.9rem 0 0;
+      font-size: 0.86rem;
+      padding: 0.55rem 0.7rem;
+      background: #f0f7f4;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+    .clo-advice {
+      margin-top: 1rem;
+      padding: 0.75rem 0.85rem;
+      background: #f0f7f4;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .clo-advice h3 { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--accent); }
+    .clo-advice ul { margin: 0; padding-left: 1.15rem; font-size: 0.86rem; }
+    .clo-advice li { margin: 0.3rem 0; }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.75rem 0.9rem;
+      background: #f3e5f5;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.85rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid #e1bee7;
+    }
+    .comment-bilingual .comment-pair:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue {
+      margin: 0 0 0.55rem;
+    }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child {
+      margin-bottom: 0;
+    }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Munsang College centenary diary</h1>
+    <p>Open Day volunteer recount. Yellow = click original &harr; suggested wording.</p>
+    <nav>
+      <a href="index.html">Hub</a>
+    </nav>
+  </header>
+  <main>
+    <p class="hint">Only the <strong>yellow</strong> phrases are edits; the rest is the student&rsquo;s draft as written.</p>
+
+    <section class="box">
+      <h2>The task</h2>
+      <p class="module">Diary entry</p>
+      <div class="stimulus">
+        <p class="prompt" style="margin:0 0 0.5rem">Your school, <strong>Munsang College</strong>, is celebrating its <strong>100th anniversary</strong>. You volunteered at the <strong>Centenary Open Day</strong>.</p>
+        <p class="prompt" style="margin:0">Write a <strong>diary entry</strong> about the day. Describe what you did, how you felt, and what the experience meant to you as part of the &ldquo;Munsang Family&rdquo; (about <strong>350&ndash;450 words</strong>).</p>
+      </div>
+      <ul class="task-bullets">
+        <li>Register should sound personal and reflective, like a real diary.</li>
+        <li>Include at least one vivid moment (e.g. in the laboratory) and a closing thought.</li>
+      </ul>
+      <p class="stats">Draft length (student), about <strong>420 words</strong>.</p>
+      <div class="word-list">
+        <strong>Useful words</strong>
+        <span style="font-size:0.86rem;line-height:1.5;color:var(--text)">centenary(百周年), volunteer(義工), atmosphere(氣氛), grateful(感恩), instructor(講解員), souvenir(紀念品), impression(印象), reflect(反思), school spirit(校園精神)</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Marking (CLO)</h2>
+      <p class="clo-note">HKDSE Paper 2 is assessed on <strong>Content</strong>, <strong>Language</strong>, and <strong>Organisation</strong>. The levels below are <strong>indicative only</strong> for study, not official HKEAA marks.</p>
+      <div class="clo-grid">
+        <div class="clo-item">
+          <h3>Content, Level 4</h3>
+          <ul>
+            <li>Clear <strong>diary voice</strong> and a full day (arrival, lab duty, visitors, souvenir, &ldquo;Munsang Family&rdquo;).</li>
+            <li>Strong <strong>personal detail</strong> (chemistry lab, mole question, periodic-table gift, PE memo pack).</li>
+            <li>Reflection on <strong>growth</strong> and school identity fits the task well.</li>
+            <li>To push higher, trim repetition in the lab paragraph and sharpen one <strong>opening hook</strong>.</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Language, Level 3</h3>
+          <ul>
+            <li>Ideas are clear, but <strong>tense, articles, and word form</strong> slip often (<em>came/come</em>, <em>an instructor</em>, <em>information</em>).</li>
+            <li>Watch <strong>spelling</strong> (<em>Munsang</em>, <em>prize</em>, <em>about</em>) and a few <strong>broken sentences</strong>.</li>
+            <li><strong>Collocation</strong> needs polish (<em>grateful for</em>, <em>impression on me</em>, <em>memories for me</em>).</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Organisation, Level 4</h3>
+          <ul>
+            <li>Logical flow from <strong>morning purpose</strong> &rarr; <strong>lab work</strong> &rarr; <strong>reflection</strong> &rarr; <strong>souvenir</strong> &rarr; <strong>closing meaning</strong>.</li>
+            <li>Paragraph breaks match stages of the day.</li>
+            <li>Final paragraph on &ldquo;Munsang Family&rdquo; gives a strong sense of ending.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="clo-advice">
+        <h3>How to do better next time</h3>
+        <ul>
+          <li><strong>Diary openers.</strong> After <em>Dear diary,</em> use a complete sentence for the date or occasion (<em>Today is our centenary Open Day</em>).</li>
+          <li><strong>Past tense.</strong> Once the day has started, keep events in the past (<em>came, brought, felt</em>).</li>
+          <li><strong>One scene at a time.</strong> Show one visitor moment in detail, then summarise the rest, instead of repeating the same action for five hours.</li>
+          <li><strong>Proofread names.</strong> Keep <em>Munsang</em> spelled the same throughout.</li>
+        </ul>
+      </div>
+      <p class="clo-overall"><strong>Overall (indicative).</strong> About <strong>Level 3&ndash;4</strong>. Strong content and school spirit; language accuracy holds the band.</p>
+    </section>
+
+    <section class="box">
+      <h2>Student draft</h2>
+      <div class="letter">
+        <p>Dear diary,</p>
+        <p><span class="flip" tabindex="0" role="button" data-w="Today in my school, Munsang College, 100th Anniversary." data-r="Today at my school, Munsang College, is the 100th anniversary.">Today in my school, Munsang College, 100th Anniversary.</span> It is an important day for Munsang College as the road to 100 years is not easy. I feel so <span class="flip" tabindex="0" role="button" data-w="grateful about studying" data-r="grateful for studying">grateful about studying</span> in this school which <span class="flip" tabindex="0" role="button" data-w="brings me joy and knowledge in these 14 years." data-r="has brought me joy and knowledge over these 14 years.">brings me joy and knowledge in these 14 years.</span> <span class="flip" tabindex="0" role="button" data-w="As a part of" data-r="As part of">As a part of</span> the &lsquo;Munsang Family&rsquo;, I decided to join the Centenary Open Days and be a volunteer in it.</p>
+
+        <p>When I entered the gate of the school, I could feel the greatness of this school. The atmosphere on campus was joyful and the <span class="flip" tabindex="0" role="button" data-w="laugh from the people" data-r="laughter of the people">laugh from the people</span> spread to every corner of the school. I rushed to the meeting room and found the teachers, <span class="flip" tabindex="0" role="button" data-w="finding what I can do in today." data-r="to find out what I could do today.">finding what I can do in today.</span> My Chemistry teacher <span class="flip" tabindex="0" role="button" data-w="come" data-r="came">come</span> to find me and gave me a task which was being <span class="flip" tabindex="0" role="button" data-w="a instructor" data-r="an instructor">a instructor</span> in the laboratory. I read the <span class="flip" tabindex="0" role="button" data-w="informations of the equipment" data-r="information about the equipment">informations of the equipment</span> of the laboratory and tried to remember all the knowledge that I learnt from the chemistry class.</p>
+
+        <p>After a few minutes, the first laboratory visitor <span class="flip" tabindex="0" role="button" data-w="come in I brought" data-r="came in. I brought">come in I brought</span> him to look around the equipment and share what students will do in here. Then, I asked him some questions <span class="flip" tabindex="0" role="button" data-w="whaut basic chemistry." data-r="about basic chemistry.">whaut basic chemistry.</span> The visitor got them all right. He even did the bonus question which was about calculation of mole, I clapped for him and gave one of the biggest library souvenir, which is a periodic table with MSC logo. I&apos;m sure that people who love chemistry will love this <span class="flip" tabindex="0" role="button" data-w="price." data-r="prize.">price.</span> I kept repeating the same thing in about 5 hours. There were about 90 visitors <span class="flip" tabindex="0" role="button" data-w="come in" data-r="who came in">come in</span> and all of them left the room with a smile, I <span class="flip" tabindex="0" role="button" data-w="felt success" data-r="felt successful">felt success</span> in this work as I could introduce the functions of the equipment fluently and I could <span class="flip" tabindex="0" role="button" data-w="reply their questions vering what I have learnt" data-r="answer their questions using what I have learnt">reply their questions vering what I have learnt</span> in chemistry lessons. Furthermore, I experienced communicating with people outside the campus.</p>
+
+        <p>This opportunity makes me feel that I am growing up as I can talk with strangers and finish my task , I won&apos;t forget what I did today.</p>
+
+        <p><span class="flip" tabindex="0" role="button" data-w="Speaking of souvenir," data-r="Speaking of souvenirs,">Speaking of souvenir,</span> I saw an interesting <span class="flip" tabindex="0" role="button" data-w="which is a memo pack" data-r="item, which is a memo pack">which is a memo pack</span> with MSC PE uniform design. It <span class="flip" tabindex="0" role="button" data-w="made a deep impression into my brain." data-r="left a deep impression on me.">made a deep impression into my brain.</span> Our school PE uniform is special for the colour, <span class="flip" tabindex="0" role="button" data-w="Yellow and red ," data-r="yellow and red,">Yellow and red ,</span> which <span class="flip" tabindex="0" role="button" data-w="usually been called" data-r="is usually called">usually been called</span> as tomato with eggs. I think it is funny to have a tomato and egg colored memo sticking at home or workplace , <span class="flip" tabindex="0" role="button" data-w="reminding me to do what ." data-r="reminding me of school every day.">reminding me to do what .</span> Seriously, the main reason why I love it is because my favourite lesson in school is PE lesson. This lesson creates a lot of sad and happy memories <span class="flip" tabindex="0" role="button" data-w="to me" data-r="for me">to me</span>, having this memo pack can <span class="flip" tabindex="0" role="button" data-w="keep me rewind" data-r="help me remember">keep me rewind</span> all of the good days in MSC after I graduate.</p>
+
+        <p>Sometimes I think about the meaning of &lsquo;<span class="flip" tabindex="0" role="button" data-w="Munsung Family" data-r="Munsang Family">Munsung Family</span>&rsquo; , and <span class="flip" tabindex="0" role="button" data-w="Now" data-r="now">Now</span> I finally know it. It means that the students who study in here, the teachers teaching their subject in here the cleaning workers tidying the classroom and the head principals who keep maintaining the school well . Because of what we <span class="flip" tabindex="0" role="button" data-w="achieved" data-r="have achieved">achieved</span> , Munsang College can keep improving, keep walking to now. We should work together, <span class="flip" tabindex="0" role="button" data-w="Keeping our school to shine forever." data-r="keeping our school shining forever.">Keeping our school to shine forever.</span></p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">You capture real Open Day detail and genuine pride in Munsang. The yellow highlights mark grammar and wording upgrades. Use the CLO table for band sense.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Diary voice.</strong> Open with one clear sentence about the day (<em>Today is our centenary Open Day</em>), then your feelings. That sounds more natural than a list of facts.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>日記語氣。</strong> 開首用一句清楚交代今日係百周年開放日，再寫感受，會比逐樣列事實更似真日記。</p>
+        </div>
+        <div class="comment-pair">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Lab scene.</strong> One visitor answering the mole question is your best moment. Describe his reaction and your gift in one short paragraph, then say you repeated this for about five hours and ninety visitors.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>實驗室場面。</strong> 訪客答啱 mole 計算題係全篇最亮點。先細寫佢嘅反應同你送嘅紀念品，再一句帶過之後五個鐘、大約九十位訪客，唔使重複同一套動作。</p>
+        </div>
+        <div class="comment-pair">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Local colour.</strong> &ldquo;Tomato and eggs&rdquo; (番茄炒蛋) for the PE colours is vivid and very HK. Keep it, but fix the sentence around it so the joke lands cleanly.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>本地味道。</strong> 用「番茄炒蛋」形容 PE 衫紅黃配色好有香港味，值得留。執好前後句子，個笑位先會順。</p>
+        </div>
+        <div class="comment-pair">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Ending.</strong> Your &ldquo;Munsang Family&rdquo; idea is strong. List students, teachers, cleaners, and leaders in separate short phrases, then one line on working together. Spell <em>Munsang</em> the same every time.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>結尾。</strong> 「民生大家庭」呢個方向好好。學生、老師、校工、校長分開短句寫，再一句講一齊努力；全文統一拼 <em>Munsang</em>，唔好寫成 Munsung。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+  function toggle(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.textContent = el.textContent === r ? w : r;
+    syncClass(el);
+  }
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(el);
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>
