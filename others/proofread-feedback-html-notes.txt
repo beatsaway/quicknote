@@ -32,6 +32,16 @@ When helpful, add teacher tips in the **Comments** section at the end of the pag
 • Do not put Cantonese-only feedback in Comments without an English mirror.
 • Copy the .comment-bilingual CSS from letter-to-amy-advice-michelle.html when adding to a new page.
 
+Praise + upgrades (not upgrades only)
+-------------------------------------
+The bilingual block should include **praise** as well as **upgrade tips**. Do not only list fixes.
+
+• Start with **2–3 praise pairs** (what went well, in warm teacher voice). Mirror strengths from the “What went well” grid but phrase them for the student directly.
+• Then add **2–3 upgrade pairs** (how to push higher). These can overlap with yellow flips and “Could be even better”.
+• Example praise labels: Strong hook / Task complete / Clear stance / Empathy / Balanced view.
+• Example upgrade labels: Magazine opening / Word choice / Stronger ending.
+• Order: praise first, upgrades after — so the student feels encouraged before reading fixes.
+
 Page copy style
 ---------------
 In feedback text, demo letters, and comments, avoid en dashes (— / &mdash;) and colons after labels. Use full stops, commas, or short separate sentences instead (e.g. "Health. Play basketball…" not "Health — …" or "Health: …").
