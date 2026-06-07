@@ -26,11 +26,11 @@ Cantonese comments — always bilingual (Comments section)
 --------------------------------------------------------
 When helpful, add teacher tips in the **Comments** section at the end of the page (after the short English summary). When you use Cantonese (粵語), always give the same content in English in the same block.
 
-• Put a .comment-bilingual box at the **bottom of Comments** (purple-tinted box is fine).
+• Put a .comment-bilingual box at the **bottom of Comments** (neutral grey outer box; see colour rules below).
 • Pair EN and 粵 in .comment-pair rows: English first, then Cantonese (same meaning, same examples).
 • Label lines with .lang-tag (EN / 粵) so readers can scan either language.
 • Do not put Cantonese-only feedback in Comments without an English mirror.
-• Copy the .comment-bilingual CSS from letter-to-amy-advice-michelle.html when adding to a new page.
+• Copy the .comment-bilingual CSS from article-why-we-dream.html or opinion-dark-humour-memes.html when adding to a new page.
 
 Praise + upgrades (not upgrades only)
 -------------------------------------
@@ -41,6 +41,18 @@ The bilingual block should include **praise** as well as **upgrade tips**. Do no
 • Example praise labels: Strong hook / Task complete / Clear stance / Empathy / Balanced view.
 • Example upgrade labels: Magazine opening / Word choice / Stronger ending.
 • Order: praise first, upgrades after — so the student feels encouraged before reading fixes.
+
+Praise vs upgrade colours (students must tell them apart)
+---------------------------------------------------------
+Students often cannot tell which 粵 comment is praise and which is feedback. Use **two colours** inside .comment-bilingual. Colour alone is enough — do **not** add a legend or key explaining green vs amber.
+
+• Praise pairs: class="comment-pair comment-pair-praise" (green tint #e8f5e9, left border #43a047).
+• Upgrade pairs: class="comment-pair comment-pair-upgrade" (amber tint #fff8e1, left border #f9a825).
+• Do **not** add Praise / 讚賞 / Upgrade / 改善 labels or badges. Colour alone tells praise from upgrade; each line only needs .lang-tag (EN / 粵).
+
+• If a page has only upgrade-style tips (e.g. idea prompts with no praise block), use comment-pair-upgrade on every row.
+
+• Do **not** use one purple style for all pairs — that was the old pattern and confuses readers.
 
 Page copy style
 ---------------

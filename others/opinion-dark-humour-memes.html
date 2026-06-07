@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dark humour memes opinion — writing &amp; proofreading</title>
+  <title>Dark humour memes — magazine article — writing &amp; proofreading</title>
   <style>
     :root {
       --bg: #f7f5f0;
@@ -38,6 +38,14 @@
     .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
     .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
     .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #e3f2fd;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
     .word-list {
       margin: 0.75rem 0 0;
       padding: 0.65rem 0.85rem;
@@ -98,22 +106,30 @@
     }
     .comment-bilingual {
       margin: 0.75rem 0 0;
-      padding: 0.75rem 0.9rem;
-      background: #f3e5f5;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
       border-radius: 8px;
       font-size: 0.9rem;
       line-height: 1.65;
       color: var(--text);
     }
     .comment-bilingual .comment-pair {
-      margin: 0 0 0.85rem;
-      padding-bottom: 0.85rem;
-      border-bottom: 1px solid #e1bee7;
+      margin: 0 0 0.65rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 6px;
+      border-left: 4px solid transparent;
     }
     .comment-bilingual .comment-pair:last-child {
       margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: none;
+    }
+    .comment-pair-praise {
+      background: #e8f5e9;
+      border-left-color: #43a047;
+    }
+    .comment-pair-upgrade {
+      background: #fff8e1;
+      border-left-color: #f9a825;
     }
     .comment-bilingual .comment-en,
     .comment-bilingual .comment-yue {
@@ -138,16 +154,19 @@
   <main>
     <section class="box">
       <h2>About this piece</h2>
-      <p class="topic">Opinion — dark humour memes</p>
-      <p class="prompt">Write a short <strong>opinion piece</strong> (about <strong>150&ndash;250 words</strong>) for a school forum or student magazine. State your view on whether people should send <strong>dark humour memes</strong> to others. Explain <strong>who may be hurt</strong>, acknowledge <strong>why some people still share them</strong>, and suggest a <strong>better alternative</strong>. Only the <strong>yellow</strong> word groups are suggested edits; the rest is the student&rsquo;s draft as written.</p>
+      <p class="topic">Magazine article — should students share dark humour memes?</p>
+      <div class="stimulus">
+        <p class="prompt" style="margin:0 0 0.5rem;color:var(--text)">Some students send <strong>dark humour memes</strong> in <strong>group chats</strong> — skits or edits that joke about <strong>disabled</strong> or <strong>LGBTQ</strong> people. Staff and parents disagree on whether this should be allowed.</p>
+        <p class="prompt" style="margin:0;color:var(--text)">Write a <strong>magazine article</strong> on whether students should be <strong>allowed</strong> to send memes like these. <strong>State your view</strong>, give <strong>three reasons</strong>, and <strong>answer the other side</strong> in one short paragraph.</p>
+      </div>
       <ul class="task-bullets">
-        <li>Tone should be clear and thoughtful, not aggressive.</li>
-        <li>Use respectful wording when writing about disability (<em>people with disabilities</em>).</li>
+        <li>Only the <strong>yellow</strong> word groups are suggested edits; the rest is the student&rsquo;s draft as written.</li>
+        <li>Your draft takes a <strong>ban</strong> view and has a short <em>However</em> paragraph that can grow into the &ldquo;other side&rdquo; section.</li>
       </ul>
-      <p class="stats">Draft length (student), about <strong>115 words</strong> (room to add one example and a stronger ending).</p>
+      <p class="stats">Draft length (student), about <strong>115 words</strong> (well under a full magazine article; room to add a title, <strong>three clear reasons</strong>, <strong>group chat</strong> context, and <strong>LGBTQ</strong>).</p>
       <div class="word-list">
-        <strong>Useful words</strong> <span class="prompt" style="display:inline;font-size:0.8rem;color:var(--muted)">(English &middot; 粵語)</span>
-        <span class="word-list-compact">dark humour(黑色幽默), meme(迷因／梗圖), offensive(冒犯), insensitive(欠敏感度), stressed(感到壓力), pessimistic(悲觀), empathy(同理心), counter-argument(反方論點), alternative(替代方法)</span>
+        <strong>Useful words (from the task)</strong> <span class="prompt" style="display:inline;font-size:0.8rem;color:var(--muted)">(English &middot; 粵語)</span>
+        <span class="word-list-compact">dark humour(黑色幽默), meme(迷因／梗圖), group chat(群組聊天), allow / ban(允許／禁止), offensive(冒犯), target(針對), disability(殘疾), LGBTQ(性小眾), bullying(欺凌), harm(傷害), respect(尊重), dignity(尊嚴), free speech(言論自由), school rule(校規), consequence(後果), in my view(我認為)</span>
       </div>
     </section>
 
@@ -155,21 +174,21 @@
       <div class="fb-grid">
         <div class="fb-block">
           <h3>What went well</h3>
-          <p class="prompt fb-praise-lead">You take a clear stand and show you can see both sides.</p>
+          <p class="prompt fb-praise-lead">You already lean toward <strong>banning</strong> these memes and show awareness of harm.</p>
           <ul>
-            <li>👍 <strong>Position.</strong> You argue that dark humour memes should not be sent, with reasons.</li>
-            <li>👍 <strong>Impact.</strong> You think about disabled people, parents, and teachers, not only the sender.</li>
-            <li>👍 <strong>Balance.</strong> Paragraph 2 explains why people still share them (busy life, stress, wanting fun).</li>
-            <li>👍 <strong>Closing.</strong> You suggest finding another way to feel happy instead of relying on dark jokes.</li>
+            <li>👍 <strong>Clear view.</strong> You argue students should not send dark humour memes.</li>
+            <li>👍 <strong>Harm.</strong> You explain emotional hurt for people with disabilities and annoyance for parents and teachers.</li>
+            <li>👍 <strong>Other side started.</strong> Paragraph 2 begins with <em>However</em> and gives a reason some students still share memes (stress, wanting fun).</li>
+            <li>👍 <strong>Sensible close.</strong> You suggest other ways to feel happy instead of offensive jokes.</li>
           </ul>
         </div>
         <div class="fb-block">
           <h3>Could be even better</h3>
           <ul>
-            <li>💡 <strong>Length.</strong> Add one concrete example of a meme type and one alternative (e.g. wholesome memes, chatting with friends).</li>
-            <li>💡 <strong>Word choice.</strong> People feel <strong>stressed</strong>, not <strong>stressful</strong>; <em>look forward to society</em> &rarr; <em>face society positively</em> / <em>trust society again</em>.</li>
-            <li>💡 <strong>Grammar.</strong> Watch <em>they might make them</em> (who is <em>they</em>?) and <em>for making resting times</em> &rarr; <em>to make their break times</em>.</li>
-            <li>💡 <strong>Register.</strong> <em>I guess they should</em> sounds unsure for an opinion piece; try <em>They should</em> or <em>In my view, they should</em>.</li>
+            <li>💡 <strong>Task shape.</strong> Add a <strong>title</strong>, open with <em>In my view, these memes should be banned</em>, then <strong>three separate reasons</strong> (harm, bullying/respect, school rules/consequences).</li>
+            <li>💡 <strong>Topic coverage.</strong> Mention <strong>group chats</strong> and <strong>LGBTQ</strong> people, not only disability, as the brief asks.</li>
+            <li>💡 <strong>Other side.</strong> Keep paragraph 2 as one short counter-argument (e.g. stress, free speech) then answer it in your final line.</li>
+            <li>💡 <strong>Language.</strong> People feel <strong>stressed</strong>, not <strong>stressful</strong>; use task words like <em>offensive</em>, <em>target</em>, <em>dignity</em> where they fit.</li>
           </ul>
         </div>
       </div>
@@ -177,7 +196,7 @@
 
     <section class="box">
       <div class="letter">
-        <p>I think people shouldn&rsquo;t send dark humour memes to others, <span class="flip" tabindex="0" role="button" data-w="like if disabled people see other people laughing at people who might have disabilities," data-r="because if people with disabilities see others laughing at jokes about disability,">like if disabled people see other people laughing at people who might have disabilities,</span> <span class="flip" tabindex="0" role="button" data-w="they might make them feel very stressful and pessimistic and not willing to look forward to society." data-r="those memes may make them feel stressed, pessimistic, and unwilling to face society positively.">they might make them feel very stressful and pessimistic and not willing to look forward to society.</span> <span class="flip" tabindex="0" role="button" data-w="Other people like the sender&amp;apos;s parents and teachers will also feel annoyed." data-r="The sender&amp;apos;s parents and teachers may feel annoyed too.">Other people like the sender&apos;s parents and teachers will also feel annoyed.</span></p>
+        <p>I think people shouldn&rsquo;t send dark humour memes to others, <span class="flip" tabindex="0" role="button" data-w="like if disabled people see other people laughing at people who might have disabilities," data-r="because if people with disabilities see others laughing at jokes about disability,">like if disabled people see other people laughing at people who might have disabilities,</span> <span class="flip" tabindex="0" role="button" data-w="they might make them feel very stressful and pessimistic and not willing to look forward to society." data-r="those memes may make them feel stressed, pessimistic, and unwilling to face society positively.">they might make them feel very stressful and pessimistic and not willing to look forward to society.</span> <span class="flip" tabindex="0" role="button" data-w="Other people like the sender&amp;apos;s parents and teachers will also feel annoyed." data-r="The sender&apos;s parents and teachers may feel annoyed too.">Other people like the sender&apos;s parents and teachers will also feel annoyed.</span></p>
 
         <p>However, a lot of people still send dark humour memes to others for fun nowadays. <span class="flip" tabindex="0" role="button" data-w="The reason might be the world now is busy and it makes students or workers feel unhappy." data-r="The reason may be that life is hectic nowadays, which makes students or workers feel unhappy.">The reason might be the world now is busy and it makes students or workers feel unhappy.</span> They use it <span class="flip" tabindex="0" role="button" data-w="for making resting times more interesting and funny." data-r="to make their break times more interesting and funny.">for making resting times more interesting and funny.</span> <span class="flip" tabindex="0" role="button" data-w="I guess they should use another idea for making them happy then." data-r="In my view, they should find other ways to lift their mood instead.">I guess they should use another idea for making them happy then.</span></p>
       </div>
@@ -185,32 +204,32 @@
 
     <section class="box">
       <h2>Comments</h2>
-      <p class="prompt">Your argument has a clear shape. Harm first, then why people still do it, then a better path. That fits a balanced opinion task well.</p>
-      <p class="prompt">To push the grade, name <strong>one alternative</strong> (music, sport, light-hearted memes that do not target vulnerable groups) and end with a firm line that repeats your view. Yellow spans are optional <strong>upgrades</strong>. Click to compare.</p>
+      <p class="prompt">Your instinct matches the task direction (these memes cause harm and should not be shared). To meet the <strong>magazine article</strong> brief fully, separate <strong>three reasons</strong>, name <strong>group chats</strong>, and include <strong>LGBTQ</strong> alongside disability.</p>
+      <p class="prompt">Yellow spans are optional <strong>upgrades</strong>. Click to compare.</p>
       <div class="comment-bilingual">
-        <div class="comment-pair">
-          <p class="comment-en"><span class="lang-tag">EN</span><strong>Clear stance.</strong> You say what you believe in the first sentence. Readers know straight away that you are against sending dark humour memes.</p>
-          <p class="comment-yue"><span class="lang-tag">粵</span><strong>立場清楚。</strong> 第一句就表明態度，讀者即刻知你反對亂傳黑色幽默梗圖。</p>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Clear stance.</strong> You say early that dark humour memes should not be sent. That fits a <em>ban</em> article for the school magazine.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>立場清楚。</strong> 你一開始就反對亂傳黑色幽默梗圖，方向同雜誌文「應禁止」嘅立場一致。</p>
         </div>
-        <div class="comment-pair">
-          <p class="comment-en"><span class="lang-tag">EN</span><strong>Empathy.</strong> You think about how the receiver might feel, not only whether the joke is funny. That shows maturity in an opinion piece.</p>
-          <p class="comment-yue"><span class="lang-tag">粵</span><strong>有同理心。</strong> 你諗過接收者感受，唔係淨係笑唔笑得出，議論文裏面呢點好成熟。</p>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Harm and respect.</strong> You already think about hurt feelings and adults&rsquo; reactions. Good start for reasons about <em>dignity</em> and <em>respect</em>.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>傷害同尊重。</strong> 你已經諗過受害者感受同家長老師反應，可以發展成 <em>dignity</em>、<em>respect</em> 嘅論點。</p>
         </div>
-        <div class="comment-pair">
-          <p class="comment-en"><span class="lang-tag">EN</span><strong>Balanced view.</strong> Paragraph 2 admits why people still share memes when life is stressful. That makes your argument fairer and more convincing.</p>
-          <p class="comment-yue"><span class="lang-tag">粵</span><strong>有平衡。</strong> 第二段承認生活壓力大所以有人當笑料，論點公道啲，說服力亦強啲。</p>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Counter-argument seed.</strong> Your <em>However</em> paragraph can become the &ldquo;other side&rdquo; (stress, wanting fun). Then answer it. Fun matters, but <em>offensive</em> memes are not the only way.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>反方雛形。</strong> <em>However</em> 嗰段可以寫反方（壓力、想搞笑），再一句駁返。好玩唔代表一定要傳冒犯梗圖。</p>
         </div>
-        <div class="comment-pair">
-          <p class="comment-en"><span class="lang-tag">EN</span><strong>Argument shape.</strong> Your order is good. Harm first, then why people still share memes, then a better idea. Keep that three-step shape if you add length.</p>
-          <p class="comment-yue"><span class="lang-tag">粵</span><strong>論點結構。</strong> 次序啱：先講傷害，再講點解仲有人傳，最後講更好做法。加字都保持呢三步。</p>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Three reasons.</strong> Split your ideas into three short points. For example (1) emotional harm to targeted groups, (2) bullying in group chats, (3) school rules and consequences.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>三個理由。</strong> 將想法分成三點寫。例如 (1) 傷害被針對群體情緒，(2) 群組聊天變相欺凌，(3) 違反校規要有後果。</p>
         </div>
-        <div class="comment-pair">
-          <p class="comment-en"><span class="lang-tag">EN</span><strong>Word choice.</strong> People feel <strong>stressed</strong>, not <strong>stressful</strong>. Say <em>people with disabilities</em> instead of <em>disabled people</em> when you can. It sounds more respectful in an opinion piece.</p>
-          <p class="comment-yue"><span class="lang-tag">粵</span><strong>用詞。</strong> 人係 <strong>stressed</strong>（感到壓力），唔係 <strong>stressful</strong>。寫 <em>people with disabilities</em> 通常比 <em>disabled people</em> 更尊重、更適合議論文。</p>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Cover the brief.</strong> Add <em>group chat</em> and <em>LGBTQ</em> in one sentence each. Use <em>In my view</em> at the start and a magazine-style title.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>補足題目。</strong> 各用一句提到 <em>group chat</em> 同 <em>LGBTQ</em>。開頭用 <em>In my view</em>，加一個雜誌標題。</p>
         </div>
-        <div class="comment-pair">
-          <p class="comment-en"><span class="lang-tag">EN</span><strong>Stronger ending.</strong> Replace <em>I guess</em> with <em>In my view</em>. Name one alternative (wholesome memes, music, talking to friends) and close with one clear line that repeats your view.</p>
-          <p class="comment-yue"><span class="lang-tag">粵</span><strong>結尾加力。</strong> <em>I guess</em> 改 <em>In my view</em>。舉一個替代方法（正能量 meme、聽歌、同朋友傾計），最後一句再重申唔好傳黑色幽默梗圖。</p>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Word choice.</strong> People feel <strong>stressed</strong>, not <strong>stressful</strong>. Prefer <em>people with disabilities</em> and explain memes <em>target</em> groups, not just &ldquo;laugh at people.&rdquo;</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>用詞。</strong> 人係 <strong>stressed</strong>，唔係 <strong>stressful</strong>。用 <em>people with disabilities</em>，並寫清楚 meme <em>target</em> 某類人。</p>
         </div>
       </div>
     </section>
