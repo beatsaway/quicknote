@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Level 5 Vocabulary — Fill in the Blanks</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --panel: #fff;
+      --accent: #1a5276;
+      --accent-light: #e8f4fc;
+      --border: #dcd6cb;
+      --ok: #f1f8f4;
+      --ok-b: #2e7d32;
+      --bad: #fff5f5;
+      --bad-b: #c62828;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.15rem; margin: 0 0 0.3rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.88rem; opacity: 0.95; }
+    .header-nav { margin-top: 0.55rem; font-size: 0.85rem; }
+    .header-nav a { color: #fff; opacity: 0.9; }
+    .header-nav a:hover { opacity: 1; }
+    main { max-width: 44rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    .hint {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.65rem 0.85rem;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    .hint kbd {
+      font: inherit;
+      font-size: 0.9em;
+      padding: 1px 6px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      background: #f5f5f5;
+    }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+    .module {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      margin: 0 0 0.35rem;
+    }
+    .task-title-yue {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0 0 0.5rem;
+    }
+    .instruction {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0 0 0.85rem;
+    }
+    .vocab-grid { display: grid; gap: 0.75rem; }
+    .vocab-cat {
+      padding: 0.6rem 0.75rem;
+      background: var(--accent-light);
+      border-radius: 8px;
+      font-size: 0.86rem;
+    }
+    .vocab-cat h3 {
+      margin: 0 0 0.4rem;
+      font-size: 0.82rem;
+      color: var(--accent);
+    }
+    .vocab-cat .cat-yue {
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+    .vocab-cat ul { margin: 0; padding-left: 1.1rem; }
+    .vocab-cat li { margin: 0.2rem 0; }
+    .passage { font-size: 0.95rem; line-height: 1.9; }
+    .blank-wrap {
+      display: inline-block;
+      vertical-align: baseline;
+      margin: 0 2px;
+      white-space: nowrap;
+    }
+    .blank-num {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--accent);
+      vertical-align: super;
+      margin-left: 1px;
+    }
+    .blank-select {
+      font: inherit;
+      font-size: 0.86rem;
+      max-width: 13em;
+      padding: 2px 4px;
+      border: 1px solid #bbb;
+      border-radius: 4px;
+      background: #fafafa;
+      vertical-align: baseline;
+    }
+    .blank-select.wide { max-width: 16em; }
+    .blank-select:hover,
+    .blank-select:focus {
+      border-color: var(--accent);
+      outline: none;
+      background: #fff;
+    }
+    .blank-select.correct {
+      border-color: var(--ok-b);
+      background: var(--ok);
+    }
+    .blank-select.incorrect {
+      border-color: var(--bad-b);
+      background: var(--bad);
+    }
+    .task-actions {
+      margin-top: 0.85rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    button {
+      font-family: inherit;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.85rem;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover { opacity: 0.92; }
+    button.secondary {
+      background: #fff;
+      color: var(--accent);
+    }
+    .score { font-size: 0.88rem; color: var(--muted); }
+    .answer-key { font-size: 0.88rem; }
+    .answer-key h3 {
+      margin: 0.75rem 0 0.35rem;
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+    .answer-key h3:first-child { margin-top: 0; }
+    .answer-key ol { margin: 0; padding-left: 1.25rem; }
+    .answer-key li { margin: 0.2rem 0; }
+    .global-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+    .toggle-key {
+      font-size: 0.85rem;
+      color: var(--accent);
+      background: none;
+      border: none;
+      padding: 0;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    #answer-key-panel { display: none; }
+    #answer-key-panel.show { display: block; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="page-title">Level 5 Vocabulary Bank</h1>
+    <p id="page-subtitle"></p>
+    <div class="header-nav"><a href="index.html">← Fill-in-the-blanks</a></div>
+  </header>
+  <main>
+    <p class="hint">Choose a word or phrase from each dropdown (from the bank below). Words show <strong>English（粵語意思）</strong>. Green = correct, red = try again. Press <kbd>Space</kbd> to reveal all answers.</p>
+
+    <section class="box" id="vocab-section">
+      <h2>Vocabulary Bank · 詞庫</h2>
+      <div class="vocab-grid" id="vocab-grid"></div>
+    </section>
+
+    <div class="global-actions">
+      <button type="button" id="check-all">Check all tasks</button>
+      <button type="button" class="secondary" id="reset-all">Clear all</button>
+      <button type="button" class="toggle-key" id="toggle-key">Show answer key · 顯示答案</button>
+    </div>
+
+    <div id="tasks-root"></div>
+
+    <section class="box" id="answer-key-panel">
+      <h2>Answer Key · 參考答案</h2>
+      <div class="answer-key" id="answer-key-root"></div>
+    </section>
+  </main>
+
+  <script src="level-5-vocab-data.js"></script>
+  <script>
+(function () {
+  var data = window.FILL_BLANKS_DATA;
+  if (!data) return;
+
+  document.getElementById("page-title").textContent = data.title;
+  document.getElementById("page-subtitle").textContent = data.subtitle || "";
+
+  function normalize(s) {
+    return String(s || "").trim().toLowerCase().replace(/\s+/g, " ");
+  }
+
+  function escapeHtml(s) {
+    var d = document.createElement("div");
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i];
+      a[i] = a[j];
+      a[j] = t;
+    }
+    return a;
+  }
+
+  function parseEn(text) {
+    var i = text.indexOf("\uFF08");
+    if (i === -1) i = text.indexOf("(");
+    return (i === -1 ? text : text.slice(0, i)).trim();
+  }
+
+  function collectVocabPool() {
+    var pool = [];
+    var seen = {};
+    data.vocabBank.forEach(function (cat) {
+      cat.words.forEach(function (w) {
+        var en = parseEn(w.text);
+        var key = normalize(en);
+        if (!seen[key]) {
+          seen[key] = true;
+          pool.push(en);
+        }
+        var paren = en.match(/\(([^)]+)\)/);
+        if (paren) {
+          var inner = paren[1].trim();
+          if (!seen[normalize(inner)]) {
+            seen[normalize(inner)] = true;
+            pool.push(inner);
+          }
+          var base = en.replace(/\s*\([^)]+\)/, "").trim();
+          if (base && !seen[normalize(base)]) {
+            seen[normalize(base)] = true;
+            pool.push(base);
+          }
+        }
+      });
+    });
+    return pool;
+  }
+
+  var vocabPool = collectVocabPool();
+
+  var EXTRA = [
+    "To", "For", "If", "Once", "While", "However", "Nevertheless",
+    "strongly", "proactive", "encourage", "strongly encourage"
+  ];
+
+  function optionsForBlank(spec) {
+    if (spec.options && spec.options.length) {
+      return shuffle(spec.options.slice());
+    }
+    var opts = [];
+    var seen = {};
+    function add(v) {
+      if (!v) return;
+      var k = normalize(v);
+      if (seen[k]) return;
+      seen[k] = true;
+      opts.push(v);
+    }
+    spec.answers.forEach(add);
+    shuffle(vocabPool.concat(EXTRA)).forEach(function (d) {
+      if (opts.length >= 8) return;
+      var isCorrect = false;
+      for (var i = 0; i < spec.answers.length; i++) {
+        if (normalize(spec.answers[i]) === normalize(d)) isCorrect = true;
+      }
+      if (!isCorrect) add(d);
+    });
+    return shuffle(opts);
+  }
+
+  function gradeSelect(sel) {
+    sel.classList.remove("correct", "incorrect");
+    if (!sel.value) return;
+    var answers = (sel.dataset.answers || "").split("|");
+    var ok = false;
+    for (var i = 0; i < answers.length; i++) {
+      if (normalize(sel.value) === normalize(answers[i])) {
+        ok = true;
+        break;
+      }
+    }
+    sel.classList.add(ok ? "correct" : "incorrect");
+  }
+
+  function renderVocab() {
+    var root = document.getElementById("vocab-grid");
+    data.vocabBank.forEach(function (cat) {
+      var block = document.createElement("div");
+      block.className = "vocab-cat";
+      var h = document.createElement("h3");
+      h.innerHTML = cat.category + (cat.categoryYue
+        ? ' <span class="cat-yue">(' + cat.categoryYue + ")</span>"
+        : "");
+      block.appendChild(h);
+      var ul = document.createElement("ul");
+      cat.words.forEach(function (w) {
+        var li = document.createElement("li");
+        li.textContent = w.text;
+        ul.appendChild(li);
+      });
+      block.appendChild(ul);
+      root.appendChild(block);
+    });
+  }
+
+  function isWide(taskId, num) {
+    return (taskId === 2 && (num === 2 || num === 8)) || (taskId === 3 && num === 3);
+  }
+
+  function renderTasks() {
+    var root = document.getElementById("tasks-root");
+    data.tasks.forEach(function (task) {
+      var section = document.createElement("section");
+      section.className = "box";
+      section.dataset.taskId = task.id;
+
+      var module = document.createElement("p");
+      module.className = "module";
+      module.textContent = task.label;
+      section.appendChild(module);
+
+      var h2 = document.createElement("h2");
+      h2.textContent = task.title;
+      section.appendChild(h2);
+
+      if (task.titleYue) {
+        var yue = document.createElement("p");
+        yue.className = "task-title-yue";
+        yue.textContent = task.titleYue;
+        section.appendChild(yue);
+      }
+
+      var inst = document.createElement("p");
+      inst.className = "instruction";
+      inst.textContent = task.instruction + (task.instructionYue ? " · " + task.instructionYue : "");
+      section.appendChild(inst);
+
+      var passage = document.createElement("div");
+      passage.className = "passage";
+
+      task.parts.forEach(function (part) {
+        if (typeof part === "string") {
+          passage.appendChild(document.createTextNode(part));
+          return;
+        }
+        var spec = task.blanks[part.blank];
+        var wrap = document.createElement("span");
+        wrap.className = "blank-wrap";
+        var sel = document.createElement("select");
+        sel.className = "blank-select" + (isWide(task.id, part.blank) ? " wide" : "");
+        sel.dataset.task = task.id;
+        sel.dataset.blank = part.blank;
+        sel.dataset.answers = spec.answers.join("|");
+        sel.setAttribute("aria-label", "Blank " + part.blank);
+
+        var empty = document.createElement("option");
+        empty.value = "";
+        empty.textContent = "\u2014";
+        sel.appendChild(empty);
+
+        optionsForBlank(spec).forEach(function (opt) {
+          var o = document.createElement("option");
+          o.value = opt;
+          o.textContent = opt;
+          sel.appendChild(o);
+        });
+
+        sel.addEventListener("change", function () { gradeSelect(sel); });
+        wrap.appendChild(sel);
+
+        var num = document.createElement("span");
+        num.className = "blank-num";
+        num.textContent = "(" + part.blank + ")";
+        wrap.appendChild(num);
+        passage.appendChild(wrap);
+      });
+
+      section.appendChild(passage);
+
+      var actions = document.createElement("div");
+      actions.className = "task-actions";
+      var checkBtn = document.createElement("button");
+      checkBtn.type = "button";
+      checkBtn.textContent = "Check Task " + task.id;
+      checkBtn.addEventListener("click", function () { checkTask(task.id, true); });
+      var clearBtn = document.createElement("button");
+      clearBtn.type = "button";
+      clearBtn.className = "secondary";
+      clearBtn.textContent = "Clear";
+      clearBtn.addEventListener("click", function () { clearTask(task.id); });
+      var score = document.createElement("span");
+      score.className = "score";
+      score.id = "score-task-" + task.id;
+      actions.appendChild(checkBtn);
+      actions.appendChild(clearBtn);
+      actions.appendChild(score);
+      section.appendChild(actions);
+
+      root.appendChild(section);
+    });
+  }
+
+  function getTask(taskId) {
+    for (var i = 0; i < data.tasks.length; i++) {
+      if (data.tasks[i].id === taskId) return data.tasks[i];
+    }
+    return null;
+  }
+
+  function checkTask(taskId, showScore) {
+    var selects = document.querySelectorAll('select[data-task="' + taskId + '"]');
+    var correct = 0;
+    selects.forEach(function (sel) {
+      gradeSelect(sel);
+      if (sel.classList.contains("correct")) correct++;
+    });
+    if (showScore) {
+      var el = document.getElementById("score-task-" + taskId);
+      if (el) el.textContent = correct + " / " + selects.length + " correct";
+    }
+    return correct;
+  }
+
+  function clearTask(taskId) {
+    document.querySelectorAll('select[data-task="' + taskId + '"]').forEach(function (sel) {
+      sel.value = "";
+      sel.classList.remove("correct", "incorrect");
+    });
+    var el = document.getElementById("score-task-" + taskId);
+    if (el) el.textContent = "";
+  }
+
+  function renderAnswerKey() {
+    var root = document.getElementById("answer-key-root");
+    data.answerKey.forEach(function (block) {
+      var h3 = document.createElement("h3");
+      h3.textContent = "Task " + block.taskId;
+      root.appendChild(h3);
+      var ol = document.createElement("ol");
+      block.items.forEach(function (item) {
+        var li = document.createElement("li");
+        li.textContent = item.answer;
+        ol.appendChild(li);
+      });
+      root.appendChild(ol);
+    });
+  }
+
+  function showAllAnswers() {
+    data.tasks.forEach(function (task) {
+      Object.keys(task.blanks).forEach(function (n) {
+        var spec = task.blanks[n];
+        var sel = document.querySelector(
+          'select[data-task="' + task.id + '"][data-blank="' + n + '"]'
+        );
+        if (!sel || !spec.answers.length) return;
+        var ans = spec.answers[0];
+        var has = false;
+        for (var i = 0; i < sel.options.length; i++) {
+          if (normalize(sel.options[i].value) === normalize(ans)) {
+            has = true;
+            break;
+          }
+        }
+        if (!has) {
+          var opt = document.createElement("option");
+          opt.value = ans;
+          opt.textContent = ans;
+          sel.appendChild(opt);
+        }
+        sel.value = ans;
+        gradeSelect(sel);
+      });
+      checkTask(task.id, true);
+    });
+  }
+
+  document.getElementById("check-all").addEventListener("click", function () {
+    data.tasks.forEach(function (t) { checkTask(t.id, true); });
+  });
+
+  document.getElementById("reset-all").addEventListener("click", function () {
+    data.tasks.forEach(function (t) { clearTask(t.id); });
+  });
+
+  var keyPanel = document.getElementById("answer-key-panel");
+  var keyVisible = false;
+  document.getElementById("toggle-key").addEventListener("click", function () {
+    keyVisible = !keyVisible;
+    keyPanel.classList.toggle("show", keyVisible);
+    this.textContent = keyVisible ? "Hide answer key · 隱藏答案" : "Show answer key · 顯示答案";
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.code !== "Space" || e.ctrlKey || e.metaKey || e.altKey) return;
+    var tag = e.target && e.target.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+    e.preventDefault();
+    showAllAnswers();
+  });
+
+  renderVocab();
+  renderTasks();
+  renderAnswerKey();
+})();
+  </script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technology — connected or isolated? | 科技與人際連繫</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --panel: #fff;
+      --accent: #4a3d6a;
+      --border: #dcd6cb;
+      --ok: #f1f8f4;
+      --ok-b: #2e7d32;
+      --bad: #fff5f5;
+      --bad-b: #c62828;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      line-height: 1.55;
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.05rem; margin: 0 0 0.25rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.86rem; opacity: 0.95; }
+    .header-nav { margin-top: 0.55rem; font-size: 0.85rem; }
+    .header-nav a { color: #fff; opacity: 0.9; }
+    .header-nav a:hover { opacity: 1; }
+    main { padding: 1.25rem 1.25rem 2.5rem; max-width: 44rem; margin: 0 auto; }
+    .intro { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .hint-note {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      padding: 0.55rem 0.75rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .hint-note kbd {
+      font: inherit;
+      font-size: 0.9em;
+      padding: 1px 6px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      background: #f5f5f5;
+    }
+    .section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.1rem 1.15rem;
+      margin-bottom: 1rem;
+    }
+    .section-head {
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      margin-bottom: 0.65rem;
+    }
+    .section-head .zh {
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+    .passage {
+      font-size: 0.95rem;
+      line-height: 1.9;
+    }
+    .blank-wrap {
+      display: inline-block;
+      vertical-align: baseline;
+      margin: 0 2px;
+    }
+    .blank-select {
+      font: inherit;
+      font-size: 0.88rem;
+      max-width: 11.5em;
+      padding: 2px 4px;
+      border: 1px solid #bbb;
+      border-radius: 4px;
+      background: #fafafa;
+      vertical-align: baseline;
+    }
+    .blank-select:hover,
+    .blank-select:focus {
+      border-color: var(--accent);
+      outline: none;
+      background: #fff;
+    }
+    .blank-select.correct {
+      border-color: var(--ok-b);
+      background: var(--ok);
+    }
+    .blank-select.incorrect {
+      border-color: var(--bad-b);
+      background: var(--bad);
+    }
+    .hint-inline {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .actions {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    button {
+      font-family: inherit;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.85rem;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+    }
+    button.secondary {
+      background: #fff;
+      color: var(--accent);
+    }
+    .score { font-size: 0.88rem; color: var(--muted); align-self: center; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="hdr-title">Technology &amp; human connection</h1>
+    <p id="hdr-sub"></p>
+    <div class="header-nav"><a href="index.html">← Fill-in-the-blanks</a></div>
+  </header>
+  <main id="main"></main>
+  <script src="technology-connected-isolated.js"></script>
+  <script>
+(function () {
+  var data = window.TECHNOLOGY_PASSAGE;
+  var main = document.getElementById("main");
+  if (!data) {
+    main.innerHTML = "<p>Data not loaded.</p>";
+    return;
+  }
+
+  document.getElementById("hdr-title").textContent = data.title;
+  document.getElementById("hdr-sub").textContent =
+    (data.titleZh || "") + (data.instructionsZh ? " · " + data.instructionsZh : "");
+
+  var IRREG = {
+    shrink: { pp: "shrunk", ing: "shrinking", s: "shrinks" },
+    live: { pp: "lived", ing: "living", s: "lives" },
+    stare: { pp: "stared", ing: "staring", s: "stares" },
+    unify: { pp: "unified", ing: "unifying", s: "unifies" },
+    allow: { pp: "allowed", ing: "allowing", s: "allows" },
+    enable: { pp: "enabled", ing: "enabling", s: "enables" },
+    learn: { pp: "learned", ing: "learning", s: "learns" },
+    prove: { pp: "proved", ing: "proving", s: "proves" },
+    transform: { pp: "transformed", ing: "transforming", s: "transforms" },
+    curate: { pp: "curated", ing: "curating", s: "curates" },
+    unfilter: { pp: "unfiltered", ing: "unfiltering", s: "unfilters" },
+    crowd: { pp: "crowded", ing: "crowding", s: "crowds" },
+    dine: { pp: "dined", ing: "dining", s: "dines" },
+    illuminate: { pp: "illuminated", ing: "illuminating", s: "illuminates" },
+    term: { pp: "termed", ing: "terming", s: "terms" },
+    highlight: { pp: "highlighted", ing: "highlighting", s: "highlights" },
+    engage: { pp: "engaged", ing: "engaging", s: "engages" },
+    tailor: { pp: "tailored", ing: "tailoring", s: "tailors" },
+    reflect: { pp: "reflected", ing: "reflecting", s: "reflects" },
+    wield: { pp: "wielded", ing: "wielding", s: "wields" },
+    ensure: { pp: "ensured", ing: "ensuring", s: "ensures" },
+    lead: { pp: "led", ing: "leading", s: "leads" }
+  };
+
+  function escapeHtml(s) {
+    var d = document.createElement("div");
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  function normalize(s) {
+    return String(s || "").trim().replace(/\s+/g, " ").toLowerCase();
+  }
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i];
+      a[i] = a[j];
+      a[j] = t;
+    }
+    return a;
+  }
+
+  function verbForms(base) {
+    var b = base.toLowerCase();
+    if (IRREG[b]) return IRREG[b];
+    if (b.endsWith("e")) {
+      return { pp: b + "d", ing: b.slice(0, -1) + "ing", s: b + "s" };
+    }
+    return { pp: b + "ed", ing: b + "ing", s: b + "s" };
+  }
+
+  function optionsFromHint(hint, answer) {
+    var base = hint.replace(/\*/g, "").trim().toLowerCase();
+    var f = verbForms(base);
+    var ans = String(answer).trim();
+    var out = [];
+    var seen = {};
+
+    function add(form) {
+      if (!form) return;
+      var key = normalize(form);
+      if (seen[key]) return;
+      seen[key] = true;
+      out.push(form);
+    }
+
+    add(ans);
+    add(base);
+    add(f.s);
+    add(f.ing);
+    add(f.pp);
+
+    if (base === "shrink") {
+      add("has shrunk");
+      add("shrunk");
+    }
+    if (base === "prove") {
+      add("has proved");
+      add("proved");
+    }
+    if (base === "unify") add("unifying");
+    if (base === "unfilter") {
+      add("unfiltered");
+      add("unfiltering");
+    }
+    if (base === "crowd") {
+      add("crowded");
+      add("crowding");
+    }
+    if (base === "illuminate") add("illuminated");
+    if (base === "tailor") add("tailored");
+    if (base === "term") add("termed");
+    if (base === "learn") add("learning");
+    if (base === "highlight") add("highlights");
+    if (base === "wield") add("wielded");
+    if (base === "allow") add("allowing");
+    if (base === "ensure") add("ensuring");
+    if (base === "transform") add("transforming");
+    if (base === "engage") add("engaging");
+    if (base === "reflect") add("reflecting");
+    if (base === "dine") add("dining");
+    if (base === "allow") add("allows");
+
+    add("is " + f.pp);
+    add("are " + f.pp);
+    add("be " + f.pp);
+
+    return shuffle(out);
+  }
+
+  function buildSelect(hint, correct, sectionIdx, blankIdx) {
+    var options = optionsFromHint(hint, correct);
+    var html = '<span class="blank-wrap"><select class="blank-select" aria-label="Choose word form"' +
+      ' data-answer="' + escapeHtml(correct) + '"' +
+      ' data-section="' + sectionIdx + '" data-index="' + blankIdx + '">';
+    html += '<option value="">—</option>';
+    options.forEach(function (opt) {
+      html += '<option value="' + escapeHtml(opt) + '">' + escapeHtml(opt) + "</option>";
+    });
+    html += "</select></span>";
+    return html;
+  }
+
+  function renderPassage(text, answers, sectionIdx) {
+    var html = "";
+    var remaining = text;
+    var blankIdx = 0;
+
+    while (remaining.length) {
+      var gap = remaining.indexOf("_____");
+      if (gap === -1) {
+        html += escapeHtml(remaining);
+        break;
+      }
+      html += escapeHtml(remaining.slice(0, gap));
+      remaining = remaining.slice(gap + 5);
+
+      var hintMatch = remaining.match(/^\s*\(([^)]+)\)/);
+      var hint = hintMatch ? hintMatch[1] : "";
+      if (hintMatch) remaining = remaining.slice(hintMatch[0].length);
+
+      html += buildSelect(hint, answers[blankIdx] || "", sectionIdx, blankIdx);
+      if (hint) {
+        html += '<span class="hint-inline"> (' + escapeHtml(hint.replace(/\*/g, "")) + ")</span>";
+      }
+      blankIdx += 1;
+    }
+    return html;
+  }
+
+  function gradeSelect(sel) {
+    sel.classList.remove("correct", "incorrect");
+    if (!sel.value) return;
+    var expected = sel.getAttribute("data-answer") || "";
+    if (normalize(sel.value) === normalize(expected)) {
+      sel.classList.add("correct");
+    } else {
+      sel.classList.add("incorrect");
+    }
+  }
+
+  function gradeAll() {
+    var correct = 0;
+    var total = 0;
+    document.querySelectorAll(".blank-select").forEach(function (sel) {
+      total++;
+      gradeSelect(sel);
+      if (sel.classList.contains("correct")) correct++;
+    });
+    var el = document.getElementById("score");
+    if (el) el.textContent = correct + " / " + total + " correct";
+  }
+
+  function clearAll() {
+    document.querySelectorAll(".blank-select").forEach(function (sel) {
+      sel.value = "";
+      sel.classList.remove("correct", "incorrect");
+    });
+    var el = document.getElementById("score");
+    if (el) el.textContent = "";
+  }
+
+  function showAllAnswers() {
+    document.querySelectorAll(".blank-select").forEach(function (sel) {
+      var expected = sel.getAttribute("data-answer") || "";
+      if (!expected) return;
+      var has = false;
+      for (var i = 0; i < sel.options.length; i++) {
+        if (normalize(sel.options[i].value) === normalize(expected)) {
+          has = true;
+          break;
+        }
+      }
+      if (!has) {
+        var opt = document.createElement("option");
+        opt.value = expected;
+        opt.textContent = expected;
+        sel.appendChild(opt);
+      }
+      sel.value = expected;
+      gradeSelect(sel);
+    });
+    gradeAll();
+  }
+
+  var html =
+    '<p class="intro">' + escapeHtml(data.instructions) + "</p>" +
+    '<p class="hint-note">Word in (brackets) = base form. Each dropdown shows forms of that word only. Press <kbd>Space</kbd> to reveal all answers.</p>';
+
+  data.sections.forEach(function (sec, si) {
+    html += '<section class="section">';
+    html += '<h2 class="section-head">' + escapeHtml(sec.label);
+    if (sec.labelZh) {
+      html += ' <span class="zh">(' + escapeHtml(sec.labelZh) + ")</span>";
+    }
+    html += "</h2>";
+    html += '<p class="passage">' + renderPassage(sec.text, sec.answers || [], si) + "</p>";
+    html += "</section>";
+  });
+
+  html +=
+    '<div class="actions">' +
+    '<button type="button" id="check-btn">Check answers</button>' +
+    '<button type="button" class="secondary" id="clear-btn">Clear</button>' +
+    '<span class="score" id="score"></span>' +
+    "</div>";
+
+  main.innerHTML = html;
+
+  document.querySelectorAll(".blank-select").forEach(function (sel) {
+    sel.addEventListener("change", function () { gradeSelect(sel); });
+  });
+
+  document.getElementById("check-btn").addEventListener("click", gradeAll);
+  document.getElementById("clear-btn").addEventListener("click", clearAll);
+
+  document.addEventListener("keydown", function (e) {
+    if (e.code !== "Space" || e.ctrlKey || e.metaKey || e.altKey) return;
+    var tag = e.target && e.target.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+    e.preventDefault();
+    showAllAnswers();
+  });
+})();
+  </script>
+</body>
+</html>
