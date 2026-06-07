@@ -11,7 +11,6 @@
       --muted: #555;
       --panel: #fff;
       --accent: #5c3d2e;
-      --accent-light: #f5ebe3;
       --border: #dcd6cb;
       --ok: #f1f8f4;
       --ok-b: #2e7d32;
@@ -19,34 +18,36 @@
       --bad-b: #c62828;
       --font: "Segoe UI", system-ui, sans-serif;
     }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
       font-family: var(--font);
-      line-height: 1.6;
+      line-height: 1.55;
       color: var(--text);
       background: var(--bg);
+      min-height: 100vh;
     }
     header {
       background: var(--accent);
       color: #fff;
       padding: 1rem 1.25rem;
     }
-    header h1 { font-size: 1.1rem; margin: 0 0 0.3rem; font-weight: 600; }
-    header p { margin: 0; font-size: 0.88rem; opacity: 0.95; }
+    header h1 { font-size: 1.05rem; margin: 0 0 0.25rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.86rem; opacity: 0.95; }
     .header-nav { margin-top: 0.55rem; font-size: 0.85rem; }
     .header-nav a { color: #fff; opacity: 0.9; }
-    main { max-width: 44rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
-    .hint {
-      font-size: 0.88rem;
+    .header-nav a:hover { opacity: 1; }
+    main { padding: 1.25rem 1.25rem 2.5rem; max-width: 44rem; margin: 0 auto; }
+    .intro { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .hint-note {
+      font-size: 0.82rem;
       color: var(--muted);
-      padding: 0.65rem 0.85rem;
-      background: #fff;
-      border-radius: 8px;
+      margin-bottom: 1.25rem;
+      padding: 0.55rem 0.75rem;
+      background: var(--panel);
       border: 1px solid var(--border);
-      margin-bottom: 1rem;
+      border-radius: 8px;
     }
-    .hint kbd {
+    .hint-note kbd {
       font: inherit;
       font-size: 0.9em;
       padding: 1px 6px;
@@ -54,53 +55,28 @@
       border-radius: 3px;
       background: #f5f5f5;
     }
-    section.box {
+    .section {
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 1rem 1.15rem 1.2rem;
-      margin-bottom: 1.25rem;
+      padding: 1rem 1.1rem 1.15rem;
+      margin-bottom: 1rem;
     }
-    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
-    .module {
-      font-size: 0.78rem;
+    .section-head {
+      font-size: 0.82rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       color: var(--accent);
-      margin: 0 0 0.35rem;
+      margin-bottom: 0.65rem;
     }
-    .task-title-yue {
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin: 0 0 0.75rem;
-    }
-    .sub-heading {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--accent);
-      margin: 1rem 0 0.5rem;
-    }
-    .sub-heading:first-child { margin-top: 0; }
-    .vocab-grid { display: grid; gap: 0.75rem; }
-    .vocab-cat {
-      padding: 0.6rem 0.75rem;
-      background: var(--accent-light);
-      border-radius: 8px;
-      font-size: 0.86rem;
-    }
-    .vocab-cat h3 {
-      margin: 0 0 0.4rem;
-      font-size: 0.82rem;
-      color: var(--accent);
-    }
-    .vocab-cat .cat-yue {
+    .section-head .zh {
       font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
       color: var(--muted);
       font-size: 0.78rem;
     }
-    .vocab-cat ul { margin: 0; padding-left: 1.1rem; }
-    .vocab-cat li { margin: 0.2rem 0; }
     .passage {
       font-size: 0.95rem;
       line-height: 1.9;
@@ -110,26 +86,18 @@
       display: inline-block;
       vertical-align: baseline;
       margin: 0 2px;
-      white-space: nowrap;
-    }
-    .blank-num {
-      font-size: 0.68rem;
-      font-weight: 700;
-      color: var(--accent);
-      vertical-align: super;
-      margin-left: 1px;
     }
     .blank-select {
       font: inherit;
-      font-size: 0.86rem;
-      max-width: 13em;
+      font-size: 0.88rem;
+      max-width: 11.5em;
       padding: 2px 4px;
       border: 1px solid #bbb;
       border-radius: 4px;
       background: #fafafa;
       vertical-align: baseline;
     }
-    .blank-select.wide { max-width: 16em; }
+    .blank-select.wide { max-width: 14em; }
     .blank-select:hover,
     .blank-select:focus {
       border-color: var(--accent);
@@ -144,8 +112,12 @@
       border-color: var(--bad-b);
       background: var(--bad);
     }
-    .task-actions {
-      margin-top: 0.85rem;
+    .hint-inline {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .actions {
+      margin-top: 1rem;
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
@@ -163,86 +135,96 @@
     }
     button.secondary { background: #fff; color: var(--accent); }
     .score { font-size: 0.88rem; color: var(--muted); }
-    .global-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-      align-items: center;
-    }
-    .toggle-key {
-      font-size: 0.85rem;
-      color: var(--accent);
-      background: none;
-      border: none;
-      padding: 0;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-    .answer-key { font-size: 0.88rem; }
-    .answer-key h3 {
-      margin: 0.75rem 0 0.35rem;
-      font-size: 0.9rem;
-      color: var(--accent);
-    }
-    .answer-key h3:first-child { margin-top: 0; }
-    .answer-key ol { margin: 0; padding-left: 1.25rem; }
-    .answer-key li { margin: 0.2rem 0; }
-    #answer-key-panel { display: none; }
-    #answer-key-panel.show { display: block; }
   </style>
 </head>
 <body>
   <header>
-    <h1 id="page-title">DSE Part A Demos</h1>
-    <p id="page-subtitle"></p>
+    <h1 id="hdr-title">DSE Part A Demos</h1>
+    <p id="hdr-sub"></p>
     <div class="header-nav"><a href="index.html">← Fill-in-the-blanks</a></div>
   </header>
-  <main>
-    <p class="hint" id="page-hint"></p>
-
-    <section class="box">
-      <h2>Vocabulary Bank · 詞庫</h2>
-      <div class="vocab-grid" id="vocab-grid"></div>
-    </section>
-
-    <div class="global-actions">
-      <button type="button" id="check-all">Check all tasks</button>
-      <button type="button" class="secondary" id="reset-all">Clear all</button>
-      <button type="button" class="toggle-key" id="toggle-key">Show answer key · 顯示答案</button>
-    </div>
-
-    <div id="tasks-root"></div>
-
-    <section class="box" id="answer-key-panel">
-      <h2>Answer Key · 參考答案</h2>
-      <div class="answer-key" id="answer-key-root"></div>
-    </section>
-  </main>
-
+  <main id="main"></main>
   <script src="dse-part-a-demos.js"></script>
   <script>
 (function () {
   var data = window.DSE_PART_A_DEMOS;
-  if (!data) return;
+  var main = document.getElementById("main");
+  if (!data) {
+    main.innerHTML = "<p>Data not loaded.</p>";
+    return;
+  }
 
-  document.getElementById("page-title").textContent = data.title;
-  document.getElementById("page-subtitle").textContent = data.subtitle || "";
-  document.getElementById("page-hint").innerHTML =
-    escapeHtml(data.instructions) + " Press <kbd>Space</kbd> to reveal all answers.";
+  document.getElementById("hdr-title").textContent = data.title;
+  document.getElementById("hdr-sub").textContent =
+    (data.titleZh || "") + (data.instructionsZh ? " · " + data.instructionsZh : "");
 
-  var WIDE_BLANKS = {
-    "1-5": true, "1-10": true, "2-5": true, "2-7": true, "3-5": true, "3-11": true
+  var IRREG = {
+    commit: { pp: "committed", ing: "committing", s: "commits" },
+    access: { pp: "accessed", ing: "accessing", s: "accesses" },
+    friend: { pp: "friendly", ing: "befriending", s: "friends" },
+    unique: { pp: "uniqued", ing: "uniquing", s: "uniques" },
+    conscious: { pp: "conscious", ing: "conscious", s: "conscious" },
+    flagship: { pp: "flagship", ing: "flagship", s: "flagships" },
+    reuse: { pp: "reused", ing: "reusing", s: "reuses" },
+    draw: { pp: "drew", ing: "drawing", s: "draws" },
+    hand: { pp: "handed", ing: "handing", s: "hands" },
+    traffic: { pp: "trafficked", ing: "trafficking", s: "traffics" },
+    engage: { pp: "engaged", ing: "engaging", s: "engages" },
+    win: { pp: "won", ing: "winning", s: "wins" },
+    thrill: { pp: "thrilled", ing: "thrilling", s: "thrills" },
+    anticipate: { pp: "anticipated", ing: "anticipating", s: "anticipates" },
+    mark: { pp: "marked", ing: "marking", s: "marks" },
+    alumni: { pp: "alumni", ing: "alumni", s: "alumni" },
+    water: { pp: "watered", ing: "watering", s: "waters" },
+    showcase: { pp: "showcased", ing: "showcasing", s: "showcases" },
+    luck: { pp: "lucked", ing: "lucking", s: "lucks" },
+    former: { pp: "former", ing: "former", s: "former" },
+    alone: { pp: "alone", ing: "alone", s: "alone" },
+    "set up": { pp: "set up", ing: "setting up", s: "sets up" },
+    honest: { pp: "honest", ing: "honest", s: "honest" },
+    snap: { pp: "snapped", ing: "snapping", s: "snaps" },
+    disappoint: { pp: "disappointed", ing: "disappointing", s: "disappoints" },
+    attend: { pp: "attended", ing: "attending", s: "attends" },
+    flag: { pp: "flagged", ing: "flagging", s: "flags" },
+    overwhelm: { pp: "overwhelmed", ing: "overwhelming", s: "overwhelms" },
+    style: { pp: "styled", ing: "styling", s: "styles" },
+    hear: { pp: "heard", ing: "hearing", s: "hears" },
+    verdict: { pp: "verdict", ing: "verdict", s: "verdicts" },
+    caveat: { pp: "caveats", ing: "caveating", s: "caveats" },
+    peak: { pp: "peaked", ing: "peaking", s: "peaks" },
+    attentive: { pp: "attentive", ing: "attentive", s: "attentive" }
   };
 
-  function normalize(s) {
-    return String(s || "").trim().toLowerCase().replace(/\s+/g, " ");
-  }
+  var SPECIAL = {
+    access: ["accessible", "accessibility", "inaccessible", "accessed", "accessing"],
+    commit: ["committed", "committing", "commits", "commitment"],
+    friend: ["eco-friendly", "friendly", "friendlier", "unfriendly", "befriend"],
+    conscious: ["eco-conscious", "conscious", "consciously", "unconscious", "consciousness"],
+    reuse: ["reusable", "reuse", "reusing", "reused", "disposable"],
+    hand: ["hands-on", "handed", "handing", "hands", "hand-on"],
+    traffic: ["foot traffic", "traffic", "trafficking", "trafficked"],
+    win: ["win-win", "winning", "won", "wins", "winner"],
+    water: ["mouth-watering", "watering", "watered", "watery", "mouth-watering"],
+    luck: ["test your luck", "lucky", "luck", "unlucky", "luckily"],
+    "set up": ["setup", "set up", "setting up", "sets up", "set-up"],
+    disappoint: ["letdown", "disappointing", "disappointed", "disappointment", "disappoints"],
+    attend: ["inattentive", "attentive", "attended", "attending", "attends"],
+    flag: ["flag down", "flagged", "flagging", "flags", "flag"],
+    overwhelm: ["overwhelmed", "overwhelming", "overwhelms", "overwhelm"],
+    style: ["stylish", "styled", "styling", "styles", "stylishly"],
+    hear: ["overhear", "heard", "hearing", "hears", "overheard"],
+    peak: ["off-peak", "peak", "peaking", "peaked", "on-peak"],
+    caveat: ["caveats", "caveat", "caution", "warnings"]
+  };
 
   function escapeHtml(s) {
     var d = document.createElement("div");
     d.textContent = s;
     return d.innerHTML;
+  }
+
+  function normalize(s) {
+    return String(s || "").trim().replace(/\s+/g, " ").toLowerCase();
   }
 
   function shuffle(arr) {
@@ -256,236 +238,245 @@
     return a;
   }
 
+  function verbForms(base) {
+    var b = base.toLowerCase();
+    if (IRREG[b]) return IRREG[b];
+    if (b.endsWith("e")) {
+      return { pp: b + "d", ing: b.slice(0, -1) + "ing", s: b + "s" };
+    }
+    return { pp: b + "ed", ing: b + "ing", s: b + "s" };
+  }
+
+  function optionsFromHint(hint, answer) {
+    var base = hint.replace(/\*/g, "").trim().toLowerCase();
+    var ans = String(answer).trim();
+    var out = [];
+    var seen = {};
+
+    function add(form) {
+      if (!form) return;
+      var key = normalize(form);
+      if (seen[key]) return;
+      seen[key] = true;
+      out.push(form);
+    }
+
+    add(ans);
+
+    if (SPECIAL[base]) {
+      SPECIAL[base].forEach(add);
+    }
+
+    var f = verbForms(base);
+    add(base);
+    add(f.s);
+    add(f.ing);
+    add(f.pp);
+
+    if (base === "unique") {
+      add("unique");
+      add("uniquely");
+      add("uniqueness");
+    }
+    if (base === "honest") {
+      add("honest");
+      add("honestly");
+      add("honesty");
+      add("dishonest");
+    }
+    if (base === "snap") {
+      add("snap");
+      add("snapped");
+      add("snapping");
+      add("snaps");
+    }
+    if (base === "verdict") {
+      add("verdict");
+      add("verdicts");
+    }
+    if (base === "former") {
+      add("former");
+      add("formerly");
+      add("formal");
+    }
+    if (base === "alone") {
+      add("alone");
+      add("lonely");
+      add("together");
+    }
+    if (base === "alumni") {
+      add("alumni");
+      add("alumnus");
+      add("graduate");
+    }
+    if (base === "showcase") {
+      add("showcase");
+      add("showcased");
+      add("showcasing");
+      add("showcases");
+    }
+    if (base === "attentive") {
+      add("attentive");
+      add("inattentive");
+      add("attentively");
+      add("attention");
+    }
+    if (base === "engage") {
+      add("engage");
+      add("engaging");
+      add("engaged");
+      add("engages");
+    }
+    if (base === "draw") {
+      add("draws");
+      add("drawing");
+      add("drew");
+      add("drawn");
+    }
+    if (base === "mark") {
+      add("mark");
+      add("marked");
+      add("marking");
+      add("marks");
+    }
+    if (base === "flagship") {
+      add("flagship");
+      add("flagships");
+    }
+
+    return shuffle(out);
+  }
+
+  function isWideAnswer(ans) {
+    return normalize(ans).length > 14 || ans.indexOf(" ") !== -1;
+  }
+
+  function buildSelect(hint, correct, sectionIdx, blankIdx) {
+    var options = optionsFromHint(hint, correct);
+    var wide = isWideAnswer(correct) ? " wide" : "";
+    var html = '<span class="blank-wrap"><select class="blank-select' + wide + '" aria-label="Choose word form"' +
+      ' data-answer="' + escapeHtml(correct) + '"' +
+      ' data-section="' + sectionIdx + '" data-index="' + blankIdx + '">';
+    html += '<option value="">\u2014</option>';
+    options.forEach(function (opt) {
+      html += '<option value="' + escapeHtml(opt) + '">' + escapeHtml(opt) + "</option>";
+    });
+    html += "</select></span>";
+    return html;
+  }
+
+  function renderPassage(text, answers, sectionIdx) {
+    var html = "";
+    var remaining = text;
+    var blankIdx = 0;
+
+    while (remaining.length) {
+      var gap = remaining.indexOf("_____");
+      if (gap === -1) {
+        html += escapeHtml(remaining);
+        break;
+      }
+      html += escapeHtml(remaining.slice(0, gap));
+      remaining = remaining.slice(gap + 5);
+
+      var hintMatch = remaining.match(/^\s*\(([^)]+)\)/);
+      var hint = hintMatch ? hintMatch[1] : "";
+      if (hintMatch) remaining = remaining.slice(hintMatch[0].length);
+
+      html += buildSelect(hint, answers[blankIdx] || "", sectionIdx, blankIdx);
+      if (hint) {
+        html += '<span class="hint-inline"> (' + escapeHtml(hint.replace(/\*/g, "")) + ")</span>";
+      }
+      blankIdx += 1;
+    }
+    return html;
+  }
+
   function gradeSelect(sel) {
     sel.classList.remove("correct", "incorrect");
     if (!sel.value) return;
-    var answers = (sel.dataset.answers || "").split("|");
-    var ok = false;
-    for (var i = 0; i < answers.length; i++) {
-      if (normalize(sel.value) === normalize(answers[i])) {
-        ok = true;
-        break;
-      }
+    var expected = sel.getAttribute("data-answer") || "";
+    if (normalize(sel.value) === normalize(expected)) {
+      sel.classList.add("correct");
+    } else {
+      sel.classList.add("incorrect");
     }
-    sel.classList.add(ok ? "correct" : "incorrect");
   }
 
-  function appendParts(container, parts, blanks, taskId) {
-    parts.forEach(function (part) {
-      if (typeof part === "string") {
-        container.appendChild(document.createTextNode(part));
-        return;
-      }
-      var spec = blanks[part.blank];
-      if (!spec) return;
-      var wrap = document.createElement("span");
-      wrap.className = "blank-wrap";
-      var sel = document.createElement("select");
-      var wideKey = taskId + "-" + part.blank;
-      sel.className = "blank-select" + (WIDE_BLANKS[wideKey] ? " wide" : "");
-      sel.dataset.task = taskId;
-      sel.dataset.blank = part.blank;
-      sel.dataset.answers = spec.answers.join("|");
-      sel.setAttribute("aria-label", "Blank " + part.blank);
-
-      var empty = document.createElement("option");
-      empty.value = "";
-      empty.textContent = "\u2014";
-      sel.appendChild(empty);
-
-      shuffle(spec.options || spec.answers).forEach(function (opt) {
-        var o = document.createElement("option");
-        o.value = opt;
-        o.textContent = opt;
-        sel.appendChild(o);
-      });
-
-      sel.addEventListener("change", function () { gradeSelect(sel); });
-      wrap.appendChild(sel);
-
-      var num = document.createElement("span");
-      num.className = "blank-num";
-      num.textContent = "(" + part.blank + ")";
-      wrap.appendChild(num);
-      container.appendChild(wrap);
-    });
-  }
-
-  function renderVocab() {
-    var root = document.getElementById("vocab-grid");
-    data.vocabBank.forEach(function (cat) {
-      var block = document.createElement("div");
-      block.className = "vocab-cat";
-      var h = document.createElement("h3");
-      h.innerHTML = cat.category + (cat.categoryYue
-        ? ' <span class="cat-yue">(' + cat.categoryYue + ")</span>"
-        : "");
-      block.appendChild(h);
-      var ul = document.createElement("ul");
-      cat.words.forEach(function (w) {
-        var li = document.createElement("li");
-        li.textContent = w.text;
-        ul.appendChild(li);
-      });
-      block.appendChild(ul);
-      root.appendChild(block);
-    });
-  }
-
-  function renderTasks() {
-    var root = document.getElementById("tasks-root");
-    data.tasks.forEach(function (task) {
-      var section = document.createElement("section");
-      section.className = "box";
-      section.dataset.taskId = task.id;
-
-      var module = document.createElement("p");
-      module.className = "module";
-      module.textContent = task.label;
-      section.appendChild(module);
-
-      var h2 = document.createElement("h2");
-      h2.textContent = task.title;
-      section.appendChild(h2);
-
-      if (task.titleYue) {
-        var yue = document.createElement("p");
-        yue.className = "task-title-yue";
-        yue.textContent = task.titleYue;
-        section.appendChild(yue);
-      }
-
-      (task.subsections || []).forEach(function (sub) {
-        if (sub.heading) {
-          var sh = document.createElement("h3");
-          sh.className = "sub-heading";
-          sh.textContent = sub.heading;
-          section.appendChild(sh);
-        }
-        var passage = document.createElement("div");
-        passage.className = "passage";
-        appendParts(passage, sub.parts, sub.blanks, task.id);
-        section.appendChild(passage);
-      });
-
-      var actions = document.createElement("div");
-      actions.className = "task-actions";
-      var checkBtn = document.createElement("button");
-      checkBtn.type = "button";
-      checkBtn.textContent = "Check Task " + task.id;
-      checkBtn.addEventListener("click", function () { checkTask(task.id, true); });
-      var clearBtn = document.createElement("button");
-      clearBtn.type = "button";
-      clearBtn.className = "secondary";
-      clearBtn.textContent = "Clear";
-      clearBtn.addEventListener("click", function () { clearTask(task.id); });
-      var score = document.createElement("span");
-      score.className = "score";
-      score.id = "score-task-" + task.id;
-      actions.appendChild(checkBtn);
-      actions.appendChild(clearBtn);
-      actions.appendChild(score);
-      section.appendChild(actions);
-
-      root.appendChild(section);
-    });
-  }
-
-  function getAllBlanks(task) {
-    var merged = {};
-    (task.subsections || []).forEach(function (sub) {
-      Object.keys(sub.blanks || {}).forEach(function (k) {
-        merged[k] = sub.blanks[k];
-      });
-    });
-    return merged;
-  }
-
-  function checkTask(taskId, showScore) {
-    var selects = document.querySelectorAll('select[data-task="' + taskId + '"]');
+  function gradeAll() {
     var correct = 0;
-    selects.forEach(function (sel) {
+    var total = 0;
+    document.querySelectorAll(".blank-select").forEach(function (sel) {
+      total++;
       gradeSelect(sel);
       if (sel.classList.contains("correct")) correct++;
     });
-    if (showScore) {
-      var el = document.getElementById("score-task-" + taskId);
-      if (el) el.textContent = correct + " / " + selects.length + " correct";
-    }
-    return correct;
+    var el = document.getElementById("score");
+    if (el) el.textContent = correct + " / " + total + " correct";
   }
 
-  function clearTask(taskId) {
-    document.querySelectorAll('select[data-task="' + taskId + '"]').forEach(function (sel) {
+  function clearAll() {
+    document.querySelectorAll(".blank-select").forEach(function (sel) {
       sel.value = "";
       sel.classList.remove("correct", "incorrect");
     });
-    var el = document.getElementById("score-task-" + taskId);
+    var el = document.getElementById("score");
     if (el) el.textContent = "";
   }
 
-  function renderAnswerKey() {
-    var root = document.getElementById("answer-key-root");
-    data.tasks.forEach(function (task) {
-      var h3 = document.createElement("h3");
-      h3.textContent = task.label + " — " + task.title;
-      root.appendChild(h3);
-      var ol = document.createElement("ol");
-      var blanks = getAllBlanks(task);
-      Object.keys(blanks).sort(function (a, b) { return Number(a) - Number(b); }).forEach(function (k) {
-        var li = document.createElement("li");
-        li.textContent = blanks[k].answers.join(" / ");
-        ol.appendChild(li);
-      });
-      root.appendChild(ol);
-    });
-  }
-
   function showAllAnswers() {
-    data.tasks.forEach(function (task) {
-      var blanks = getAllBlanks(task);
-      Object.keys(blanks).forEach(function (n) {
-        var spec = blanks[n];
-        var sel = document.querySelector(
-          'select[data-task="' + task.id + '"][data-blank="' + n + '"]'
-        );
-        if (!sel || !spec.answers.length) return;
-        var ans = spec.answers[0];
-        var has = false;
-        for (var i = 0; i < sel.options.length; i++) {
-          if (normalize(sel.options[i].value) === normalize(ans)) {
-            has = true;
-            break;
-          }
+    document.querySelectorAll(".blank-select").forEach(function (sel) {
+      var expected = sel.getAttribute("data-answer") || "";
+      if (!expected) return;
+      var has = false;
+      for (var i = 0; i < sel.options.length; i++) {
+        if (normalize(sel.options[i].value) === normalize(expected)) {
+          has = true;
+          break;
         }
-        if (!has) {
-          var opt = document.createElement("option");
-          opt.value = ans;
-          opt.textContent = ans;
-          sel.appendChild(opt);
-        }
-        sel.value = ans;
-        gradeSelect(sel);
-      });
-      checkTask(task.id, true);
+      }
+      if (!has) {
+        var opt = document.createElement("option");
+        opt.value = expected;
+        opt.textContent = expected;
+        sel.appendChild(opt);
+      }
+      sel.value = expected;
+      gradeSelect(sel);
     });
+    gradeAll();
   }
 
-  document.getElementById("check-all").addEventListener("click", function () {
-    data.tasks.forEach(function (t) { checkTask(t.id, true); });
+  var html =
+    '<p class="intro">' + escapeHtml(data.instructions) + "</p>" +
+    '<p class="hint-note">Word in (brackets) = base form. Each dropdown shows forms of that word only. Press <kbd>Space</kbd> to reveal all answers.</p>';
+
+  data.sections.forEach(function (sec, si) {
+    html += '<section class="section">';
+    html += '<h2 class="section-head">' + escapeHtml(sec.label);
+    if (sec.labelZh) {
+      html += ' <span class="zh">(' + escapeHtml(sec.labelZh) + ")</span>";
+    }
+    html += "</h2>";
+    html += '<p class="passage">' + renderPassage(sec.text, sec.answers || [], si) + "</p>";
+    html += "</section>";
   });
 
-  document.getElementById("reset-all").addEventListener("click", function () {
-    data.tasks.forEach(function (t) { clearTask(t.id); });
+  html +=
+    '<div class="actions">' +
+    '<button type="button" id="check-btn">Check answers</button>' +
+    '<button type="button" class="secondary" id="clear-btn">Clear</button>' +
+    '<span class="score" id="score"></span>' +
+    "</div>";
+
+  main.innerHTML = html;
+
+  document.querySelectorAll(".blank-select").forEach(function (sel) {
+    sel.addEventListener("change", function () { gradeSelect(sel); });
   });
 
-  var keyPanel = document.getElementById("answer-key-panel");
-  var keyVisible = false;
-  document.getElementById("toggle-key").addEventListener("click", function () {
-    keyVisible = !keyVisible;
-    keyPanel.classList.toggle("show", keyVisible);
-    this.textContent = keyVisible ? "Hide answer key · 隱藏答案" : "Show answer key · 顯示答案";
-  });
+  document.getElementById("check-btn").addEventListener("click", gradeAll);
+  document.getElementById("clear-btn").addEventListener("click", clearAll);
 
   document.addEventListener("keydown", function (e) {
     if (e.code !== "Space" || e.ctrlKey || e.metaKey || e.altKey) return;
@@ -494,10 +485,6 @@
     e.preventDefault();
     showAllAnswers();
   });
-
-  renderVocab();
-  renderTasks();
-  renderAnswerKey();
 })();
   </script>
 </body>
