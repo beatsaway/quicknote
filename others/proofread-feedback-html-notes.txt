@@ -22,14 +22,15 @@ If a sentence is badly broken and every part must be rewritten together, one lon
 
 Also mention in the page copy (About / Comments) that only the yellow parts are edits; the rest is their draft as written.
 
-Cantonese comments — always bilingual
--------------------------------------
-When you add teacher comments in Cantonese (粵語), always give the same content in English in the same section.
+Cantonese comments — always bilingual (Comments section)
+--------------------------------------------------------
+When helpful, add teacher tips in the **Comments** section at the end of the page (after the short English summary). When you use Cantonese (粵語), always give the same content in English in the same block.
 
-• Use a .comment-bilingual block in Comments (purple-tinted box is fine).
+• Put a .comment-bilingual box at the **bottom of Comments** (purple-tinted box is fine).
 • Pair EN and 粵 in .comment-pair rows: English first, then Cantonese (same meaning, same examples).
 • Label lines with .lang-tag (EN / 粵) so readers can scan either language.
 • Do not put Cantonese-only feedback in Comments without an English mirror.
+• Copy the .comment-bilingual CSS from letter-to-amy-advice-michelle.html when adding to a new page.
 
 Page copy style
 ---------------

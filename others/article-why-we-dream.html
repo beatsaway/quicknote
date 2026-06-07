@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why do we dream? — science magazine article — writing &amp; proofreading</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: var(--accent); }
+    .word-list-compact {
+      display: block;
+      line-height: 1.5;
+      font-size: 0.82rem;
+    }
+    .word-list .vocab-note {
+      display: inline;
+      margin: 0;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter h3 {
+      margin: 0 0 0.85rem;
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .letter ul { margin: 0 0 0.9rem; padding-left: 1.15rem; }
+    .letter li { margin: 0.5rem 0; }
+    .task-bullets {
+      margin: 0.5rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .task-bullets li { margin: 0.3rem 0; }
+    .stats { font-size: 0.82rem; color: var(--muted); margin-top: 0.65rem; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead {
+      margin: 0 0 0.5rem;
+      font-size: 0.88rem;
+    }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.75rem 0.9rem;
+      background: #f3e5f5;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.85rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid #e1bee7;
+    }
+    .comment-bilingual .comment-pair:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue {
+      margin: 0 0 0.55rem;
+    }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child {
+      margin-bottom: 0;
+    }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="box">
+      <h2>About this piece</h2>
+      <p class="topic">Science magazine article — why do we dream?</p>
+      <p class="prompt">Write a clear, student-friendly article of about <strong>200&ndash;300 words</strong> for your <strong>school science magazine</strong>. Explain <strong>why we dream</strong> and give <strong>at least three reasons</strong> (e.g. processing the day, emotions, defending the visual cortex). Use a short <strong>introduction</strong> and a brief <strong>conclusion</strong>. Only the <strong>yellow</strong> word groups are suggested edits; the rest is the student&rsquo;s draft as written.</p>
+      <ul class="task-bullets">
+        <li>Tone should be <strong>informative</strong> but easy for classmates to read.</li>
+        <li>Weave in task words such as <em>REM sleep</em>, <em>theory</em>, <em>memory</em>, and <em>visual cortex</em> where they fit.</li>
+      </ul>
+      <p class="stats">Draft length (student), about <strong>227 words</strong> &middot; about <strong>1,237 characters</strong> &middot; about <strong>18 sentences</strong> &middot; about <strong>6 paragraphs</strong> (including list items).</p>
+      <div class="word-list">
+        <strong>Useful words (from the task)</strong> <span class="prompt vocab-note">(English &middot; 粵語)</span>
+        <span class="word-list-compact">dream(夢), REM sleep(快速動眼期睡眠), visual cortex(視覺皮層), process(處理), memory(記憶), emotion(情緒), theory(理論), reason(原因), introduction(引言), conclusion(結論), informative(具資訊性), science magazine(科學雜誌)</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <p class="prompt fb-praise-lead">You match the science-magazine brief with a clear three-part middle.</p>
+          <ul>
+            <li>🔬 <strong>Task fit.</strong> Introduction, REM sleep, three reasons, and a conclusion are all there.</li>
+            <li>📋 <strong>Structure.</strong> Bullet-style reasons (memories, emotions, visual cortex) are easy to follow.</li>
+            <li>🧠 <strong>Content.</strong> You use real science terms (REM, visual cortex) in plain English.</li>
+            <li>📏 <strong>Length.</strong> About 227 words sits well inside the 200&ndash;300 target.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong>Magazine voice.</strong> Swap <em>science mag</em> for <em>science magazine</em>; say <em>theories</em> instead of <em>good thoughts</em>.</li>
+            <li>💡 <strong>Reason labels.</strong> <em>One more theory</em> sounds like a fourth idea; use <em>One theory</em> for the first reason. Give the third reason a clear heading like the first two.</li>
+            <li>💡 <strong>Consistency.</strong> Use <em>brains</em> (plural) when you mean people in general; watch <em>brain/brain</em> in the computer metaphor.</li>
+            <li>💡 <strong>Title.</strong> A magazine article often opens with a title line (<em>Why Do We Dream?</em>) before the intro.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <p>Every night our brains take us on an adventure. What are dreams for? <span class="flip" tabindex="0" role="button" data-w="Our science mag explores" data-r="Our science magazine explores">Our science mag explores</span> what we think about in our dreams. REM sleep is when our brains are in a state of high activity <span class="flip" tabindex="0" role="button" data-w="and this is when" data-r=", and this is when">and this is when</span> most of our dreams happen. Scientists still don&rsquo;t know why we dream. <span class="flip" tabindex="0" role="button" data-w="They have some good thoughts." data-r="They have several theories, however.">They have some good thoughts.</span></p>
+
+        <p>Why do we dream? Here are three reasons:</p>
+        <ul>
+          <li><strong>Working Through Memories.</strong> <span class="flip" tabindex="0" role="button" data-w="One more theory is that" data-r="One theory is that">One more theory is that</span> dreams help us work through the events of the day. Our brain is a computer that cleans up <span class="flip" tabindex="0" role="button" data-w="all of the information that we got during the day" data-r="all the information we take in during the day">all of the information that we got during the day</span> and keeps only what is important.</li>
+          <li><strong>Emotional Therapy.</strong> Dreams also help us with emotions. When we dream about something stressful or exciting, our brain can think about it without getting too upset.</li>
+          <li><strong><span class="flip" tabindex="0" role="button" data-w="The Visual Cortex Defended" data-r="Defending the Visual Cortex">The Visual Cortex Defended</span>.</strong> The theory is that dreams may help us to see better. In the dark, our brains can start to depend on senses like hearing and forget about sight. While we sleep, the part of our brain that helps us to see is still active.</li>
+        </ul>
+
+        <p>Dreams are not strange stories made up by <span class="flip" tabindex="0" role="button" data-w="our brain." data-r="our brains.">our brain.</span> Dreams are important for our brains, whether we are remembering things, feeling better, or keeping our brains working. Think of all the cool things your brain does when you fall asleep with your eyes closed.</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">This reads like a real science-magazine piece. The REM hook and three theories give classmates something clear to learn. Tighten a few phrases so it sounds polished, not casual (<em>mag</em>, <em>good thoughts</em>).</p>
+      <p class="prompt">Yellow spans are optional <strong>upgrades</strong>. Click to compare. For publication, add a simple <strong>title</strong> at the top and make all three reason headings match in style.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Magazine opening.</strong> Start with a title (<em>Why Do We Dream?</em>), then one hook sentence. <em>Science mag</em> and <em>good thoughts</em> sound too casual for a school magazine. Use <em>science magazine</em> and <em>theories</em>.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>雜誌開頭。</strong> 先有標題（<em>Why Do We Dream?</em>），再一句吸引句。<em>Science mag</em>、<em>good thoughts</em> 太口語，改用 <em>science magazine</em> 同 <em>theories</em> 會正式啲。</p>
+        </div>
+        <div class="comment-pair">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Three reasons.</strong> Keep the same pattern for all three headings (short label + one theory sentence). <em>One more theory</em> on the first point sounds like you already gave two. The third heading should match the first two, not read like a broken title.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>三個原因。</strong> 三點用同一格式（短標題 + 一句理論）。第一點寫 <em>One more theory</em> 會似已經講咗兩個。第三個標題要同頭兩個一樣工整。</p>
+        </div>
+        <div class="comment-pair">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Science words.</strong> You already use REM sleep and visual cortex well. In the memory point, <em>process</em> / <em>take in information</em> fits the task. End by tying the three reasons together in one clean conclusion sentence.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>科學用詞。</strong> REM sleep、visual cortex 用得啱。記憶嗰點可加 <em>process</em>／<em>take in information</em>。結尾用一句總結串返三個原因就夠有力。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+  function toggle(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.textContent = el.textContent === r ? w : r;
+    syncClass(el);
+  }
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(el);
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>

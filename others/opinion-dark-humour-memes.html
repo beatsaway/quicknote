@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark humour memes opinion — writing &amp; proofreading</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: var(--accent); }
+    .word-list-compact {
+      display: block;
+      line-height: 1.5;
+      font-size: 0.82rem;
+    }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .task-bullets {
+      margin: 0.5rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .task-bullets li { margin: 0.3rem 0; }
+    .stats { font-size: 0.82rem; color: var(--muted); margin-top: 0.65rem; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead {
+      margin: 0 0 0.5rem;
+      font-size: 0.88rem;
+    }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.75rem 0.9rem;
+      background: #f3e5f5;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.85rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid #e1bee7;
+    }
+    .comment-bilingual .comment-pair:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue {
+      margin: 0 0 0.55rem;
+    }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child {
+      margin-bottom: 0;
+    }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="box">
+      <h2>About this piece</h2>
+      <p class="topic">Opinion — dark humour memes</p>
+      <p class="prompt">Write a short <strong>opinion piece</strong> (about <strong>150&ndash;250 words</strong>) for a school forum or student magazine. State your view on whether people should send <strong>dark humour memes</strong> to others. Explain <strong>who may be hurt</strong>, acknowledge <strong>why some people still share them</strong>, and suggest a <strong>better alternative</strong>. Only the <strong>yellow</strong> word groups are suggested edits; the rest is the student&rsquo;s draft as written.</p>
+      <ul class="task-bullets">
+        <li>Tone should be clear and thoughtful, not aggressive.</li>
+        <li>Use respectful wording when writing about disability (<em>people with disabilities</em>).</li>
+      </ul>
+      <p class="stats">Draft length (student), about <strong>115 words</strong> (room to add one example and a stronger ending).</p>
+      <div class="word-list">
+        <strong>Useful words</strong> <span class="prompt" style="display:inline;font-size:0.8rem;color:var(--muted)">(English &middot; 粵語)</span>
+        <span class="word-list-compact">dark humour(黑色幽默), meme(迷因／梗圖), offensive(冒犯), insensitive(欠敏感度), stressed(感到壓力), pessimistic(悲觀), empathy(同理心), counter-argument(反方論點), alternative(替代方法)</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <p class="prompt fb-praise-lead">You take a clear stand and show you can see both sides.</p>
+          <ul>
+            <li>👍 <strong>Position.</strong> You argue that dark humour memes should not be sent, with reasons.</li>
+            <li>👍 <strong>Impact.</strong> You think about disabled people, parents, and teachers, not only the sender.</li>
+            <li>👍 <strong>Balance.</strong> Paragraph 2 explains why people still share them (busy life, stress, wanting fun).</li>
+            <li>👍 <strong>Closing.</strong> You suggest finding another way to feel happy instead of relying on dark jokes.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong>Length.</strong> Add one concrete example of a meme type and one alternative (e.g. wholesome memes, chatting with friends).</li>
+            <li>💡 <strong>Word choice.</strong> People feel <strong>stressed</strong>, not <strong>stressful</strong>; <em>look forward to society</em> &rarr; <em>face society positively</em> / <em>trust society again</em>.</li>
+            <li>💡 <strong>Grammar.</strong> Watch <em>they might make them</em> (who is <em>they</em>?) and <em>for making resting times</em> &rarr; <em>to make their break times</em>.</li>
+            <li>💡 <strong>Register.</strong> <em>I guess they should</em> sounds unsure for an opinion piece; try <em>They should</em> or <em>In my view, they should</em>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <p>I think people shouldn&rsquo;t send dark humour memes to others, <span class="flip" tabindex="0" role="button" data-w="like if disabled people see other people laughing at people who might have disabilities," data-r="because if people with disabilities see others laughing at jokes about disability,">like if disabled people see other people laughing at people who might have disabilities,</span> <span class="flip" tabindex="0" role="button" data-w="they might make them feel very stressful and pessimistic and not willing to look forward to society." data-r="those memes may make them feel stressed, pessimistic, and unwilling to face society positively.">they might make them feel very stressful and pessimistic and not willing to look forward to society.</span> <span class="flip" tabindex="0" role="button" data-w="Other people like the sender&amp;apos;s parents and teachers will also feel annoyed." data-r="The sender&amp;apos;s parents and teachers may feel annoyed too.">Other people like the sender&apos;s parents and teachers will also feel annoyed.</span></p>
+
+        <p>However, a lot of people still send dark humour memes to others for fun nowadays. <span class="flip" tabindex="0" role="button" data-w="The reason might be the world now is busy and it makes students or workers feel unhappy." data-r="The reason may be that life is hectic nowadays, which makes students or workers feel unhappy.">The reason might be the world now is busy and it makes students or workers feel unhappy.</span> They use it <span class="flip" tabindex="0" role="button" data-w="for making resting times more interesting and funny." data-r="to make their break times more interesting and funny.">for making resting times more interesting and funny.</span> <span class="flip" tabindex="0" role="button" data-w="I guess they should use another idea for making them happy then." data-r="In my view, they should find other ways to lift their mood instead.">I guess they should use another idea for making them happy then.</span></p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">Your argument has a clear shape. Harm first, then why people still do it, then a better path. That fits a balanced opinion task well.</p>
+      <p class="prompt">To push the grade, name <strong>one alternative</strong> (music, sport, light-hearted memes that do not target vulnerable groups) and end with a firm line that repeats your view. Yellow spans are optional <strong>upgrades</strong>. Click to compare.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Argument shape.</strong> Your order is good. Harm first, then why people still share memes, then a better idea. Keep that three-step shape if you add length.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>論點結構。</strong> 次序啱：先講傷害，再講點解仲有人傳，最後講更好做法。加字都保持呢三步。</p>
+        </div>
+        <div class="comment-pair">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Word choice.</strong> People feel <strong>stressed</strong>, not <strong>stressful</strong>. Say <em>people with disabilities</em> instead of <em>disabled people</em> when you can. It sounds more respectful in an opinion piece.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>用詞。</strong> 人係 <strong>stressed</strong>（感到壓力），唔係 <strong>stressful</strong>。寫 <em>people with disabilities</em> 通常比 <em>disabled people</em> 更尊重、更適合議論文。</p>
+        </div>
+        <div class="comment-pair">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Stronger ending.</strong> Replace <em>I guess</em> with <em>In my view</em>. Name one alternative (wholesome memes, music, talking to friends) and close with one clear line that repeats your view.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>結尾加力。</strong> <em>I guess</em> 改 <em>In my view</em>。舉一個替代方法（正能量 meme、聽歌、同朋友傾計），最後一句再重申唔好傳黑色幽默梗圖。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+  function toggle(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.textContent = el.textContent === r ? w : r;
+    syncClass(el);
+  }
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(el);
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>
