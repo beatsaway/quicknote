@@ -9,6 +9,68 @@ window.TECHNOLOGY_PASSAGE = {
     "Choose the correct word form from each dropdown. The word in (brackets) is the base form. Green = correct, red = try again.",
   instructionsZh:
     "喺每個下拉選單揀正確詞形。(括號) 內係原形。綠色 = 啱，紅色 = 再試。",
+  vocabBank: {
+    title: "Key Level 5+ vocabulary",
+    titleZh: "重點五級詞彙",
+    categories: [
+      {
+        category: "Technology & connection",
+        categoryYue: "科技與連繫",
+        words: [
+          { text: "seamlessly（流暢地／無縫地）" },
+          { text: "irrevocably（無可挽回地）" },
+          { text: "undeniable（不容置疑）" },
+          { text: "digital golden age（數碼黃金時代）" },
+          { text: "poignant paradox（發人深省的悖論）" },
+          { text: "engineered（人為造成／精心設計）" },
+          { text: "isolation（疏離）" },
+          { text: "miraculous（奇妙的）" },
+          { text: "geographical divides（地理隔閡）" },
+          { text: "collaborative（協作的）" },
+          { text: "lifeline（救命線／生命線）" },
+          { text: "omnipresent（無處不在）" },
+          { text: "connectivity（連繫性）" }
+        ]
+      },
+      {
+        category: "Human interaction",
+        categoryYue: "人際互動",
+        words: [
+          { text: "double-edged sword（雙刃劍）" },
+          { text: "meticulously（一絲不苟地）" },
+          { text: "curate（精心編排）" },
+          { text: "public consumption（公開展示）" },
+          { text: "genuine（真誠的）" },
+          { text: "unfiltered（未經過濾的）" },
+          { text: "illusion（錯覺）" },
+          { text: "profound（深刻的）" },
+          { text: "reachable（可聯絡到的）" },
+          { text: "tangible（具體的／可觸及的）" },
+          { text: "alone together（獨處於人群中）" },
+          { text: "echo chambers（回音室）" },
+          { text: "face-to-face（面對面）" }
+        ]
+      },
+      {
+        category: "Formal & evaluative",
+        categoryYue: "正式／評論用語",
+        words: [
+          { text: "phenomenon（現象）" },
+          { text: "retreat（退守）" },
+          { text: "formidable（強大的）" },
+          { text: "wield（運用）" },
+          { text: "mindfully（刻意地／用心地）" },
+          { text: "unprecedented（前所未有的）" },
+          { text: "empathy（同理心）" },
+          { text: "collaboration（合作）" },
+          { text: "surrender（屈服）" },
+          { text: "authentic（真實的）" },
+          { text: "solitary（孤獨的）" },
+          { text: "self-discovery（自我發現）" }
+        ]
+      }
+    ]
+  },
   sections: [
     {
       label: "Introduction",

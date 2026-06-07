@@ -55,6 +55,51 @@
       border-radius: 3px;
       background: #f5f5f5;
     }
+    .vocab-box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1rem 1rem;
+      margin-bottom: 1rem;
+    }
+    .vocab-box h2 {
+      margin: 0 0 0.65rem;
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+    .vocab-box h2 .zh {
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .vocab-grid {
+      display: grid;
+      gap: 0.55rem;
+    }
+    @media (min-width: 36rem) {
+      .vocab-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .vocab-cat {
+      padding: 0.55rem 0.65rem;
+      background: #f3eef8;
+      border-radius: 8px;
+      font-size: 0.82rem;
+    }
+    .vocab-cat h3 {
+      margin: 0 0 0.35rem;
+      font-size: 0.78rem;
+      color: var(--accent);
+    }
+    .vocab-cat .cat-yue {
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+    .vocab-cat ul {
+      margin: 0;
+      padding-left: 1rem;
+    }
+    .vocab-cat li { margin: 0.15rem 0; }
     .section {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -367,9 +412,34 @@
     gradeAll();
   }
 
+  function renderVocabBank() {
+    var bank = data.vocabBank;
+    if (!bank || !bank.categories || !bank.categories.length) return "";
+    var html = '<section class="vocab-box">';
+    html += "<h2>" + escapeHtml(bank.title || "Key vocabulary");
+    if (bank.titleZh) {
+      html += ' <span class="zh">· ' + escapeHtml(bank.titleZh) + "</span>";
+    }
+    html += "</h2><div class=\"vocab-grid\">";
+    bank.categories.forEach(function (cat) {
+      html += '<div class="vocab-cat"><h3>' + escapeHtml(cat.category);
+      if (cat.categoryYue) {
+        html += ' <span class="cat-yue">(' + escapeHtml(cat.categoryYue) + ")</span>";
+      }
+      html += "</h3><ul>";
+      (cat.words || []).forEach(function (w) {
+        html += "<li>" + escapeHtml(w.text) + "</li>";
+      });
+      html += "</ul></div>";
+    });
+    html += "</div></section>";
+    return html;
+  }
+
   var html =
     '<p class="intro">' + escapeHtml(data.instructions) + "</p>" +
-    '<p class="hint-note">Word in (brackets) = base form. Each dropdown shows forms of that word only. Press <kbd>Space</kbd> to reveal all answers.</p>';
+    '<p class="hint-note">Word in (brackets) = base form. Each dropdown shows forms of that word only. Press <kbd>Space</kbd> to reveal all answers.</p>' +
+    renderVocabBank();
 
   data.sections.forEach(function (sec, si) {
     html += '<section class="section">';
