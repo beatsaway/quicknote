@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matching exercises</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --panel: #fff;
+      --accent: #1a5276;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.5;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.4rem 0.75rem;
+      min-height: 2.25rem;
+    }
+    .home-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      font-size: 1rem;
+      line-height: 1;
+      text-decoration: none;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .home-link:hover { background: rgba(255, 255, 255, 0.15); }
+    .header-title {
+      display: flex;
+      align-items: baseline;
+      gap: 0.45rem;
+      min-width: 0;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 0.92rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .header-sub {
+      font-size: 0.78rem;
+      opacity: 0.88;
+      white-space: nowrap;
+    }
+    main {
+      max-width: 32rem;
+      margin: 0 auto;
+      padding: 0.85rem 1rem 2rem;
+    }
+    ul { list-style: none; margin: 0; padding: 0; }
+    li { margin-bottom: 0.5rem; }
+    a.card {
+      display: block;
+      padding: 0.7rem 0.85rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+    a.card:hover {
+      border-color: var(--accent);
+      background: #f0f7fc;
+    }
+    a.card span {
+      display: block;
+      margin-top: 0.2rem;
+      font-weight: 400;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="home-link" href="../index.html" title="Home" aria-label="Home">&#127968;</a>
+    <div class="header-title">
+      <h1>Matching</h1>
+      <span class="header-sub">配對練習</span>
+    </div>
+  </header>
+  <main>
+    <ul>
+      <li>
+        <a class="card" href="headlines.html">
+          Headlines match
+          <span>5 headlines · 6 paragraphs · 標題配段落</span>
+        </a>
+      </li>
+    </ul>
+  </main>
+</body>
+</html>
