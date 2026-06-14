@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wellness Week speech — Student Union (interactive)</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #4a6b8a;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.1rem; margin: 0 0 0.35rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.88rem; opacity: 0.95; }
+    nav { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    nav a {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+    }
+    nav a:hover { background: rgba(255,255,255,0.35); }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    .hint {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.65rem 0.85rem;
+      background: #eee8;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .module { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .stimulus {
+      margin: 0 0 0.85rem;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #f0f4f8;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .task-bullets { margin: 0.4rem 0 0; padding-left: 1.15rem; font-size: 0.88rem; }
+    .task-bullets li { margin: 0.25rem 0; }
+    .stats { font-size: 0.82rem; color: var(--muted); margin-top: 0.5rem; }
+    .speech p { margin: 0 0 0.9rem; }
+    .speech p:last-child { margin-bottom: 0; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .model {
+      font-size: 0.95rem;
+      white-space: pre-wrap;
+    }
+    .clo-note { font-size: 0.85rem; color: var(--muted); margin: 0 0 1rem; line-height: 1.5; }
+    .clo-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .clo-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .clo-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .clo-item h3 { margin: 0 0 0.4rem; font-size: 0.82rem; color: var(--accent); }
+    .clo-item ul { margin: 0; padding-left: 1.1rem; font-size: 0.84rem; }
+    .clo-item li { margin: 0.2rem 0; }
+    .clo-overall {
+      margin: 0.9rem 0 0;
+      font-size: 0.86rem;
+      padding: 0.55rem 0.7rem;
+      background: #f0f4f8;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+    .clo-advice {
+      margin-top: 1rem;
+      padding: 0.75rem 0.85rem;
+      background: #f0f4f8;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .clo-advice h3 { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--accent); }
+    .clo-advice ul { margin: 0; padding-left: 1.15rem; font-size: 0.86rem; }
+    .clo-advice li { margin: 0.3rem 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Wellness Week &mdash; opening ceremony speech</h1>
+    <p>Student Union President; yellow = click original &harr; suggestion.</p>
+    <nav>
+      <a href="index.html">Hub</a>
+    </nav>
+  </header>
+  <main>
+    <p class="hint"><strong>How to use:</strong> Click any highlighted phrase to toggle between your version and a tightened version. Only the <strong>yellow</strong> word groups are edits; the rest is your draft as written.</p>
+
+    <section class="box">
+      <h2>The task</h2>
+      <p class="module">Speech &mdash; Wellness Week opening ceremony</p>
+      <div class="stimulus">
+        <p style="margin:0">The recent <strong>&ldquo;HKDSE Diary&rdquo;</strong> series in the <strong>Young Post</strong> has highlighted the immense stress faced by students. Your school&rsquo;s <strong>Wellness Week</strong> is focusing on building resilience. You are the <strong>President of the Student Union</strong>. At the opening ceremony, deliver a speech to persuade students to change their attitude towards <strong>stress and failure</strong>.</p>
+        <p style="margin:0.65rem 0 0">Write about <strong>400 words</strong>. Start: <em>&ldquo;Dear friends, teachers, and honoured guests&hellip;&rdquo;</em></p>
+      </div>
+      <ul class="task-bullets">
+        <li>Persuade students that <strong>stress is a normal part of growth</strong>, not a sign of weakness.</li>
+        <li>Argue why it is important to <strong>talk about mental struggles openly</strong>.</li>
+        <li>Encourage students to use the new <strong>peer-support system</strong> launched by the Student Union.</li>
+        <li>Inspire the audience to see <strong>self-care as a key to success</strong>, not a distraction from it.</li>
+      </ul>
+      <p class="stats">Draft length: about 430 words &middot; slightly over target; trim the anecdote or closing if you revise.</p>
+    </section>
+
+    <section class="box">
+      <h2>Marking (CLO)</h2>
+      <p class="clo-note">HKDSE Paper 2 Part B is assessed on <strong>Content</strong>, <strong>Language</strong> and <strong>Organisation</strong>. The levels below are <strong>indicative only</strong> for study &mdash; not official HKEAA marks.</p>
+      <div class="clo-grid">
+        <div class="clo-item">
+          <h3>Content &mdash; Level 4</h3>
+          <ul>
+            <li><strong>Role and occasion</strong> &mdash; Student Union President at Wellness Week opening; tone fits a school ceremony.</li>
+            <li><strong>Task coverage</strong> &mdash; normalises stress, open talk, peer-support platform, and self-care message all appear.</li>
+            <li><strong>Persuasion</strong> &mdash; alumni anecdote and platform details give concrete reasons to listen.</li>
+            <li>To push higher: cite <strong>one real detail</strong> from the Young Post series; keep the story shorter so the four bullets land more clearly.</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Language &mdash; Level 3</h3>
+          <ul>
+            <li>Ideas are clear, but <strong>grammar, articles, and verb forms</strong> slip often (<em>90% of students said</em>, <em>what you facing</em>, <em>without slowing your name</em>).</li>
+            <li>Watch <strong>word form</strong> (<em>interest / interested</em>, <em>stressful / stressed</em>) and <strong>prepositions</strong> (<em>on the right track</em>, <em>focusing on</em>).</li>
+            <li><strong>Register</strong> is mostly appropriate for a speech; proofread for accidental informal slips.</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Organisation &mdash; Level 4</h3>
+          <ul>
+            <li>Flow: <strong>welcome</strong> &rarr; normalise stress &rarr; Young Post link &rarr; story &rarr; lesson &rarr; peer support &rarr; closing inspiration.</li>
+            <li>The <strong>anecdote</strong> supports the &ldquo;talk openly&rdquo; point before introducing the platform.</li>
+            <li>Ending returns to <strong>self-care and solidarity</strong>; could use one clearer <strong>signpost</strong> before the platform paragraph.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="clo-advice">
+        <h3>How to do better next time</h3>
+        <ul>
+          <li><strong>Content:</strong> Open with <strong>one sentence per task bullet</strong> so examiners see task fulfilment immediately.</li>
+          <li><strong>Content:</strong> When you quote a survey or article, use clean data phrasing: <em>&ldquo;According to the series, many students reported&hellip;&rdquo;</em></li>
+          <li><strong>Language:</strong> Read aloud for <strong>parallel structures</strong> after <em>and</em> (<em>expressing &hellip; and getting support</em>).</li>
+          <li><strong>Language:</strong> Check <strong>names and titles</strong> (Cherry, DeepSeek, graduate) and fix typos that change meaning (<em>showing</em> vs <em>slowing</em>).</li>
+          <li><strong>Organisation:</strong> Keep the story to <strong>one tight paragraph</strong> so the peer-support section has room for persuasive detail.</li>
+        </ul>
+      </div>
+      <p class="clo-overall"><strong>Overall (indicative):</strong> about <strong>Level 3&ndash;4</strong> &mdash; strong ideas and structure; language accuracy holds the band.</p>
+    </section>
+
+    <section class="box">
+      <h2>Student draft (speech)</h2>
+      <div class="speech">
+        <p>Dear friends, teachers and <span class="flip" tabindex="0" role="button" data-w="honored" data-r="honoured">honored</span> guests, I am the President of the Student Union. Welcome to Wellness Week. I am sure that <span class="flip" tabindex="0" role="button" data-w="everyone in this building has stress and depression once" data-r="everyone in this hall has felt stress at least once">everyone in this building has stress and depression once</span>, especially the F.6 students who need to face the coming HKDSE. I want you to know that stress is a normal part of our growth, not a sign of weakness. According to the recent &lsquo;HKDSE Diary&rsquo; series in the Young Post, <span class="flip" tabindex="0" role="button" data-w="there are about 90% of students said that they were facing stress and feeling lost" data-r="about 90% of students said they were facing stress and feeling lost">there are about 90% of students said that they were facing stress and feeling lost</span>. <span class="flip" tabindex="0" role="button" data-w="There is nothing special about stress and that&amp;apos;s why we need to find the solution together to change our attitude towards stress and failure" data-r="Stress is more common than we think, and that is why we need to change our attitude towards stress and failure together">There is nothing special about stress and that&rsquo;s why we need to find the solution together to change our attitude towards stress and failure</span>. Before I introduce <span class="flip" tabindex="0" role="button" data-w="the method of solving stress" data-r="ways of coping with stress">the method of solving stress</span>, let me share a story with all of you first.</p>
+
+        <p><span class="flip" tabindex="0" role="button" data-w="Chris Wong, which is the CEO of Deepseek and also our graduated students" data-r="Chris Wong, the CEO of DeepSeek and one of our graduates">Chris Wong, which is the CEO of Deepseek and also our graduated students</span>, had faced stress and difficulties when he was studying at our school. At first, he <span class="flip" tabindex="0" role="button" data-w="was not good at all in studying" data-r="struggled with his studies">was not good at all in studying</span>. His mother and father always <span class="flip" tabindex="0" role="button" data-w="gave pressure to Chris Wong, ordering him to get a better grade" data-r="put pressure on Chris Wong, demanding better grades">gave pressure to Chris Wong, ordering him to get a better grade</span>, or else he would get punishment such as cutting his home Wi-fi or <span class="flip" tabindex="0" role="button" data-w="canceling" data-r="cancelling">canceling</span> his entertainment time. He tried to study hard, copying the notes while walking to school and <span class="flip" tabindex="0" role="button" data-w="having recess everyday" data-r="using every recess">having recess everyday</span>. However, he still only got a passing mark which <span class="flip" tabindex="0" role="button" data-w="didn&amp;apos;t achieve his parents&amp;apos; request" data-r="did not meet his parents&amp;apos; expectations">didn&rsquo;t achieve his parents&rsquo; request</span>. He thought that he was not strong enough, couldn&rsquo;t compete with others. All he would see is black. He couldn&rsquo;t sleep a wink at night, no point of turning off the lights. But something happened that changed his life and helped him to <span class="flip" tabindex="0" role="button" data-w="get in the right track" data-r="get on the right track">get in the right track</span>. A girl, called Cherry, after seeing Chris <span class="flip" tabindex="0" role="button" data-w="felt stressful" data-r="looked stressed">felt stressful</span>, she walked in front of him and comforted him. Chris talked to her about the reason why he was lost and <span class="flip" tabindex="0" role="button" data-w="cherry" data-r="Cherry">cherry</span> gave some advice to him and encouraged him. <span class="flip" tabindex="0" role="button" data-w="All the gloomy days had seen shined a little more brightly" data-r="His gloomy days began to brighten a little">All the gloomy days had seen shined a little more brightly</span>. Cherry successfully turned the rain into a rainbow and took the weight off his shoulders.</p>
+
+        <p>Chris <span class="flip" tabindex="0" role="button" data-w="found his interested, which is programming" data-r="discovered his interest in programming">found his interested, which is programming</span>, through chatting with Cherry. Cherry also taught him to solve the math and how to answer the questions correctly. Chris finally got a good grade in HKDSE and started <span class="flip" tabindex="0" role="button" data-w="focussing in programming" data-r="focusing on programming">focussing in programming</span>, creating an AI model.</p>
+
+        <p>This is a true story which was told by himself in an interview. <span class="flip" tabindex="0" role="button" data-w="After you all listening to this story, I think you all learnt that expressing your mental struggles to others and get support from them is a good way to solve stress" data-r="After listening to this story, I hope you have learned that expressing your mental struggles and getting support from others is a good way to cope with stress">After you all listening to this story, I think you all learnt that expressing your mental struggles to others and get support from them is a good way to solve stress</span>.</p>
+
+        <p>I&rsquo;m here to introduce our new peer-support system launched by our Student Union. Students can login to our system <span class="flip" tabindex="0" role="button" data-w="from every weekdays 5:00 pm to 8:00 pm" data-r="every weekday from 5:00 p.m. to 8:00 p.m.">from every weekdays 5:00 pm to 8:00 pm</span>. You can talk with our members of Student Union <span class="flip" tabindex="0" role="button" data-w="without slowing your name" data-r="without showing your name">without slowing your name</span>. You can tell us <span class="flip" tabindex="0" role="button" data-w="what you facing now" data-r="what you are facing now">what you facing now</span> or why you have stress. Our members will give some advice and encourage you. We respect your privacy as we won&rsquo;t share what you have said in our system. All messages will be automatically deleted after 48 hours. Feel free to use our platform and let&rsquo;s solve the challenges together. Remember, see self-care as a key to success, not a distraction from it. And most importantly, don&rsquo;t forget that <span class="flip" tabindex="0" role="button" data-w="there will always a person that will stand with you" data-r="there will always be someone who will stand with you">there will always a person that will stand with you</span>.</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>For reference</h2>
+      <p style="font-size:0.88rem;color:var(--muted);margin-top:0">Sample speech for comparison &mdash; same task, not the only correct answer. Compare <em>persuasion</em>, <em>task coverage</em> and <em>accuracy</em> with your own.</p>
+      <div class="model">Dear friends, teachers, and honoured guests,
+
+I am Chris Wong, President of the Student Union. Welcome to Wellness Week. I know that many of you &mdash; especially our F.6 students facing the HKDSE &mdash; carry heavy stress. Today I want to persuade you that stress is a normal part of growth, not a sign of weakness.
+
+The recent &ldquo;HKDSE Diary&rdquo; series in the Young Post shows how common this feeling is. Many students reported feeling lost and overwhelmed. That does not mean you are failing as a person; it means you are human. What matters is how we respond &mdash; and that begins with changing our attitude towards stress and failure.
+
+Let me share a story from our own school. When I was in Form 5, I struggled badly with mock exams. I copied notes on the bus, skipped rest, and still barely passed. At night I could not sleep. I was convinced I was weaker than everyone else. Then a classmate, Cherry, noticed how withdrawn I had become. She did not judge me. She listened. She helped me plan my revision and reminded me that one exam result does not define my future. Slowly, I learned to talk about my worries instead of hiding them. That conversation did not remove stress overnight, but it stopped me from facing it alone.
+
+That is why open talk matters. Mental struggles grow in silence. When we share them with someone we trust, we make room for support, advice, and hope.
+
+This year the Student Union has launched a peer-support system for exactly that reason. From Monday to Friday, 5:00 p.m. to 8:00 p.m., you can speak with trained student volunteers. You do not have to give your name. Tell us what you are facing and why you feel stressed. We will listen, encourage you, and offer practical suggestions. Your privacy is protected: messages are deleted automatically after 48 hours.
+
+Please use this platform. Looking after your mind is not a distraction from success &mdash; it is part of success. Rest, talk, ask for help, and treat yourself with the same kindness you would offer a friend.
+
+Wellness Week is our chance to build resilience together. Remember, no matter how dark a week feels, there will always be someone willing to stand with you.
+
+Thank you.</div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+  function toggle(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.textContent = el.textContent === r ? w : r;
+    syncClass(el);
+  }
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(el);
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>
