@@ -109,11 +109,28 @@
     }
     button.secondary { background: #fff; color: var(--accent); }
     .score { font-size: 0.85rem; color: var(--muted); }
-    .warn {
-      font-size: 0.8rem;
-      color: #e65100;
-      padding: 0 0.65rem 0.5rem;
+    .headline-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.35rem;
+      height: 1.35rem;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: #eef4f8;
+      border-radius: 4px;
+      margin-right: 0.35rem;
+      flex-shrink: 0;
     }
+    .headline-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.35rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .headline-row:last-child { border-bottom: none; }
     .board {
       display: grid;
       grid-template-columns: minmax(0, 25%) minmax(0, 1fr);
@@ -153,28 +170,25 @@
       overflow-y: auto;
       padding: 0.5rem 0.85rem 0.75rem;
     }
-    .headline-row {
-      padding: 0.7rem 0;
-      border-bottom: 1px solid #eee;
-    }
-    .headline-row:last-child { border-bottom: none; }
     .headline-text {
       font-size: 0.9rem;
       font-weight: 600;
       line-height: 1.45;
-      margin-bottom: 0.4rem;
+      margin: 0;
+      flex: 1;
+      min-width: 0;
     }
-    .headline-text::before { content: "\1F4F0 "; }
     .headline-source {
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       font-weight: 400;
-      margin-bottom: 0.4rem;
+      margin-top: 0.25rem;
     }
     .headline-source a {
       color: var(--muted);
       text-decoration: none;
     }
     .headline-source a:hover { color: var(--accent); text-decoration: underline; }
+    .headline-body { flex: 1; min-width: 0; }
     .match-row {
       display: flex;
       flex-wrap: wrap;
@@ -192,7 +206,8 @@
       border: 1px solid #bbb;
       border-radius: 4px;
       background: #fafafa;
-      min-width: 5rem;
+      min-width: 8rem;
+      max-width: 100%;
     }
     .match-select:hover,
     .match-select:focus {
@@ -208,10 +223,6 @@
       border-color: var(--bad-b);
       background: var(--bad);
     }
-    .match-select.duplicate {
-      border-color: #e65100;
-      background: #fff8e1;
-    }
     .para-card {
       display: flex;
       gap: 0.6rem;
@@ -219,6 +230,10 @@
       border-bottom: 1px solid #eee;
     }
     .para-card:last-child { border-bottom: none; }
+    .para-content {
+      flex: 1;
+      min-width: 0;
+    }
     .para-label {
       flex-shrink: 0;
       width: 1.55rem;
@@ -235,8 +250,10 @@
     .para-text {
       font-size: 0.88rem;
       line-height: 1.58;
-      flex: 1;
-      min-width: 0;
+      margin: 0 0 0.45rem;
+    }
+    .para-card .match-row {
+      margin-top: 0.15rem;
     }
     .discussion {
       margin-top: 0.75rem;
@@ -415,44 +432,18 @@
     return d.innerHTML;
   }
 
-  function shuffle(arr) {
-    var a = arr.slice();
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var t = a[i];
-      a[i] = a[j];
-      a[j] = t;
-    }
-    return a;
-  }
-
-  function paragraphOptions() {
+  function headlineOptions() {
     var html = '<option value="">\u2014</option>';
-    data.paragraphs.forEach(function (p) {
-      html += '<option value="' + escapeHtml(p.id) + '">' + escapeHtml(p.id) + "</option>";
+    data.headlines.forEach(function (h, i) {
+      html += '<option value="' + escapeHtml(h.id) + '">' +
+        (i + 1) + ". " + escapeHtml(h.text) + "</option>";
     });
     return html;
-  }
-
-  function markDuplicates() {
-    var counts = {};
-    document.querySelectorAll(".match-select").forEach(function (sel) {
-      sel.classList.remove("duplicate");
-      if (!sel.value) return;
-      counts[sel.value] = (counts[sel.value] || 0) + 1;
-    });
-    document.querySelectorAll(".match-select").forEach(function (sel) {
-      if (sel.value && counts[sel.value] > 1) sel.classList.add("duplicate");
-    });
-    var warn = document.getElementById("dup-warn");
-    var dup = Object.keys(counts).some(function (k) { return counts[k] > 1; });
-    if (warn) warn.hidden = !dup;
   }
 
   function gradeSelect(sel) {
     sel.classList.remove("correct", "incorrect");
     if (!sel.value) return;
-    if (sel.classList.contains("duplicate")) return;
     var expected = sel.getAttribute("data-answer") || "";
     if (sel.value === expected) {
       sel.classList.add("correct");
@@ -462,7 +453,6 @@
   }
 
   function gradeAll() {
-    markDuplicates();
     var correct = 0;
     var total = 0;
     document.querySelectorAll(".match-select").forEach(function (sel) {
@@ -477,30 +467,24 @@
   function clearAll() {
     document.querySelectorAll(".match-select").forEach(function (sel) {
       sel.value = "";
-      sel.classList.remove("correct", "incorrect", "duplicate");
+      sel.classList.remove("correct", "incorrect");
     });
     var el = document.getElementById("score");
     if (el) el.textContent = "";
-    var warn = document.getElementById("dup-warn");
-    if (warn) warn.hidden = true;
   }
 
   function showAllAnswers() {
     document.querySelectorAll(".match-select").forEach(function (sel) {
       var expected = sel.getAttribute("data-answer") || "";
       sel.value = expected;
-      sel.classList.remove("duplicate");
       gradeSelect(sel);
     });
-    markDuplicates();
     gradeAll();
   }
 
-  var shuffledHeadlines = shuffle(data.headlines.slice());
-
   var html =
     '<div class="toolbar">' +
-    '<span>' + escapeHtml(data.instructions) + " Paragraph E is extra. <kbd>Space</kbd> = reveal.</span>" +
+    '<span>' + escapeHtml(data.instructions) + " <kbd>Space</kbd> = reveal.</span>" +
     '<div class="actions">' +
     '<button type="button" id="check-btn">Check</button>' +
     '<button type="button" class="secondary" id="clear-btn">Clear</button>' +
@@ -511,21 +495,16 @@
   html += '<div class="col col-headlines">';
   html += '<div class="col-head">Headlines <span class="zh">(標題)</span></div>';
   html += '<div class="col-body">';
-  shuffledHeadlines.forEach(function (h, i) {
+  data.headlines.forEach(function (h, i) {
     html += '<div class="headline-row">';
+    html += '<span class="headline-num" aria-hidden="true">' + (i + 1) + "</span>";
+    html += '<div class="headline-body">';
     html += '<p class="headline-text">' + escapeHtml(h.text) + "</p>";
     if (h.url) {
       html += '<p class="headline-source"><a href="' + escapeHtml(h.url) + '" target="_blank" rel="noopener">SCMP</a></p>';
     }
-    html += '<div class="match-row">';
-    html += '<span class="match-label">Paragraph</span>';
-    html += '<select class="match-select" data-answer="' + escapeHtml(h.answer) + '" data-index="' + i + '" aria-label="Match paragraph for headline">';
-    html += paragraphOptions();
-    html += "</select>";
-    html += "</div>";
-    html += "</div>";
+    html += "</div></div>";
   });
-  html += '<p class="warn" id="dup-warn" hidden>Each paragraph can only be used once.</p>';
   html += "</div></div>";
 
   html += '<div class="col col-paragraphs">';
@@ -534,7 +513,14 @@
   data.paragraphs.forEach(function (p) {
     html += '<div class="para-card">';
     html += '<div class="para-label">' + escapeHtml(p.id) + "</div>";
+    html += '<div class="para-content">';
     html += '<p class="para-text">' + escapeHtml(p.text) + "</p>";
+    html += '<div class="match-row">';
+    html += '<span class="match-label">Headline</span>';
+    html += '<select class="match-select" data-answer="' + escapeHtml(p.answer || "") + '" aria-label="Match headline for paragraph ' + escapeHtml(p.id) + '">';
+    html += headlineOptions();
+    html += "</select>";
+    html += "</div></div>";
     html += "</div>";
   });
   html += "</div></div>";
@@ -591,7 +577,6 @@
 
   document.querySelectorAll(".match-select").forEach(function (sel) {
     sel.addEventListener("change", function () {
-      markDuplicates();
       gradeSelect(sel);
     });
   });

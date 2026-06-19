@@ -6,9 +6,9 @@ window.MATCH_DATA = {
   title: "Match headlines to paragraphs",
   titleZh: "標題配段落",
   instructions:
-    "Read each headline and choose the paragraph (A–F) that best matches it. Each paragraph is used at most once. Green = correct, red = try again.",
+    "Read each paragraph (A–F) and choose the headline it belongs to. More than one paragraph may match the same headline. Green = correct, red = try again.",
   instructionsZh:
-    "睇每個標題，揀最啱嘅段落 (A–F)。每段最多用一次。綠色 = 啱，紅色 = 再試。",
+    "睇每段 (A–F)，揀佢屬於邊個標題。兩段可以配同一個標題。綠色 = 啱，紅色 = 再試。",
   hatTypes: [
     { id: "red", emoji: "\uD83D\uDE0A", tag: "red hat", label: "personal" },
     { id: "white", emoji: "\uD83D\uDCCA", tag: "white hat", label: "factual" },
@@ -22,7 +22,6 @@ window.MATCH_DATA = {
       id: "privacy",
       text: "Online privacy guidelines underscore key role of parents and teachers",
       url: "https://www.scmp.com/opinion/comment/article/3351557/online-privacy-guidelines-underscore-key-role-parents-and-teachers",
-      answer: "A",
       hatQuestions: {
         red: "How do you feel when you post photos or personal details online?",
         white: "What online activities are expanding children\u2019s digital footprints today?",
@@ -36,7 +35,6 @@ window.MATCH_DATA = {
       id: "teacher-assault",
       text: "Hong Kong woman feared reporting teacher over assaults would harm him",
       url: "https://www.scmp.com/news/hong-kong/law-and-crime/article/3356802/woman-feared-reporting-teacher-over-assaults-would-be-too-cruel-court-hears",
-      answer: "B",
       hatQuestions: {
         red: "How would you feel if you feared reporting someone in authority would hurt them?",
         white: "What facts does the court case tell us about the timeline and charges?",
@@ -50,7 +48,6 @@ window.MATCH_DATA = {
       id: "data-breach",
       text: "Personal info of 9,045 people compromised in Hong Kong private club data breach",
       url: "https://www.scmp.com/news/hong-kong/society/article/3351143/personal-info-9045-people-compromised-hong-kong-private-club-data-breach",
-      answer: "F",
       hatQuestions: {
         red: "How would you feel if your personal data from a club membership was leaked?",
         white: "How many people were affected and what type of attack caused the breach?",
@@ -64,7 +61,6 @@ window.MATCH_DATA = {
       id: "intern-doctor",
       text: "Intern doctor arrested for allegedly accessing patient data without authorisation",
       url: "https://www.scmp.com/news/hong-kong/health-environment/article/3356960/hong-kong-hospital-authority-sacks-intern-doctor-over-series-breaches",
-      answer: "D",
       hatQuestions: {
         red: "How would you feel as a patient knowing a doctor accessed records without permission?",
         white: "What happened at Caritas Medical Centre according to the report?",
@@ -78,7 +74,6 @@ window.MATCH_DATA = {
       id: "baby-danny",
       text: "Baby Danny DNA case sparks calls for Hong Kong to introduce home birth rules",
       url: "https://www.scmp.com/news/hong-kong/society/article/3355908/dna-test-confirms-baby-danny-hong-kong-save-lily-couples-son",
-      answer: "C",
       hatQuestions: {
         red: "How would you feel about handing over your baby\u2019s DNA and family details to the government?",
         white: "What did the DNA test data confirm, and what registration records were still missing?",
@@ -92,31 +87,37 @@ window.MATCH_DATA = {
   paragraphs: [
     {
       id: "A",
+      answer: "privacy",
       text:
         "This may sound like common sense. But it underscores the supervisory role of parents and teachers as the digital world reaches users of a younger age. From running their own social media accounts and chatting to AI chatbots to playing online games and attending virtual classes, children are expanding their digital footprints more than ever today. But many may not be aware of the privacy and security risks behind the fun and convenience of such activities. The privacy watchdog has rightly warned that when children share their personal data casually online, it may result in cyberbullying, doxxing or other misuses."
     },
     {
       id: "B",
+      answer: "teacher-assault",
       text:
         "A Hong Kong woman who has accused her former school teacher of sexually assaulting her over a period of nearly five years has told the court she initially feared reporting the case because it would cause him serious repercussions. The defendant, Cheng Hon-sze, 32, appeared in court on Thursday where he pleaded not guilty to nine counts of indecent assault involving his former student. The alleged offences took place between November 2019 and June 2024, when she was aged between 14 and 19 years old."
     },
     {
       id: "C",
+      answer: "baby-danny",
       text:
         "The father, Tsang Wai-bong, told the South China Morning Post that he had scheduled a meeting with government social workers on Saturday regarding the guardianship of his two-month-old son Danny, who has been placed in a care home. Authorities said on Thursday that DNA test results confirmed Tsang and his partner Kwan Pui-sin were Danny\u2019s parents, but more evidence was needed before the birth registration could be completed."
     },
     {
       id: "D",
+      answer: "intern-doctor",
       text:
         "An intern doctor has been arrested by Hong Kong police on suspicion of accessing patient data without authorisation and fired from her hospital, according to an insider and medical authorities. A source said the 24-year-old woman was arrested on Friday evening after allegedly accessing a computer with dishonest intent at Caritas Medical Centre in Sham Shui Po. She was being detained for investigation, the insider added."
     },
     {
       id: "E",
+      answer: "privacy",
       text:
         "The Office of the Privacy Commissioner for Personal Data on Thursday also released a guide for parents and teachers to safeguard children\u2019s online privacy amid increasing risks facing youngsters online."
     },
     {
       id: "F",
+      answer: "data-breach",
       text:
         "Revealing the data breach, Privacy Commissioner for Personal Data Ada Chung Lai-ling said the private recreational club notified the office on October 31 last year that a ransomware attack had rendered its club management system inoperable by encrypting the information system\u2019s files stored on a server."
     }
