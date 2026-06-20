@@ -12,67 +12,20 @@ window.MATCH_DATA = {
     { id: "blue", emoji: "\uD83D\uDCCB", tag: "blue hat", label: "practical" },
     { id: "black", emoji: "\u26A0\uFE0F", tag: "black hat", label: "critical reasoning" }
   ],
+  discussionQuestions: [
+    { hat: "red", text: "Would you be more excited or nervous to explore Angkor at night?" },
+    { hat: "white", text: "Name one huge thing the ancient Khmer built — a giant lake, a temple, or a pyramid city." },
+    { hat: "yellow", text: "What cool fact about Angkor would you tell a friend?" },
+    { hat: "green", text: "If Angkor were a video game, what would the final treasure be?" },
+    { hat: "blue", text: "What three things would you pack for a school trip to Cambodia?" },
+    { hat: "black", text: "Which sounds too wild — a whole city built in 20 years, or stone carved like a machine?" }
+  ],
   headlines: [
-    {
-      id: "berets",
-      text: "Hand-cut reservoirs moved dirt equal to dozens of Great Pyramids",
-      hatQuestions: {
-        red: "How do you feel knowing ancient reservoirs moved more earth than dozens of pyramids?",
-        white: "How large are the Barays, and what river was diverted through Angkor?",
-        yellow: "What might such water engineering have allowed Khmer society to achieve?",
-        green: "If you designed a modern baray for a city today, what would it do?",
-        blue: "How could archaeologists verify how much earth was moved at Angkor?",
-        black: "Why might historians doubt that rice farming alone needed this much earth-moving?"
-      }
-    },
-    {
-      id: "lidar",
-      text: "LiDAR revealed spiral embankments resembling a circuit board",
-      hatQuestions: {
-        red: "Does the circuit-board pattern feel exciting or unsettling to you?",
-        white: "What did LiDAR reveal at Angkor Wat — grids, mounds, spirals?",
-        yellow: "What new discoveries could open LiDAR data bring if released fully?",
-        green: "What else might ancient spiral embankments have been designed to do?",
-        blue: "How could students check whether LiDAR images have been withheld?",
-        black: "What problems arise if only selected LiDAR images are made public?"
-      }
-    },
-    {
-      id: "lost-tech",
-      text: "Lathe-turned pillars and giant lingams suggest advanced machining",
-      hatQuestions: {
-        red: "How do you react to the idea of lathe-turned stone pillars?",
-        white: "What evidence suggests machining beyond simple hand tools?",
-        yellow: "What could we learn if older Khmer masterworks were studied openly?",
-        green: "What modern tool could you invent to carve hard sandstone so precisely?",
-        blue: "How might experts test whether pillars were turned on a lathe?",
-        black: "Why is the old-versus-new statue contrast controversial?"
-      }
-    },
-    {
-      id: "koh-ker",
-      text: "Entire city of Koh Ker allegedly built in only 20 years",
-      hatQuestions: {
-        red: "How believable does a whole city in twenty years feel to you?",
-        white: "What structures at Koh Ker does official history credit to Jayavarman IV?",
-        yellow: "Could a king still gain something positive by claiming an older site?",
-        green: "How would you prove whether Koh Ker was built or merely renamed?",
-        blue: "What records or dating methods could settle the twenty-year claim?",
-        black: "What is weak about saying an entire city was built so quickly?"
-      }
-    },
-    {
-      id: "global-style",
-      text: "Statue styles echo Egypt, Assyria and ancient India",
-      hatQuestions: {
-        red: "How do you feel when art in Cambodia looks like Egypt or Assyria?",
-        white: "Which shared features appear in Cambodian, Egyptian and Assyrian statues?",
-        yellow: "What might ancient trade or travel explain these similarities?",
-        green: "What story could link Angkor, Egypt and India in one classroom drama?",
-        blue: "How could museums compare statues side by side for students?",
-        black: "Why might similar styles not prove direct ancient contact?"
-      }
-    }
+    { id: "berets", text: "Hand-cut reservoirs moved dirt equal to dozens of Great Pyramids" },
+    { id: "lidar", text: "LiDAR revealed spiral embankments resembling a circuit board" },
+    { id: "lost-tech", text: "Lathe-turned pillars and giant lingams suggest advanced machining" },
+    { id: "koh-ker", text: "Entire city of Koh Ker allegedly built in only 20 years" },
+    { id: "global-style", text: "Statue styles echo Egypt, Assyria and ancient India" }
   ],
   paragraphs: [
     {

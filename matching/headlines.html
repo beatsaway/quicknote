@@ -354,8 +354,23 @@
     });
     html += "</div>";
 
-    if (data.hatTypes && data.headlines.some(function (h) { return h.hatQuestions; })) {
-      html += '<section class="extra"><h2>6 Thinking Hats <span class="zh">(六頂思考帽)</span></h2>';
+    if (data.discussionQuestions && data.discussionQuestions.length && data.hatTypes) {
+      html += '<section class="extra"><h2>Discussion <span class="zh">(討論)</span></h2><ul class="hat-list">';
+      data.discussionQuestions.forEach(function (q) {
+        var hat = null;
+        for (var i = 0; i < data.hatTypes.length; i++) {
+          if (data.hatTypes[i].id === q.hat) {
+            hat = data.hatTypes[i];
+            break;
+          }
+        }
+        if (!hat) return;
+        html += "<li>" + hat.emoji + " " + esc(q.text) +
+          ' <em class="hat-meta">' + esc(hat.tag) + " \u2022 " + esc(hat.label) + "</em></li>";
+      });
+      html += "</ul></section>";
+    } else if (data.hatTypes && data.headlines.some(function (h) { return h.hatQuestions; })) {
+      html += '<section class="extra"><h2>Discussion <span class="zh">(討論)</span></h2>';
       data.headlines.forEach(function (h) {
         if (!h.hatQuestions) return;
         html += '<div class="topic"><p class="topic-title">' + esc(h.text) + '</p><ul class="hat-list">';

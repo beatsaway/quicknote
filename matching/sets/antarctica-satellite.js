@@ -12,67 +12,20 @@ window.MATCH_DATA = {
     { id: "blue", emoji: "\uD83D\uDCCB", tag: "blue hat", label: "practical" },
     { id: "black", emoji: "\u26A0\uFE0F", tag: "black hat", label: "critical reasoning" }
   ],
+  discussionQuestions: [
+    { hat: "red", text: "Which is spookier — a hole in a mountain, or a line across the whole Earth?" },
+    { hat: "white", text: "Name one strange thing people spotted in a satellite photo." },
+    { hat: "yellow", text: "What fun things can we learn by looking at Earth from space?" },
+    { hat: "green", text: "If the South Georgia skid marks were in a cartoon, what kind of vehicle slid there?" },
+    { hat: "blue", text: "How could you check if a photo on the internet is real?" },
+    { hat: "black", text: "Why might a mountain look like a pyramid when it is just a normal mountain?" }
+  ],
   headlines: [
-    {
-      id: "mountain-entrance",
-      text: "2016 satellite image showed man-made-looking entrance in Antarctic mountains",
-      hatQuestions: {
-        red: "How do you feel seeing a hole in a mountain that looks man-made?",
-        white: "What did researchers highlight in the 2016 satellite image?",
-        yellow: "What useful mapping could public satellite images still provide?",
-        green: "What expedition log would you write after finding the entrance?",
-        blue: "How could students compare satellite photos with ground geology?",
-        black: "Why can shadows and ice make natural rock look artificial?"
-      }
-    },
-    {
-      id: "south-georgia-crash",
-      text: "2018 images showed straight skid marks and crashed object on South Georgia ice",
-      hatQuestions: {
-        red: "Does a UFO-like skid mark on ice feel exciting or worrying?",
-        white: "What do photographs from South Georgia in 2018 appear to show?",
-        yellow: "What safety lessons could come from studying remote crash sites?",
-        green: "What news headline would you write for the South Georgia object?",
-        blue: "How could investigators measure skid length from satellite photos?",
-        black: "Why might a rock slide be mistaken for a craft crash?"
-      }
-    },
-    {
-      id: "pole-contrail",
-      text: "2018 contrail stretched pole to pole at impossible aircraft speed",
-      hatQuestions: {
-        red: "How surprising is a line of cloud from pole to pole?",
-        white: "What was unusual about the 2018 contrail image?",
-        yellow: "Could tracking contrails improve climate or flight research?",
-        green: "What sci-fi explanation would you give for a pole-to-pole trail?",
-        blue: "How long do normal contrails usually last?",
-        black: "What other explanations besides super-fast craft could leave a long line?"
-      }
-    },
-    {
-      id: "antarctic-pyramid",
-      text: "Pyramid-shaped formation photographed near Shackleton mountain range",
-      hatQuestions: {
-        red: "How do you feel about pyramids hidden under Antarctic ice?",
-        white: "What formation did researchers identify near the Shackleton range?",
-        yellow: "What might open polar archaeology teach if done carefully?",
-        green: "What board game would you design about Antarctic pyramids?",
-        blue: "How could lidar or radar search for buried structures?",
-        black: "Why are pyramid-shaped mountains common in nature?"
-      }
-    },
-    {
-      id: "ice-paradox",
-      text: "NASA reported some Antarctic ice growing while coastal glaciers melt rapidly",
-      hatQuestions: {
-        red: "How do you feel hearing ice is growing in one place but melting in another?",
-        white: "What did NASA report in October 2015 about Antarctic ice?",
-        yellow: "What hope could better ice monitoring give for climate planning?",
-        green: "What infographic would you draw to explain the ice paradox?",
-        blue: "How do scientists measure ice gain and loss in Antarctica?",
-        black: "Why is it misleading to say all of Antarctica is simply freezing or melting?"
-      }
-    }
+    { id: "mountain-entrance", text: "2016 satellite image showed man-made-looking entrance in Antarctic mountains" },
+    { id: "south-georgia-crash", text: "2018 images showed straight skid marks and crashed object on South Georgia ice" },
+    { id: "pole-contrail", text: "2018 contrail stretched pole to pole at impossible aircraft speed" },
+    { id: "antarctic-pyramid", text: "Pyramid-shaped formation photographed near Shackleton mountain range" },
+    { id: "ice-paradox", text: "NASA reported some Antarctic ice growing while coastal glaciers melt rapidly" }
   ],
   paragraphs: [
     {

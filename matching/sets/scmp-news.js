@@ -12,71 +12,39 @@ window.MATCH_DATA = {
     { id: "blue", emoji: "\uD83D\uDCCB", tag: "blue hat", label: "practical" },
     { id: "black", emoji: "\u26A0\uFE0F", tag: "black hat", label: "critical reasoning" }
   ],
+  discussionQuestions: [
+    { hat: "red", text: "How do you feel when an app asks for your photo or phone number?" },
+    { hat: "white", text: "What kind of personal info do these news stories talk about?" },
+    { hat: "yellow", text: "What could make the internet safer and kinder for kids in Hong Kong?" },
+    { hat: "green", text: "Design a fun classroom poster: three things not to share online." },
+    { hat: "blue", text: "What should you do if a friend posts your photo without asking?" },
+    { hat: "black", text: "What could go wrong if a school, hospital, or club loses people\u2019s private data?" }
+  ],
   headlines: [
     {
       id: "privacy",
       text: "Online privacy guidelines underscore key role of parents and teachers",
-      url: "https://www.scmp.com/opinion/comment/article/3351557/online-privacy-guidelines-underscore-key-role-parents-and-teachers",
-      hatQuestions: {
-        red: "How do you feel when you post photos or personal details online?",
-        white: "What online activities are expanding children\u2019s digital footprints today?",
-        yellow: "How could parents and teachers working together improve children\u2019s online safety?",
-        green: "What creative ways could schools teach students about privacy beyond a normal lesson?",
-        blue: "What steps from a privacy guide would you put in place first at home or school?",
-        black: "What could go wrong if children keep sharing personal data casually online?"
-      }
+      url: "https://www.scmp.com/opinion/comment/article/3351557/online-privacy-guidelines-underscore-key-role-parents-and-teachers"
     },
     {
       id: "teacher-assault",
       text: "Hong Kong woman feared reporting teacher over assaults would harm him",
-      url: "https://www.scmp.com/news/hong-kong/law-and-crime/article/3356802/woman-feared-reporting-teacher-over-assaults-would-be-too-cruel-court-hears",
-      hatQuestions: {
-        red: "How would you feel if you feared reporting someone in authority would hurt them?",
-        white: "What facts does the court case tell us about the timeline and charges?",
-        yellow: "What positive outcomes could come from victims feeling safe to report abuse?",
-        green: "What new support system could a school invent to help students speak up?",
-        blue: "What practical process should schools follow when a student makes a serious accusation?",
-        black: "What could go wrong if schools do not act quickly on reports of abuse?"
-      }
+      url: "https://www.scmp.com/news/hong-kong/law-and-crime/article/3356802/woman-feared-reporting-teacher-over-assaults-would-be-too-cruel-court-hears"
     },
     {
       id: "data-breach",
       text: "Personal info of 9,045 people compromised in Hong Kong private club data breach",
-      url: "https://www.scmp.com/news/hong-kong/society/article/3351143/personal-info-9045-people-compromised-hong-kong-private-club-data-breach",
-      hatQuestions: {
-        red: "How would you feel if your personal data from a club membership was leaked?",
-        white: "How many people were affected and what type of attack caused the breach?",
-        yellow: "What benefits could come from organisations taking data protection more seriously?",
-        green: "What innovative technology could clubs use to protect member data?",
-        blue: "What should a club do immediately after discovering a ransomware attack?",
-        black: "What harm could members face when thousands of people\u2019s personal info is compromised?"
-      }
+      url: "https://www.scmp.com/news/hong-kong/society/article/3351143/personal-info-9045-people-compromised-hong-kong-private-club-data-breach"
     },
     {
       id: "intern-doctor",
       text: "Intern doctor arrested for allegedly accessing patient data without authorisation",
-      url: "https://www.scmp.com/news/hong-kong/health-environment/article/3356960/hong-kong-hospital-authority-sacks-intern-doctor-over-series-breaches",
-      hatQuestions: {
-        red: "How would you feel as a patient knowing a doctor accessed records without permission?",
-        white: "What happened at Caritas Medical Centre according to the report?",
-        yellow: "How could stricter rules still allow interns to learn without risking patient privacy?",
-        green: "What new system could hospitals design to monitor who accesses patient files?",
-        blue: "What practical checks should hospitals have before staff can open patient records?",
-        black: "What could go wrong if hospital staff can browse patient data without proper controls?"
-      }
+      url: "https://www.scmp.com/news/hong-kong/health-environment/article/3356960/hong-kong-hospital-authority-sacks-intern-doctor-over-series-breaches"
     },
     {
       id: "baby-danny",
       text: "Baby Danny DNA case sparks calls for Hong Kong to introduce home birth rules",
-      url: "https://www.scmp.com/news/hong-kong/society/article/3355908/dna-test-confirms-baby-danny-hong-kong-save-lily-couples-son",
-      hatQuestions: {
-        red: "How would you feel about handing over your baby\u2019s DNA and family details to the government?",
-        white: "What did the DNA test data confirm, and what registration records were still missing?",
-        yellow: "How could clearer rules protect families\u2019 personal and medical data during birth registration?",
-        green: "What secure digital system could let parents submit DNA and identity data without repeated paperwork?",
-        blue: "What personal data and documents must parents provide before a birth can be officially registered?",
-        black: "What could go wrong if a baby\u2019s DNA results, guardianship files or family records are lost or made public?"
-      }
+      url: "https://www.scmp.com/news/hong-kong/society/article/3355908/dna-test-confirms-baby-danny-hong-kong-save-lily-couples-son"
     }
   ],
   paragraphs: [

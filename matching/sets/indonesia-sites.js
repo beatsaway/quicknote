@@ -12,91 +12,22 @@ window.MATCH_DATA = {
     { id: "blue", emoji: "\uD83D\uDCCB", tag: "blue hat", label: "practical" },
     { id: "black", emoji: "\u26A0\uFE0F", tag: "black hat", label: "critical reasoning" }
   ],
+  discussionQuestions: [
+    { hat: "red", text: "Which sounds most fun to visit — Hobbit island, buried Borobudur, or giant stone statues?" },
+    { hat: "white", text: "Pick one mystery: an old pyramid hill, a cave painting, or a huge volcano." },
+    { hat: "yellow", text: "What would you like to learn on a school trip to an Indonesian temple?" },
+    { hat: "green", text: "If you met a one-metre-tall ancient human, what would you ask them first?" },
+    { hat: "blue", text: "What would you wear on a hot day visiting temples in Java?" },
+    { hat: "black", text: "Which headline sounds most like a mystery movie — and why?" }
+  ],
   headlines: [
-    {
-      id: "gunung-padang",
-      text: "West Java hill may be a 25,000-year-old man-made pyramid",
-      hatQuestions: {
-        red: "How do you feel about a pyramid older than Egypt hidden in West Java?",
-        white: "What evidence supports the Gunung Padang age claim?",
-        yellow: "What could open archaeology in Indonesia reveal if disputes were settled fairly?",
-        green: "What documentary opening scene would you film at Gunung Padang?",
-        blue: "How do ground-penetrating radar and radiocarbon dating work together here?",
-        black: "Why did other geologists pressure for retraction of the 2023 paper?"
-      }
-    },
-    {
-      id: "hobbits",
-      text: "Meter-tall \u201cHobbits\u201d lived on Flores until about 50,000 years ago",
-      hatQuestions: {
-        red: "How would you feel meeting a one-metre-tall human relative?",
-        white: "What is Homo floresiensis and when was it found?",
-        yellow: "What might Hobbit discoveries teach us about human diversity?",
-        green: "What children\u2019s book would you write about the Flores Hobbits?",
-        blue: "How can scientists date when Homo sapiens arrived on Flores?",
-        black: "Why is it wrong to call them Hobbits as if they were fantasy creatures only?"
-      }
-    },
-    {
-      id: "borobudur",
-      text: "World\u2019s largest Buddhist monument was deliberately buried",
-      hatQuestions: {
-        red: "How do you feel knowing Borobudur was buried on purpose?",
-        white: "What happened to Borobudur around the 10th century AD?",
-        yellow: "What cultural value comes from restoring buried heritage sites?",
-        green: "What reason would you invent for sealing the hidden foot gallery?",
-        blue: "How could archaeologists prove burial was deliberate rather than accidental?",
-        black: "Why would burying the world\u2019s largest Buddhist monument be so difficult?"
-      }
-    },
-    {
-      id: "leang-art",
-      text: "Sulawesi cave painting dated to 45,500 years may be oldest narrative art",
-      hatQuestions: {
-        red: "How exciting is the idea of 45,500-year-old story art in Sulawesi?",
-        white: "What does the Leang Tedongnge painting depict and how old is it?",
-        yellow: "How could Southeast Asian art change how we view early human creativity?",
-        green: "What modern mural would echo the hybrid hunters painting?",
-        blue: "How do researchers date cave paintings scientifically?",
-        black: "Why did many old accounts underestimate art in Southeast Asia?"
-      }
-    },
-    {
-      id: "bada-valley",
-      text: "Sulawesi granite megaliths have no local tradition of who built them",
-      hatQuestions: {
-        red: "How mysterious do nameless giant statues feel to you?",
-        white: "How many statues stand in the Bada Valley and how tall are they?",
-        yellow: "What community benefits could careful study of megaliths bring?",
-        green: "What legend would you write to explain who built the statues?",
-        blue: "How could oral history and archaeology be combined in Bada Valley?",
-        black: "Why is missing local tradition not proof of alien builders?"
-      }
-    },
-    {
-      id: "prambanan",
-      text: "Java temple features andesite carvings harder than the tools of its era",
-      hatQuestions: {
-        red: "How do you react to carvings thinner than 5 mm with no tool marks?",
-        white: "What stone is Prambanan built from and how hard is it?",
-        yellow: "What skills might temple builders teach craftspeople today?",
-        green: "What tool from science fiction would carve andesite so finely?",
-        blue: "How did GPR scans in 2022 add to the Prambanan mystery?",
-        black: "Why is hardness alone not proof of impossible technology?"
-      }
-    },
-    {
-      id: "lake-toba",
-      text: "Sumatra supervolcano eruption may have shrunk humanity to thousands",
-      hatQuestions: {
-        red: "How frightening is an eruption that may have nearly wiped out humans?",
-        white: "When did Lake Toba erupt and what effects did it have?",
-        yellow: "What disaster planning could modern societies learn from Toba?",
-        green: "What survival story would you set during the volcanic winter?",
-        blue: "How do geneticists estimate past population bottlenecks?",
-        black: "Why is it hard to be certain how few humans survived Toba?"
-      }
-    }
+    { id: "gunung-padang", text: "West Java hill may be a 25,000-year-old man-made pyramid" },
+    { id: "hobbits", text: "Meter-tall \u201cHobbits\u201d lived on Flores until about 50,000 years ago" },
+    { id: "borobudur", text: "World\u2019s largest Buddhist monument was deliberately buried" },
+    { id: "leang-art", text: "Sulawesi cave painting dated to 45,500 years may be oldest narrative art" },
+    { id: "bada-valley", text: "Sulawesi granite megaliths have no local tradition of who built them" },
+    { id: "prambanan", text: "Java temple features andesite carvings harder than the tools of its era" },
+    { id: "lake-toba", text: "Sumatra supervolcano eruption may have shrunk humanity to thousands" }
   ],
   paragraphs: [
     {

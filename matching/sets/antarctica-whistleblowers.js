@@ -12,55 +12,19 @@ window.MATCH_DATA = {
     { id: "blue", emoji: "\uD83D\uDCCB", tag: "blue hat", label: "practical" },
     { id: "black", emoji: "\u26A0\uFE0F", tag: "black hat", label: "critical reasoning" }
   ],
+  discussionQuestions: [
+    { hat: "red", text: "Would you go inside a warm hidden building in the Antarctic ice?" },
+    { hat: "white", text: "What shape was the structure sticking out of the ice?" },
+    { hat: "yellow", text: "What good could come if pilots could safely report weird things they see?" },
+    { hat: "green", text: "What nickname would you give the silver objects jumping between mountain peaks?" },
+    { hat: "blue", text: "What would you write down right after seeing something strange on a flight?" },
+    { hat: "black", text: "Why is a warm room inside Antarctic ice hard to believe?" }
+  ],
   headlines: [
-    {
-      id: "spartan-octagon",
-      text: "Navy SEAL reported octagonal structure protruding from Antarctic ice in 2003",
-      hatQuestions: {
-        red: "How would you feel discovering an octagonal structure in the ice?",
-        white: "Who is Spartan 1 and what did he report in 2003?",
-        yellow: "What good could protected witness interviews bring to research?",
-        green: "What codename would you give the octagonal structure?",
-        blue: "What equipment would a team need to reach such a site safely?",
-        black: "Why are anonymous military whistleblower stories hard to verify?"
-      }
-    },
-    {
-      id: "mcmurdo-hole",
-      text: "Flight crew saw huge ice hole and was forbidden to fly over it again",
-      hatQuestions: {
-        red: "How scary is flying over a forbidden hole with failing instruments?",
-        white: "What did the crew see during the medical emergency flight?",
-        yellow: "Could clearer flight rules prevent dangerous cover-ups?",
-        green: "What podcast episode would retell the McMurdo hole story?",
-        blue: "What should pilots log when instruments fail near anomalies?",
-        black: "Why might crews be ordered never to discuss a sighting again?"
-      }
-    },
-    {
-      id: "silver-darts",
-      text: "Antarctic squadron repeatedly saw silver dart-shaped objects over peaks",
-      hatQuestions: {
-        red: "How would you feel watching silver objects leap from peak to peak?",
-        white: "What did Brian and his crew report over the Transantarctic Mountains?",
-        yellow: "What scientific value could tracking unexplained aerial objects have?",
-        green: "What sketch would you draw of the silver dart objects?",
-        blue: "How could flight crews record such sightings reliably today?",
-        black: "What ordinary phenomena might look like darting silver objects?"
-      }
-    },
-    {
-      id: "warm-interior",
-      text: "Massive doors opened easily and interior stayed near room temperature",
-      hatQuestions: {
-        red: "Does a warm room inside Antarctic ice feel impossible or inviting?",
-        white: "What conditions were reported inside the structure?",
-        yellow: "What insulation breakthroughs could help polar bases today?",
-        green: "What video game level would you build inside the warm structure?",
-        blue: "How could engineers test whether doors that size could open easily?",
-        black: "Why is a room-temperature interior in Antarctica scientifically doubtful?"
-      }
-    }
+    { id: "spartan-octagon", text: "Navy SEAL reported octagonal structure protruding from Antarctic ice in 2003" },
+    { id: "mcmurdo-hole", text: "Flight crew saw huge ice hole and was forbidden to fly over it again" },
+    { id: "silver-darts", text: "Antarctic squadron repeatedly saw silver dart-shaped objects over peaks" },
+    { id: "warm-interior", text: "Massive doors opened easily and interior stayed near room temperature" }
   ],
   paragraphs: [
     {

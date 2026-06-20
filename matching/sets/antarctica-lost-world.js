@@ -12,55 +12,19 @@ window.MATCH_DATA = {
     { id: "blue", emoji: "\uD83D\uDCCB", tag: "blue hat", label: "practical" },
     { id: "black", emoji: "\u26A0\uFE0F", tag: "black hat", label: "critical reasoning" }
   ],
+  discussionQuestions: [
+    { hat: "red", text: "How would you feel if a hidden city appeared when ice melted?" },
+    { hat: "white", text: "In the Edfu story, what happens when the sky snake appears?" },
+    { hat: "yellow", text: "Why do so many countries have old stories about a great flood?" },
+    { hat: "green", text: "If Atlantis were under the ice, what would the first building look like?" },
+    { hat: "blue", text: "If you explored Antarctica, what one tool would you bring?" },
+    { hat: "black", text: "Why should we not believe every exciting rumour we see online?" }
+  ],
   headlines: [
-    {
-      id: "atlantis-frozen",
-      text: "Atlantis may have been flash-frozen and moved under the South Pole ice",
-      hatQuestions: {
-        red: "How would you feel if Atlantis were buried under Antarctic ice?",
-        white: "What do theorists claim happened to civilization in Antarctica about 13,000 years ago?",
-        yellow: "What might melting ice teach us about Earth\u2019s ancient climate?",
-        green: "What museum exhibit would you design for a frozen Atlantis?",
-        blue: "How could ice-core data test claims about a pole shift?",
-        black: "Why is flash-frozen Atlantis hard to verify scientifically?"
-      }
-    },
-    {
-      id: "edfu-island",
-      text: "Edfu texts describe primordial island where gods built the first temples",
-      hatQuestions: {
-        red: "How do you feel reading creation stories from an Egyptian temple?",
-        white: "What does the Island of the Egg story in the Edfu texts describe?",
-        yellow: "What value can ancient creation myths still have for modern readers?",
-        green: "What short play could you write about the Island of the Egg?",
-        blue: "How can students compare Edfu texts with other creation accounts?",
-        black: "Why should we be careful treating myth as literal history?"
-      }
-    },
-    {
-      id: "enemy-snake",
-      text: "Edfu account tells of enemy snake, darkness and flood destroying sacred island",
-      hatQuestions: {
-        red: "Does the Great Leaping One snake story feel frightening or symbolic to you?",
-        white: "What happens when the enemy snake appears in the Edfu account?",
-        yellow: "Could retelling flood myths help communities prepare for disasters today?",
-        green: "How would you illustrate the enemy snake in a graphic novel?",
-        blue: "What geological events might ancient writers describe as a sky snake?",
-        black: "Why is it risky to read every myth as a hidden comet report?"
-      }
-    },
-    {
-      id: "flood-traditions",
-      text: "Flood survival stories appear across Mesopotamia, Egypt and other ancient cultures",
-      hatQuestions: {
-        red: "How do global flood stories make you feel about human memory?",
-        white: "Which cultures in the passage preserve flood or antediluvian traditions?",
-        yellow: "What might shared flood stories teach about our common humanity?",
-        green: "What podcast episode would compare Noah, Gilgamesh and Edfu floods?",
-        blue: "How could a class chart flood myths from different regions?",
-        black: "Why do similar flood stories not prove one single worldwide event?"
-      }
-    }
+    { id: "atlantis-frozen", text: "Atlantis may have been flash-frozen and moved under the South Pole ice" },
+    { id: "edfu-island", text: "Edfu texts describe primordial island where gods built the first temples" },
+    { id: "enemy-snake", text: "Edfu account tells of enemy snake, darkness and flood destroying sacred island" },
+    { id: "flood-traditions", text: "Flood survival stories appear across Mesopotamia, Egypt and other ancient cultures" }
   ],
   paragraphs: [
     {

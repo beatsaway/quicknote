@@ -12,91 +12,22 @@ window.MATCH_DATA = {
     { id: "blue", emoji: "\uD83D\uDCCB", tag: "blue hat", label: "practical" },
     { id: "black", emoji: "\u26A0\uFE0F", tag: "black hat", label: "critical reasoning" }
   ],
+  discussionQuestions: [
+    { hat: "red", text: "Would you be scared if it stormed the night a giant rain-god statue was moved?" },
+    { hat: "white", text: "What is different about the old stone steps and the later Aztec walls?" },
+    { hat: "yellow", text: "What could we learn from how ancient people brought water down a mountain?" },
+    { hat: "green", text: "What superhero would you choose to guard Mount Tlaloc?" },
+    { hat: "blue", text: "What sounds would you expect in a cave used for singing and speeches?" },
+    { hat: "black", text: "Does a storm after moving a statue prove the god is angry — or just bad luck?" }
+  ],
   headlines: [
-    {
-      id: "pre-aztec",
-      text: "Mountaintop site shows pre-Aztec precision stonework unlike Aztec mortar walls",
-      hatQuestions: {
-        red: "How do you feel standing on a mountaintop site older than the Aztecs?",
-        white: "What stonework features suggest pre-Aztec builders?",
-        yellow: "What could studying older Mexican sites teach modern architects?",
-        green: "What travel vlog would you film comparing Machu Picchu and Mount Tlaloc?",
-        blue: "How can experts tell precision-cut basalt from later rubble walls?",
-        black: "Why is official Aztec attribution questioned at this site?"
-      }
-    },
-    {
-      id: "aqueduct",
-      text: "10 km rock-cut aqueduct may have harnessed earth energies, not just water",
-      hatQuestions: {
-        red: "Does a ten-kilometre rock aqueduct feel awe-inspiring or exhausting to imagine building?",
-        white: "How long is the aqueduct and where does its water come from?",
-        yellow: "What water systems today could learn from ancient engineering?",
-        green: "What myth would you write about water flowing through a volcanic fault?",
-        blue: "How could engineers survey a rock-cut aqueduct today?",
-        black: "Why is harnessing telluric currents hard to prove from ruins alone?"
-      }
-    },
-    {
-      id: "two-industries",
-      text: "Monumental rock-cut work sits beside crude later Aztec rubble walls",
-      hatQuestions: {
-        red: "How do you feel seeing master stonework next to crude rubble walls?",
-        white: "What contrast does the site show between old and Aztec construction?",
-        yellow: "What respect might later cultures still show by reusing older sites?",
-        green: "What museum display would compare the two building styles?",
-        blue: "How could students list differences between rock-cut and rubble walls?",
-        black: "Why does side-by-side quality not always mean two lost civilizations?"
-      }
-    },
-    {
-      id: "global-links",
-      text: "Rock style and Olmec features suggest links to Peru and older Mexico",
-      hatQuestions: {
-        red: "How exciting is the idea of Mexico and Peru sharing ancient builders?",
-        white: "Which mythological figures and styles are compared in the passage?",
-        yellow: "What cultural exchange might ancient travel have encouraged?",
-        green: "What graphic novel would link Quetzalcoatl and Viracocha?",
-        blue: "How could archaeologists compare Olmec and Andean artefacts?",
-        black: "Why might similar carving styles arise without direct contact?"
-      }
-    },
-    {
-      id: "alignments",
-      text: "Carvings and Intihuatana stone aim at sacred mountains on precise bearings",
-      hatQuestions: {
-        red: "How mystical do mountain alignments feel to you?",
-        white: "What directions do the Tlaloc carving and Intihuatana stone point toward?",
-        yellow: "What calendar or farming benefits might alignments have provided?",
-        green: "What app would you design to show ancient sight lines on a map?",
-        blue: "How do archaeologists measure ancient astronomical alignments?",
-        black: "Why can coincidence explain some precise-looking bearings?"
-      }
-    },
-    {
-      id: "tlaloc-statue",
-      text: "168-ton rain-god statue removed amid legend of immediate storm",
-      hatQuestions: {
-        red: "Would you fear a storm the night a rain-god statue was moved?",
-        white: "How heavy is the Tlaloc statue and where was it taken?",
-        yellow: "What cultural care should museums show when moving sacred objects?",
-        green: "What headline would a tabloid write about the rainstorm legend?",
-        blue: "How would modern crews transport a 168-ton statue safely?",
-        black: "Why is one storm after removal weak evidence of a curse?"
-      }
-    },
-    {
-      id: "cave-acoustics",
-      text: "Ceremonial cave with carved seats used for meditation and sound",
-      hatQuestions: {
-        red: "How calming or eerie is a cave used for singing and meditation?",
-        white: "How was the ceremonial cave arranged and used historically?",
-        yellow: "What role could acoustic spaces play in wellness or education today?",
-        green: "What concert would you stage in the cave using natural acoustics?",
-        blue: "How could students test which rock shapes reflect sound best?",
-        black: "Why might a cave face east without proving a lost technology?"
-      }
-    }
+    { id: "pre-aztec", text: "Mountaintop site shows pre-Aztec precision stonework unlike Aztec mortar walls" },
+    { id: "aqueduct", text: "10 km rock-cut aqueduct may have harnessed earth energies, not just water" },
+    { id: "two-industries", text: "Monumental rock-cut work sits beside crude later Aztec rubble walls" },
+    { id: "global-links", text: "Rock style and Olmec features suggest links to Peru and older Mexico" },
+    { id: "alignments", text: "Carvings and Intihuatana stone aim at sacred mountains on precise bearings" },
+    { id: "tlaloc-statue", text: "168-ton rain-god statue removed amid legend of immediate storm" },
+    { id: "cave-acoustics", text: "Ceremonial cave with carved seats used for meditation and sound" }
   ],
   paragraphs: [
     {

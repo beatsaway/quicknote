@@ -12,67 +12,20 @@ window.MATCH_DATA = {
     { id: "blue", emoji: "\uD83D\uDCCB", tag: "blue hat", label: "practical" },
     { id: "black", emoji: "\u26A0\uFE0F", tag: "black hat", label: "critical reasoning" }
   ],
+  discussionQuestions: [
+    { hat: "red", text: "Would you want to join a big ship trip to Antarctica?" },
+    { hat: "white", text: "How many ships and people went on Operation High Jump?" },
+    { hat: "yellow", text: "What good things could come from exploring cold, faraway places?" },
+    { hat: "green", text: "What movie title would you give Byrd\u2019s flight beyond the South Pole?" },
+    { hat: "blue", text: "What warm clothes and snacks would you pack for Antarctica?" },
+    { hat: "black", text: "Which sounds more like a movie — a crystal city, or an enemy that flies pole to pole?" }
+  ],
   headlines: [
-    {
-      id: "high-jump",
-      text: "Operation High Jump sent the largest Antarctic expedition after World War II",
-      hatQuestions: {
-        red: "How would you feel joining a huge military expedition to Antarctica?",
-        white: "When did Operation High Jump take place, and how large was it?",
-        yellow: "What peaceful research could come from large polar expeditions today?",
-        green: "What documentary title would you give Operation High Jump?",
-        blue: "What official goals did the expedition publicly state?",
-        black: "Why might a post-war mission to Antarctica raise suspicion?"
-      }
-    },
-    {
-      id: "hollow-earth",
-      text: "Byrd diary describes temperate land and a crystal city beyond the pole",
-      hatQuestions: {
-        red: "Does the diary story of a green land beyond the pole feel scary or thrilling?",
-        white: "What does the diary describe beyond the South Pole?",
-        yellow: "What value could there be in reading disputed primary sources carefully?",
-        green: "If you reached a crystal city, what would you ask its inhabitants first?",
-        blue: "How could historians check whether the diary is authentic?",
-        black: "What evidence is missing before we accept the diary as fact?"
-      }
-    },
-    {
-      id: "nuclear-warning",
-      text: "Inner-earth beings warned humanity about nuclear weapons after Hiroshima",
-      hatQuestions: {
-        red: "How do you feel about beings warning humanity after Hiroshima?",
-        white: "What warning about nuclear weapons appears in the diary account?",
-        yellow: "Could nuclear fear ever push countries toward safer agreements?",
-        green: "What campaign slogan would you write against nuclear weapons?",
-        blue: "What practical steps reduce nuclear risk today?",
-        black: "Why might UFO sightings near missile silos be distrusted?"
-      }
-    },
-    {
-      id: "silenced",
-      text: "Byrd was ordered to remain silent after his extraordinary encounter",
-      hatQuestions: {
-        red: "How would you feel if ordered never to speak about what you saw?",
-        white: "What reportedly happened to Byrd after he returned?",
-        yellow: "What good could come from protecting witnesses while investigating claims?",
-        green: "What anonymous journal entry might a silenced explorer write?",
-        blue: "What process should governments use when classifying explorer reports?",
-        black: "What harm can secrecy cause to public trust?"
-      }
-    },
-    {
-      id: "pole-enemy",
-      text: "Byrd reported a new enemy that could fly from pole to pole instantly",
-      hatQuestions: {
-        red: "How frightening is an enemy that moves pole to pole in an instant?",
-        white: "What did Byrd reportedly say in March 1947?",
-        yellow: "Could faster transport ever benefit science more than warfare?",
-        green: "What sci-fi film would you base on Byrd\u2019s pole-to-pole enemy?",
-        blue: "How would radar today track objects moving that fast?",
-        black: "Why might expedition losses be blamed on unknown craft without proof?"
-      }
-    }
+    { id: "high-jump", text: "Operation High Jump sent the largest Antarctic expedition after World War II" },
+    { id: "hollow-earth", text: "Byrd diary describes temperate land and a crystal city beyond the pole" },
+    { id: "nuclear-warning", text: "Inner-earth beings warned humanity about nuclear weapons after Hiroshima" },
+    { id: "silenced", text: "Byrd was ordered to remain silent after his extraordinary encounter" },
+    { id: "pole-enemy", text: "Byrd reported a new enemy that could fly from pole to pole instantly" }
   ],
   paragraphs: [
     {
