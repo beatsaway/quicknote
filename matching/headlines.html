@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Headlines match | 標題配段落</title>
+  <title>Match | 配對</title>
   <style>
     :root {
       --bg: #f7f5f0;
@@ -24,7 +24,6 @@
       line-height: 1.55;
       color: var(--text);
       background: var(--bg);
-      min-height: 100vh;
     }
     header {
       display: flex;
@@ -33,74 +32,68 @@
       background: var(--accent);
       color: #fff;
       padding: 0.4rem 0.75rem;
-      min-height: 2.25rem;
     }
     .home-link {
+      width: 1.75rem;
+      height: 1.75rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 1.75rem;
-      height: 1.75rem;
-      font-size: 1rem;
-      line-height: 1;
       text-decoration: none;
       border-radius: 4px;
-      flex-shrink: 0;
     }
     .home-link:hover { background: rgba(255, 255, 255, 0.15); }
-    .header-title {
+    header h1 { font-size: 0.92rem; font-weight: 600; }
+    .header-sub { font-size: 0.78rem; opacity: 0.88; margin-left: 0.4rem; }
+    .header-spacer { flex: 1; }
+    .mode-toggle {
       display: flex;
-      align-items: baseline;
-      gap: 0.45rem;
-      min-width: 0;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 6px;
+      overflow: hidden;
+      font-size: 0.74rem;
     }
-    header h1 {
-      margin: 0;
-      font-size: 0.92rem;
-      font-weight: 600;
-      white-space: nowrap;
+    .mode-toggle button {
+      padding: 0.28rem 0.55rem;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.88);
+      font-weight: 500;
     }
-    .header-sub {
-      font-size: 0.78rem;
-      opacity: 0.88;
-      white-space: nowrap;
+    .mode-toggle button + button { border-left: 1px solid rgba(255, 255, 255, 0.35); }
+    .mode-toggle button:hover { background: rgba(255, 255, 255, 0.12); }
+    .mode-toggle button.active {
+      background: #fff;
+      color: var(--accent);
     }
     main {
-      width: 100%;
-      padding: 0.65rem 0.75rem 1.25rem;
+      max-width: 44rem;
+      margin: 0 auto;
+      padding: 0.65rem 0.75rem 1.5rem;
     }
-    .toolbar {
+    .bar {
       display: flex;
       flex-wrap: wrap;
+      gap: 0.5rem;
       align-items: center;
-      gap: 0.5rem 1rem;
       margin-bottom: 0.65rem;
-      padding: 0.5rem 0.65rem;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 8px;
       font-size: 0.82rem;
       color: var(--muted);
     }
-    .toolbar kbd {
-      font: inherit;
-      font-size: 0.9em;
-      padding: 1px 6px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      background: #f5f5f5;
-    }
-    .toolbar .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      align-items: center;
-      margin-left: auto;
+    .bar .actions { margin-left: auto; display: flex; gap: 0.4rem; align-items: center; }
+    .bar:empty .actions { margin-left: 0; }
+    .mode-note {
+      font-size: 0.76rem;
+      color: var(--accent);
+      background: #eef4f8;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
     }
     button {
-      font-family: inherit;
+      font: inherit;
       font-size: 0.82rem;
-      padding: 0.35rem 0.75rem;
+      padding: 0.35rem 0.7rem;
       border: 1px solid var(--accent);
       border-radius: 6px;
       background: var(--accent);
@@ -108,489 +101,347 @@
       cursor: pointer;
     }
     button.secondary { background: #fff; color: var(--accent); }
-    .score { font-size: 0.85rem; color: var(--muted); }
-    .headline-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 1.35rem;
-      height: 1.35rem;
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: var(--accent);
-      background: #eef4f8;
-      border-radius: 4px;
-      margin-right: 0.35rem;
-      flex-shrink: 0;
-    }
-    .headline-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.35rem;
-      padding: 0.7rem 0;
-      border-bottom: 1px solid #eee;
-    }
-    .headline-row:last-child { border-bottom: none; }
-    .board {
-      display: grid;
-      grid-template-columns: minmax(0, 25%) minmax(0, 1fr);
-      gap: 0.65rem;
-      align-items: stretch;
-      min-height: calc(100vh - 8rem);
-    }
-    .col {
+    .list {
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      overflow: hidden;
+      padding: 0.25rem 0.85rem;
     }
-    .col-head {
+    .item {
+      padding: 0.65rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .item:last-child { border-bottom: none; }
+    .item-top {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+      margin-bottom: 0.45rem;
+    }
+    .tag {
       flex-shrink: 0;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+      width: 1.5rem;
+      font-weight: 700;
+      font-size: 0.82rem;
       color: var(--accent);
-      padding: 0.6rem 0.85rem;
-      border-bottom: 1px solid var(--border);
-      background: #faf9f7;
+      text-align: center;
+      padding-top: 0.1rem;
     }
-    .col-head .zh {
-      font-weight: 400;
-      text-transform: none;
-      letter-spacing: 0;
-      color: var(--muted);
-      font-size: 0.76rem;
+    .text { font-size: 0.9rem; line-height: 1.58; flex: 1; }
+    .kw {
+      background: #fff3cd;
+      border-bottom: 1px dashed #c9a227;
+      cursor: pointer;
+      padding: 0 2px;
+      border-radius: 2px;
     }
-    .col-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 0.5rem 0.85rem 0.75rem;
+    .kw:hover { background: #ffe8a1; }
+    .kw.show-zh { background: #e8f4ea; border-bottom-color: #2e7d32; }
+    .kw-zh {
+      color: #444;
+      font-family: "PingFang TC", "Microsoft JhengHei", "Noto Sans HK", sans-serif;
     }
-    .headline-text {
-      font-size: 0.9rem;
-      font-weight: 600;
-      line-height: 1.45;
-      margin: 0;
-      flex: 1;
-      min-width: 0;
-    }
-    .headline-source {
-      font-size: 0.72rem;
-      font-weight: 400;
-      margin-top: 0.25rem;
-    }
-    .headline-source a {
-      color: var(--muted);
-      text-decoration: none;
-    }
-    .headline-source a:hover { color: var(--accent); text-decoration: underline; }
-    .headline-body { flex: 1; min-width: 0; }
-    .match-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    .match-label {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-    .match-select {
+    select {
+      width: 100%;
       font: inherit;
       font-size: 0.85rem;
-      padding: 3px 8px;
+      padding: 0.35rem 0.5rem;
       border: 1px solid #bbb;
       border-radius: 4px;
       background: #fafafa;
-      min-width: 8rem;
-      max-width: 100%;
     }
-    .match-select:hover,
-    .match-select:focus {
-      border-color: var(--accent);
-      outline: none;
-      background: #fff;
+    select:focus { border-color: var(--accent); outline: none; background: #fff; }
+    select.correct { border-color: var(--ok-b); background: var(--ok); }
+    select.incorrect { border-color: var(--bad-b); background: var(--bad); }
+    .extra {
+      margin-top: 0.75rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem 0.85rem;
     }
-    .match-select.correct {
-      border-color: var(--ok-b);
-      background: var(--ok);
+    .extra h2 {
+      font-size: 0.82rem;
+      color: var(--accent);
+      margin-bottom: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
-    .match-select.incorrect {
-      border-color: var(--bad-b);
-      background: var(--bad);
+    .extra h2 .zh {
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--muted);
+      font-weight: 400;
+      font-size: 0.76rem;
     }
-    .para-card {
-      display: flex;
-      gap: 0.6rem;
+    .topic { margin-bottom: 0.75rem; }
+    .topic:last-child { margin-bottom: 0; }
+    .topic-title { font-size: 0.86rem; font-weight: 600; margin-bottom: 0.35rem; }
+    .hat-list, .task-list { list-style: none; font-size: 0.84rem; color: var(--muted); }
+    .hat-list li, .task-list li { margin: 0.3rem 0; }
+    .hat-meta {
+      font-style: normal;
+      color: var(--muted);
+      font-size: 0.82em;
+    }
+    .task-card {
       padding: 0.6rem 0;
       border-bottom: 1px solid #eee;
-    }
-    .para-card:last-child { border-bottom: none; }
-    .para-content {
-      flex: 1;
-      min-width: 0;
-    }
-    .para-label {
-      flex-shrink: 0;
-      width: 1.55rem;
-      height: 1.55rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.8rem;
-      color: var(--accent);
-      background: #eef4f8;
-      border-radius: 6px;
-    }
-    .para-text {
-      font-size: 0.88rem;
-      line-height: 1.58;
-      margin: 0 0 0.45rem;
-    }
-    .para-card .match-row {
-      margin-top: 0.15rem;
-    }
-    .discussion {
-      margin-top: 0.75rem;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .discussion-head {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--accent);
-      padding: 0.6rem 0.85rem;
-      border-bottom: 1px solid var(--border);
-      background: #faf9f7;
-    }
-    .discussion-head .zh {
-      font-weight: 400;
-      text-transform: none;
-      letter-spacing: 0;
-      color: var(--muted);
-      font-size: 0.76rem;
-    }
-    .discussion-body {
-      padding: 0.5rem 0.85rem 0.75rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-    }
-    .disc-topic {
-      padding: 0.7rem 0.8rem;
-      border: 1px solid #eee;
-      border-radius: 8px;
-      background: #faf9f7;
-    }
-    .disc-topic-title {
-      font-size: 0.86rem;
-      font-weight: 600;
-      line-height: 1.4;
-      margin-bottom: 0.55rem;
-      color: var(--text);
-    }
-    .disc-topic-title::before { content: "\1F4F0 "; }
-    .hat-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-      gap: 0.45rem 0.75rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .hat-item {
       font-size: 0.84rem;
-      line-height: 1.45;
-      padding: 0.4rem 0;
     }
-    .hat-q {
-      margin: 0;
-      color: var(--text);
-    }
-    .hat-emoji { margin-right: 0.15rem; }
-    .hat-meta {
-      display: block;
-      margin-top: 0.12rem;
-      font-size: 0.76rem;
-      color: var(--muted);
-    }
-    .hat-meta.hat-red { color: #c62828; }
-    .hat-meta.hat-white { color: #616161; }
-    .hat-meta.hat-yellow { color: #f9a825; }
-    .hat-meta.hat-green { color: #2e7d32; }
-    .hat-meta.hat-blue { color: #1565c0; }
-    .hat-meta.hat-black { color: #37474f; }
-    .writing {
-      margin-top: 0.75rem;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .writing-head {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--accent);
-      padding: 0.6rem 0.85rem;
-      border-bottom: 1px solid var(--border);
-      background: #faf9f7;
-    }
-    .writing-head .zh {
-      font-weight: 400;
-      text-transform: none;
-      letter-spacing: 0;
-      color: var(--muted);
-      font-size: 0.76rem;
-    }
-    .writing-body {
-      padding: 0.5rem 0.85rem 0.75rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-      gap: 0.65rem;
-    }
-    .write-card {
-      padding: 0.7rem 0.8rem;
-      border: 1px solid #eee;
-      border-radius: 8px;
-      background: #faf9f7;
-    }
-    .write-format {
-      font-size: 0.86rem;
-      font-weight: 600;
-      line-height: 1.35;
-      margin-bottom: 0.2rem;
-      color: var(--text);
-    }
-    .write-format::before { content: "\270D\uFE0F "; }
-    .write-meta {
-      font-size: 0.76rem;
-      color: var(--muted);
-      margin-bottom: 0.45rem;
-    }
-    .write-prompt {
-      font-size: 0.84rem;
-      line-height: 1.55;
-      color: var(--text);
-      margin: 0;
-    }
-    .write-focus {
-      display: inline-block;
-      margin-top: 0.45rem;
-      font-size: 0.74rem;
-      color: var(--accent);
-      background: #eef4f8;
-      padding: 2px 7px;
-      border-radius: 4px;
-    }
-    @media (max-width: 720px) {
-      .board {
-        grid-template-columns: 1fr;
-        min-height: 0;
-      }
-      .col-body { max-height: none; }
-      .hat-list { grid-template-columns: 1fr; }
-      .writing-body { grid-template-columns: 1fr; }
-    }
+    .task-card:last-child { border-bottom: none; }
+    .task-card strong { display: block; margin-bottom: 0.2rem; color: var(--text); }
   </style>
 </head>
 <body>
   <header>
-    <a class="home-link" href="index.html" title="Matching hub" aria-label="Matching hub">&#127968;</a>
-    <div class="header-title">
-      <h1 id="hdr-title">Headlines match</h1>
-      <span class="header-sub" id="hdr-sub"></span>
+    <a class="home-link" href="index.html" title="Back" aria-label="Back">&#127968;</a>
+    <h1 id="hdr-title">Match</h1>
+    <span class="header-sub" id="hdr-sub"></span>
+    <span class="header-spacer"></span>
+    <div class="mode-toggle" role="group" aria-label="Difficulty">
+      <button type="button" id="mode-easy" aria-pressed="false">Easy</button>
+      <button type="button" id="mode-normal" class="active" aria-pressed="true">Normal</button>
     </div>
   </header>
-  <main id="main"></main>
-  <script src="data.js"></script>
+  <main id="main"><p style="color:var(--muted);font-size:0.9rem">Loading…</p></main>
   <script>
 (function () {
-  var data = window.MATCH_DATA;
-  var main = document.getElementById("main");
-  if (!data) {
-    main.innerHTML = "<p>Data not loaded.</p>";
-    return;
-  }
+  var SETS = [
+    "scmp-news", "indonesia-sites", "mexico-tlaloc", "angkor-lidar",
+    "antarctica-byrd", "antarctica-whistleblowers", "antarctica-satellite", "antarctica-lost-world"
+  ];
 
-  document.getElementById("hdr-title").textContent = data.title;
-  document.getElementById("hdr-sub").textContent = data.titleZh || "";
+  var EASY_OPTION_COUNT = 3;
+  var state = { data: null, mode: "normal", paragraphs: null };
 
-  function escapeHtml(s) {
+  function esc(s) {
     var d = document.createElement("div");
     d.textContent = s;
     return d.innerHTML;
   }
 
-  function headlineOptions() {
-    var html = '<option value="">\u2014</option>';
-    data.headlines.forEach(function (h, i) {
-      html += '<option value="' + escapeHtml(h.id) + '">' +
-        (i + 1) + ". " + escapeHtml(h.text) + "</option>";
-    });
-    return html;
+  function renderText(text) {
+    var re = /\[\[([^\]|]+)\|([^\]]+)\]\]/g;
+    var out = "";
+    var last = 0;
+    var m;
+    while ((m = re.exec(text)) !== null) {
+      out += esc(text.slice(last, m.index));
+      out +=
+        '<span class="kw" tabindex="0" role="button" data-zh="' + esc(m[2]) + '">' +
+        esc(m[1]) + "</span>";
+      last = re.lastIndex;
+    }
+    out += esc(text.slice(last));
+    return out;
   }
 
-  function gradeSelect(sel) {
+  function bindKeywords(root) {
+    root.querySelectorAll(".kw").forEach(function (el) {
+      function toggle() {
+        el.classList.toggle("show-zh");
+        var zh = el.querySelector(".kw-zh");
+        if (el.classList.contains("show-zh")) {
+          if (!zh) {
+            zh = document.createElement("span");
+            zh.className = "kw-zh";
+            zh.textContent = " " + el.getAttribute("data-zh");
+            el.appendChild(zh);
+          }
+        } else if (zh) {
+          zh.remove();
+        }
+      }
+      el.addEventListener("click", toggle);
+      el.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggle();
+        }
+      });
+    });
+  }
+
+  function optionsForParagraph(headlines, answerId, easy) {
+    var pool = headlines;
+    if (easy && headlines.length > EASY_OPTION_COUNT) {
+      var correct = null;
+      var others = [];
+      headlines.forEach(function (item) {
+        if (item.id === answerId) correct = item;
+        else others.push(item);
+      });
+      if (!correct) correct = headlines[0];
+      pool = [correct].concat(shuffle(others).slice(0, EASY_OPTION_COUNT - 1));
+      pool = shuffle(pool);
+    }
+    var h = '<option value="">\u2014 choose headline</option>';
+    pool.forEach(function (item) {
+      h += '<option value="' + esc(item.id) + '">' + esc(item.text) + "</option>";
+    });
+    return h;
+  }
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i];
+      a[i] = a[j];
+      a[j] = t;
+    }
+    return a;
+  }
+
+  function grade(sel) {
     sel.classList.remove("correct", "incorrect");
     if (!sel.value) return;
-    var expected = sel.getAttribute("data-answer") || "";
-    if (sel.value === expected) {
-      sel.classList.add("correct");
-    } else {
-      sel.classList.add("incorrect");
-    }
+    sel.classList.toggle("correct", sel.value === sel.dataset.answer);
+    sel.classList.toggle("incorrect", sel.value !== sel.dataset.answer);
   }
 
-  function gradeAll() {
-    var correct = 0;
-    var total = 0;
-    document.querySelectorAll(".match-select").forEach(function (sel) {
-      total++;
-      gradeSelect(sel);
-      if (sel.classList.contains("correct")) correct++;
+  function setMode(mode) {
+    state.mode = mode;
+    document.getElementById("mode-easy").classList.toggle("active", mode === "easy");
+    document.getElementById("mode-normal").classList.toggle("active", mode === "normal");
+    document.getElementById("mode-easy").setAttribute("aria-pressed", mode === "easy");
+    document.getElementById("mode-normal").setAttribute("aria-pressed", mode === "normal");
+  }
+
+  function bindModeToggle() {
+    document.getElementById("mode-easy").onclick = function () {
+      if (state.mode === "easy") return;
+      setMode("easy");
+      render(state.data, state.paragraphs);
+    };
+    document.getElementById("mode-normal").onclick = function () {
+      if (state.mode === "normal") return;
+      setMode("normal");
+      render(state.data, state.paragraphs);
+    };
+  }
+
+  function render(data, paragraphsIn) {
+    var main = document.getElementById("main");
+    state.data = data;
+    var easy = state.mode === "easy";
+    var paragraphs = paragraphsIn || shuffle(data.paragraphs);
+    state.paragraphs = paragraphs;
+    document.getElementById("hdr-title").textContent = data.title;
+    document.getElementById("hdr-sub").textContent = data.titleZh || "";
+    document.title = data.title + " | 配對";
+
+    var html =
+      '<div class="bar">' +
+      (easy && data.headlines.length > EASY_OPTION_COUNT
+        ? '<span class="mode-note">Easy: ' + EASY_OPTION_COUNT + ' choices per paragraph</span>'
+        : "") +
+      '<div class="actions">' +
+      '<button type="button" id="check">Check</button>' +
+      '<button type="button" class="secondary" id="clear">Clear</button>' +
+      '<span id="score"></span>' +
+      '</div></div><div class="list">';
+
+    paragraphs.forEach(function (p) {
+      var opts = optionsForParagraph(data.headlines, p.answer || "", easy);
+      html +=
+        '<div class="item">' +
+        '<div class="item-top"><span class="tag">' + esc(p.id) + '</span>' +
+        '<p class="text">' + renderText(p.text) + '</p></div>' +
+        '<select data-answer="' + esc(p.answer || "") + '" aria-label="Headline for ' + esc(p.id) + '">' +
+        opts + '</select></div>';
     });
-    var el = document.getElementById("score");
-    if (el) el.textContent = correct + " / " + total + " correct";
-  }
-
-  function clearAll() {
-    document.querySelectorAll(".match-select").forEach(function (sel) {
-      sel.value = "";
-      sel.classList.remove("correct", "incorrect");
-    });
-    var el = document.getElementById("score");
-    if (el) el.textContent = "";
-  }
-
-  function showAllAnswers() {
-    document.querySelectorAll(".match-select").forEach(function (sel) {
-      var expected = sel.getAttribute("data-answer") || "";
-      sel.value = expected;
-      gradeSelect(sel);
-    });
-    gradeAll();
-  }
-
-  var html =
-    '<div class="toolbar">' +
-    '<span>' + escapeHtml(data.instructions) + " <kbd>Space</kbd> = reveal.</span>" +
-    '<div class="actions">' +
-    '<button type="button" id="check-btn">Check</button>' +
-    '<button type="button" class="secondary" id="clear-btn">Clear</button>' +
-    '<span class="score" id="score"></span>' +
-    "</div></div>" +
-    '<div class="board">';
-
-  html += '<div class="col col-headlines">';
-  html += '<div class="col-head">Headlines <span class="zh">(標題)</span></div>';
-  html += '<div class="col-body">';
-  data.headlines.forEach(function (h, i) {
-    html += '<div class="headline-row">';
-    html += '<span class="headline-num" aria-hidden="true">' + (i + 1) + "</span>";
-    html += '<div class="headline-body">';
-    html += '<p class="headline-text">' + escapeHtml(h.text) + "</p>";
-    if (h.url) {
-      html += '<p class="headline-source"><a href="' + escapeHtml(h.url) + '" target="_blank" rel="noopener">SCMP</a></p>';
-    }
-    html += "</div></div>";
-  });
-  html += "</div></div>";
-
-  html += '<div class="col col-paragraphs">';
-  html += '<div class="col-head">Paragraphs <span class="zh">(段落)</span></div>';
-  html += '<div class="col-body">';
-  data.paragraphs.forEach(function (p) {
-    html += '<div class="para-card">';
-    html += '<div class="para-label">' + escapeHtml(p.id) + "</div>";
-    html += '<div class="para-content">';
-    html += '<p class="para-text">' + escapeHtml(p.text) + "</p>";
-    html += '<div class="match-row">';
-    html += '<span class="match-label">Headline</span>';
-    html += '<select class="match-select" data-answer="' + escapeHtml(p.answer || "") + '" aria-label="Match headline for paragraph ' + escapeHtml(p.id) + '">';
-    html += headlineOptions();
-    html += "</select>";
-    html += "</div></div>";
     html += "</div>";
-  });
-  html += "</div></div>";
 
-  html += "</div>";
-
-  if (data.hatTypes && data.headlines.some(function (h) { return h.hatQuestions; })) {
-    html += '<section class="discussion">';
-    html += '<h2 class="discussion-head">6 Thinking Hats <span class="zh">(六頂思考帽)</span></h2>';
-    html += '<div class="discussion-body">';
-    data.headlines.forEach(function (h) {
-      if (!h.hatQuestions) return;
-      html += '<div class="disc-topic">';
-      html += '<p class="disc-topic-title">' + escapeHtml(h.text) + "</p>";
-      html += '<ul class="hat-list">';
-      data.hatTypes.forEach(function (hat) {
-        var q = h.hatQuestions[hat.id];
-        if (!q) return;
-        html += '<li class="hat-item">';
-        html += '<p class="hat-q"><span class="hat-emoji">' + hat.emoji + "</span>" + escapeHtml(q) + "</p>";
-        html += '<span class="hat-meta hat-' + escapeHtml(hat.id) + '">' +
-          escapeHtml(hat.tag) + " \u00b7 " + escapeHtml(hat.label) + "</span>";
-        html += "</li>";
+    if (data.hatTypes && data.headlines.some(function (h) { return h.hatQuestions; })) {
+      html += '<section class="extra"><h2>6 Thinking Hats <span class="zh">(六頂思考帽)</span></h2>';
+      data.headlines.forEach(function (h) {
+        if (!h.hatQuestions) return;
+        html += '<div class="topic"><p class="topic-title">' + esc(h.text) + '</p><ul class="hat-list">';
+        data.hatTypes.forEach(function (hat) {
+          if (!h.hatQuestions[hat.id]) return;
+          html += "<li>" + hat.emoji + " " + esc(h.hatQuestions[hat.id]) +
+            ' <em class="hat-meta">' + esc(hat.tag) + " \u2022 " + esc(hat.label) + "</em></li>";
+        });
+        html += "</ul></div>";
       });
-      html += "</ul></div>";
+      html += "</section>";
+    }
+
+    if (data.writingTasks && data.writingTasks.length) {
+      html += '<section class="extra"><h2>Writing <span class="zh">(寫作)</span></h2><div class="task-list">';
+      data.writingTasks.forEach(function (t) {
+        html += '<div class="task-card"><strong>' + esc(t.format);
+        if (t.formatZh) html += " (" + esc(t.formatZh) + ")";
+        if (t.words) html += " · " + esc(t.words);
+        html += "</strong><p>" + esc(t.prompt) + "</p></div>";
+      });
+      html += "</div></section>";
+    }
+
+    main.innerHTML = html;
+    bindKeywords(main);
+
+    var selects = main.querySelectorAll("select");
+    selects.forEach(function (sel) {
+      sel.addEventListener("change", function () { grade(sel); });
     });
-    html += "</div></section>";
+
+    document.getElementById("check").onclick = function () {
+      var ok = 0;
+      selects.forEach(function (sel) {
+        grade(sel);
+        if (sel.classList.contains("correct")) ok++;
+      });
+      document.getElementById("score").textContent = ok + " / " + selects.length;
+    };
+
+    document.getElementById("clear").onclick = function () {
+      selects.forEach(function (sel) {
+        sel.value = "";
+        sel.classList.remove("correct", "incorrect");
+      });
+      document.getElementById("score").textContent = "";
+    };
   }
 
-  if (data.writingTasks && data.writingTasks.length) {
-    html += '<section class="writing">';
-    html += '<h2 class="writing-head">Writing tasks <span class="zh">(寫作任務 · 私隱與數據)</span></h2>';
-    html += '<div class="writing-body">';
-    data.writingTasks.forEach(function (task) {
-      html += '<article class="write-card">';
-      html += '<h3 class="write-format">' + escapeHtml(task.format);
-      if (task.formatZh) {
-        html += ' <span class="zh">(' + escapeHtml(task.formatZh) + ")</span>";
-      }
-      html += "</h3>";
-      html += '<p class="write-meta">';
-      if (task.words) html += escapeHtml(task.words) + " words";
-      html += "</p>";
-      html += '<p class="write-prompt">' + escapeHtml(task.prompt) + "</p>";
-      if (task.focus) {
-        html += '<span class="write-focus">' + escapeHtml(task.focus) + "</span>";
-      }
-      html += "</article>";
-    });
-    html += "</div></section>";
-  }
-
-  main.innerHTML = html;
-
-  document.querySelectorAll(".match-select").forEach(function (sel) {
-    sel.addEventListener("change", function () {
-      gradeSelect(sel);
-    });
-  });
-
-  document.getElementById("check-btn").addEventListener("click", gradeAll);
-  document.getElementById("clear-btn").addEventListener("click", clearAll);
-
-  document.addEventListener("keydown", function (e) {
+  function onRevealKey(e) {
     if (e.code !== "Space" || e.ctrlKey || e.metaKey || e.altKey) return;
     var tag = e.target && e.target.tagName;
     if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+    var main = document.getElementById("main");
+    var selects = main.querySelectorAll("select");
+    if (!selects.length) return;
     e.preventDefault();
-    showAllAnswers();
-  });
+    selects.forEach(function (sel) {
+      sel.value = sel.dataset.answer;
+      grade(sel);
+    });
+    var check = document.getElementById("check");
+    if (check) check.click();
+  }
+
+  document.addEventListener("keydown", onRevealKey);
+
+  bindModeToggle();
+
+  var set = new URLSearchParams(location.search).get("set") || "scmp-news";
+  if (SETS.indexOf(set) === -1) set = "scmp-news";
+
+  var script = document.createElement("script");
+  script.src = "sets/" + set + ".js";
+  script.onload = function () {
+    if (!window.MATCH_DATA) {
+      document.getElementById("main").innerHTML = "<p>Data not loaded.</p>";
+      return;
+    }
+    render(window.MATCH_DATA);
+  };
+  script.onerror = function () {
+    document.getElementById("main").innerHTML = "<p>Failed to load.</p>";
+  };
+  document.head.appendChild(script);
 })();
   </script>
 </body>

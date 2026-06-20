@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matching exercises</title>
+  <title>Matching</title>
   <style>
     :root {
       --bg: #f7f5f0;
@@ -14,9 +14,8 @@
       --border: #dcd6cb;
       --font: "Segoe UI", system-ui, sans-serif;
     }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
       font-family: var(--font);
       line-height: 1.5;
       color: var(--text);
@@ -29,85 +28,82 @@
       background: var(--accent);
       color: #fff;
       padding: 0.4rem 0.75rem;
-      min-height: 2.25rem;
     }
     .home-link {
+      width: 1.75rem;
+      height: 1.75rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 1.75rem;
-      height: 1.75rem;
-      font-size: 1rem;
-      line-height: 1;
       text-decoration: none;
       border-radius: 4px;
-      flex-shrink: 0;
     }
     .home-link:hover { background: rgba(255, 255, 255, 0.15); }
-    .header-title {
-      display: flex;
-      align-items: baseline;
-      gap: 0.45rem;
-      min-width: 0;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 0.92rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-    .header-sub {
-      font-size: 0.78rem;
-      opacity: 0.88;
-      white-space: nowrap;
-    }
+    header h1 { font-size: 0.92rem; font-weight: 600; }
+    .header-sub { font-size: 0.78rem; opacity: 0.88; margin-left: 0.4rem; }
     main {
-      max-width: 32rem;
+      max-width: 28rem;
       margin: 0 auto;
-      padding: 0.85rem 1rem 2rem;
+      padding: 0.85rem 0.75rem 2rem;
     }
-    ul { list-style: none; margin: 0; padding: 0; }
-    li { margin-bottom: 0.5rem; }
-    a.card {
+    ul { list-style: none; }
+    li { margin-bottom: 0.45rem; }
+    a {
       display: block;
-      padding: 0.7rem 0.85rem;
+      padding: 0.65rem 0.8rem;
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 8px;
       color: var(--accent);
       text-decoration: none;
       font-weight: 600;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
     }
-    a.card:hover {
-      border-color: var(--accent);
-      background: #f0f7fc;
-    }
-    a.card span {
+    a:hover { border-color: var(--accent); background: #f0f7fc; }
+    a span {
       display: block;
-      margin-top: 0.2rem;
+      margin-top: 0.15rem;
       font-weight: 400;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--muted);
     }
+    .group {
+      margin: 0.75rem 0 0.35rem;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .group:first-child { margin-top: 0; }
   </style>
 </head>
 <body>
   <header>
     <a class="home-link" href="../index.html" title="Home" aria-label="Home">&#127968;</a>
-    <div class="header-title">
-      <h1>Matching</h1>
-      <span class="header-sub">配對練習</span>
-    </div>
+    <h1>Matching</h1>
+    <span class="header-sub">配對</span>
   </header>
   <main>
+    <p style="font-size:0.82rem;color:var(--muted);margin-bottom:0.85rem;line-height:1.5">
+      Paragraphs are shuffled. Click highlighted words for 中文. Default mode shows all headline choices.
+    </p>
+    <p class="group">News</p>
     <ul>
-      <li>
-        <a class="card" href="headlines.html">
-          Headlines match
-          <span>5 headlines · 6 paragraphs · 標題配段落</span>
-        </a>
-      </li>
+      <li><a href="headlines.html?set=scmp-news">SCMP news<span>6 paragraphs</span></a></li>
+    </ul>
+    <p class="group">Archaeology</p>
+    <ul>
+      <li><a href="headlines.html?set=indonesia-sites">Indonesia<span>7 paragraphs</span></a></li>
+      <li><a href="headlines.html?set=mexico-tlaloc">Mexico — Tlaloc<span>7 paragraphs</span></a></li>
+      <li><a href="headlines.html?set=angkor-lidar">Angkor<span>5 paragraphs</span></a></li>
+    </ul>
+    <p class="group">Antarctica</p>
+    <ul>
+      <li><a href="headlines.html?set=antarctica-byrd">Byrd &amp; High Jump<span>5 paragraphs</span></a></li>
+      <li><a href="headlines.html?set=antarctica-whistleblowers">Whistleblowers<span>4 paragraphs</span></a></li>
+      <li><a href="headlines.html?set=antarctica-satellite">Satellite<span>5 paragraphs</span></a></li>
+      <li><a href="headlines.html?set=antarctica-lost-world">Lost world<span>4 paragraphs</span></a></li>
     </ul>
   </main>
 </body>

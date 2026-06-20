@@ -1,14 +1,9 @@
 /**
- * Headline ↔ paragraph matching.
- * Five headlines, six paragraphs (one distractor).
+ * SCMP news — headline ↔ paragraph matching.
  */
 window.MATCH_DATA = {
   title: "Match headlines to paragraphs",
   titleZh: "標題配段落",
-  instructions:
-    "Read each paragraph (A–F) and choose the headline it belongs to. More than one paragraph may match the same headline. Green = correct, red = try again.",
-  instructionsZh:
-    "睇每段 (A–F)，揀佢屬於邊個標題。兩段可以配同一個標題。綠色 = 啱，紅色 = 再試。",
   hatTypes: [
     { id: "red", emoji: "\uD83D\uDE0A", tag: "red hat", label: "personal" },
     { id: "white", emoji: "\uD83D\uDCCA", tag: "white hat", label: "factual" },
@@ -89,37 +84,37 @@ window.MATCH_DATA = {
       id: "A",
       answer: "privacy",
       text:
-        "This may sound like common sense. But it underscores the supervisory role of parents and teachers as the digital world reaches users of a younger age. From running their own social media accounts and chatting to AI chatbots to playing online games and attending virtual classes, children are expanding their digital footprints more than ever today. But many may not be aware of the privacy and security risks behind the fun and convenience of such activities. The privacy watchdog has rightly warned that when children share their personal data casually online, it may result in cyberbullying, doxxing or other misuses."
+        "This may sound like common sense. But it underscores the [[supervisory role|監督角色]] of [[parents and teachers|家長同老師]] as the digital world reaches users of a younger age. From running their own [[social media accounts|社交媒體帳戶]] and chatting to [[AI chatbots|人工智能聊天機器人]] to playing online games and attending virtual classes, children are expanding their [[digital footprints|數碼足跡]] more than ever today. But many may not be aware of the [[privacy and security risks|私隱同保安風險]] behind the fun and convenience of such activities. The [[privacy watchdog|私隱專員公署]] has rightly warned that when children share their [[personal data|個人資料]] casually online, it may result in [[cyberbullying|網絡欺凌]], [[doxxing|起底]] or other misuses."
     },
     {
       id: "B",
       answer: "teacher-assault",
       text:
-        "A Hong Kong woman who has accused her former school teacher of sexually assaulting her over a period of nearly five years has told the court she initially feared reporting the case because it would cause him serious repercussions. The defendant, Cheng Hon-sze, 32, appeared in court on Thursday where he pleaded not guilty to nine counts of indecent assault involving his former student. The alleged offences took place between November 2019 and June 2024, when she was aged between 14 and 19 years old."
+        "A Hong Kong woman who has accused her former school teacher of [[sexually assaulting|性侵犯]] her over a period of nearly five years has told the court she initially feared reporting the case because it would cause him serious repercussions. The defendant, Cheng Hon-sze, 32, appeared in court on Thursday where he [[pleaded not guilty|不認罪]] to nine counts of [[indecent assault|非禮]] involving his former student. The alleged offences took place between November 2019 and June 2024, when she was aged between 14 and 19 years old."
     },
     {
       id: "C",
       answer: "baby-danny",
       text:
-        "The father, Tsang Wai-bong, told the South China Morning Post that he had scheduled a meeting with government social workers on Saturday regarding the guardianship of his two-month-old son Danny, who has been placed in a care home. Authorities said on Thursday that DNA test results confirmed Tsang and his partner Kwan Pui-sin were Danny\u2019s parents, but more evidence was needed before the birth registration could be completed."
+        "The father, Tsang Wai-bong, told the South China Morning Post that he had scheduled a meeting with government social workers on Saturday regarding the [[guardianship|監護權]] of his two-month-old son Danny, who has been placed in a [[care home|育嬰院]]. Authorities said on Thursday that [[DNA test|DNA 測試]] results confirmed Tsang and his partner Kwan Pui-sin were Danny\u2019s parents, but more evidence was needed before the [[birth registration|出生登記]] could be completed."
     },
     {
       id: "D",
       answer: "intern-doctor",
       text:
-        "An intern doctor has been arrested by Hong Kong police on suspicion of accessing patient data without authorisation and fired from her hospital, according to an insider and medical authorities. A source said the 24-year-old woman was arrested on Friday evening after allegedly accessing a computer with dishonest intent at Caritas Medical Centre in Sham Shui Po. She was being detained for investigation, the insider added."
+        "An intern doctor has been arrested by Hong Kong police on suspicion of accessing [[patient data|病人資料]] [[without authorisation|未經授權]] and fired from her hospital, according to an insider and medical authorities. A source said the 24-year-old woman was arrested on Friday evening after allegedly accessing a computer with [[dishonest intent|不誠實意圖]] at Caritas Medical Centre in Sham Shui Po. She was being detained for investigation, the insider added."
     },
     {
       id: "E",
       answer: "privacy",
       text:
-        "The Office of the Privacy Commissioner for Personal Data on Thursday also released a guide for parents and teachers to safeguard children\u2019s online privacy amid increasing risks facing youngsters online."
+        "The [[Office of the Privacy Commissioner for Personal Data|個人資料私隱專員公署]] on Thursday also released a guide for parents and teachers to safeguard children\u2019s [[online privacy|網上私隱]] amid increasing risks facing youngsters online."
     },
     {
       id: "F",
       answer: "data-breach",
       text:
-        "Revealing the data breach, Privacy Commissioner for Personal Data Ada Chung Lai-ling said the private recreational club notified the office on October 31 last year that a ransomware attack had rendered its club management system inoperable by encrypting the information system\u2019s files stored on a server."
+        "Revealing the [[data breach|資料外洩]], Privacy Commissioner for Personal Data Ada Chung Lai-ling said the private recreational club notified the office on October 31 last year that a [[ransomware attack|勒索軟件攻擊]] had rendered its club management system inoperable by [[encrypting|加密]] the information system\u2019s files stored on a server."
     }
   ],
   writingTasks: [
