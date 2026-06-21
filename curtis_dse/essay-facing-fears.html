@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Essay — facing fears and coping with challenges (interactive)</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #0d5c4a;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.1rem; margin: 0 0 0.35rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.88rem; opacity: 0.95; }
+    nav { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    nav a {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+    }
+    nav a:hover { background: rgba(255,255,255,0.35); }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    .hint {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.65rem 0.85rem;
+      background: #eee8;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .module { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0 0 0.85rem;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #f0f7f4;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: #1565c0; }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .stats { font-size: 0.82rem; color: var(--muted); margin-top: 0.5rem; }
+    .task-bullets { margin: 0.4rem 0 0; padding-left: 1.15rem; font-size: 0.88rem; }
+    .task-bullets li { margin: 0.25rem 0; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .clo-note { font-size: 0.85rem; color: var(--muted); margin: 0 0 1rem; line-height: 1.5; }
+    .clo-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .clo-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .clo-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .clo-item h3 { margin: 0 0 0.4rem; font-size: 0.82rem; color: var(--accent); }
+    .clo-item ul { margin: 0; padding-left: 1.1rem; font-size: 0.84rem; }
+    .clo-item li { margin: 0.2rem 0; }
+    .clo-overall {
+      margin: 0.9rem 0 0;
+      font-size: 0.86rem;
+      padding: 0.55rem 0.7rem;
+      background: #f0f7f4;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+    .clo-advice {
+      margin-top: 1rem;
+      padding: 0.75rem 0.85rem;
+      background: #f0f7f4;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .clo-advice h3 { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--accent); }
+    .clo-advice ul { margin: 0; padding-left: 1.15rem; font-size: 0.86rem; }
+    .clo-advice li { margin: 0.3rem 0; }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.65rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 6px;
+      border-left: 4px solid transparent;
+    }
+    .comment-bilingual .comment-pair:last-child {
+      margin-bottom: 0;
+    }
+    .comment-pair-praise {
+      background: #e8f5e9;
+      border-left-color: #43a047;
+    }
+    .comment-pair-upgrade {
+      background: #fff8e1;
+      border-left-color: #f9a825;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue {
+      margin: 0 0 0.55rem;
+    }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child {
+      margin-bottom: 0;
+    }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Essay — facing fears and coping with challenges</h1>
+    <p>Part B style essay. Yellow = click original &harr; suggested wording.</p>
+    <nav>
+      <a href="index.html">Hub</a>
+    </nav>
+  </header>
+  <main>
+    <p class="hint">Only the <strong>yellow</strong> phrases are edits; the rest is the student&rsquo;s draft as written.</p>
+
+    <section class="box">
+      <h2>The task</h2>
+      <p class="module">Essay</p>
+      <div class="stimulus">
+        <p class="prompt" style="margin:0 0 0.5rem">A famous songwriter once said, &lsquo;Expose yourself to your deepest fear; after that, fear has no power.&rsquo;</p>
+        <p class="prompt" style="margin:0">How important is it for us to acknowledge the challenges we face and find ways to <strong>cope with</strong> them? Write an essay explaining your opinion with <strong>relevant examples from your personal experience</strong>.</p>
+      </div>
+      <ul class="task-bullets">
+        <li>State your opinion clearly in the introduction.</li>
+        <li>Support your view with personal examples. Link back to the quote where you can.</li>
+      </ul>
+      <p class="stats">Draft length (student), about <strong>480 words</strong>.</p>
+      <div class="word-list">
+        <strong>Useful words</strong>
+        <span style="font-size:0.86rem;line-height:1.5;color:var(--text)">acknowledge(承認), cope with(應對), challenge(挑戰), overcome(克服), confidence(自信), embrace(接納), opportunity(機會), grow(成長)</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Marking (CLO)</h2>
+      <p class="clo-note">HKDSE Paper 2 is assessed on <strong>Content</strong>, <strong>Language</strong>, and <strong>Organisation</strong>. The levels below are <strong>indicative only</strong> for study, not official HKEAA marks.</p>
+      <div class="clo-grid">
+        <div class="clo-item">
+          <h3>Content, Level 4</h3>
+          <ul>
+            <li>Clear opinion that acknowledging challenges and coping with them is <strong>very important</strong>.</li>
+            <li>Three <strong>personal examples</strong> (presentation, card club, maths exam) fit the task.</li>
+            <li>You return to the <strong>songwriter quote</strong> in the conclusion.</li>
+            <li>To push higher, make each example feel less like the same pattern (fear &rarr; action &rarr; success).</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Language, Level 3&ndash;4</h3>
+          <ul>
+            <li>Ideas are easy to follow, but watch <strong>verb forms</strong> (<em>grow/growing</em>, <em>will/would</em> in past stories).</li>
+            <li>Fix <strong>double comparatives</strong> (<em>more stronger</em>) and a few <strong>broken phrases</strong> in the conclusion.</li>
+            <li>Use task words like <em>cope with</em> naturally, not only <em>deal with</em>.</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Organisation, Level 4&ndash;5</h3>
+          <ul>
+            <li>Strong essay shape. Intro &rarr; <em>First</em> &rarr; <em>Also</em> &rarr; <em>Furthermore</em> &rarr; conclusion.</li>
+            <li>Each body paragraph has a topic idea plus one example.</li>
+            <li>Conclusion sums up your three benefits (stronger, confident, wiser).</li>
+          </ul>
+        </div>
+      </div>
+      <div class="clo-advice">
+        <h3>How to do better next time</h3>
+        <ul>
+          <li><strong>Vary your examples.</strong> You do not need three stories that all end with &ldquo;I succeeded.&rdquo; One could show a small step forward, not full success.</li>
+          <li><strong>Past-tense stories.</strong> In a personal example, use <em>I would forget</em>, not <em>I will forget</em>, when you look back on the past.</li>
+          <li><strong>One idea per sentence in the ending.</strong> The last body of the conclusion is doing too much in one line. Split it into two short sentences.</li>
+        </ul>
+      </div>
+      <p class="clo-overall"><strong>Overall (indicative).</strong> About <strong>Level 4</strong> for content and organisation. Language accuracy is the main limit on the band.</p>
+    </section>
+
+    <section class="box">
+      <h2>Student draft</h2>
+      <div class="letter">
+        <p>A famous songwriter said that, &ldquo;Expose yourself to your deepest fear; after that, fear has no power.&rdquo; I believe that this idea is true. It is important for us to acknowledge the challenges we face and <span class="flip" tabindex="0" role="button" data-w="find solutions to deal with them" data-r="find ways to cope with them">find solutions to deal with them</span>. When we face the fears, we become stronger and more confident. Ignoring problems or running away from them will only make us feel guilty and less brave. Facing challenges <span class="flip" tabindex="0" role="button" data-w="helps us growing stronger" data-r="helps us grow stronger">helps us growing stronger</span> and learning how to deal with difficulties in real life.</p>
+
+        <p>First, when we acknowledge our fears, we need to first understand <span class="flip" tabindex="0" role="button" data-w="what the main reason bother us" data-r="what mainly bothers us">what the main reason bother us</span>. Sometimes, we are afraid of <span class="flip" tabindex="0" role="button" data-w="getting a fail" data-r="failing">getting a fail</span>, losing a job, or communicating with new people. If we ignore these fears, they can become bigger and control us. But if we accept and embrace that we are afraid and try to understand the reason behind it, we can find ways to solve the problem. For example, I was very nervous before giving a presentation in front of the whole class. I was afraid <span class="flip" tabindex="0" role="button" data-w="I will forget" data-r="I would forget">I will forget</span> the script and make mistakes. But I told myself to face my fear and keep practicing my speech. When the day came, I was still nervous and sweating, but I was more prepared. In the end, I did my very best and presented successfully. This experience taught me that facing my fears made me feel <span class="flip" tabindex="0" role="button" data-w="more stronger" data-r="stronger">more stronger</span>.</p>
+
+        <p>Also, facing our fears can help us build confidence. When we try to overcome challenges, we realise that we are stronger than we think. For example, I used to be shy and afraid to make new friends. <span class="flip" tabindex="0" role="button" data-w="But in one day," data-r="One day,">But in one day,</span> I decided to join a card game club at school and communicate with new classmates. At first, I couldn&apos;t even move a step, but I ordered myself to speak and participate in playing cards. Slowly, I made new friends and felt happier as I got teammates to <span class="flip" tabindex="0" role="button" data-w="fight with me" data-r="play cards with me">fight with me</span>. This showed me that facing my fears helped me become more confident and happier in life.</p>
+
+        <p>Furthermore, dealing with challenges teaches us important lessons that cannot be learnt <span class="flip" tabindex="0" role="button" data-w="in classroom" data-r="in a classroom">in classroom</span>. There are problems <span class="flip" tabindex="0" role="button" data-w="everytime" data-r="every time">everytime</span> , but each time we face them, we learn new knowledge or experience. We learn to be brave, patient, and strong. For example, when I failed my math exam, I felt upset and disappointed. But I decided to study harder <span class="flip" tabindex="0" role="button" data-w="in what I weak in" data-r="in the topics I was weak in">in what I weak in</span> and ask for help from my teacher. <span class="flip" tabindex="0" role="button" data-w="The next test, I did much better." data-r="In the next test, I did much better.">The next test, I did much better.</span> This taught me that those challenges are opportunities to learn and let me grow.</p>
+
+        <p>In conclusion, it is very important for us to acknowledge our challenges and find ways to cope with them. When we face our fears, we become stronger, more confident, and wiser. Living in this world <span class="flip" tabindex="0" role="button" data-w="will always full with problems, but after we deal with them will make us to be a better person." data-r="will always be full of problems, but dealing with them makes us better people.">will always full with problems, but after we deal with them will make us to be a better person.</span> Just like the songwriter said, exposing ourselves to our deepest fears can take away their power. I believe that facing our fears is the best way to help us grow and succeed in life.</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">You answered the question fully and built a proper essay. The yellow bits are mostly grammar and word choice, not a rewrite of your ideas.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Task complete.</strong> You state a clear opinion and give three personal examples. That is exactly what the question asked for.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>符合題目。</strong> 你有清楚立場同三個個人例子，啱晒題目要求。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Essay structure.</strong> <em>First</em>, <em>Also</em>, <em>Furthermore</em> and <em>In conclusion</em> make your essay easy to follow.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>結構清楚。</strong> 用 <em>First</em>、<em>Also</em>、<em>Furthermore</em> 同 <em>In conclusion</em>，全篇好易跟。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Good examples.</strong> The presentation, card club and maths exam all feel real. You show fear, action, and what you learned.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>例子貼地。</strong> 演講、卡牌社同數學試都似真經歷。你有寫到驚、做咗咩、學到咩。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Vary the pattern.</strong> All three examples end with success. Next time, let one example show a small improvement only, so the essay feels less repetitive.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>例子唔好太似。</strong> 三個例子都係最後成功。下次可以有一個只寫小進步，咁就唔會好似重複。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Past stories.</strong> When you tell a past story, use <em>I would forget</em>, not <em>I will forget</em>. Watch <em>grow</em> after <em>help</em> and avoid <em>more stronger</em>.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>講過去事。</strong> 寫過去經歷用 <em>I would forget</em>，唔好用 <em>I will forget</em>。<em>help</em> 後面用 <em>grow</em>，唔好寫 <em>more stronger</em>。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Conclusion.</strong> Your return to the songwriter quote is strong. Fix the long sentence before it (<em>will always be full of problems</em>).</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>結尾。</strong> 呼應作曲家金句方向好好。執好前面嗰句長句（<em>will always be full of problems</em>）就更好。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+  function toggle(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.textContent = el.textContent === r ? w : r;
+    syncClass(el);
+  }
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(el);
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>
