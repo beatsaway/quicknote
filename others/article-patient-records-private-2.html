@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article — keeping patient records private (2)</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #e3f2fd;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: var(--accent); }
+    .word-list-compact {
+      display: block;
+      line-height: 1.5;
+      font-size: 0.82rem;
+    }
+    .task-bullets {
+      margin: 0.5rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .task-bullets li { margin: 0.3rem 0; }
+    .stats { font-size: 0.82rem; color: var(--muted); margin-top: 0.65rem; }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead {
+      margin: 0 0 0.5rem;
+      font-size: 0.88rem;
+    }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.65rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 6px;
+      border-left: 4px solid transparent;
+    }
+    .comment-bilingual .comment-pair:last-child {
+      margin-bottom: 0;
+    }
+    .comment-pair-praise {
+      background: #e8f5e9;
+      border-left-color: #43a047;
+    }
+    .comment-pair-upgrade {
+      background: #fff8e1;
+      border-left-color: #f9a825;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue {
+      margin: 0 0 0.55rem;
+    }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child {
+      margin-bottom: 0;
+    }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="box">
+      <h2>About this piece</h2>
+      <p class="topic">Article &mdash; keeping patient records private</p>
+      <div class="stimulus">
+        <p class="prompt" style="margin:0 0 0.5rem;color:var(--text)">Hospital records contain private health information. When <strong>medical data</strong> is not kept secure, serious harm can follow.</p>
+        <p class="prompt" style="margin:0;color:var(--text)">Write a short <strong>article</strong> (100&ndash;130 words). Give at least <strong>two examples</strong> of what could go wrong when medical data is leaked. Give <strong>two ideas</strong> for how hospitals or the government could protect medical data better.</p>
+      </div>
+      <ul class="task-bullets">
+        <li>Only the <strong>yellow</strong> word groups are suggested edits; the rest is the student&rsquo;s draft as written.</li>
+        <li>Success criteria. At least two examples of harm. Two ideas for hospitals and/or government.</li>
+      </ul>
+      <p class="stats">Draft length (student), about <strong>155 words</strong>. Trim to <strong>100&ndash;130 words</strong> by cutting the off-topic line and tightening each example.</p>
+      <div class="word-list">
+        <strong>Useful words (from the task)</strong> <span class="prompt" style="display:inline;font-size:0.8rem;color:var(--muted)">(English &middot; 粵語)</span>
+        <span class="word-list-compact">medical data(醫療數據), patient records(病人紀錄), leak(外洩), embarrassment(尷尬), discrimination(歧視), blackmail(勒索), lose trust(失去信任), stricter access rules(更嚴格查閱規定), staff training(員工培訓), encryption(加密)</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <p class="prompt fb-praise-lead">You answered the full task and spotted a strong angle early on.</p>
+          <ul>
+            <li>👍 <strong>Task complete.</strong> You give two harms (health privacy and stolen money) and two solutions (hospital and government).</li>
+            <li>👍 <strong>Strong opening idea.</strong> You notice staff may open records without permission. That fits this topic well.</li>
+            <li>👍 <strong>Signposting.</strong> <em>At first</em> and <em>Next</em> help the reader follow your examples.</li>
+            <li>👍 <strong>Public role.</strong> You remember the government as well as hospitals.</li>
+            <li>👍 <strong>Topic words.</strong> You use <em>medical data</em>, <em>authorization</em> and <em>accounts</em> naturally.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong>Word limit.</strong> Cut about 25 words. Delete <em>I think the only solution is to work harder then</em>. Keep one clear sentence per example.</li>
+            <li>💡 <strong>Grammar.</strong> Use <em>leaked and seen by others</em>, not <em>getting leaked out and make other people see it</em>.</li>
+            <li>💡 <strong>Two different harms.</strong> Harm 1 is health privacy. Harm 2 is ID theft by criminals. Do not say the doctor hacks the account.</li>
+            <li>💡 <strong>Hospital line.</strong> Rephrase <em>anti-scamming apps</em> in two short sentences with <em>encryption</em>, <em>stricter access rules</em> and staff who leak records.</li>
+            <li>💡 <strong>Develop harm.</strong> Say <em>why</em> a leak hurts, e.g. embarrassment at school, discrimination at work, or criminals using health facts to <em>blackmail</em> someone.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <p>Lots of people use <span class="flip" tabindex="0" role="button" data-w="e-hospital records" data-r="electronic patient records">e-hospital records</span> now as it is faster and easier to use. However, <span class="flip" tabindex="0" role="button" data-w="some doctors would access data without getting the patient&amp;apos;s authorization." data-r="staff may open patient records without permission if hospitals do not protect them.">some doctors would access data without getting the patient&apos;s authorization.</span> <span class="flip" tabindex="0" role="button" data-w="It always makes a lot of trouble." data-r="Leaks can cause embarrassment, discrimination and fraud.">It always makes a lot of trouble.</span></p>
+
+        <p>At first, <span class="flip" tabindex="0" role="button" data-w="the patient wouldn&amp;apos;t want their medical data getting leaked out and make other people see it." data-r="patients may not want their medical data leaked or seen by others.">the patient wouldn&apos;t want their medical data getting leaked out and make other people see it.</span> <span class="flip" tabindex="0" role="button" data-w="Even if it&amp;apos;s just normal diseases, they may not want anything (like their name) to be seen." data-r="Even for common illnesses like flu, they may not want details such as their name made public.">Even if it&apos;s just normal diseases, they may not want anything (like their name) to be seen.</span></p>
+
+        <p>Next, <span class="flip" tabindex="0" role="button" data-w="the patient&amp;apos;s account might be hacked by the doctor even though there&amp;apos;s just a little information about the patient." data-r="criminals could steal names or ID numbers from a record and hack online accounts.">the patient&apos;s account might be hacked by the doctor even though there&apos;s just a little information about the patient.</span> <span class="flip" tabindex="0" role="button" data-w="After a while, his/her money will be taken." data-r="Then their money may be stolen.">After a while, his/her money will be taken.</span> <span class="flip" tabindex="0" role="button" data-w="It is also very hard to get the money back." data-r="Victims may never get it back.">It is also very hard to get the money back.</span> <span class="flip" tabindex="0" role="button" data-w="I think the only solution is to work harder then." data-r="">I think the only solution is to work harder then.</span></p>
+
+        <p><span class="flip" tabindex="0" role="button" data-w="Hospitals can create some anti-scamming apps to prevent doctors from hacking into a patient&amp;apos;s account." data-r="Hospitals should use encryption and stricter access rules to block hackers. Any staff who leak patient records without permission should be dismissed and reported to the police.">Hospitals can create some anti-scamming apps to prevent doctors from hacking into a patient&apos;s account.</span> <span class="flip" tabindex="0" role="button" data-w="The government can call the citizens to focus while seeing a doctor." data-r="The government can remind the public to stay alert when sharing medical data.">The government can call the citizens to focus while seeing a doctor.</span> <span class="flip" tabindex="0" role="button" data-w="That means if they did anything that felt suspicious, they should be aware of the doctor." data-r="If a staff member acts suspiciously, patients should report it at once.">That means if they did anything that felt suspicious, they should be aware of the doctor.</span></p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">You already hit the task shape. Two ways data can hurt people, then hospital and government action. The yellow bits are polish and focus, not a full rewrite.</p>
+      <p class="prompt">Your opening about permission is a good angle. Keep that idea, but split harm 1 (health secrets) from harm 2 (ID theft by criminals). Cut the <em>work harder</em> line. It is not a hospital or government solution.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Task complete.</strong> You give two harms and two protectors (hospitals and government). That matches the brief.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>符合題目。</strong> 你有兩個危害同兩個對策（醫院同政府），啱晒題目要求。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Strong opening.</strong> You notice records opened without permission. That is a real problem and a good way to start the article.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>開首方向好。</strong> 你寫到未經批准查閱紀錄，呢個係真問題，做開首好貼題。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Clear structure.</strong> <em>At first</em> and <em>Next</em> signpost your examples. Readers can see harm 1 and harm 2 quickly.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>結構清楚。</strong> 用 <em>At first</em> 同 <em>Next</em> 分開兩個例子，讀者好快睇到危害一同危害二。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Word limit.</strong> You are over 130 words. Delete <em>I think the only solution is to work harder then</em>. Keep one short sentence per harm and one per solution.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>字數。</strong> 你超過 130 字。刪 <em>I think the only solution is to work harder then</em>。每個危害同每個對策各留一句短句就得。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Two different harms.</strong> Harm 1 is health privacy (classmates, employers). Harm 2 is criminals stealing ID details. Staff who break rules are a <em>solution</em> topic, not the hacker in example 2.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>兩個危害要分開。</strong> 危害一係健康私隱（同學、僱主）。危害二係罪犯偷身份資料。違規員工係對策，唔好寫成例子二嘅黑客。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Develop each harm.</strong> Say <em>why</em> a health leak hurts. Classmates might bully someone. Employers might <em>discriminate</em>. Criminals might <em>blackmail</em> a patient.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>理由寫具體。</strong> 解釋健康資料外洩點樣傷害人。例如同學欺凌、僱主 <em>discriminate</em>、罪犯 <em>blackmail</em>。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Hospital line.</strong> Try two short sentences. e.g. <em>Hospitals should use encryption and stricter access rules to block hackers.</em> <em>Any staff who leak patient records without permission should be dismissed and reported to the police.</em></p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>醫院對策。</strong> 可以分兩句。例如 <em>Hospitals should use encryption and stricter access rules to block hackers.</em> <em>Any staff who leak patient records without permission should be dismissed and reported to the police.</em></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    if (w === null) return;
+    var rAttr = el.getAttribute('data-r');
+    if (rAttr === null) return;
+    w = decode(w);
+    var r = decode(rAttr);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+  function toggle(el) {
+    var w = el.getAttribute('data-w');
+    if (w === null) return;
+    var rAttr = el.getAttribute('data-r');
+    if (rAttr === null) return;
+    w = decode(w);
+    var r = decode(rAttr);
+    el.textContent = el.textContent === r ? w : r;
+    syncClass(el);
+  }
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(el);
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>
