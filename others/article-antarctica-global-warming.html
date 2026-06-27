@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article &mdash; Antarctica and global warming</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #e3f2fd;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: var(--accent); }
+    .word-list-compact {
+      display: block;
+      line-height: 1.5;
+      font-size: 0.82rem;
+    }
+    .task-bullets {
+      margin: 0.5rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .task-bullets li { margin: 0.3rem 0; }
+    .stats { font-size: 0.82rem; color: var(--muted); margin-top: 0.65rem; }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .effect-label { font-weight: 600; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead {
+      margin: 0 0 0.5rem;
+      font-size: 0.88rem;
+    }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.65rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 6px;
+      border-left: 4px solid transparent;
+    }
+    .comment-bilingual .comment-pair:last-child {
+      margin-bottom: 0;
+    }
+    .comment-pair-praise {
+      background: #e8f5e9;
+      border-left-color: #43a047;
+    }
+    .comment-pair-upgrade {
+      background: #fff8e1;
+      border-left-color: #f9a825;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue {
+      margin: 0 0 0.55rem;
+    }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child {
+      margin-bottom: 0;
+    }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="box">
+      <h2>About this piece</h2>
+      <p class="topic">Article &mdash; Antarctica and global warming</p>
+      <div class="stimulus">
+        <p class="prompt" style="margin:0 0 0.5rem;color:var(--text)">Antarctica is changing as the planet gets warmer. The effects are not only about the ice.</p>
+        <p class="prompt" style="margin:0;color:var(--text)">Write a short article (<strong>100&ndash;130 words</strong>). Mention <strong>four things</strong> that could happen to Antarctica because of global warming.</p>
+      </div>
+      <ul class="task-bullets">
+        <li>Only the <strong>yellow</strong> word groups are suggested edits; the rest is the student&rsquo;s draft as written.</li>
+        <li>Success criteria. One political effect. One ecological effect. One economic effect. One scientific effect.</li>
+      </ul>
+      <p class="stats">Draft length (student), about <strong>215 words</strong>.</p>
+      <div class="word-list">
+        <strong>Useful words (from the task)</strong> <span class="prompt" style="display:inline;font-size:0.8rem;color:var(--muted)">(English &middot; 粵語)</span>
+        <span class="word-list-compact">global warming(全球暖化), ice sheet(冰蓋), sea level(海平面), ecosystem(生態系統), treaty(條約), research funding(研究資金), tourism(旅遊業), habitat(棲息地), vulnerable(脆弱), climate data(氣候數據)</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <p class="prompt fb-praise-lead">You cover all four effects with strong examples.</p>
+          <ul>
+            <li>👍 <strong>Task complete.</strong> You give political, ecological, economic and scientific effects.</li>
+            <li>👍 <strong>Clear labels.</strong> Each effect is easy to spot.</li>
+            <li>👍 <strong>Good examples.</strong> You mention the <em>Antarctic Treaty</em>, <em>krill</em>, coastal cities and old ice for scientists.</li>
+            <li>👍 <strong>Economic effect.</strong> You already explain rising seas threatening coastal cities and more visitors when the weather is warmer.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong>Task vocabulary.</strong> Work in words like <em>global warming</em>, <em>ice sheet</em>, <em>habitat</em>, <em>climate data</em> and <em>vulnerable</em>.</li>
+            <li>💡 <strong>Sharper ending.</strong> Your last lines repeat <em>Antarctica</em> and <em>future</em>. One short conclusion is enough.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <p><span class="flip" tabindex="0" role="button" data-w="As the Earth gets hotter Antarctica is going to change in ways that will affect a lot of other places too." data-r="As global warming continues, Antarctica is changing in ways that will affect the whole planet.">As the Earth gets hotter Antarctica is going to change in ways that will affect a lot of other places too.</span></p>
+
+        <p><span class="effect-label">Political Effect:</span> When the ice in Antarctica melts it will be easier for ships to travel through and we will find resources but this will also cause problems between countries that want to control the land and make decisions about it under the Antarctic Treaty.</p>
+
+        <p><span class="effect-label">Ecological Effect:</span> The ice in the ocean around Antarctica is getting smaller and this is <span class="flip" tabindex="0" role="button" data-w="hurting the homes of animals called krill, which is a big problem for all the other animals that live in the ocean like penguins and whales." data-r="damaging krill habitats in the ecosystem, which threatens penguins, whales and other ocean life.">hurting the homes of animals called krill, which is a big problem for all the other animals that live in the ocean like penguins and whales.</span></p>
+
+        <p><span class="effect-label">Economic Effect:</span> <span class="flip" tabindex="0" role="button" data-w="Antarctica melting is causing the sea to rise." data-r="Melting ice sheets are raising sea levels.">Antarctica melting is causing the sea to rise.</span> This is a threat to cities and towns near the ocean all around the world but at the same time more people will want to visit Antarctica because the weather will be warmer and they can travel there for a longer time.</p>
+
+        <p><span class="effect-label">Scientific Effect:</span> The big pieces of ice in Antarctica are melting fast and this is <span class="flip" tabindex="0" role="button" data-w="destroying old ice that had important information about the climate, which is bad for scientists who want to learn about the past." data-r="destroying ancient ice that holds vital climate data, which makes past climate research harder.">destroying old ice that had important information about the climate, which is bad for scientists who want to learn about the past.</span></p>
+
+        <p><span class="flip" tabindex="0" role="button" data-w="All these changes show that Antarctica is in trouble and it is very important, for the future of our planet, Antarctica. Antarctica plays a role in the future of the Earth." data-r="These changes show that a vulnerable Antarctica matters for the whole planet&amp;apos;s future.">All these changes show that Antarctica is in trouble and it is very important, for the future of our planet, Antarctica. Antarctica plays a role in the future of the Earth.</span></p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">You already meet the task shape with four strong effects. The yellow bits help you use task vocabulary and finish with one clear sentence.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Task complete.</strong> You cover political, ecological, economic and scientific effects. A marker can see you followed the question.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>符合題型。</strong> 政治、生態、經濟、科學四個效果都有，跟足題目。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Strong examples.</strong> The <em>Antarctic Treaty</em>, krill and penguins, coastal cities and old ice for scientists are all relevant and interesting.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>例子好。</strong> <em>Antarctic Treaty</em>、磷蝦同企鵝、沿海城市、古老冰層都貼題。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Economic effect.</strong> In your paragraph you already explain rising seas as a threat to coastal cities and warmer weather bringing more visitors to Antarctica. Both points are clear.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>經濟效果。</strong> 你段落裏已經寫海升威胁沿海城市，同天氣暖會多遊客去南極，兩點都清楚。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Political insight.</strong> You link melting ice to ships, resources and countries arguing under the <em>Antarctic Treaty</em>. That shows you see more than wildlife and weather.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>政治角度。</strong> 你寫到冰融、航運、資源同國家喺 <em>Antarctic Treaty</em> 下爭議，唔止講動植物同天氣。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Task vocabulary.</strong> Where you can, swap general words for task words, e.g. <em>global warming</em>, <em>ice sheet</em>, <em>habitat</em>, <em>ecosystem</em>, <em>climate data</em>, <em>tourism</em> and <em>vulnerable</em>.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>題目詞彙。</strong> 可改用 <em>global warming</em>、<em>ice sheet</em>、<em>habitat</em>、<em>ecosystem</em>、<em>climate data</em>、<em>tourism</em>、<em>vulnerable</em>。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Ending.</strong> The last lines repeat <em>Antarctica</em> and <em>future</em> three times. One short conclusion is stronger, e.g. a <em>vulnerable</em> Antarctica matters for the whole planet.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>結尾。</strong> 最後重複 <em>Antarctica</em> 同 <em>future</em> 太多次。一句總結就夠，例如脆弱嘅南極對成個地球好重要。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+  function toggle(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.textContent = el.textContent === r ? w : r;
+    syncClass(el);
+  }
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(el);
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>

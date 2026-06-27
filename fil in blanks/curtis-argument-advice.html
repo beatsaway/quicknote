@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curtis — argument &amp; advice vocab | 議論文書信詞彙</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --panel: #fff;
+      --accent: #0d5c4a;
+      --border: #dcd6cb;
+      --ok: #f1f8f4;
+      --ok-b: #2e7d32;
+      --bad: #fff5f5;
+      --bad-b: #c62828;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      line-height: 1.55;
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.05rem; margin: 0 0 0.25rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.86rem; opacity: 0.95; }
+    .header-nav { margin-top: 0.55rem; font-size: 0.85rem; display: flex; flex-wrap: wrap; gap: 0.65rem; }
+    .header-nav a { color: #fff; opacity: 0.9; }
+    .header-nav a:hover { opacity: 1; }
+    main { padding: 1.25rem 1.25rem 2.5rem; max-width: 44rem; margin: 0 auto; }
+    .intro { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .hint-note {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      padding: 0.55rem 0.75rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .hint-note kbd {
+      font: inherit;
+      font-size: 0.9em;
+      padding: 1px 6px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      background: #f5f5f5;
+    }
+    .vocab-box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1rem 1rem;
+      margin-bottom: 1rem;
+    }
+    .vocab-box h2 {
+      margin: 0 0 0.65rem;
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+    .vocab-box h2 .zh {
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .vocab-grid {
+      display: grid;
+      gap: 0.55rem;
+    }
+    @media (min-width: 36rem) {
+      .vocab-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .vocab-cat {
+      padding: 0.55rem 0.65rem;
+      background: #f0f7f4;
+      border-radius: 8px;
+      font-size: 0.82rem;
+    }
+    .vocab-cat h3 {
+      margin: 0 0 0.35rem;
+      font-size: 0.78rem;
+      color: var(--accent);
+    }
+    .vocab-cat .cat-yue {
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+    .vocab-cat ul { margin: 0; padding-left: 1rem; }
+    .vocab-cat li { margin: 0.15rem 0; }
+    .section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.1rem 1.15rem;
+      margin-bottom: 1rem;
+    }
+    .section-head {
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      margin-bottom: 0.65rem;
+    }
+    .section-head .zh {
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+    .passage {
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+    .passage-p {
+      margin: 0 0 0.9rem;
+    }
+    .passage-p:last-child {
+      margin-bottom: 0;
+    }
+    .blank-wrap {
+      display: inline-block;
+      vertical-align: baseline;
+      margin: 0 2px;
+    }
+    .blank-select {
+      font: inherit;
+      font-size: 0.88rem;
+      max-width: 12em;
+      padding: 2px 4px;
+      border: 1px solid #bbb;
+      border-radius: 4px;
+      background: #fafafa;
+      vertical-align: baseline;
+    }
+    .blank-select.wide { max-width: 14.5em; }
+    .blank-select:hover,
+    .blank-select:focus {
+      border-color: var(--accent);
+      outline: none;
+      background: #fff;
+    }
+    .blank-select.correct {
+      border-color: var(--ok-b);
+      background: var(--ok);
+    }
+    .blank-select.incorrect {
+      border-color: var(--bad-b);
+      background: var(--bad);
+    }
+    .actions {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    button {
+      font-family: inherit;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.85rem;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+    }
+    button.secondary { background: #fff; color: var(--accent); }
+    .score { font-size: 0.88rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="hdr-title">Curtis — argument &amp; advice vocab</h1>
+    <p id="hdr-sub"></p>
+    <div class="header-nav">
+      <a href="index.html">← Fill-in-the-blanks</a>
+      <a href="../curtis_dse/writing-practice-argument-advice.html">Writing tasks</a>
+    </div>
+  </header>
+  <main id="main"></main>
+  <script src="curtis-argument-advice.js"></script>
+  <script>
+(function () {
+  var data = window.CURTIS_ARGUMENT_ADVICE;
+  var main = document.getElementById("main");
+  if (!data) {
+    main.innerHTML = "<p>Data not loaded.</p>";
+    return;
+  }
+
+  document.getElementById("hdr-title").textContent = data.title;
+  document.getElementById("hdr-sub").textContent =
+    (data.titleZh || "") + (data.instructionsZh ? " · " + data.instructionsZh : "");
+
+  function escapeHtml(s) {
+    var d = document.createElement("div");
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  function normalize(s) {
+    return String(s || "").trim().replace(/\s+/g, " ").toLowerCase();
+  }
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i];
+      a[i] = a[j];
+      a[j] = t;
+    }
+    return a;
+  }
+
+  function optionsForBlank(correct, section) {
+    var pool = (section.distractors || []).slice();
+    (section.answers || []).forEach(function (w) {
+      if (pool.indexOf(w) === -1) pool.push(w);
+    });
+    var out = [correct];
+    var seen = {};
+    seen[normalize(correct)] = true;
+
+    shuffle(pool).forEach(function (w) {
+      var key = normalize(w);
+      if (seen[key] || out.length >= 4) return;
+      if (normalize(w) === normalize(correct)) return;
+      seen[key] = true;
+      out.push(w);
+    });
+
+    while (out.length < 4 && pool.length) {
+      shuffle(pool).some(function (w) {
+        var key = normalize(w);
+        if (!seen[key]) {
+          seen[key] = true;
+          out.push(w);
+          return true;
+        }
+        return false;
+      });
+      if (out.length >= 4) break;
+    }
+
+    return shuffle(out);
+  }
+
+  function buildSelect(correct, options, sectionIdx, blankIdx) {
+    var wide = correct.length > 14 ? " wide" : "";
+    var html = '<span class="blank-wrap"><select class="blank-select' + wide + '" aria-label="Choose word"' +
+      ' data-answer="' + escapeHtml(correct) + '"' +
+      ' data-section="' + sectionIdx + '" data-index="' + blankIdx + '">';
+    html += '<option value="">—</option>';
+    options.forEach(function (opt) {
+      html += '<option value="' + escapeHtml(opt) + '">' + escapeHtml(opt) + "</option>";
+    });
+    html += "</select></span>";
+    return html;
+  }
+
+  function renderPassage(text, section, sectionIdx, blankCounter) {
+    var html = "";
+    var remaining = text;
+    var answers = section.answers || [];
+
+    while (remaining.length) {
+      var gap = remaining.indexOf("_____");
+      if (gap === -1) {
+        html += escapeHtml(remaining);
+        break;
+      }
+      html += escapeHtml(remaining.slice(0, gap));
+      remaining = remaining.slice(gap + 5);
+
+      var hintMatch = remaining.match(/^\s*\(([^)]+)\)/);
+      if (hintMatch) remaining = remaining.slice(hintMatch[0].length);
+
+      var correct = answers[blankCounter.n] || "";
+      html += buildSelect(correct, optionsForBlank(correct, section), sectionIdx, blankCounter.n);
+      blankCounter.n += 1;
+    }
+    return html;
+  }
+
+  function renderSectionBody(text, section, sectionIdx) {
+    var paras = String(text || "").split(/\n\n+/);
+    var blankCounter = { n: 0 };
+    return paras
+      .map(function (para) {
+        return '<p class="passage-p">' + renderPassage(para.trim(), section, sectionIdx, blankCounter) + "</p>";
+      })
+      .join("");
+  }
+
+  function gradeSelect(sel) {
+    sel.classList.remove("correct", "incorrect");
+    if (!sel.value) return;
+    if (normalize(sel.value) === normalize(sel.getAttribute("data-answer") || "")) {
+      sel.classList.add("correct");
+    } else {
+      sel.classList.add("incorrect");
+    }
+  }
+
+  function gradeAll() {
+    var correct = 0;
+    var total = 0;
+    document.querySelectorAll(".blank-select").forEach(function (sel) {
+      total++;
+      gradeSelect(sel);
+      if (sel.classList.contains("correct")) correct++;
+    });
+    var el = document.getElementById("score");
+    if (el) el.textContent = correct + " / " + total + " correct";
+  }
+
+  function clearAll() {
+    document.querySelectorAll(".blank-select").forEach(function (sel) {
+      sel.value = "";
+      sel.classList.remove("correct", "incorrect");
+    });
+    var el = document.getElementById("score");
+    if (el) el.textContent = "";
+  }
+
+  function showAllAnswers() {
+    document.querySelectorAll(".blank-select").forEach(function (sel) {
+      var expected = sel.getAttribute("data-answer") || "";
+      if (!expected) return;
+      var has = false;
+      for (var i = 0; i < sel.options.length; i++) {
+        if (normalize(sel.options[i].value) === normalize(expected)) {
+          has = true;
+          break;
+        }
+      }
+      if (!has) {
+        var opt = document.createElement("option");
+        opt.value = expected;
+        opt.textContent = expected;
+        sel.appendChild(opt);
+      }
+      sel.value = expected;
+      gradeSelect(sel);
+    });
+    gradeAll();
+  }
+
+  function renderVocabBank() {
+    var bank = data.vocabBank;
+    if (!bank || !bank.categories || !bank.categories.length) return "";
+    var html = '<section class="vocab-box"><h2>' + escapeHtml(bank.title || "Key vocabulary");
+    if (bank.titleZh) {
+      html += ' <span class="zh">· ' + escapeHtml(bank.titleZh) + "</span>";
+    }
+    html += "</h2><div class=\"vocab-grid\">";
+    bank.categories.forEach(function (cat) {
+      html += '<div class="vocab-cat"><h3>' + escapeHtml(cat.category);
+      if (cat.categoryYue) {
+        html += ' <span class="cat-yue">(' + escapeHtml(cat.categoryYue) + ")</span>";
+      }
+      html += "</h3><ul>";
+      (cat.words || []).forEach(function (w) {
+        html += "<li>" + escapeHtml(w.text) + "</li>";
+      });
+      html += "</ul></div>";
+    });
+    html += "</div></section>";
+    return html;
+  }
+
+  var html =
+    '<p class="intro">' + escapeHtml(data.instructions) + "</p>" +
+    '<p class="hint-note">6 sections = 6 DSE writing tasks. Each section has full demo paragraphs (intro, body, conclusion). Press <kbd>Space</kbd> to reveal all answers.</p>' +
+    renderVocabBank();
+
+  data.sections.forEach(function (sec, si) {
+    html += '<section class="section">';
+    html += '<h2 class="section-head">' + escapeHtml(sec.label);
+    if (sec.labelZh) {
+      html += ' <span class="zh">(' + escapeHtml(sec.labelZh) + ")</span>";
+    }
+    html += "</h2>";
+    html += '<div class="passage">' + renderSectionBody(sec.text, sec, si) + "</div>";
+    html += "</section>";
+  });
+
+  html +=
+    '<div class="actions">' +
+    '<button type="button" id="check-btn">Check answers</button>' +
+    '<button type="button" class="secondary" id="clear-btn">Clear</button>' +
+    '<span class="score" id="score"></span>' +
+    "</div>";
+
+  main.innerHTML = html;
+
+  document.querySelectorAll(".blank-select").forEach(function (sel) {
+    sel.addEventListener("change", function () { gradeSelect(sel); });
+  });
+
+  document.getElementById("check-btn").addEventListener("click", gradeAll);
+  document.getElementById("clear-btn").addEventListener("click", clearAll);
+
+  document.addEventListener("keydown", function (e) {
+    if (e.code !== "Space" || e.ctrlKey || e.metaKey || e.altKey) return;
+    var tag = e.target && e.target.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+    e.preventDefault();
+    showAllAnswers();
+  });
+})();
+  </script>
+</body>
+</html>

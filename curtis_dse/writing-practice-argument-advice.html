@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writing practice — argument &amp; advice letters</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --panel: #fff;
+      --accent: #0d5c4a;
+      --accent-soft: #f0f7f4;
+      --accent-2: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.1rem; margin: 0 0 0.35rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.88rem; opacity: 0.95; }
+    nav { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    nav a {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+    }
+    nav a:hover { background: rgba(255,255,255,0.35); }
+    main { max-width: 42rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    .hint {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.65rem 0.85rem;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    .toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+    .toc a {
+      font-size: 0.82rem;
+      text-decoration: none;
+      color: var(--accent);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.25rem 0.65rem;
+    }
+    .toc a:hover { border-color: var(--accent); background: var(--accent-soft); }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+    section.box h3 {
+      margin: 0.85rem 0 0.45rem;
+      font-size: 0.92rem;
+      color: var(--accent-2);
+    }
+    section.box h3:first-of-type { margin-top: 0; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.75rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .focus-list {
+      margin: 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+    }
+    .focus-list li { margin: 0.3rem 0; }
+    .phrase-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 640px) {
+      .phrase-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .phrase-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      font-size: 0.86rem;
+    }
+    .phrase-block strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 0.8rem;
+      color: var(--accent);
+    }
+    .phrase-block ul {
+      margin: 0;
+      padding-left: 1.05rem;
+    }
+    .phrase-block li { margin: 0.22rem 0; }
+    .task {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      background: #fff;
+    }
+    .task:last-child { margin-bottom: 0; }
+    .task-head {
+      padding: 0.75rem 0.9rem;
+      background: var(--accent-soft);
+      border-bottom: 1px solid var(--border);
+    }
+    .task-head h3 {
+      margin: 0 0 0.25rem;
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+    .task-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .task-body { padding: 0.85rem 0.9rem 1rem; }
+    .stimulus {
+      margin: 0 0 0.75rem;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: var(--accent-soft);
+      font-size: 0.9rem;
+    }
+    .vocab {
+      margin: 0 0 0.75rem;
+      padding: 0.6rem 0.75rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      line-height: 1.55;
+    }
+    .vocab strong {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-size: 0.78rem;
+      color: var(--accent-2);
+    }
+    .vocab-note {
+      display: block;
+      font-size: 0.74rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+    .starters {
+      display: grid;
+      gap: 0.55rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 640px) {
+      .starters { grid-template-columns: 1fr 1fr; }
+    }
+    .starter-col {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.55rem 0.65rem;
+      background: #fafafa;
+      font-size: 0.84rem;
+    }
+    .starter-col strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.76rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .starter-col ul { margin: 0; padding-left: 1.05rem; }
+    .starter-col li { margin: 0.18rem 0; }
+    .grammar-tip {
+      margin: 0;
+      padding: 0.65rem 0.8rem;
+      background: #fce4ec;
+      border-radius: 8px;
+      border-left: 4px solid #c2185b;
+      font-size: 0.86rem;
+    }
+    .grammar-tip strong { color: #880e4f; }
+    .plan-box {
+      margin-top: 0.75rem;
+      padding: 0.65rem 0.75rem;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      font-size: 0.84rem;
+      color: var(--muted);
+      background: #fff;
+    }
+    .plan-box strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: var(--text);
+    }
+    .task-timer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem;
+      margin: 0 0 0.75rem;
+      padding: 0.55rem 0.65rem;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.84rem;
+    }
+    .task-timer-label {
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .task-timer-hint {
+      flex: 1 1 100%;
+      margin: 0;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .task-timer-display {
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+      font-size: 1.15rem;
+      min-width: 3.2rem;
+      color: var(--text);
+    }
+    .task-timer.running .task-timer-display {
+      color: var(--accent);
+    }
+    .task-timer.done {
+      border-color: #f9a825;
+      background: #fff8e1;
+    }
+    .task-timer.done .task-timer-display {
+      color: #e65100;
+    }
+    .task-timer button {
+      font-family: inherit;
+      font-size: 0.8rem;
+      padding: 0.28rem 0.6rem;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+    }
+    .task-timer button:hover:not(:disabled) {
+      filter: brightness(1.05);
+    }
+    .task-timer button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .task-timer button.timer-reset {
+      background: #fff;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Writing practice — argument &amp; advice letters</h1>
+    <p>DSE Paper 2 Part B. Pick a task, use the vocab and starters, then write on paper or in a doc.</p>
+    <nav>
+      <a href="index.html">Hub</a>
+      <a href="../fil in blanks/curtis-argument-advice.html">Vocab fill-in (6)</a>
+      <a href="../fil in blanks/level-5-vocab.html">Level 5 word bank</a>
+      <a href="essay-facing-fears.html">Your fear essay</a>
+      <a href="2018-advice-letter-jc.html">Advice letter (J.C.)</a>
+    </nav>
+  </header>
+  <main>
+    <p class="hint"><strong>For Curtis.</strong> Your ideas and structure are often good. These tasks train <strong>argument</strong> and <strong>advice letters</strong>. Each task lists <strong>Level 5+ vocab</strong> to lift your language band. Use the sentence starters until they feel natural, then write in your own words. Do the <a href="../fil in blanks/curtis-argument-advice.html">vocab fill-in blanks</a> first to learn the words in context.</p>
+
+    <div class="toc">
+      <a href="#focus">Your focus areas</a>
+      <a href="#toolkit">Shared toolkit</a>
+      <a href="#grammar">Grammar reminders</a>
+      <a href="#arg-tasks">Argument tasks</a>
+      <a href="#advice-tasks">Advice letters</a>
+      <a href="#suggest-tasks">Suggestion letters</a>
+    </div>
+
+    <section class="box" id="focus">
+      <h2>What to improve (from your writing so far)</h2>
+      <ul class="focus-list">
+        <li><strong>Argument essays.</strong> Give two or three reasons, not three copies of the same story. Vary your examples (one success, one small step, one lesson learned).</li>
+        <li><strong>Past examples.</strong> When you tell a personal story, use past tense and <em>would</em> for feelings in the past (<em>I was afraid I would forget</em>).</li>
+        <li><strong>Advice letters.</strong> Start with empathy, then give <strong>2&ndash;3 clear steps</strong>, then encourage. Use the right sign-off (<em>Yours sincerely</em> if you know the name).</li>
+        <li><strong>One idea per sentence.</strong> Especially in introductions and conclusions. Short sentences are fine.</li>
+      </ul>
+    </section>
+
+    <section class="box" id="toolkit">
+      <h2>Shared toolkit (Level 5+)</h2>
+      <div class="phrase-grid">
+        <div class="phrase-block">
+          <strong>Signposting (argument)</strong>
+          <ul>
+            <li><em>First and foremost,</em> &hellip;</li>
+            <li><em>In addition,</em> &hellip; / <em>Another point is that</em> &hellip;</li>
+            <li><em>Moreover,</em> &hellip; / <em>What is more,</em> &hellip;</li>
+            <li><em>Nevertheless,</em> &hellip; / <em>Admittedly,</em> &hellip;</li>
+            <li><em>In conclusion,</em> &hellip; / <em>To sum up,</em> &hellip;</li>
+          </ul>
+        </div>
+        <div class="phrase-block">
+          <strong>Opinion openers</strong>
+          <ul>
+            <li><em>I am firmly convinced that</em> &hellip;</li>
+            <li><em>There is no doubt that</em> &hellip;</li>
+            <li><em>It is imperative that</em> &hellip;</li>
+            <li><em>From my perspective,</em> &hellip;</li>
+          </ul>
+        </div>
+        <div class="phrase-block">
+          <strong>Cause &amp; effect</strong>
+          <ul>
+            <li><em>This may give rise to</em> &hellip;</li>
+            <li><em>Consequently,</em> &hellip; / <em>As a result,</em> &hellip;</li>
+            <li><em>This can undermine</em> &hellip; / <em>This fosters</em> &hellip;</li>
+            <li><em>For instance,</em> &hellip; / <em>A case in point is</em> &hellip;</li>
+          </ul>
+        </div>
+        <div class="phrase-block">
+          <strong>Advice letter tone</strong>
+          <ul>
+            <li><em>Thank you for sharing your problem.</em></li>
+            <li><em>I can understand why you feel overwhelmed.</em></li>
+            <li><em>To begin with, I would strongly encourage you to</em> &hellip;</li>
+            <li><em>It is advisable to</em> &hellip; / <em>A viable option is to</em> &hellip;</li>
+            <li><em>Remember that</em> &hellip; <em>I wish you all the best.</em></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box" id="grammar">
+      <h2>Grammar reminders (check every time)</h2>
+      <p class="grammar-tip"><strong>After <em>help</em>, use base verb.</strong> <em>It helps us grow</em>, not <em>helps us growing</em>.<br><strong>No double comparatives.</strong> <em>stronger</em> or <em>more confident</em>, not <em>more stronger</em>.<br><strong>Past story.</strong> <em>I was afraid I would fail</em>, not <em>I will fail</em>.<br><strong>Full of.</strong> <em>full of problems</em>, not <em>full with problems</em>.</p>
+    </section>
+
+    <section class="box" id="arg-tasks">
+      <h2>Argument writing tasks</h2>
+      <p class="prompt">Aim for about <strong>350&ndash;450 words</strong>. State your opinion in paragraph 1. Give at least <strong>two reasons</strong> with examples. Use at least <strong>4 Level 5+ words</strong> from each task list.</p>
+
+      <article class="task" id="arg-1">
+        <div class="task-head">
+          <h3>Task A1. Should schools ban smartphones in class?</h3>
+          <p class="task-meta">Essay &middot; agree or disagree &middot; school life</p>
+        </div>
+        <div class="task-body">
+          <div class="stimulus">Some teachers want a full ban on smartphones during lessons. Others say students should learn to use phones responsibly. <strong>Do you agree that smartphones should be banned in class?</strong> Explain your view with reasons and examples.</div>
+          <div class="vocab">
+            <strong>Level 5+ vocab</strong>
+            <span class="vocab-note">English &middot; 粵語. Try to use at least 4 in your draft.</span>
+            detrimental(有害), undermine(削弱), impose(實施), foster(培養), mitigate(減輕), stringent(嚴格), cognitive engagement(認知投入), legitimate concern(合理顧慮)
+          </div>
+          <div class="starters">
+            <div class="starter-col">
+              <strong>Intro</strong>
+              <ul>
+                <li><em>I am firmly convinced that smartphones should / should not be banned in class because</em> &hellip;</li>
+                <li><em>Although phones are useful, constant notifications can undermine learning during lessons.</em></li>
+              </ul>
+            </div>
+            <div class="starter-col">
+              <strong>Reason 1 + example</strong>
+              <ul>
+                <li><em>First and foremost, phones are detrimental to concentration. When students check messages, they lose cognitive engagement with the lesson.</em></li>
+                <li><em>For instance, in my Form 4 class, I once lost track of a maths explanation because I glanced at my phone.</em></li>
+              </ul>
+            </div>
+            <div class="starter-col">
+              <strong>Reason 2 + example</strong>
+              <ul>
+                <li><em>In addition, a stringent ban can foster self-discipline.</em></li>
+                <li><em>When our school imposed phone-free lessons for one month, many classmates participated more actively in discussions.</em></li>
+              </ul>
+            </div>
+            <div class="starter-col">
+              <strong>Other view + conclusion</strong>
+              <ul>
+                <li><em>Admittedly, some people raise the legitimate concern that students need phones for emergencies. Nevertheless, devices can remain switched off in bags.</em></li>
+                <li><em>In conclusion, a clear policy would mitigate distraction and protect learning.</em></li>
+              </ul>
+            </div>
+          </div>
+          <div class="plan-box"><strong>Quick plan</strong> Use the timer above. Opinion: &hellip; Reason 1: &hellip; Example: &hellip; Reason 2: &hellip; Example: &hellip; Other view: &hellip;</div>
+        </div>
+      </article>
+
+      <article class="task" id="arg-2">
+        <div class="task-head">
+          <h3>Task A2. Is part-time work good for senior students?</h3>
+          <p class="task-meta">Essay &middot; pros and cons &middot; social issues</p>
+        </div>
+        <div class="task-body">
+          <div class="stimulus">More Hong Kong students take part-time jobs. Some parents worry it hurts exam results. Others think it prepares young people for adult life. <strong>Do you think part-time work is a good idea for senior secondary students?</strong></div>
+          <div class="vocab">
+            <strong>Level 5+ vocab</strong>
+            <span class="vocab-note">English &middot; 粵語. Try to use at least 4 in your draft.</span>
+            strike a balance(取得平衡), cultivate(培養), financial autonomy(財務自主), academic pursuits(學業追求), instil(灌輸), viable(可行的), alleviate(減輕), detrimental(不利的)
+          </div>
+          <div class="starters">
+            <div class="starter-col">
+              <strong>Intro</strong>
+              <ul>
+                <li><em>From my perspective, part-time work can be beneficial for senior students if they strike a balance between earning and studying.</em></li>
+              </ul>
+            </div>
+            <div class="starter-col">
+              <strong>Reason 1</strong>
+              <ul>
+                <li><em>First of all, a part-time job cultivates time management. Students learn to finish homework before a shift.</em></li>
+                <li><em>My cousin works in a café on Saturdays. She plans her revision carefully so her academic pursuits do not suffer.</em></li>
+              </ul>
+            </div>
+            <div class="starter-col">
+              <strong>Reason 2</strong>
+              <ul>
+                <li><em>Another point is that students gain financial autonomy and real-world confidence by serving customers.</em></li>
+              </ul>
+            </div>
+            <div class="starter-col">
+              <strong>Limit + conclusion</strong>
+              <ul>
+                <li><em>Nevertheless, excessive hours can be detrimental. Schools and parents should set a viable limit, such as eight hours a week.</em></li>
+                <li><em>To sum up, part-time work is worthwhile when it instils responsibility without overwhelming students.</em></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="task" id="arg-3">
+        <div class="task-head">
+          <h3>Task A3. Learning from failure (quote essay)</h3>
+          <p class="task-meta">Essay &middot; quote + personal examples &middot; like your fear essay</p>
+        </div>
+        <div class="task-body">
+          <div class="stimulus">&lsquo;Failure is the mother of success.&rsquo; <strong>How important is it to learn from failure?</strong> Write an essay explaining your opinion with relevant examples from your personal experience.</div>
+          <div class="vocab">
+            <strong>Level 5+ vocab</strong>
+            <span class="vocab-note">English &middot; 粵語. Try to use at least 4 in your draft.</span>
+            setback(挫折), resilience(韌性), perseverance(堅毅), reflect critically(深入反思), transformative(轉變性的), invaluable(極寶貴的), adversity(逆境), bounce back(東山再起)
+          </div>
+          <div class="starters">
+            <div class="starter-col">
+              <strong>Intro</strong>
+              <ul>
+                <li><em>The saying &lsquo;Failure is the mother of success&rsquo; suggests that setbacks can be invaluable teachers.</em></li>
+                <li><em>I am firmly convinced that learning from failure is essential rather than giving up.</em></li>
+              </ul>
+            </div>
+            <div class="starter-col">
+              <strong>Body (vary the endings)</strong>
+              <ul>
+                <li><em>First and foremost, every setback reveals a weak point. When I failed a maths test, I began to reflect critically on my habits.</em></li>
+                <li><em>In addition, adversity builds perseverance. I did not win my first debate, but I prepared stronger arguments next time.</em></li>
+                <li><em>Moreover, even a small improvement counts. After losing a match, our team trained harder and bounced back with a better score, although we still lost.</em></li>
+              </ul>
+            </div>
+            <div class="starter-col">
+              <strong>Conclusion</strong>
+              <ul>
+                <li><em>In conclusion, failure is not the end. It can be a transformative step towards growth.</em></li>
+                <li><em>As the quote suggests, resilience often comes after we learn from what went wrong.</em></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="box" id="advice-tasks">
+      <h2>Letters of advice</h2>
+      <p class="prompt">Aim for about <strong>350&ndash;400 words</strong>. Warm tone. At least <strong>2&ndash;3 pieces of advice</strong> with reasons. Use at least <strong>4 Level 5+ words</strong> per letter.</p>
+
+      <article class="task" id="adv-1">
+        <div class="task-head">
+          <h3>Task B1. Friend stressed about DSE English Paper 2</h3>
+          <p class="task-meta">Advice letter &middot; Teen magazine column</p>
+        </div>
+        <div class="task-body">
+          <div class="stimulus">
+            <p style="margin:0 0 0.35rem">I am in Form 6 and DSE is coming. English Paper 2 terrifies me. I never know which text type to choose, and I run out of time. I feel like giving up. What should I do?</p>
+            <p style="margin:0;font-size:0.88rem;color:var(--muted)">&mdash; Alex, 17</p>
+          </div>
+          <div class="vocab">
+            <strong>Level 5+ vocab</strong>
+            <span class="vocab-note">English &middot; 粵語. Try to use at least 4 in your draft.</span>
+            overwhelmed(難以承受), daunting(令人望而生畏), alleviate(減輕), viable(可行的), structured outline(有結構大綱), demystify(使不再神秘), empathetic(富同理心), proactive(積極的)
+          </div>
+          <div class="starters">
+            <div class="starter-col">
+              <strong>Open + empathise</strong>
+              <ul>
+                <li><em>Dear Alex,</em></li>
+                <li><em>Thank you for your letter. I can understand why DSE English Paper 2 feels daunting.</em></li>
+                <li><em>Many Form 6 students feel overwhelmed when choosing a question, so you are not alone.</em></li>
+              </ul>
+            </div>
+            <div class="starter-col">
+              <strong>Advice 1&ndash;3</strong>
+              <ul>
+                <li><em>To begin with, spend five minutes reading every question and pick the text type you can answer most fully.</em></li>
+                <li><em>In addition, always write a structured outline before you start. This will help you because examiners can follow your ideas more easily.</em></li>
+                <li><em>Another useful step is to practise one past paper each week under timed conditions. This can demystify the exam and make it feel more manageable.</em></li>
+              </ul>
+            </div>
+            <div class="starter-col">
+              <strong>Close</strong>
+              <ul>
+                <li><em>Take proactive steps each week, and improvement will follow. I wish you all the best.</em></li>
+                <li><em>Yours sincerely,</em> &hellip;</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="task" id="adv-2">
+        <div class="task-head">
+          <h3>Task B2. Cousin wants to quit the swim team</h3>
+          <p class="task-meta">Advice letter &middot; personal letter</p>
+        </div>
+        <div class="task-body">
+          <div class="stimulus">Your cousin Sam writes to you. Sam loves swimming but the coach is strict, training is exhausting, and Sam wants to quit. Write a letter giving advice.</div>
+          <div class="vocab">
+            <strong>Level 5+ vocab</strong>
+            <span class="vocab-note">English &middot; 粵語. Try to use at least 4 in your draft.</span>
+            exhausted(筋疲力盡), burnout(過勞), communicate openly(坦誠溝通), alleviate(減輕), reignite(重新點燃), sustainable(可持續的), reassure(令…安心), deliberate(審慎的)
+          </div>
+          <div class="starters">
+            <div class="starter-col">
+              <strong>Open</strong>
+              <ul>
+                <li><em>Dear Sam,</em></li>
+                <li><em>I was sorry to hear that training has been so exhausting lately.</em></li>
+                <li><em>It is completely normal to feel overwhelmed when a coach applies intense pressure before competitions.</em></li>
+              </ul>
+            </div>
+            <div class="starter-col">
+              <strong>Advice</strong>
+              <ul>
+                <li><em>First and foremost, before you quit, I would strongly encourage you to communicate openly with your coach about your workload.</em></li>
+                <li><em>In addition, consider taking a short break so you can alleviate stress and avoid burnout.</em></li>
+                <li><em>If you still want to leave after a month, make a deliberate decision rather than quitting in anger.</em></li>
+              </ul>
+            </div>
+            <div class="starter-col">
+              <strong>Close</strong>
+              <ul>
+                <li><em>I reassure you that your passion for swimming may still be there. Give yourself time to find a sustainable balance.</em></li>
+                <li><em>Write back anytime. Yours sincerely,</em> &hellip;</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="box" id="suggest-tasks">
+      <h2>Letters of suggestion</h2>
+      <p class="prompt">Aim for about <strong>300&ndash;400 words</strong>. Describe a problem, propose an idea, explain benefits. Polite but clear tone.</p>
+
+      <article class="task" id="sug-1">
+        <div class="task-head">
+          <h3>Task C1. Suggest a study-skills workshop</h3>
+          <p class="task-meta">Letter to principal &middot; formal suggestion</p>
+        </div>
+        <div class="task-body">
+          <div class="stimulus">Write to your principal. Suggest the school organise a <strong>study-skills workshop</strong> for Form 4&ndash;6 students before the mock exams. Explain why it is needed and what the workshop should include.</div>
+          <div class="vocab">
+            <strong>Level 5+ vocab</strong>
+            <span class="vocab-note">English &middot; 粵語. Try to use at least 4 in your draft.</span>
+            implement(實施), feasible(可行的), holistic(全面的), tangible(具體的), alleviate(減輕), prioritise(優先), contemplate(考慮), equip(裝備)
+          </div>
+          <div class="starters">
+            <div class="starter-col">
+              <strong>Open + problem</strong>
+              <ul>
+                <li><em>Dear Principal,</em></li>
+                <li><em>I am writing to propose a study-skills workshop that could equip senior students with more effective revision methods.</em></li>
+                <li><em>Many classmates study for long hours yet still feel unprepared for mock exams because they lack a holistic strategy.</em></li>
+              </ul>
+            </div>
+            <div class="starter-col">
+              <strong>Proposal + benefits</strong>
+              <ul>
+                <li><em>First of all, a feasible two-hour workshop could cover note-taking, time management and how to analyse past papers.</em></li>
+                <li><em>In addition, inviting an alumni speaker would make the session practical rather than theoretical.</em></li>
+                <li><em>This would bring tangible benefits, alleviate exam stress and help students prioritise their weak areas.</em></li>
+              </ul>
+            </div>
+            <div class="starter-col">
+              <strong>Close</strong>
+              <ul>
+                <li><em>The Student Union would be happy to help implement the event if needed.</em></li>
+                <li><em>I hope you will contemplate my suggestion. Yours sincerely,</em> &hellip;</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="task" id="sug-2">
+        <div class="task-head">
+          <h3>Task C2. Suggest a peer-mentoring scheme</h3>
+          <p class="task-meta">Letter to school board / Student Union &middot; suggestion</p>
+        </div>
+        <div class="task-body">
+          <div class="stimulus">Some Form 1 students struggle to adapt to secondary school. Suggest a <strong>peer-mentoring scheme</strong> where senior students support junior students. Write a letter explaining your idea.</div>
+          <div class="vocab">
+            <strong>Level 5+ vocab</strong>
+            <span class="vocab-note">English &middot; 粵語. Try to use at least 4 in your draft.</span>
+            facilitate(促進), foster(培養), inclusive(共融的), alleviate(減輕), cultivate(培養), sense of belonging(歸屬感), mentorship(導師制), transition(過渡)
+          </div>
+          <div class="starters">
+            <div class="starter-col">
+              <strong>Structure</strong>
+              <ul>
+                <li><em>I am writing to propose a peer-mentoring scheme that would facilitate Form 1 students&rsquo; transition to secondary school.</em></li>
+                <li><em>Many newcomers feel isolated and unsure how to manage homework and clubs.</em></li>
+                <li><em>Another point is that pairing each Form 1 class with Form 4 mentors could foster a stronger sense of belonging.</em></li>
+                <li><em>Seniors would cultivate leadership while juniors receive guidance in an inclusive school culture.</em></li>
+                <li><em>I hope the school will contemplate this plan. Yours sincerely,</em> &hellip;</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="box">
+      <h2>Weekly practice plan</h2>
+      <ul class="focus-list">
+        <li><strong>Week 1.</strong> Task A1 (argument).</li>
+        <li><strong>Week 2.</strong> Task B1 (advice). Compare with your J.C. letter. Did you show empathy first?</li>
+        <li><strong>Week 3.</strong> Task A3 (quote essay). Focus on varying example endings.</li>
+        <li><strong>Week 4.</strong> Task C1 (suggestion). Then ask for feedback on one draft.</li>
+      </ul>
+      <p class="prompt" style="margin-top:0.75rem">After each task, underline three sentences you copied from starters and rewrite them in your own words next time.</p>
+    </section>
+  </main>
+  <script>
+(function () {
+  var active = null;
+
+  function pad(n) {
+    return n < 10 ? "0" + n : String(n);
+  }
+
+  function format(sec) {
+    var m = Math.floor(sec / 60);
+    var s = sec % 60;
+    return pad(m) + ":" + pad(s);
+  }
+
+  function stopActive() {
+    if (!active) return;
+    clearInterval(active.id);
+    active.root.classList.remove("running");
+    active.startBtns.forEach(function (b) { b.disabled = false; });
+    active.resetBtn.disabled = true;
+    active = null;
+  }
+
+  function buildTimer(stimulus) {
+    var root = document.createElement("div");
+    root.className = "task-timer";
+    root.innerHTML =
+      '<span class="task-timer-label">Plan timer</span>' +
+      '<span class="task-timer-display" aria-live="polite">—</span>' +
+      '<button type="button" data-seconds="60">1 min</button>' +
+      '<button type="button" data-seconds="120">2 min</button>' +
+      '<button type="button" class="timer-reset" disabled>Reset</button>' +
+      '<p class="task-timer-hint">Read the question, then start 1 or 2 minutes to plan on paper before you write.</p>';
+
+    var display = root.querySelector(".task-timer-display");
+    var startBtns = [].slice.call(root.querySelectorAll("[data-seconds]"));
+    var resetBtn = root.querySelector(".timer-reset");
+
+    function resetUI() {
+      root.classList.remove("running", "done");
+      display.textContent = "—";
+      startBtns.forEach(function (b) { b.disabled = false; });
+      resetBtn.disabled = true;
+    }
+
+    function start(seconds) {
+      stopActive();
+      root.classList.remove("done");
+      root.classList.add("running");
+      var left = seconds;
+      display.textContent = format(left);
+      startBtns.forEach(function (b) { b.disabled = true; });
+      resetBtn.disabled = false;
+
+      var id = setInterval(function () {
+        left -= 1;
+        if (left <= 0) {
+          clearInterval(id);
+          display.textContent = "0:00";
+          root.classList.remove("running");
+          root.classList.add("done");
+          startBtns.forEach(function (b) { b.disabled = false; });
+          resetBtn.disabled = false;
+          active = null;
+          if (navigator.vibrate) navigator.vibrate(200);
+          return;
+        }
+        display.textContent = format(left);
+      }, 1000);
+
+      active = { id: id, root: root, startBtns: startBtns, resetBtn: resetBtn };
+    }
+
+    startBtns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        start(parseInt(btn.getAttribute("data-seconds"), 10));
+      });
+    });
+
+    resetBtn.addEventListener("click", function () {
+      if (active && active.root === root) stopActive();
+      resetUI();
+    });
+
+    stimulus.insertAdjacentElement("afterend", root);
+  }
+
+  document.querySelectorAll(".task-body .stimulus").forEach(buildTimer);
+})();
+  </script>
+</body>
+</html>
