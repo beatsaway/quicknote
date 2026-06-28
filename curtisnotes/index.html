@@ -28,17 +28,7 @@
       color: #fff;
       padding: 1rem 1.25rem;
     }
-    header h1 { font-size: 1.1rem; margin: 0 0 0.25rem; font-weight: 600; }
-    header p { margin: 0; font-size: 0.86rem; opacity: 0.95; }
-    nav { margin-top: 0.65rem; display: flex; flex-wrap: wrap; gap: 0.35rem; }
-    nav a {
-      color: #fff;
-      font-size: 0.78rem;
-      text-decoration: none;
-      padding: 0.22rem 0.5rem;
-      border-radius: 6px;
-      background: rgba(255,255,255,0.2);
-    }
+    header h1 { font-size: 1.1rem; margin: 0; font-weight: 600; }
     main {
       max-width: 40rem;
       margin: 0 auto;
@@ -108,25 +98,91 @@
     .link { margin-top: 0.55rem; font-size: 0.84rem; }
     .link a { color: var(--accent); }
     .tag { font-size: 0.78rem; color: var(--muted); font-weight: 600; }
+    .hw-task {
+      margin-top: 0.85rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+    .hw-task:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+    .hw-num {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+    .hw-note {
+      margin: 0.5rem 0 0;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>Curtis — Paper 2 notes</h1>
-    <p>Task instructions kept as set. Planning notes below each task.</p>
-    <nav>
-      <a href="#plan">Planning</a>
-      <a href="#part-a">Part A</a>
-      <a href="#part-b">Part B</a>
-      <a href="#abroad">1 · Abroad</a>
-      <a href="#hangout">2 · Hangout</a>
-      <a href="#eca">3 · ECAs</a>
-      <a href="#slow">4 · Slow living</a>
-      <a href="../curtis_dse/index.html">DSE hub</a>
-    </nav>
   </header>
 
   <main>
+    <section id="homework">
+      <h2>Homework writing tasks</h2>
+      <p class="note">Complete in your own time. Use the planning sections further down when you brainstorm. No rush — aim for Level 5.</p>
+
+      <div class="hw-task">
+        <p class="hw-num">Homework 1</p>
+        <h3>Article for a School Magazine</h3>
+        <div class="task-official">
+          <p><strong>Topic:</strong> Some believe that studying abroad is always better for a student&rsquo;s future. Others argue that staying in Hong Kong for university is equally beneficial.</p>
+          <p><strong>Task:</strong> Write an article for your school magazine discussing this issue.</p>
+          <p>In your article, you should:</p>
+          <ul>
+            <li>Present arguments for and against studying abroad.</li>
+            <li>Offer your own perspective and reasoning.</li>
+          </ul>
+        </div>
+        <p class="hw-note">For your body paragraphs — pick <strong>one side only</strong></p>
+        <p class="tag">Quality key points to agree (contextualised for the task)</p>
+        <p class="note">Explanation + contextualised examples. <strong>At least 3.</strong></p>
+        <p class="tag" style="margin-top:0.65rem">Or</p>
+        <p class="tag">Quality key points to disagree (contextualised for the task)</p>
+        <p class="note">Explanation + contextualised examples. <strong>At least 3.</strong></p>
+        <p class="note" style="margin-top:0.5rem">Do not write both sides in the body. Choose agree <em>or</em> disagree, then give at least three developed points on that side. Use the conclusion for your own view.</p>
+      </div>
+
+      <div class="hw-task">
+        <p class="hw-num">Homework 2</p>
+        <h3>Speech — ECAs and the SLP</h3>
+        <div class="task-official">
+          <p>Many secondary students in Hong Kong feel that their extra-curricular activities are no longer for fun, but are treated as a way to &ldquo;boost&rdquo; their Student Learning Profiles (SLP) for university applications. Write a speech to be delivered at a school assembly.</p>
+          <ul>
+            <li>Discuss the drawbacks of treating these activities merely as a means to an end; and</li>
+            <li>Encourage your fellow students to choose activities based on personal fulfilment and genuine interest rather than just exam pressure.</li>
+          </ul>
+        </div>
+        <p class="note">Plan at least <strong>two developed drawbacks</strong> and a clear encouraging ending. Use one or two named activities with examples, not a bare list.</p>
+      </div>
+
+      <div class="hw-task">
+        <p class="hw-num">Homework 3</p>
+        <h3>Article — slow living</h3>
+        <div class="task-official">
+          <p>In a fast-paced city, some young people are embracing &ldquo;slow living&rdquo;, a lifestyle that prioritises mindfulness over speed and efficiency. Write an article for a lifestyle magazine.</p>
+          <ul>
+            <li>Explain why the &ldquo;slow living&rdquo; movement is becoming popular among the youth; and</li>
+            <li>Discuss whether it is actually possible for a student to &ldquo;slow down&rdquo; while managing heavy workloads and the pressure to succeed in Hong Kong.</li>
+          </ul>
+        </div>
+        <p class="note">Give at least <strong>three reasons</strong> why slow living appeals to young people, then discuss whether a Hong Kong student can really slow down, with examples such as exams, SBA and homework.</p>
+      </div>
+    </section>
+
     <section id="plan">
       <h2>Before you write</h2>
       <p class="note">Check your first idea. Too general? Too specific? A key point should fit one body paragraph and one Hong Kong example.</p>
@@ -253,31 +309,21 @@
         </ul>
       </div>
 
-      <h3>Level 5 body paragraphs</h3>
-      <p class="note">Aim for at least <strong>three</strong> quality key points on each side. Each point needs explanation plus a contextualised Hong Kong example.</p>
-      <table>
-        <thead>
-          <tr>
-            <th>For studying abroad</th>
-            <th>For staying in Hong Kong</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Independence</strong> — live away from parents; manage daily life<br><span class="weak">e.g. dorm life in the UK or Australia</span></td>
-            <td><strong>Cost and family support</strong> — lower living cost; emotional support at home<br><span class="weak">e.g. UGC-funded degree while living in HK</span></td>
-          </tr>
-          <tr>
-            <td><strong>Language and global exposure</strong> — daily English; wider worldview<br><span class="weak">e.g. group work with international classmates</span></td>
-            <td><strong>Strong local universities</strong> — HKU, CUHK, HKUST compete globally<br><span class="weak">e.g. local degree recognised by HK employers</span></td>
-          </tr>
-          <tr>
-            <td><strong>Unique programmes</strong> — some courses, research or exchanges not offered here<br><span class="weak">e.g. specialist major overseas</span></td>
-            <td><strong>Local networks</strong> — internships, alumni, government schemes in HK<br><span class="weak">e.g. IAS or firm internships during university</span></td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="note"><strong>Your view.</strong> You do not have to pick one side completely. Many Level 5 answers say it depends on the student, the subject, and the family situation — then give one clear reason.</p>
+      <h3>Level 5 body paragraphs — pick one side</h3>
+      <p class="note">Choose agree <em>or</em> disagree. Give at least <strong>three</strong> quality key points on that side only. Each point needs explanation plus a contextualised Hong Kong example.</p>
+      <p class="tag">If you agree — studying abroad is better</p>
+      <ul>
+        <li><strong>Independence</strong> — live away from parents; manage daily life <span class="weak">(e.g. dorm life in the UK or Australia)</span></li>
+        <li><strong>Language and global exposure</strong> — daily English; wider worldview <span class="weak">(e.g. group work with international classmates)</span></li>
+        <li><strong>Unique programmes</strong> — courses or research not offered here <span class="weak">(e.g. specialist major overseas)</span></li>
+      </ul>
+      <p class="tag">If you disagree — staying in Hong Kong is equally beneficial</p>
+      <ul>
+        <li><strong>Cost and family support</strong> — lower living cost; emotional support at home <span class="weak">(e.g. UGC-funded degree while living in HK)</span></li>
+        <li><strong>Strong local universities</strong> — HKU, CUHK, HKUST compete globally <span class="weak">(e.g. local degree recognised by HK employers)</span></li>
+        <li><strong>Local networks</strong> — internships, alumni, government schemes <span class="weak">(e.g. IAS or firm internships during university)</span></li>
+      </ul>
+      <p class="note"><strong>Your view.</strong> State your own perspective clearly in the introduction or conclusion. The body stays on one side.</p>
     </section>
 
     <section id="hangout">
