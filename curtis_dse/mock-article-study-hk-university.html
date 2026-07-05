@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homework — staying in HK for university (interactive)</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #0d5c4a;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.1rem; margin: 0 0 0.35rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.88rem; opacity: 0.95; }
+    nav { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    nav a {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+    }
+    nav a:hover { background: rgba(255,255,255,0.35); }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    .hint {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.65rem 0.85rem;
+      background: #eee8;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .module { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0 0 0.85rem;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #f0f7f4;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: #1565c0; }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter h3 {
+      margin: 0 0 0.85rem;
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .stats { font-size: 0.82rem; color: var(--muted); margin-top: 0.5rem; }
+    .task-bullets { margin: 0.4rem 0 0; padding-left: 1.15rem; font-size: 0.88rem; }
+    .task-bullets li { margin: 0.25rem 0; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .clo-note { font-size: 0.85rem; color: var(--muted); margin: 0 0 1rem; line-height: 1.5; }
+    .clo-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .clo-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .clo-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .clo-item h3 { margin: 0 0 0.4rem; font-size: 0.82rem; color: var(--accent); }
+    .clo-item ul { margin: 0; padding-left: 1.1rem; font-size: 0.84rem; }
+    .clo-item li { margin: 0.2rem 0; }
+    .clo-overall {
+      margin: 0.9rem 0 0;
+      font-size: 0.86rem;
+      padding: 0.55rem 0.7rem;
+      background: #f0f7f4;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.65rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 6px;
+      border-left: 4px solid transparent;
+    }
+    .comment-bilingual .comment-pair:last-child { margin-bottom: 0; }
+    .comment-pair-praise {
+      background: #e8f5e9;
+      border-left-color: #43a047;
+    }
+    .comment-pair-upgrade {
+      background: #fff8e1;
+      border-left-color: #f9a825;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue { margin: 0 0 0.55rem; }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child { margin-bottom: 0; }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead { margin: 0 0 0.5rem; font-size: 0.88rem; }
+    .model {
+      margin-top: 0.65rem;
+      padding: 0.75rem 0.85rem;
+      background: #f0f7f4;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+    .model h4 {
+      margin: 0 0 0.75rem;
+      font-size: 1.05rem;
+      color: var(--accent);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .model p { margin: 0 0 0.85rem; }
+    .model p:last-child { margin-bottom: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Homework — staying in HK for university</h1>
+    <p>School magazine article. Disagree side. Yellow = click original &harr; suggested wording.</p>
+    <nav>
+      <a href="index.html">Hub</a>
+      <a href="../curtisnotes/2026june28.html">Class notes</a>
+      <a href="exercise-sentence-structures.html">Sentence practice</a>
+    </nav>
+  </header>
+  <main>
+    <p class="hint">Only the <strong>yellow</strong> phrases are edits; the rest is Curtis&rsquo;s draft as written.</p>
+
+    <section class="box">
+      <h2>The task</h2>
+      <p class="module">School magazine article</p>
+      <div class="stimulus">
+        <p class="prompt" style="margin:0 0 0.5rem">Some believe that studying abroad is always better for a student&rsquo;s future. Others argue that staying in Hong Kong for university is equally beneficial.</p>
+        <p class="prompt" style="margin:0">Write an article discussing this issue. Present arguments for and against studying abroad. Offer your own perspective and reasoning. Body paragraphs stay on <strong>one side</strong> (agree or disagree).</p>
+      </div>
+      <ul class="task-bullets">
+        <li>Curtis chose the <strong>disagree</strong> side. Staying in Hong Kong is equally beneficial.</li>
+        <li>Aim for at least three developed points with Hong Kong examples.</li>
+      </ul>
+      <p class="stats">Draft length (student), about <strong>265 words</strong>.</p>
+      <div class="word-list">
+        <strong>Useful words</strong>
+        <span style="font-size:0.86rem;line-height:1.5;color:var(--text)">ranking(排名), subsidised(資助), living costs(生活費), familiar environment(熟悉環境), UGC-funded(教資會資助), internship(實習), alumni(校友), perspective(觀點)</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <p class="prompt fb-praise-lead">You stay on one side and cover three clear themes.</p>
+          <ul>
+            <li>👍 <strong>Three main points.</strong> University quality, language, and cost each have their own paragraph.</li>
+            <li>👍 <strong>HK examples.</strong> Top-100 rankings, UGC fees, UK/USA living costs feel relevant.</li>
+            <li>👍 <strong>Clear view.</strong> Your conclusion says Hong Kong is a strong choice instead of studying abroad.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong>Magazine opening.</strong> Start with a short hook to the reader, not only a general statement about rankings.</li>
+            <li>💡 <strong>One example per point.</strong> Name one local university, one language situation, or one cost comparison to make each paragraph sharper.</li>
+            <li>💡 <strong>Grammar.</strong> Watch subject–verb agreement, word choice (<em>medicine</em> not <em>medication</em>) and prepositions (<em>with</em> the culture).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Marking (CLO)</h2>
+      <p class="clo-note">Indicative levels for study only, not official HKEAA marks.</p>
+      <div class="clo-grid">
+        <div class="clo-item">
+          <h3>Content, Level 4</h3>
+          <ul>
+            <li>Clear <strong>disagree</strong> line. Staying in HK is equally beneficial.</li>
+            <li>Three developed themes. quality, language, cost.</li>
+            <li>Conclusion gives your own perspective.</li>
+            <li>To push higher, one sharper HK example in each body paragraph.</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Language, Level 3</h3>
+          <ul>
+            <li>Ideas are clear, but grammar slips often.</li>
+            <li>Watch agreement, articles and prepositions.</li>
+            <li>Some word choices are imprecise (<em>medication</em>, <em>chase for</em>).</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Organisation, Level 4</h3>
+          <ul>
+            <li>One idea per paragraph works well.</li>
+            <li>Contrast with studying abroad in paragraph 2 helps the argument.</li>
+            <li>Conclusion sums up money, time and quality.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="clo-overall"><strong>Overall (indicative).</strong> About <strong>Level 4</strong> for content and organisation. Language accuracy is the main limit on the band.</p>
+    </section>
+
+    <section class="box">
+      <h2>Student draft</h2>
+      <div class="letter">
+        <h3>Staying in HK for university is equally beneficial</h3>
+
+        <p><span class="flip" tabindex="0" role="button" data-w="The ranking of hk universities are mostly in top 100." data-r="The rankings of Hong Kong universities are mostly in the top 100.">The ranking of hk universities are mostly in top 100.</span> In hk universities, there are foreign teachers from other top universities to teach students and advanced technology for students to study and <span class="flip" tabindex="0" role="button" data-w="doing experiments." data-r="do experiments.">doing experiments.</span> The teaching quality of Hk universities is similar to that of <span class="flip" tabindex="0" role="button" data-w="others famous universities in other countries." data-r="other famous universities abroad.">others famous universities in other countries.</span> The students graduated in there mostly become successful in various areas such as <span class="flip" tabindex="0" role="button" data-w="medication and financial." data-r="medicine and finance.">medication and financial.</span></p>
+
+        <p>Studying in hk can prevent language barriers as <span class="flip" tabindex="0" role="button" data-w="the language using between teachers and students are mostly English, Cantonese and putonghua." data-r="teachers and students mostly use English, Cantonese and Putonghua.">the language using between teachers and students are mostly English, Cantonese and putonghua.</span> Students can study in an atmosphere which is comfortable. However, studying abroad means that students need to learn a new language and a new culture. They need time to re-develop their relationships in class and <span class="flip" tabindex="0" role="button" data-w="familiarise themselves in the local culture." data-r="familiarise themselves with the local culture.">familiarise themselves in the local culture.</span></p>
+
+        <p>The cost of studying in hk is usually lower than studying abroad. The yearly fee for studying in hk universities is low because of <span class="flip" tabindex="0" role="button" data-w="having sponsor by the hk government." data-r="being subsidised by the Hong Kong government.">having sponsor by the hk government.</span> Also, <span class="flip" tabindex="0" role="button" data-w="the living cost in other countries are usually high." data-r="living costs in other countries are usually high.">the living cost in other countries are usually high.</span> The price of food, rent, bills, and taxes are extremely high, especially in the UK and USA. Normal families in hk <span class="flip" tabindex="0" role="button" data-w="must feel hard to afford the price of these costs." data-r="may find it hard to afford these costs.">must feel hard to afford the price of these costs.</span></p>
+
+        <p>I think that nowadays Hong Kong has a complete and advanced educational system and programs. Students who <span class="flip" tabindex="0" role="button" data-w="chase for a good future can choose Hong Kong university instead of study abroad." data-r="want a bright future can choose a Hong Kong university instead of studying abroad.">chase for a good future can choose Hong Kong university instead of study abroad.</span> This not only can save money and time,  but also can receive the knowledge which is similar to the university in other countries.</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">You already have three strong reasons and a clear conclusion. The yellow bits are mostly grammar and word choice, not a rewrite of your ideas.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>One side only.</strong> You argue that staying in Hong Kong is equally beneficial. Your body stays on that side, which matches the homework.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>只寫一邊。</strong> 你論證留港升學同樣好，正文跟足呢個方向，符合功課要求。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Three points.</strong> Quality, language and cost are easy to follow. Each paragraph has a clear main idea.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>三個重點。</strong> 質素、語言、費用三段分明，每段有主題。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Good contrast.</strong> In paragraph 2 you compare HK with studying abroad. That makes your disagree side stronger.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>對比好。</strong> 第二段同出國讀書比較，支持「留港同樣好」更有力。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Sharper examples.</strong> Try one concrete detail per point, e.g. HKU/CUHK ranking, using Cantonese in daily life, or UGC tuition vs UK rent.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>例子再具體。</strong> 每段加一個細節，例如港大排名、日常用廣東話、教資會學費同英国租金比較。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Grammar patterns.</strong> Watch <em>rankings are</em>, <em>living costs are</em>, <em>studying abroad</em>, and <em>familiarise with</em>. These appear several times in your draft.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>文法位。</strong> 留意 <em>rankings are</em>、<em>living costs are</em>、<em>studying abroad</em>、<em>familiarise with</em>，稿裏出現多次。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Magazine tone.</strong> Open with a question or scene for school readers, e.g. &ldquo;Should we all leave Hong Kong for university?&rdquo; Then give your view.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>校刊語氣。</strong> 開首可用問句或情景吸引同學，再講你立場。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Demo writing</h2>
+      <p class="prompt">Same task and the same side as your draft. Compare structure, examples and links with your own. This is one possible Level 5 version, not the only correct answer.</p>
+      <div class="model">
+        <h4>Staying in Hong Kong for University Is Equally Beneficial</h4>
+        <p>Many students assume that a successful future depends on studying abroad. In my view, that is not always true. Hong Kong universities can offer an education that is just as valuable.</p>
+        <p>To commence with, local universities rank among the best in the world. Institutions such as HKU and CUHK regularly appear in global top-100 lists. Many courses are taught by experienced professors, some of whom trained overseas, and students can use modern laboratories and equipment. Graduates often build successful careers in fields such as medicine, law and finance. In other words, the standard of teaching here can match what students might find abroad.</p>
+        <p>Another crucial point is that students can study in a familiar language environment. In class, they may follow lectures in English and discuss ideas with classmates in Cantonese or Putonghua. They do not need months to adjust before they can concentrate on their degree. By contrast, studying overseas often means using one main language all day, rebuilding friendships and learning how daily life works in a new place before their studies truly get going.</p>
+        <p>Last but not least, the cost of studying locally is usually lower. UGC-funded places keep tuition fees more affordable for many families. Living at home also saves rent and daily expenses. In the UK or the US, tuition, rent, food and transport can place heavy pressure on ordinary families.</p>
+        <p>To conclude, Hong Kong now offers a mature and well-developed university system. Students who want a strong education do not have to go abroad to find it. Staying here can save time and money while still providing knowledge and opportunities that are comparable with universities overseas. For many of us, that makes Hong Kong the smarter choice.</p>
+      </div>
+      <p class="prompt" style="margin-top:0.85rem;margin-bottom:0">Reuse these frames in other Part B tasks: <a href="exercise-sentence-structures.html">sentence structure practice</a> (dropdown + short writing).</p>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+  function toggle(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.textContent = el.textContent === r ? w : r;
+    syncClass(el);
+  }
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(el);
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>

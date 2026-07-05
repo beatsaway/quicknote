@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentence structures — Part B practice</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --panel: #fff;
+      --accent: #0d5c4a;
+      --accent-soft: #f0f7f4;
+      --border: #dcd6cb;
+      --ok: #f1f8f4;
+      --ok-b: #2e7d32;
+      --bad: #fff5f5;
+      --bad-b: #c62828;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.05rem; margin: 0 0 0.3rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.86rem; opacity: 0.95; }
+    nav { margin-top: 0.65rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    nav a {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+    }
+    nav a:hover { background: rgba(255,255,255,0.35); }
+    main { max-width: 42rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    .intro {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .hint-note {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 1.1rem;
+      padding: 0.55rem 0.75rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .hint-note kbd {
+      font: inherit;
+      font-size: 0.9em;
+      padding: 1px 6px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      background: #f5f5f5;
+    }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.1rem 1.15rem;
+      margin-bottom: 1rem;
+    }
+    section.box h2 {
+      margin: 0 0 0.65rem;
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+    section.box h2 .zh {
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .pattern-grid {
+      display: grid;
+      gap: 0.65rem;
+    }
+    @media (min-width: 640px) {
+      .pattern-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .pattern-card {
+      padding: 0.65rem 0.75rem;
+      background: var(--accent-soft);
+      border-radius: 8px;
+      font-size: 0.84rem;
+    }
+    .pattern-card h3 {
+      margin: 0 0 0.35rem;
+      font-size: 0.82rem;
+      color: var(--accent);
+    }
+    .pattern-card h3 .zh {
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 0.74rem;
+    }
+    .pattern-card .template {
+      margin: 0 0 0.4rem;
+      font-style: italic;
+      color: var(--text);
+    }
+    .pattern-card .example {
+      margin: 0;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .section-head {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0 0 0.35rem;
+    }
+    .section-head .zh {
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+    .topic-note {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin: 0 0 0.75rem;
+      padding: 0.5rem 0.65rem;
+      border-left: 3px solid var(--accent);
+      background: var(--accent-soft);
+    }
+    .passage { font-size: 0.93rem; line-height: 1.75; }
+    .passage-p { margin: 0 0 0.85rem; }
+    .passage-p:last-child { margin-bottom: 0; }
+    .blank-wrap { display: inline-block; vertical-align: baseline; margin: 0 2px; }
+    .blank-select {
+      font: inherit;
+      font-size: 0.86rem;
+      max-width: 15em;
+      padding: 2px 4px;
+      border: 1px solid #bbb;
+      border-radius: 4px;
+      background: #fafafa;
+      vertical-align: baseline;
+    }
+    .blank-select.wide { max-width: 17em; }
+    .blank-select:hover,
+    .blank-select:focus {
+      border-color: var(--accent);
+      outline: none;
+      background: #fff;
+    }
+    .blank-select.correct { border-color: var(--ok-b); background: var(--ok); }
+    .blank-select.incorrect { border-color: var(--bad-b); background: var(--bad); }
+    .transfer-list { margin: 0; padding: 0; list-style: none; }
+    .transfer-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      margin-bottom: 0.65rem;
+      background: #fafafa;
+    }
+    .transfer-item:last-child { margin-bottom: 0; }
+    .transfer-item strong {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+    .transfer-item .hint {
+      margin: 0 0 0.45rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+    .transfer-item textarea {
+      width: 100%;
+      min-height: 4.5rem;
+      font: inherit;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      padding: 0.45rem 0.55rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      resize: vertical;
+    }
+    .model-toggle {
+      margin-top: 0.45rem;
+      font: inherit;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.55rem;
+      border: 1px solid var(--accent);
+      border-radius: 5px;
+      background: #fff;
+      color: var(--accent);
+      cursor: pointer;
+    }
+    .model-toggle:hover { background: var(--accent-soft); }
+    .model-answer {
+      display: none;
+      margin: 0.5rem 0 0;
+      padding: 0.55rem 0.65rem;
+      background: var(--accent-soft);
+      border-radius: 6px;
+      font-size: 0.86rem;
+      line-height: 1.6;
+    }
+    .model-answer.show { display: block; }
+    .actions {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    button {
+      font-family: inherit;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.85rem;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+    }
+    button.secondary { background: #fff; color: var(--accent); }
+    .score { font-size: 0.88rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="hdr-title">Sentence structures — Part B practice</h1>
+    <p id="hdr-sub"></p>
+    <nav>
+      <a href="index.html">Hub</a>
+      <a href="mock-article-study-hk-university.html">HK university demo</a>
+      <a href="../fil in blanks/curtis-argument-advice.html">Vocab fill-in</a>
+    </nav>
+  </header>
+  <main id="main"></main>
+  <script src="exercise-sentence-structures.js"></script>
+  <script>
+(function () {
+  var data = window.CURTIS_SENTENCE_STRUCTURES;
+  var main = document.getElementById("main");
+  if (!data) {
+    main.innerHTML = "<p>Data not loaded.</p>";
+    return;
+  }
+
+  document.getElementById("hdr-title").textContent = data.title;
+  document.getElementById("hdr-sub").textContent =
+    (data.titleZh || "") + (data.instructionsZh ? " · " + data.instructionsZh : "");
+
+  function escapeHtml(s) {
+    var d = document.createElement("div");
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  function normalize(s) {
+    return String(s || "").trim().replace(/\s+/g, " ").toLowerCase();
+  }
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i];
+      a[i] = a[j];
+      a[j] = t;
+    }
+    return a;
+  }
+
+  function optionsForBlank(correct, section) {
+    var pool = (section.distractors || []).slice();
+    (section.answers || []).forEach(function (w) {
+      if (pool.indexOf(w) === -1) pool.push(w);
+    });
+    var out = [correct];
+    var seen = {};
+    seen[normalize(correct)] = true;
+    shuffle(pool).forEach(function (w) {
+      var key = normalize(w);
+      if (seen[key] || out.length >= 4) return;
+      if (normalize(w) === normalize(correct)) return;
+      seen[key] = true;
+      out.push(w);
+    });
+    return shuffle(out);
+  }
+
+  function buildSelect(correct, options, sectionIdx, blankIdx) {
+    var wide = correct.length > 16 ? " wide" : "";
+    var html = '<span class="blank-wrap"><select class="blank-select' + wide + '" aria-label="Choose phrase"' +
+      ' data-answer="' + escapeHtml(correct) + '"' +
+      ' data-section="' + sectionIdx + '" data-index="' + blankIdx + '">';
+    html += '<option value="">—</option>';
+    options.forEach(function (opt) {
+      html += '<option value="' + escapeHtml(opt) + '">' + escapeHtml(opt) + "</option>";
+    });
+    html += "</select></span>";
+    return html;
+  }
+
+  function renderPassage(text, section, sectionIdx, blankCounter) {
+    var html = "";
+    var remaining = text;
+    var answers = section.answers || [];
+
+    while (remaining.length) {
+      var gap = remaining.indexOf("_____");
+      if (gap === -1) {
+        html += escapeHtml(remaining);
+        break;
+      }
+      html += escapeHtml(remaining.slice(0, gap));
+      remaining = remaining.slice(gap + 5);
+
+      var hintMatch = remaining.match(/^\s*\(([^)]+)\)/);
+      if (hintMatch) remaining = remaining.slice(hintMatch[0].length);
+
+      var correct = answers[blankCounter.n] || "";
+      html += buildSelect(correct, optionsForBlank(correct, section), sectionIdx, blankCounter.n);
+      blankCounter.n += 1;
+    }
+    return html;
+  }
+
+  function renderSectionBody(text, section, sectionIdx) {
+    var paras = String(text || "").split(/\n\n+/);
+    var blankCounter = { n: 0 };
+    return paras
+      .map(function (para) {
+        return '<p class="passage-p">' + renderPassage(para.trim(), section, sectionIdx, blankCounter) + "</p>";
+      })
+      .join("");
+  }
+
+  function renderTransfer(section) {
+    var html = '<ul class="transfer-list">';
+    (section.prompts || []).forEach(function (p, i) {
+      html += '<li class="transfer-item">';
+      html += "<strong>" + escapeHtml(p.frame) + "</strong>";
+      html += '<p class="hint">' + escapeHtml(p.hint) + "</p>";
+      html += '<textarea aria-label="Write your sentence" placeholder="Write 2–4 sentences here…"></textarea>';
+      html += '<button type="button" class="model-toggle" data-target="model-' + i + '">Show model</button>';
+      html += '<p class="model-answer" id="model-' + i + '">' + escapeHtml(p.model) + "</p>";
+      html += "</li>";
+    });
+    html += "</ul>";
+    return html;
+  }
+
+  function gradeSelect(sel) {
+    sel.classList.remove("correct", "incorrect");
+    if (!sel.value) return;
+    if (normalize(sel.value) === normalize(sel.getAttribute("data-answer") || "")) {
+      sel.classList.add("correct");
+    } else {
+      sel.classList.add("incorrect");
+    }
+  }
+
+  function gradeAll() {
+    var correct = 0;
+    var total = 0;
+    document.querySelectorAll(".blank-select").forEach(function (sel) {
+      total++;
+      gradeSelect(sel);
+      if (sel.classList.contains("correct")) correct++;
+    });
+    var el = document.getElementById("score");
+    if (el) el.textContent = correct + " / " + total + " correct";
+  }
+
+  function clearAll() {
+    document.querySelectorAll(".blank-select").forEach(function (sel) {
+      sel.value = "";
+      sel.classList.remove("correct", "incorrect");
+    });
+    document.querySelectorAll("textarea").forEach(function (ta) { ta.value = ""; });
+    document.querySelectorAll(".model-answer").forEach(function (el) { el.classList.remove("show"); });
+    var el = document.getElementById("score");
+    if (el) el.textContent = "";
+  }
+
+  function showAllAnswers() {
+    document.querySelectorAll(".blank-select").forEach(function (sel) {
+      var expected = sel.getAttribute("data-answer") || "";
+      if (!expected) return;
+      var has = false;
+      for (var i = 0; i < sel.options.length; i++) {
+        if (normalize(sel.options[i].value) === normalize(expected)) {
+          has = true;
+          break;
+        }
+      }
+      if (!has) {
+        var opt = document.createElement("option");
+        opt.value = expected;
+        opt.textContent = expected;
+        sel.appendChild(opt);
+      }
+      sel.value = expected;
+      gradeSelect(sel);
+    });
+    gradeAll();
+  }
+
+  var html =
+    '<p class="intro">' + escapeHtml(data.instructions) + "</p>" +
+    '<p class="hint-note">From your <a href="mock-article-study-hk-university.html">HK university demo</a>. Sections 1–4 = dropdown practice. Section 5 = write your own, then check the model. Press <kbd>Space</kbd> to reveal dropdown answers.</p>';
+
+  html += '<section class="box"><h2>Pattern bank <span class="zh">· 句式參考</span></h2><div class="pattern-grid">';
+  (data.patterns || []).forEach(function (p) {
+    html += '<article class="pattern-card">';
+    html += "<h3>" + escapeHtml(p.name);
+    if (p.nameZh) html += ' <span class="zh">(' + escapeHtml(p.nameZh) + ")</span>";
+    html += "</h3>";
+    html += '<p class="template">' + escapeHtml(p.template) + "</p>";
+    html += '<p class="example">' + escapeHtml(p.example) + "</p>";
+    html += "</article>";
+  });
+  html += "</div></section>";
+
+  html += "<h2 style=\"font-size:0.95rem;color:var(--accent);margin:0 0 0.75rem;\">Practice <span class=\"zh\" style=\"font-weight:400;font-size:0.78rem;color:var(--muted)\">· 練習</span></h2>";
+
+  data.sections.forEach(function (sec, si) {
+    html += '<section class="box">';
+    html += '<p class="section-head">' + escapeHtml(sec.label);
+    if (sec.labelZh) html += ' <span class="zh">(' + escapeHtml(sec.labelZh) + ")</span>";
+    html += "</p>";
+    if (sec.topic) {
+      html += '<p class="topic-note">' + escapeHtml(sec.topic) + "</p>";
+    }
+    if (sec.transfer) {
+      html += renderTransfer(sec);
+    } else {
+      html += '<div class="passage">' + renderSectionBody(sec.text, sec, si) + "</div>";
+    }
+    html += "</section>";
+  });
+
+  html +=
+    '<div class="actions">' +
+    '<button type="button" id="check-btn">Check answers</button>' +
+    '<button type="button" class="secondary" id="clear-btn">Clear</button>' +
+    '<span class="score" id="score"></span>' +
+    "</div>";
+
+  main.innerHTML = html;
+
+  document.querySelectorAll(".blank-select").forEach(function (sel) {
+    sel.addEventListener("change", function () { gradeSelect(sel); });
+  });
+
+  document.querySelectorAll(".model-toggle").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var id = btn.getAttribute("data-target");
+      var el = document.getElementById(id);
+      if (!el) return;
+      var show = !el.classList.contains("show");
+      el.classList.toggle("show", show);
+      btn.textContent = show ? "Hide model" : "Show model";
+    });
+  });
+
+  document.getElementById("check-btn").addEventListener("click", gradeAll);
+  document.getElementById("clear-btn").addEventListener("click", clearAll);
+
+  document.addEventListener("keydown", function (e) {
+    if (e.code !== "Space" || e.ctrlKey || e.metaKey || e.altKey) return;
+    var tag = e.target && e.target.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+    e.preventDefault();
+    showAllAnswers();
+  });
+})();
+  </script>
+</body>
+</html>
