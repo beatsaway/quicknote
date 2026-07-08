@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Essay — online learning (interactive)</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #0d5c4a;
+      --border: #dcd6cb;
+      --warn-bg: #fff8e1;
+      --warn-b: #f9a825;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.1rem; margin: 0 0 0.35rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.88rem; opacity: 0.95; }
+    nav { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    nav a {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+    }
+    nav a:hover { background: rgba(255,255,255,0.35); }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    .hint {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.65rem 0.85rem;
+      background: #eee8;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .module { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0 0 0.85rem;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #f0f7f4;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: #1565c0; }
+    .stats { font-size: 0.82rem; color: var(--muted); margin-top: 0.5rem; }
+    .task-bullets { margin: 0.4rem 0 0; padding-left: 1.15rem; font-size: 0.88rem; }
+    .task-bullets li { margin: 0.25rem 0; }
+    .struct-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 640px) {
+      .struct-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .struct-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      font-size: 0.86rem;
+    }
+    .struct-card h3 {
+      margin: 0 0 0.45rem;
+      font-size: 0.84rem;
+      color: var(--accent);
+    }
+    .struct-card.warn {
+      background: var(--warn-bg);
+      border-color: #f0d78c;
+    }
+    .struct-card.good {
+      background: #f0f7f4;
+      border-color: #a5d6a7;
+    }
+    .struct-card ol {
+      margin: 0;
+      padding-left: 1.15rem;
+    }
+    .struct-card li { margin: 0.22rem 0; }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter h3 {
+      margin: 0 0 0.85rem;
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .para-tag {
+      display: block;
+      font-size: 0.74rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--warn-b);
+      margin-bottom: 0.35rem;
+    }
+    .para-tag.ok { color: var(--accent); }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead { margin: 0 0 0.5rem; font-size: 0.88rem; }
+    .clo-note { font-size: 0.85rem; color: var(--muted); margin: 0 0 1rem; line-height: 1.5; }
+    .clo-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .clo-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .clo-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .clo-item h3 { margin: 0 0 0.4rem; font-size: 0.82rem; color: var(--accent); }
+    .clo-item ul { margin: 0; padding-left: 1.1rem; font-size: 0.84rem; }
+    .clo-item li { margin: 0.2rem 0; }
+    .clo-overall {
+      margin: 0.9rem 0 0;
+      font-size: 0.86rem;
+      padding: 0.55rem 0.7rem;
+      background: #f0f7f4;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+    .clo-advice {
+      margin-top: 1rem;
+      padding: 0.75rem 0.85rem;
+      background: #f0f7f4;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .clo-advice h3 { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--accent); }
+    .clo-advice ul { margin: 0; padding-left: 1.15rem; font-size: 0.86rem; }
+    .clo-advice li { margin: 0.3rem 0; }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.65rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 6px;
+      border-left: 4px solid transparent;
+    }
+    .comment-bilingual .comment-pair:last-child { margin-bottom: 0; }
+    .comment-pair-praise {
+      background: #e8f5e9;
+      border-left-color: #43a047;
+    }
+    .comment-pair-upgrade {
+      background: #fff8e1;
+      border-left-color: #f9a825;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue { margin: 0 0 0.55rem; }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child { margin-bottom: 0; }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Essay — online learning</h1>
+    <p>Future of education or passing fad? Yellow = click original &harr; suggested wording.</p>
+    <nav>
+      <a href="index.html">Hub</a>
+      <a href="exercise-sentence-structures.html">Sentence practice</a>
+    </nav>
+  </header>
+  <main>
+    <p class="hint">Only the <strong>yellow</strong> phrases are language edits. Orange labels show <strong>structure</strong> notes from your teacher. The rest is your draft as written.</p>
+
+    <section class="box">
+      <h2>The task</h2>
+      <p class="module">Essay / article</p>
+      <div class="stimulus">
+        <p class="prompt" style="margin:0 0 0.5rem;color:var(--text)"><strong>Online Learning: The Future of Education or a Passing Fad?</strong></p>
+        <p class="prompt" style="margin:0;color:var(--text)">In recent years, online learning has grown quickly. Some people believe it will shape the future of education. Others think it is only a short-lived trend. <strong>What is your view?</strong> Write an essay explaining your opinion with reasons and examples.</p>
+      </div>
+      <ul class="task-bullets">
+        <li>State your view clearly (future of education <strong>or</strong> passing fad).</li>
+        <li>Support your side with two or three developed reasons before you deal with the other side.</li>
+        <li>Include a short rebuttal if the question asks you to consider both views.</li>
+      </ul>
+      <p class="stats">Draft length (student), about <strong>380 words</strong>.</p>
+      <div class="word-list">
+        <strong>Useful words</strong>
+        <span style="font-size:0.86rem;line-height:1.5;color:var(--text)">online learning(網上學習), flexible(靈活), interactive(互動), face to face(面對面), assess(評估), misinformation(錯誤資訊), passing fad(短期熱潮，唔長久), trend(趨勢), effective(有效), classroom learning(課堂學習)</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Structure first</h2>
+      <p class="prompt">Your teacher&rsquo;s main point. Put <strong>your own reasons</strong> in the body first. Save the <strong>benefits of online learning</strong> for a rebuttal paragraph near the end.</p>
+      <div class="struct-grid">
+        <div class="struct-card warn">
+          <h3>Your draft order</h3>
+          <ol>
+            <li>Intro + question</li>
+            <li><strong>Others&rsquo; benefits</strong> (dense, many points)</li>
+            <li>Social skills + unstable internet</li>
+            <li>Assessment + myopia</li>
+            <li>Conclusion</li>
+          </ol>
+        </div>
+        <div class="struct-card good">
+          <h3>Stronger order</h3>
+          <ol>
+            <li>Intro + <strong>your view</strong> (passing fad)</li>
+            <li>Your reason 1 (e.g. social skills)</li>
+            <li>Your reason 2 (e.g. hard to assess online)</li>
+            <li>Your reason 3 (optional, e.g. screen time)</li>
+            <li><strong>Rebuttal</strong> then answer it (flexibility, etc.)</li>
+            <li>Conclusion</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <p class="prompt fb-praise-lead">Lots of ideas and a clear question in the opening.</p>
+          <ul>
+            <li>👍 <strong>Many points.</strong> Flexibility, social life, internet, assessment and screen time all appear.</li>
+            <li>👍 <strong>Good hook.</strong> COVID-19 and Zoom/Google Meet set the scene well.</li>
+            <li>👍 <strong>Assessment point.</strong> Teachers finding it hard to assess students online can be developed further.</li>
+            <li>👍 <strong>Clear ending.</strong> You say online learning is a fast trend, not the real future.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong>Order.</strong> Do not open the body with a long benefits paragraph. That is the other side, not your stance.</li>
+            <li>💡 <strong>One idea per paragraph.</strong> Do not put social skills and unstable internet together. Do not put assessment and myopia together.</li>
+            <li>💡 <strong>Develop, don&rsquo;t pad.</strong> The social paragraph feels stretched next to the long benefits block. Make each of your reasons equally strong.</li>
+            <li>💡 <strong>Whole-piece feel.</strong> Like writing a song, the essay needs one clear shape from start to finish.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Marking (CLO)</h2>
+      <p class="clo-note">Indicative levels from your teacher&rsquo;s feedback. For study only, not official HKEAA marks.</p>
+      <div class="clo-grid">
+        <div class="clo-item">
+          <h3>Content, Level 4&ndash;5</h3>
+          <ul>
+            <li>Plenty of relevant ideas. flexibility, social life, assessment, screens.</li>
+            <li>Assessment online is a strong point to expand with an example.</li>
+            <li>Internet stability is weaker. develop or cut.</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Language, Level 4</h3>
+          <ul>
+            <li>Ideas are clear. Reader can follow you.</li>
+            <li>Watch verb forms, articles and fixed phrases (<em>at any time</em>, <em>whether</em>).</li>
+            <li>Capitalise platform names (Zoom, Google Meet, YouTube).</li>
+          </ul>
+        </div>
+        <div class="clo-item">
+          <h3>Organisation, Level 3</h3>
+          <ul>
+            <li>Benefits paragraph comes too early and packs too many points.</li>
+            <li>Some paragraphs mix two ideas that do not belong together.</li>
+            <li>Reordering body paragraphs would raise this band quickly.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="clo-advice">
+        <h3>Next draft plan</h3>
+        <ul>
+          <li><strong>Paragraph 2.</strong> State your view. Online learning is mainly a passing fad.</li>
+          <li><strong>Paragraphs 3&ndash;4.</strong> Two strong reasons on your side. social skills and fair assessment.</li>
+          <li><strong>Paragraph 5.</strong> <em>Admittedly, supporters say…</em> then answer the flexibility point in two sentences.</li>
+          <li><strong>Conclusion.</strong> One short line. classroom learning still matters after COVID-19.</li>
+        </ul>
+      </div>
+      <p class="clo-overall"><strong>Overall (indicative).</strong> About <strong>Level 4</strong>. Content and language are solid. Organisation is the main thing holding the piece back.</p>
+    </section>
+
+    <section class="box">
+      <h2>Student draft</h2>
+      <div class="letter">
+        <h3>Online Learning: The Future of Education or a Passing Fad?</h3>
+
+        <p><span class="para-tag ok">Intro</span>In recent years, online learning has become a very popular trend. Many schools and universities <span class="flip" tabindex="0" role="button" data-w="started using the internet such as zoom and google meet" data-r="started using platforms such as Zoom and Google Meet">started using the internet such as zoom and google meet</span> to teach students. COVID-19 made this trend happen fast as students had to stay at home <span class="flip" tabindex="0" role="button" data-w="for preventing infection" data-r="to prevent infection">for preventing infection</span> and learn from their computers or iPads. However, COVID-19 stopped and people now wonder <span class="flip" tabindex="0" role="button" data-w="that is online learning the future of education, or is it just a fast trend?" data-r="whether online learning is the future of education, or just a passing fad.">that is online learning the future of education, or is it just a fast trend?</span></p>
+
+        <p><span class="para-tag">Body 1 · move later (others&rsquo; benefits)</span><span class="flip" tabindex="0" role="button" data-w="online learning users say that it bring various of benefits." data-r="Supporters of online learning say that it brings various benefits.">online learning users say that it bring various of benefits.</span> It is flexible which means that students can study <span class="flip" tabindex="0" role="button" data-w="at anytime, in anywhere." data-r="at any time, anywhere.">at anytime, in anywhere.</span> It is helpful for students who are busy, <span class="flip" tabindex="0" role="button" data-w="having family gatherings," data-r="who have family gatherings,">having family gatherings,</span> or live far from schools. Online classes also offer many fun and interactive activities such as quizzes and videos. Students can replay recorded lessons and learn at their own speed. This can save travel time and let students study from home comfortably.</p>
+
+        <p><span class="para-tag">Body 2 · split into two paragraphs</span>However, studying online may affect students&rsquo; social skills. Students have fewer chances to communicate face to face with classmates. They may feel lonely and find it hard to build friendships. Also, some students do not have <span class="flip" tabindex="0" role="button" data-w="stable internet connection" data-r="a stable internet connection">stable internet connection</span> at home. When the network is weak, they may miss important parts of the lesson.</p>
+
+        <p><span class="para-tag">Body 3 · split (assessment vs myopia)</span>Moreover, teachers may find it difficult to assess students&rsquo; ability accurately during online lessons. Some students may cheat in online tests or copy answers from the Internet. In addition, staring at screens for a long time may cause myopia. Many students need to wear glasses because they use computers too much every day.</p>
+
+        <p><span class="para-tag ok">Conclusion</span>In conclusion, I think online learning is just a <span class="flip" tabindex="0" role="button" data-w="fast trend, not the real future of education." data-r="passing fad, not the real future of education.">fast trend, not the real future of education.</span> Although it helped during COVID-19, face-to-face classroom learning is still more effective for most students.</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">You already have plenty of ideas and a clear view at the end. The biggest upgrade is <strong>structure</strong>. Put your own reasons first, then rebut the benefits paragraph.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Many strong ideas.</strong> You cover flexibility, social life, the internet, assessment and screen time. That gives you a lot to work with in the next draft.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>論點多。</strong> 靈活、社交、網絡、評估、用眼都有寫到，改結構之後會好有力。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Good opening.</strong> COVID-19, Zoom and the question at the end of paragraph 1 fit the topic well.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>開首好。</strong> 疫情、Zoom 同段尾問句都貼題。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Assessment point.</strong> Teachers finding it hard to assess students online is worth developing. Add one short example, e.g. cheating in a test.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>評估呢點有用。</strong> 老師難以網上評估學生值得寫深，加一個短例子，例如網上測驗作弊。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Benefits paragraph too early.</strong> That block is dense and it is not your stance. Write two or three paragraphs supporting <em>passing fad</em> first, then add one rebuttal paragraph for the benefits.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>好處段唔應放最前。</strong> 嗰段好密，又唔係你立場。你先寫兩三段撐自己嘅睇法，最後先駁返網上學習有咩好處。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>One idea per paragraph.</strong> Social skills and unstable internet are two different points. Assessment and myopia should not share one paragraph either.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>一段一個重點。</strong> 社交同網絡唔穩定係兩點，唔好撈埋。評估同近視都唔應同一段。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Whole-piece shape.</strong> Like writing a song, the essay needs one clear flow. Right now the long benefits block makes readers think the other side is stronger before they reach your view.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>全篇要有整體感。</strong> 好似作歌咁，成篇要順。而家好處段太長，讀者會以為對方好勁，未到你立場已先入為主。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Develop, don&rsquo;t pad.</strong> The social paragraph feels like word-count padding next to the benefits section. Give each of your own reasons the same care as the flexibility examples.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>要寫深唔好撐字數。</strong> 社交嗰段比起好處段似拉長湊字。你自己立場嘅每點都要寫到同樣扎實。</p>
+        </div>
+      </div>
+      <p class="prompt" style="margin-top:0.85rem;margin-bottom:0">Train your eye for levels. <a href="level-evaluation-demos.html">Evaluate argument essays</a> before you rewrite this essay.</p>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+  function toggle(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.textContent = el.textContent === r ? w : r;
+    syncClass(el);
+  }
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(el);
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>

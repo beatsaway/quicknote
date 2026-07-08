@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Argumentative essays — level practice</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --panel: #fff;
+      --accent: #0d5c4a;
+      --accent-soft: #f0f7f4;
+      --accent-2: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.05rem; margin: 0 0 0.3rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.86rem; opacity: 0.95; }
+    nav { margin-top: 0.65rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    nav a {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+    }
+    nav a:hover { background: rgba(255,255,255,0.35); }
+    main { max-width: 42rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    .hint {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.65rem 0.85rem;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    .word-box {
+      margin-bottom: 1rem;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border: 1px solid #bbdefb;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+    .word-box strong {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-size: 0.8rem;
+      color: var(--accent-2);
+    }
+    .toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.1rem;
+    }
+    .toc a {
+      font-size: 0.8rem;
+      text-decoration: none;
+      color: var(--accent);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.25rem 0.65rem;
+    }
+    .toc a:hover { border-color: var(--accent); background: var(--accent-soft); }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.1rem 1.15rem;
+      margin-bottom: 1rem;
+    }
+    section.box h2 {
+      margin: 0 0 0.65rem;
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+    section.box h2 .zh {
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.75rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .rubric-grid {
+      display: grid;
+      gap: 0.65rem;
+    }
+    .rubric-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.6rem 0.7rem;
+      background: #fafafa;
+      font-size: 0.84rem;
+    }
+    .rubric-card strong {
+      display: block;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+      font-size: 0.82rem;
+    }
+    .demo {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 1.1rem;
+      background: #fff;
+    }
+    .demo:last-child { margin-bottom: 0; }
+    .demo-head {
+      padding: 0.75rem 0.9rem;
+      background: var(--accent-soft);
+      border-bottom: 1px solid var(--border);
+    }
+    .demo-head h3 {
+      margin: 0 0 0.2rem;
+      font-size: 0.94rem;
+      color: var(--accent);
+    }
+    .demo-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .demo-body { padding: 0.85rem 0.9rem 1rem; }
+    .task-box {
+      margin: 0 0 0.85rem;
+      padding: 0.6rem 0.75rem;
+      border-left: 3px solid var(--accent);
+      background: var(--accent-soft);
+      font-size: 0.88rem;
+    }
+    .writing {
+      margin: 0 0 0.85rem;
+      padding: 0.75rem 0.85rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+    .discuss {
+      margin: 0 0 0.75rem;
+      padding: 0.6rem 0.75rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+    }
+    .discuss strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 0.8rem;
+      color: var(--accent-2);
+    }
+    .discuss ol {
+      margin: 0;
+      padding-left: 1.15rem;
+    }
+    .discuss li { margin: 0.2rem 0; }
+    .reveal-btn {
+      font: inherit;
+      font-size: 0.84rem;
+      padding: 0.4rem 0.8rem;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+    }
+    .reveal-btn:hover { opacity: 0.92; }
+    .reveal-panel {
+      display: none;
+      margin-top: 0.75rem;
+      padding: 0.7rem 0.8rem;
+      background: #fffde7;
+      border: 1px solid #f0e68c;
+      border-radius: 8px;
+      font-size: 0.86rem;
+    }
+    .reveal-panel.show { display: block; }
+    .level-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.65rem;
+    }
+    .level-pill {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: #e8f5e9;
+      color: #2e7d32;
+      border: 1px solid #a5d6a7;
+    }
+    .level-pill.overall {
+      background: #e3f2fd;
+      color: #1565c0;
+      border-color: #90caf9;
+    }
+    .reveal-block { margin-bottom: 0.65rem; }
+    .reveal-block:last-child { margin-bottom: 0; }
+    .reveal-block strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: var(--accent);
+      font-size: 0.82rem;
+    }
+    .reveal-block ul {
+      margin: 0;
+      padding-left: 1.1rem;
+    }
+    .reveal-block li { margin: 0.18rem 0; }
+    .teacher-note {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="hdr-title">Level evaluation practice</h1>
+    <p id="hdr-sub"></p>
+    <nav>
+      <a href="index.html">Hub</a>
+      <a href="mock-article-study-hk-university.html">HK university article</a>
+      <a href="exercise-sentence-structures.html">Sentence practice</a>
+    </nav>
+  </header>
+  <main id="main"></main>
+  <script src="level-evaluation-demos.js"></script>
+  <script>
+(function () {
+  var data = window.LEVEL_EVAL_DEMOS;
+  var main = document.getElementById("main");
+  if (!data) {
+    main.innerHTML = "<p>Data not loaded.</p>";
+    return;
+  }
+
+  document.getElementById("hdr-title").textContent = data.title;
+  document.getElementById("hdr-sub").textContent =
+    (data.titleZh || "") + (data.introZh ? " · " + data.introZh : "");
+
+  function escapeHtml(s) {
+    var d = document.createElement("div");
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  var html =
+    '<p class="hint">' + escapeHtml(data.intro) + "</p>";
+
+  if (data.wordCountNote) {
+    html += '<div class="word-box"><strong>Part B word count (Level 5)</strong>' + escapeHtml(data.wordCountNote);
+    if (data.wordCountNoteZh) {
+      html += '<br><span style="color:var(--muted);font-size:0.82rem">' + escapeHtml(data.wordCountNoteZh) + "</span>";
+    }
+    html += "</div>";
+  }
+
+  html += '<div class="toc">';
+  data.demos.forEach(function (d) {
+    html += '<a href="#' + escapeHtml(d.id) + '">' + escapeHtml(d.label.split(".")[0] + ".") + "</a>";
+  });
+  html += "</div>";
+
+  html += '<section class="box"><h2>Quick rubric <span class="zh">· 評級參考</span></h2><div class="rubric-grid">';
+  data.rubric.forEach(function (r) {
+    html += '<div class="rubric-card"><strong>' + escapeHtml(r.band) + "</strong>" + escapeHtml(r.signs) + "</div>";
+  });
+  html += "</div></section>";
+
+  html += '<section class="box"><h2>Argumentative essays <span class="zh">· 議論文（答案隱藏）</span></h2>';
+  html += '<p class="prompt">Six argument essays at different levels. Discuss CLO with your teacher, then click <strong>Reveal teacher notes</strong>. Do not peek first.</p>';
+
+  data.demos.forEach(function (d, i) {
+    html += '<article class="demo" id="' + escapeHtml(d.id) + '">';
+    html += '<div class="demo-head"><h3>' + escapeHtml(d.label);
+    if (d.labelZh) html += ' <span style="font-weight:400;font-size:0.78rem;color:var(--muted)">(' + escapeHtml(d.labelZh) + ")</span>";
+    html += "</h3>";
+    html += '<p class="demo-meta">' + escapeHtml(d.format) + " · " + escapeHtml(d.wordCount) + "</p></div>";
+    html += '<div class="demo-body">';
+    html += '<div class="task-box">' + escapeHtml(d.task) + "</div>";
+    html += '<div class="writing">' + escapeHtml(d.writing) + "</div>";
+    html += '<div class="discuss"><strong>Discuss before you reveal</strong><ol>';
+    (d.discuss || []).forEach(function (q) {
+      html += "<li>" + escapeHtml(q) + "</li>";
+    });
+    html += "</ol></div>";
+    html += '<button type="button" class="reveal-btn" data-target="reveal-' + i + '">Reveal teacher notes</button>';
+    html += '<div class="reveal-panel" id="reveal-' + i + '">';
+    html += '<div class="level-row">';
+    html += '<span class="level-pill">Content ' + escapeHtml(d.reveal.content) + "</span>";
+    html += '<span class="level-pill">Language ' + escapeHtml(d.reveal.language) + "</span>";
+    html += '<span class="level-pill">Organisation ' + escapeHtml(d.reveal.organisation) + "</span>";
+    html += '<span class="level-pill overall">Overall ' + escapeHtml(d.reveal.overall) + "</span>";
+    html += "</div>";
+    html += '<div class="reveal-block"><strong>Strengths</strong><ul>';
+    (d.reveal.strengths || []).forEach(function (s) {
+      html += "<li>" + escapeHtml(s) + "</li>";
+    });
+    html += "</ul></div>";
+    html += '<div class="reveal-block"><strong>What limits the band</strong><ul>';
+    (d.reveal.limits || []).forEach(function (s) {
+      html += "<li>" + escapeHtml(s) + "</li>";
+    });
+    html += "</ul></div>";
+    html += '<div class="reveal-block"><strong>To reach Level 5+</strong><ul>';
+    (d.reveal.toReach5 || []).forEach(function (s) {
+      html += "<li>" + escapeHtml(s) + "</li>";
+    });
+    html += "</ul></div>";
+    html += '<p class="teacher-note">Indicative levels for discussion only, not official HKEAA marks.</p>';
+    html += "</div></div></article>";
+  });
+
+  html += "</section>";
+  main.innerHTML = html;
+
+  document.querySelectorAll(".reveal-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var id = btn.getAttribute("data-target");
+      var panel = document.getElementById(id);
+      if (!panel) return;
+      var show = !panel.classList.contains("show");
+      panel.classList.toggle("show", show);
+      btn.textContent = show ? "Hide teacher notes" : "Reveal teacher notes";
+    });
+  });
+})();
+  </script>
+</body>
+</html>
