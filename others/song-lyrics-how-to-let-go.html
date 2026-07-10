@@ -114,7 +114,7 @@
       line-height: 1.55;
       color: var(--text);
     }
-    .flip-popup.show { display: block; }
+    .flip-popup.show { display: block; cursor: pointer; }
     .flip-popup .note-en,
     .flip-popup .note-yue { margin: 0 0 0.45rem; }
     .flip-popup .note-yue:last-child { margin-bottom: 0; }
@@ -199,7 +199,7 @@
       </div>
       <ul class="task-bullets">
         <li>Only the <strong>yellow</strong> word groups are suggested edits; the rest is the draft as written.</li>
-        <li>Click flow. <strong>Yellow</strong> &rarr; suggested wording (green) &rarr; <strong>comment</strong> &rarr; back to yellow.</li>
+        <li>Click flow. <strong>Yellow</strong> &rarr; green + comment. Only one comment at a time. Click the comment box, elsewhere, or green again to hide it. Click green with comment open to go back to yellow.</li>
         <li>Edits stay <strong>small</strong>. Keep the songwriter&rsquo;s words and <em>How to…</em> pattern where possible.</li>
         <li>Repeating <em>Love connects us all</em> in the chorus is fine for a song. No change suggested there.</li>
       </ul>
@@ -342,15 +342,31 @@
     return t.value;
   }
 
-  function closeAllPopups(exceptWrap) {
+  function hideComment(wrap) {
+    if (!wrap) return;
+    var flip = wrap.querySelector('.flip');
+    var popup = wrap.querySelector('.flip-popup');
+    if (flip) flip.classList.remove('show-note');
+    if (flip) flip.setAttribute('aria-expanded', 'false');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function hideAllComments(exceptWrap) {
     document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
       if (wrap === exceptWrap) return;
-      var flip = wrap.querySelector('.flip');
-      var popup = wrap.querySelector('.flip-popup');
-      if (flip) flip.classList.remove('show-note');
-      if (flip) flip.setAttribute('aria-expanded', 'false');
-      if (popup) popup.classList.remove('show');
+      hideComment(wrap);
     });
+  }
+
+  function openComment(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    hideAllComments(wrap);
+    el.classList.add('show-note');
+    el.setAttribute('aria-expanded', 'true');
+    fillPopup(popup, el);
+    popup.classList.add('show');
   }
 
   function fillPopup(popup, el) {
@@ -398,24 +414,19 @@
     var r = decode(el.getAttribute('data-r') || '');
     if (!w || !r) return;
 
-    closeAllPopups(wrap);
+    var isGreen = el.textContent === r;
+    var commentOpen = popup && popup.classList.contains('show');
 
-    if (el.textContent !== r) {
+    if (!isGreen) {
+      hideAllComments(wrap);
       el.textContent = r;
-      el.classList.remove('show-note');
-      el.setAttribute('aria-expanded', 'false');
-      if (popup) popup.classList.remove('show');
       syncClass(el);
+      openComment(el);
       return;
     }
 
-    if (!el.classList.contains('show-note')) {
-      el.classList.add('show-note');
-      el.setAttribute('aria-expanded', 'true');
-      if (popup) {
-        fillPopup(popup, el);
-        popup.classList.add('show');
-      }
+    if (!commentOpen) {
+      openComment(el);
       return;
     }
 
@@ -438,9 +449,18 @@
     });
   });
 
+  document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+    var popup = wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    popup.addEventListener('click', function (e) {
+      e.stopPropagation();
+      hideComment(wrap);
+    });
+  });
+
   document.addEventListener('click', function (e) {
     if (e.target.closest('.flip-wrap')) return;
-    closeAllPopups(null);
+    hideAllComments(null);
   });
 })();
   </script>
