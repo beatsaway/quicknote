@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Song lyrics &mdash; How to Let Go?</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #e3f2fd;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .task-bullets {
+      margin: 0.5rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .task-bullets li { margin: 0.3rem 0; }
+    .lyrics h3 {
+      margin: 0 0 0.85rem;
+      font-size: 1.15rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .lyric-section {
+      margin: 1rem 0 0.35rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+    .lyric-section:first-of-type { margin-top: 0; }
+    .lyric-line {
+      margin: 0 0 0.2rem;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+    .lyric-line:last-child { margin-bottom: 0; }
+    .lyric-block { margin-bottom: 0.75rem; }
+    .lyric-note {
+      margin: 0.35rem 0 0;
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .flip.show-correct.show-note {
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .flip-popup {
+      display: none;
+      position: absolute;
+      z-index: 20;
+      left: 0;
+      top: calc(100% + 6px);
+      min-width: 14rem;
+      max-width: 18rem;
+      padding: 0.55rem 0.65rem;
+      background: #fff;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .flip-popup.show { display: block; }
+    .flip-popup .note-en,
+    .flip-popup .note-yue { margin: 0 0 0.45rem; }
+    .flip-popup .note-yue:last-child { margin-bottom: 0; }
+    .flip-popup .lang-tag {
+      display: inline-block;
+      margin-right: 0.3rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .flip-wrap {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead { margin: 0 0 0.5rem; font-size: 0.88rem; }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.65rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 6px;
+      border-left: 4px solid transparent;
+    }
+    .comment-bilingual .comment-pair:last-child { margin-bottom: 0; }
+    .comment-pair-praise {
+      background: #e8f5e9;
+      border-left-color: #43a047;
+    }
+    .comment-pair-upgrade {
+      background: #fff8e1;
+      border-left-color: #f9a825;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue { margin: 0 0 0.55rem; }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child { margin-bottom: 0; }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="box">
+      <h2>About this piece</h2>
+      <p class="topic">Original song lyrics &mdash; English check</p>
+      <div class="stimulus">
+        <p class="prompt" style="margin:0;color:var(--text)">A friend is writing an original English song and wants the lyrics to sound natural and correct. This is <strong>not</strong> a DSE article or story task. Short lines, repetition and emotion are normal in songs.</p>
+      </div>
+      <ul class="task-bullets">
+        <li>Only the <strong>yellow</strong> word groups are suggested edits; the rest is the draft as written.</li>
+        <li>Click flow. <strong>Yellow</strong> &rarr; suggested wording (green) &rarr; <strong>comment</strong> &rarr; back to yellow.</li>
+        <li>Edits stay <strong>small</strong>. Keep the songwriter&rsquo;s words and <em>How to…</em> pattern where possible.</li>
+        <li>Repeating <em>Love connects us all</em> in the chorus is fine for a song. No change suggested there.</li>
+      </ul>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What works well</h3>
+          <p class="prompt fb-praise-lead">The song already has a clear emotional arc and a strong hook.</p>
+          <ul>
+            <li>👍 <strong>Theme.</strong> Letting go, failure, loneliness, then love as a guide. Easy to follow.</li>
+            <li>👍 <strong>Parallel hooks.</strong> <em>How to let go?</em>, <em>How to go on</em>, <em>How to move on</em> tie the verses together.</li>
+            <li>👍 <strong>Chorus.</strong> Simple, memorable line. Repetition fits pop lyrics.</li>
+            <li>👍 <strong>Bridge.</strong> Kind shift from pain to <em>life&rsquo;s a long game</em> and <em>you&rsquo;re loved</em>.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong><em>How to…</em> lines.</strong> These are hook phrases, not full questions. Add missing words only, e.g. <em>the pain</em>. No question mark on <em>How to relieve the pain</em>.</li>
+            <li>💡 <strong>Fix small grammar slips.</strong> <em>answers</em>, <em>all the time</em>, <em>Shut down</em>, <em>Kindness. It&rsquo;s up to you</em>, <em>true</em> not <em>truth</em>.</li>
+            <li>💡 <strong>Light touch elsewhere.</strong> Only change words that sound wrong to a listener. Keep lines like <em>We are the one</em> if you like them.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="lyrics">
+        <h3>How to Let Go?</h3>
+
+        <p class="lyric-section">Verse 1</p>
+        <div class="lyric-block">
+          <p class="lyric-line">How to let go?</p>
+          <p class="lyric-line">You can&rsquo;t figure out <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="all the answer" data-r="all the answers" data-note-en="Use the plural. More than one answer." data-note-yue="用複數。唔止一個答案。">all the answer</span><span class="flip-popup" role="tooltip"></span></span></p>
+          <p class="lyric-line">Winking sleepless eyes</p>
+          <p class="lyric-line">You&rsquo;re stuck in reverse</p>
+        </div>
+        <div class="lyric-block">
+          <p class="lyric-line"><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="How to relieve" data-r="How to relieve the pain" data-note-en="Hook line, not a full question. Add the pain only. No question mark." data-note-yue="Hook 句，唔係完整問句。只加 the pain，唔使問號。">How to relieve</span><span class="flip-popup" role="tooltip"></span></span></p>
+          <p class="lyric-line">You&rsquo;ve tried so hard to get there</p>
+          <p class="lyric-line">Failure once again</p>
+          <p class="lyric-line"><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="You want.  to quit the game" data-r="You want to quit the game" data-note-en="Remove the extra full stop and space." data-note-yue="刪多餘句號同空格。">You want.  to quit the game</span><span class="flip-popup" role="tooltip"></span></span></p>
+        </div>
+        <div class="lyric-block">
+          <p class="lyric-line">When the sun goes down</p>
+          <p class="lyric-line">Loneliness drags you down</p>
+          <p class="lyric-line"><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Breathless at the time" data-r="Breathless all the time" data-note-en="At the time means on that occasion. All the time means always." data-note-yue="At the time 係當時；all the time 係成日／一直。">Breathless at the time</span><span class="flip-popup" role="tooltip"></span></span></p>
+          <p class="lyric-line">You&rsquo;re losing control</p>
+        </div>
+        <div class="lyric-block">
+          <p class="lyric-line"><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="When life&amp;apos;s gettin low" data-r="When life gets low" data-note-en="Standard spelling and verb form for lyrics." data-note-yue="用標準拼寫同動詞形式。">When life&apos;s gettin low</span><span class="flip-popup" role="tooltip"></span></span></p>
+          <p class="lyric-line">Chaos blinds your soul</p>
+          <p class="lyric-line">Nowhere you can go</p>
+          <p class="lyric-line">Oh~ love is the guide</p>
+          <p class="lyric-line">Guide you to go</p>
+        </div>
+
+        <p class="lyric-section">Pre-chorus</p>
+        <div class="lyric-block">
+          <p class="lyric-line">(Under the sun</p>
+          <p class="lyric-line">We are the one )</p>
+        </div>
+
+        <p class="lyric-section">Chorus</p>
+        <div class="lyric-block">
+          <p class="lyric-line">Love connects us all</p>
+          <p class="lyric-line">Love connects us all</p>
+          <p class="lyric-line">Love connects us all</p>
+          <p class="lyric-line">Love connects us all</p>
+          <p class="lyric-line">Love connects us all</p>
+          <p class="lyric-line">Love connects us all</p>
+          <p class="lyric-line">Love connects us all</p>
+          <p class="lyric-line">Love connects us all</p>
+          <p class="lyric-note">Repeated on purpose. Good for singing along.</p>
+        </div>
+
+        <p class="lyric-section">Verse 2</p>
+        <div class="lyric-block">
+          <p class="lyric-line">How to go on</p>
+          <p class="lyric-line"><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Shutdown all the doors, Say you&amp;apos;re okay" data-r="Shut down all the doors, say you&amp;apos;re okay" data-note-en="Shut down is the verb (two words). say is not a name, so no capital S." data-note-yue="Shut down 係動詞（兩個字）。say 唔係專名，唔使大階。">Shutdown all the doors, Say you&apos;re okay</span><span class="flip-popup" role="tooltip"></span></span></p>
+          <p class="lyric-line">Hiding all the scars</p>
+          <p class="lyric-line"><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Tears drown yourself" data-r="Tears drown you" data-note-en="We usually say tears drown you, not drown yourself." data-note-yue="通常講 tears drown you，唔講 drown yourself。">Tears drown yourself</span><span class="flip-popup" role="tooltip"></span></span></p>
+          <p class="lyric-line">(Drowning in your tears)</p>
+        </div>
+        <div class="lyric-block">
+          <p class="lyric-line">How to move on</p>
+          <p class="lyric-line">You just blame the world</p>
+          <p class="lyric-line">For being cruel and cold to you</p>
+          <p class="lyric-line"><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Kindness it&amp;apos;s up to you" data-r="Kindness. It&amp;apos;s up to you" data-note-en="Two short lines. Kindness ends one thought; It&apos;s up to you starts the next." data-note-yue="兩個短句。Kindness 一句；It&apos;s up to you 另一句。">Kindness it&apos;s up to you</span><span class="flip-popup" role="tooltip"></span></span></p>
+        </div>
+
+        <p class="lyric-section">Bridge</p>
+        <div class="lyric-block">
+          <p class="lyric-line">Life&rsquo;s a long game I play with you</p>
+          <p class="lyric-line">Nothing about win or lose</p>
+          <p class="lyric-line">Sharing kindness with you</p>
+          <p class="lyric-line"><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="You&amp;apos;re loved it&amp;apos;s always truth" data-r="You&amp;apos;re loved, it&amp;apos;s always true" data-note-en="Use true (adjective), not truth (noun). A comma helps the singer pause." data-note-yue="用 true（形容詞），唔好用 truth（名詞）。逗號方便唱時停一停。">You&apos;re loved it&apos;s always truth</span><span class="flip-popup" role="tooltip"></span></span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">The feeling of the song is already strong. The yellow bits are mostly grammar and phrasing so an English listener hears it clearly when sung.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Clear mood.</strong> The lyrics move from confusion and failure to love and connection. A listener can follow the story even in short lines.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>情緒清楚。</strong> 由迷惘、失敗去到愛同連繫，短句都跟到條故事線。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Good hook lines.</strong> <em>How to let go?</em>, <em>How to go on</em> and <em>How to move on</em> work well as verse openers. They sound like a real song structure.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>開句有力。</strong> <em>How to let go?</em>、<em>How to go on</em>、<em>How to move on</em> 做每段開首好似歌詞結構。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Chorus fits the genre.</strong> <em>Love connects us all</em> is simple and easy to sing. Repeating it eight times is normal in pop lyrics, not a mistake.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>副歌合格式。</strong> <em>Love connects us all</em> 简单易唱，重複八次喺流行歌好正常，唔係錯。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong><em>How to…</em> is not a full question.</strong> <em>How to relieve the pain</em> is a hook line, like a title. It does not need a question mark. A real question would be <em>How do you relieve the pain?</em> but you can keep your <em>How to…</em> pattern instead.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong><em>How to…</em> 唔係完整問句。</strong> <em>How to relieve the pain</em> 係 hook／標題式句子，唔使加問號。真正問句係 <em>How do you relieve the pain?</em>，但你可保留 <em>How to…</em> 寫法。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Small grammar fixes.</strong> Watch <em>all the answers</em>, <em>all the time</em>, <em>Shut down</em>, <em>Kindness. It&rsquo;s up to you</em> and <em>true</em> not <em>truth</em>. Small changes only.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>小文法位。</strong> 留意 <em>all the answers</em>、<em>all the time</em>、<em>Shut down</em>、<em>Kindness. It&rsquo;s up to you</em>、<em>true</em> 唔係 <em>truth</em>。只改必要位。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Your line, your choice.</strong> <em>We are the one</em>, <em>Winking sleepless eyes</em> and <em>Guide you to go</em> can stay if they fit your melody and meaning.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>你嘅字，你決定。</strong> <em>We are the one</em>、<em>Winking sleepless eyes</em>、<em>Guide you to go</em> 如果啱旋律同意思，可以保留。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+
+  function closeAllPopups(exceptWrap) {
+    document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+      if (wrap === exceptWrap) return;
+      var flip = wrap.querySelector('.flip');
+      var popup = wrap.querySelector('.flip-popup');
+      if (flip) flip.classList.remove('show-note');
+      if (flip) flip.setAttribute('aria-expanded', 'false');
+      if (popup) popup.classList.remove('show');
+    });
+  }
+
+  function fillPopup(popup, el) {
+    var en = decode(el.getAttribute('data-note-en') || '');
+    var yue = decode(el.getAttribute('data-note-yue') || '');
+    popup.innerHTML = '';
+    if (en) {
+      var pEn = document.createElement('p');
+      pEn.className = 'note-en';
+      pEn.innerHTML = '<span class="lang-tag">EN</span>' + en;
+      popup.appendChild(pEn);
+    }
+    if (yue) {
+      var pYue = document.createElement('p');
+      pYue.className = 'note-yue';
+      pYue.innerHTML = '<span class="lang-tag">粵</span>' + yue;
+      popup.appendChild(pYue);
+    }
+  }
+
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+
+  function resetFlip(el) {
+    var w = el.getAttribute('data-w');
+    if (!w) return;
+    el.textContent = decode(w);
+    el.classList.remove('show-note');
+    el.setAttribute('aria-expanded', 'false');
+    syncClass(el);
+    var popup = el.parentElement && el.parentElement.querySelector('.flip-popup');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function handleFlip(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    var w = decode(el.getAttribute('data-w') || '');
+    var r = decode(el.getAttribute('data-r') || '');
+    if (!w || !r) return;
+
+    closeAllPopups(wrap);
+
+    if (el.textContent !== r) {
+      el.textContent = r;
+      el.classList.remove('show-note');
+      el.setAttribute('aria-expanded', 'false');
+      if (popup) popup.classList.remove('show');
+      syncClass(el);
+      return;
+    }
+
+    if (!el.classList.contains('show-note')) {
+      el.classList.add('show-note');
+      el.setAttribute('aria-expanded', 'true');
+      if (popup) {
+        fillPopup(popup, el);
+        popup.classList.add('show');
+      }
+      return;
+    }
+
+    resetFlip(el);
+  }
+
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function (e) {
+      e.stopPropagation();
+      handleFlip(el);
+    });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleFlip(el);
+      }
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.flip-wrap')) return;
+    closeAllPopups(null);
+  });
+})();
+  </script>
+</body>
+</html>
