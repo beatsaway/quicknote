@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday trip to Ocean Park &mdash; writing &amp; proofreading</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #e3f2fd;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .task-bullets {
+      margin: 0.5rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .task-bullets li { margin: 0.3rem 0; }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter h3 {
+      margin: 0 0 0.85rem;
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .flip.show-correct.show-note {
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .flip-popup {
+      display: none;
+      position: absolute;
+      z-index: 20;
+      left: 0;
+      top: calc(100% + 6px);
+      min-width: 14rem;
+      max-width: 18rem;
+      padding: 0.55rem 0.65rem;
+      background: #fff;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .flip-popup.show { display: block; cursor: pointer; }
+    .flip-popup .note-en,
+    .flip-popup .note-yue { margin: 0 0 0.45rem; }
+    .flip-popup .note-yue:last-child { margin-bottom: 0; }
+    .flip-popup .lang-tag {
+      display: inline-block;
+      margin-right: 0.3rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .flip-wrap {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead { margin: 0 0 0.5rem; font-size: 0.88rem; }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.65rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 6px;
+      border-left: 4px solid transparent;
+    }
+    .comment-bilingual .comment-pair:last-child { margin-bottom: 0; }
+    .comment-pair-praise {
+      background: #e8f5e9;
+      border-left-color: #43a047;
+    }
+    .comment-pair-upgrade {
+      background: #fff8e1;
+      border-left-color: #f9a825;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue { margin: 0 0 0.55rem; }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child { margin-bottom: 0; }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="box">
+      <h2>About this piece</h2>
+      <p class="topic">Birthday recount &mdash; Ocean Park</p>
+      <div class="stimulus">
+        <p class="prompt" style="margin:0;color:var(--text)">A handwritten recount of a school trip to Ocean Park on the writer&rsquo;s birthday (6 July). Yellow highlights are small grammar and wording fixes; the story and excitement stay the same.</p>
+      </div>
+      <ul class="task-bullets">
+        <li>Only the <strong>yellow</strong> word groups are suggested edits; the rest is the draft as written.</li>
+        <li>Click flow. <strong>Yellow</strong> &rarr; green + comment. Only one comment at a time. Click the comment box, elsewhere, or green again to hide it. Click green with comment open to go back to yellow.</li>
+      </ul>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <p class="prompt fb-praise-lead">Lively trip story with plenty for a reader to picture.</p>
+          <ul>
+            <li>🎂 <strong>Hook.</strong> Birthday + school trip + Ocean Park is an easy opening to follow.</li>
+            <li>🎢 <strong>Action.</strong> Aquarium, Ocean Express, roller coasters, penguins, souvenirs &mdash; the day moves along.</li>
+            <li>👥 <strong>Friends.</strong> Grouping with classmates and naming favourite rides feels real.</li>
+            <li>😊 <strong>Ending.</strong> You close by saying you were happy and hope the school runs it again.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong>Past tense.</strong> Most of the trip uses <em>went</em>, <em>liked</em>, <em>were</em>. The opening can stay lively with <em>it&rsquo;s</em> and <em>I&rsquo;m</em> if you like that voice.</li>
+            <li>💡 <strong>Articles.</strong> Add <em>the</em> before <em>aquarium</em>, <em>souvenir shop</em>, and scheme names where needed.</li>
+            <li>💡 <strong>Word forms.</strong> <em>exciting</em> rides (not <em>excited</em>); <em>elegant</em> movement (not <em>elegance</em>).</li>
+            <li>💡 <strong>Sentence joins.</strong> Fix comma splices and fragments after <em>and after gathering&hellip;</em></li>
+            <li>💡 <strong>Spelling.</strong> <em>Sitting</em>, <em>check in</em>, <em>spend</em> not <em>expend</em>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <h3>My birthday trip to Ocean Park</h3>
+
+        <p>On 6/7, it&apos;s my birthday and what&apos;s more is that my school said that on that day, <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="who have joined holiday reading scheme" data-r="students who had joined the holiday reading scheme" data-note-en="Past perfect + the before the scheme name. Students who is clearer than who alone." data-note-yue="用過去完成式，scheme 前要 the。students who 清楚啲。">who have joined holiday reading scheme</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="can go" data-r="could go" data-note-en="Past tense matches the day you are writing about." data-note-yue="配合當日件事，用 could。">can go</span><span class="flip-popup" role="tooltip"></span></span> to Ocean Park! And I&apos;m one of the students who <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="can go" data-r="could go" data-note-en="Same past-tense fix as above." data-note-yue="同上，用過去式。">can go</span><span class="flip-popup" role="tooltip"></span></span>! <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Before that night," data-r="The night before," data-note-en="The night before is the usual phrase." data-note-yue="通常講 The night before。">Before that night,</span><span class="flip-popup" role="tooltip"></span></span> I was so excited that <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="I even couldn&amp;apos;t sleep at all" data-r="I couldn&amp;apos;t even sleep at all" data-note-en="Even usually comes before the verb: couldn&apos;t even sleep." data-note-yue="even 通常放喺動詞前：couldn&apos;t even sleep。">I even couldn&apos;t sleep at all</span><span class="flip-popup" role="tooltip"></span></span>.</p>
+
+        <p>On that day, I went there with my friends<span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w=" and after gathering all the students and teachers. We finally went" data-r=". After all the students and teachers had gathered, we went" data-note-en="Don&apos;t join two sentences with and after a full stop idea. Use a new sentence after gathered." data-note-yue="唔好用 and 接兩句。gathered 之後開新句。"> and after gathering all the students and teachers. We finally went</span><span class="flip-popup" role="tooltip"></span></span> inside to <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="check-in" data-r="check in" data-note-en="Check in is two words when it is a verb." data-note-yue="動詞寫 check in，兩個字。">check-in</span><span class="flip-popup" role="tooltip"></span></span> and <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="grouped together to start a trip in Ocean Park" data-r="got into groups to start our trip around Ocean Park" data-note-en="Got into groups sounds more natural for a school outing." data-note-yue="學校旅行用 got into groups 自然啲。">grouped together to start a trip in Ocean Park</span><span class="flip-popup" role="tooltip"></span></span>. When I was <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="checking-in," data-r="checking in," data-note-en="Same as check in — no hyphen in the verb form." data-note-yue="同 check in，動詞唔加連字號。">checking-in,</span><span class="flip-popup" role="tooltip"></span></span> I got several coupons to <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="play, shopping and eat" data-r="play, shop and eat" data-note-en="Keep the list parallel: three verbs — play, shop, eat." data-note-yue="三個動詞要平行：play, shop, eat。">play, shopping and eat</span><span class="flip-popup" role="tooltip"></span></span>! <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Therefore I can save some money when I expended." data-r="So I could save some money when I spent it." data-note-en="Past tense again. Spend money, not expend. So is fine for informal recounts." data-note-yue="用過去式。花錢用 spend，唔係 expend。">Therefore I can save some money when I expended.</span><span class="flip-popup" role="tooltip"></span></span></p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="I got 2 friends to group with me." data-r="I teamed up with two friends." data-note-en="Teamed up with is a natural way to say you formed a small group." data-note-yue="teamed up with 講同朋友組隊好自然。">I got 2 friends to group with me.</span><span class="flip-popup" role="tooltip"></span></span> First we went to <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="aquarium" data-r="the aquarium" data-note-en="Use the because you mean Ocean Park&apos;s aquarium." data-note-yue="指海洋公園個水族館，要加 the。">aquarium</span><span class="flip-popup" role="tooltip"></span></span> to admire the sea animals and <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="what I like the most are sharks" data-r="what I liked the most were the sharks" data-note-en="Past tense for a recount. Were matches what (plural idea)." data-note-yue="記敘用過去式。were 配合 what。">what I like the most are sharks</span><span class="flip-popup" role="tooltip"></span></span>. <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Their movement when they were swimming were very elegance." data-r="Their movements as they swam were very elegant." data-note-en="Movement → movements; was/were + elegant (adjective), not elegance (noun)." data-note-yue="用 movements；was/were + elegant 形容詞。">Their movement when they were swimming were very elegance.</span><span class="flip-popup" role="tooltip"></span></span> Therefore I asked my groupmates to help me <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="took" data-r="take" data-note-en="After help me, use the base verb: help me take photos." data-note-yue="help me 後面用原形動詞 take。">took</span><span class="flip-popup" role="tooltip"></span></span> some photos and selfies.</p>
+
+        <p>After that, we rode <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="&amp;quot;Ocean train&amp;quot;" data-r="the Ocean Express" data-note-en="The park ride is usually called the Ocean Express. Use the before the ride name." data-note-yue="個機動遊戲通常叫 Ocean Express，前面加 the。">&quot;Ocean train&quot;</span><span class="flip-popup" role="tooltip"></span></span> to go to <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="another side" data-r="the other side" data-note-en="Ocean Park has two sides — the other side (not another)." data-note-yue="海洋公園兩邊 — 用 the other side。">another side</span><span class="flip-popup" role="tooltip"></span></span> of Ocean Park. When we arrived, we ran as quickly as cheetahs to play different kinds of <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="excited" data-r="exciting" data-note-en="Exciting describes the rides. Excited describes how you feel." data-note-yue="exciting 形容過山車；excited 形容你嘅感受。">excited</span><span class="flip-popup" role="tooltip"></span></span> roller coasters. <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="What I like the most are" data-r="What I liked the most were" data-note-en="Past tense again for your favourites on that day." data-note-yue="講當日最鍾意，用過去式。">What I like the most are</span><span class="flip-popup" role="tooltip"></span></span> &ldquo;The clowns roller coaster&rdquo;, &ldquo;<span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Sating" data-r="Sitting" data-note-en="Spelling: Sitting on a boat…" data-note-yue="串字：Sitting。">Sating</span><span class="flip-popup" role="tooltip"></span></span> on a boat and get your body wet&rdquo; and &ldquo;360&deg; spinning&rdquo;. I screamed as loud as I could <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="cause it really like your heart is pumping out" data-r="because it really felt like your heart was pumping out of your chest" data-note-en="Because for writing; felt like + past tense fits a recount." data-note-yue="書面用 because；felt like 配合過去式。">cause it really like your heart is pumping out</span><span class="flip-popup" role="tooltip"></span></span>!</p>
+
+        <p>When we felt hot, we went to &ldquo;penguins&rdquo; to <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="cool down ourselves" data-r="cool down" data-note-en="Cool down or cool off is enough. Cool ourselves down is also fine but longer." data-note-yue="cool down 或 cool off 就得。">cool down ourselves</span><span class="flip-popup" role="tooltip"></span></span> for a while<span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w=" then we went" data-r=", then we went" data-note-en="Add a comma before then when it links two parts of the sentence." data-note-yue="then 前加逗號。"> then we went</span><span class="flip-popup" role="tooltip"></span></span> to <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="souvenirs shop" data-r="the souvenir shop" data-note-en="Souvenir shop is usually singular, with the." data-note-yue="souvenir shop 通常單數，加 the。">souvenirs shop</span><span class="flip-popup" role="tooltip"></span></span> to buy some souvenirs. I bought an A4 file for my sister and a keychain for myself. Then we went to &ldquo;Wong Chuk Hang&rdquo; to eat McDonald&rsquo;s because the food in Ocean Park <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="are" data-r="was" data-note-en="Food is uncountable — use was, not are." data-note-yue="food 唔可數，用 was。">are</span><span class="flip-popup" role="tooltip"></span></span> really expensive! And we rode back to Ocean Park to play for 2 hours <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="then we back home" data-r="then we went back home" data-note-en="Need the verb went before back home." data-note-yue="back home 前要有 went。">then we back home</span><span class="flip-popup" role="tooltip"></span></span>.</p>
+
+        <p>This year, <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="I spent my birthday very happy" data-r="I had a very happy birthday" data-note-en="We have a happy birthday, not spend a birthday happy." data-note-yue="講 had a happy birthday，唔係 spent… happy。">I spent my birthday very happy</span><span class="flip-popup" role="tooltip"></span></span> because <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="I spent with my friends" data-r="I spent it with my friends" data-note-en="Spend needs an object — spent it (the birthday) with friends." data-note-yue="spend 要有受詞：spent it with friends。">I spent with my friends</span><span class="flip-popup" role="tooltip"></span></span>! I hope next year the school will also organise this activity for us!</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">The energy of the trip comes through well &mdash; readers can see the sharks, the rides, and the McDonald&rsquo;s escape. Most fixes are <strong>past tense</strong>, <strong>articles</strong>, and a few <strong>word forms</strong> so the English matches a school recount.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Clear timeline.</strong> Check-in, aquarium, Ocean Express, roller coasters, penguins, souvenirs, dinner, then home. Easy to follow.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>時間線清楚。</strong> 入園、水族館、纜車、過山車、企鵝、紀念品、食飯、返屋企，跟得好順。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Personal detail.</strong> Coupons, favourite rides, gifts for your sister and yourself &mdash; these make it your story, not a generic trip report.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>個人細節。</strong> 優惠券、最鍾意機動遊戲、送妹妹同自己禮物，係你嘅故事。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Past tense in the main story.</strong> Once the trip starts, past verbs (<em>went</em>, <em>liked</em>, <em>were</em>) read more naturally. Your opening <em>it&rsquo;s my birthday</em> and <em>what&rsquo;s more is that</em> can stay for excitement.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>主線用過去式。</strong> 行程開始後用 went、liked、were 順啲。開頭 <em>it&rsquo;s my birthday</em>、<em>what&rsquo;s more is that</em> 可以保留興奮感。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Watch sentence joins.</strong> After <em>I went with my friends</em>, start a new sentence for <em>After everyone had gathered</em> instead of joining with <em>and after gathering</em>.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>留意造句。</strong> <em>I went with my friends</em> 之後開新句寫 <em>After everyone had gathered</em>，唔好用 and after gathering 硬接。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Ending works.</strong> Saying you hope the school organises it again next year rounds off the piece nicely.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>結尾 OK。</strong> 希望下年學校再辦，收得好自然。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+
+  function hideComment(wrap) {
+    if (!wrap) return;
+    var flip = wrap.querySelector('.flip');
+    var popup = wrap.querySelector('.flip-popup');
+    if (flip) flip.classList.remove('show-note');
+    if (flip) flip.setAttribute('aria-expanded', 'false');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function hideAllComments(exceptWrap) {
+    document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+      if (wrap === exceptWrap) return;
+      hideComment(wrap);
+    });
+  }
+
+  function openComment(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    hideAllComments(wrap);
+    el.classList.add('show-note');
+    el.setAttribute('aria-expanded', 'true');
+    fillPopup(popup, el);
+    popup.classList.add('show');
+  }
+
+  function fillPopup(popup, el) {
+    var en = decode(el.getAttribute('data-note-en') || '');
+    var yue = decode(el.getAttribute('data-note-yue') || '');
+    popup.innerHTML = '';
+    if (en) {
+      var pEn = document.createElement('p');
+      pEn.className = 'note-en';
+      pEn.innerHTML = '<span class="lang-tag">EN</span>' + en;
+      popup.appendChild(pEn);
+    }
+    if (yue) {
+      var pYue = document.createElement('p');
+      pYue.className = 'note-yue';
+      pYue.innerHTML = '<span class="lang-tag">粵</span>' + yue;
+      popup.appendChild(pYue);
+    }
+  }
+
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+
+  function resetFlip(el) {
+    var w = el.getAttribute('data-w');
+    if (!w) return;
+    el.textContent = decode(w);
+    el.classList.remove('show-note');
+    el.setAttribute('aria-expanded', 'false');
+    syncClass(el);
+    var popup = el.parentElement && el.parentElement.querySelector('.flip-popup');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function handleFlip(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    var w = decode(el.getAttribute('data-w') || '');
+    var r = decode(el.getAttribute('data-r') || '');
+    if (!w || !r) return;
+
+    var isGreen = el.textContent === r;
+    var commentOpen = popup && popup.classList.contains('show');
+
+    if (!isGreen) {
+      hideAllComments(wrap);
+      el.textContent = r;
+      syncClass(el);
+      openComment(el);
+      return;
+    }
+
+    if (!commentOpen) {
+      openComment(el);
+      return;
+    }
+
+    resetFlip(el);
+  }
+
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function (e) {
+      e.stopPropagation();
+      handleFlip(el);
+    });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleFlip(el);
+      }
+    });
+  });
+
+  document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+    var popup = wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    popup.addEventListener('click', function (e) {
+      e.stopPropagation();
+      hideComment(wrap);
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.flip-wrap')) return;
+    hideAllComments(null);
+  });
+})();
+  </script>
+</body>
+</html>
