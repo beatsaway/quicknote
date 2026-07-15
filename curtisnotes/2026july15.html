@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curtis — Paper 2 notes (15 Jul 2026)</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --panel: #fff;
+      --accent: #0d5c4a;
+      --soft: #f0f7f4;
+      --border: #dcd6cb;
+      --key: #1565c0;
+      --key-bg: #e3f2fd;
+      --demo-bg: #fafcfa;
+      --demo-b: #a5d6a7;
+      --font: "Segoe UI", "Microsoft JhengHei", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.55;
+      color: var(--text);
+      background: var(--bg);
+      padding-top: var(--theme-bar-offset, 3.25rem);
+    }
+    @media (max-width: 820px) {
+      body { padding-top: var(--theme-bar-offset, 5.75rem); }
+    }
+    .theme-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.3rem 0.4rem;
+      padding: 0.35rem 0.75rem;
+      min-height: 2.65rem;
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .theme-bar-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      margin-right: 0.1rem;
+    }
+    .theme-btn {
+      font: inherit;
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 0.22rem 0.55rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--text);
+      cursor: pointer;
+      line-height: 1.25;
+      white-space: nowrap;
+    }
+    .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .theme-btn.is-active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .theme-bar-links {
+      margin-left: auto;
+      display: flex;
+      gap: 0.35rem;
+    }
+    .theme-bar-links a {
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.2rem 0.4rem;
+    }
+    .theme-bar-links a:hover { text-decoration: underline; }
+    .theme-panel { display: none; }
+    .theme-panel.is-active { display: block; }
+    .page-title {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.7rem 1.15rem;
+    }
+    .page-title h1 { font-size: 1.02rem; margin: 0 0 0.15rem; font-weight: 600; }
+    .page-title p { margin: 0; font-size: 0.8rem; opacity: 0.95; }
+    main {
+      max-width: 40rem;
+      margin: 0 auto;
+      padding: 1.15rem 1.15rem 2.25rem;
+    }
+    section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.9rem 1rem 1rem;
+      margin-bottom: 1rem;
+    }
+    section h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+    .note {
+      margin: 0 0 0.55rem;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+    .note:last-child { margin-bottom: 0; }
+    ul.tips { margin: 0.25rem 0 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    ul.tips li { margin: 0.28rem 0; }
+    .task-card {
+      margin-top: 0.75rem;
+      padding: 0.7rem 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .task-card:first-of-type { margin-top: 0.4rem; }
+    .task-num {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .task-card h3 {
+      margin: 0 0 0.45rem;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .task-official {
+      margin: 0;
+      padding: 0.55rem 0.7rem;
+      border-left: 3px solid var(--accent);
+      background: var(--soft);
+      font-size: 0.88rem;
+    }
+    .task-official p { margin: 0 0 0.4rem; }
+    .task-official p:last-child { margin-bottom: 0; }
+    .task-official ul {
+      margin: 0.35rem 0 0;
+      padding-left: 1.1rem;
+    }
+    .task-official li { margin: 0.18rem 0; }
+    .stance {
+      margin: 0.45rem 0 0;
+      font-size: 0.84rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .why {
+      margin: 0.35rem 0 0;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .phrase-grid {
+      display: grid;
+      gap: 0.4rem;
+      margin-top: 0.35rem;
+    }
+    .phrase {
+      padding: 0.4rem 0.55rem;
+      background: var(--soft);
+      border-radius: 6px;
+      font-size: 0.86rem;
+    }
+    .phrase code {
+      font-family: inherit;
+      color: var(--key);
+      font-weight: 600;
+    }
+    .topic-block {
+      margin-top: 0.35rem;
+    }
+    .topic-head {
+      margin: 0 0 0.45rem;
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+    .para-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.7rem 0.75rem;
+      margin-top: 0.65rem;
+      background: #fff;
+    }
+    .para-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .guide {
+      margin: 0 0 0.5rem;
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+    .kw {
+      display: inline;
+      padding: 0.05rem 0.28rem;
+      background: var(--key-bg);
+      color: var(--key);
+      border-radius: 3px;
+      font-weight: 600;
+      font-size: 0.86em;
+      white-space: nowrap;
+    }
+    .reveal-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      margin: 0.1rem 0 0.3rem;
+      padding: 0;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      background: var(--soft);
+      color: var(--accent);
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .reveal-btn:hover { background: #e4f2ec; }
+    .reveal-btn[aria-expanded="true"] {
+      background: var(--accent);
+      color: #fff;
+    }
+    .demo {
+      display: none;
+      margin: 0.3rem 0 0;
+      padding: 0.6rem 0.7rem;
+      background: var(--demo-bg);
+      border: 1px solid var(--demo-b);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .demo.show { display: block; }
+    .demo-tag {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="theme-bar" role="tablist" aria-label="Choose demo theme">
+    <span class="theme-bar-label">Theme</span>
+    <button type="button" class="theme-btn is-active" role="tab" aria-selected="true" data-theme="a">AI schoolwork</button>
+    <button type="button" class="theme-btn" role="tab" aria-selected="false" data-theme="b">Later start times</button>
+    <button type="button" class="theme-btn" role="tab" aria-selected="false" data-theme="c">Short videos</button>
+    <button type="button" class="theme-btn" role="tab" aria-selected="false" data-theme="d">Mental health</button>
+    <button type="button" class="theme-btn" role="tab" aria-selected="false" data-theme="e">Money skills</button>
+    <button type="button" class="theme-btn" role="tab" aria-selected="false" data-theme="f">Study abroad</button>
+    <div class="theme-bar-links">
+      <a href="index.html">Notes</a>
+      <a href="../curtis_dse/index.html">Practice</a>
+    </div>
+  </div>
+
+  <div class="page-title">
+    <h1>Curtis — Paper 2 notes (15 Jul 2026)</h1>
+    <p>6 predicted Part B themes · L5 / GCSE Gr9 demos</p>
+  </div>
+
+  <main>
+    <section id="tasks">
+      <h2>Task</h2>
+
+      <article class="task-card theme-panel is-active" data-theme="a">
+        <span class="task-num">Topic A · Essay / school magazine</span>
+        <h3>Generative AI and schoolwork</h3>
+        <div class="task-official">
+          <p>Generative AI tools such as ChatGPT are now easy for secondary students to use. Some teachers welcome them as learning aids. Others worry that AI will encourage cheating and weaken students&rsquo; writing and thinking skills.</p>
+          <p><strong>Write an essay</strong> for a school magazine giving your view on whether secondary students should be allowed to use generative AI for schoolwork.</p>
+          <ul>
+            <li>State your view clearly.</li>
+            <li>Support it with two or three developed reasons and examples.</li>
+            <li>Respond briefly to the main opposing argument.</li>
+          </ul>
+        </div>
+        <p class="stance">Practice stance: allow AI as a support tool, with clear school rules — not unchecked copying.</p>
+        <p class="why">Why 2027: AI literacy is already in classrooms and public debate.</p>
+      </article>
+
+      <article class="task-card theme-panel" data-theme="b">
+        <span class="task-num">Topic B · Letter / article</span>
+        <h3>Later school start times</h3>
+        <div class="task-official">
+          <p>Research suggests that teenagers need more sleep, yet many Hong Kong secondary schools start before 8 a.m. Some parents want later start times. Others worry about transport, after-school lessons and family schedules.</p>
+          <p><strong>Write a letter</strong> to your principal recommending a short trial of later school start times.</p>
+          <ul>
+            <li>Explain why sleep matters for learning and health.</li>
+            <li>Address at least one practical concern.</li>
+            <li>Propose a realistic trial plan.</li>
+          </ul>
+        </div>
+        <p class="stance">Practice stance: support a limited trial (e.g. start 30–45 minutes later).</p>
+        <p class="why">Why 2027: sleep, mental health and campus wellbeing keep returning in Paper 2.</p>
+      </article>
+
+      <article class="task-card theme-panel" data-theme="c">
+        <span class="task-num">Topic C · Speech</span>
+        <h3>Short-form video and free time</h3>
+        <div class="task-official">
+          <p>Many teenagers spend hours daily on short-form video apps. Some say these platforms inspire creativity and help students relax. Critics argue that endless scrolling damages concentration, sleep and real-life relationships.</p>
+          <p><strong>Write a speech</strong> for a school assembly. Persuade classmates to set healthier limits on short-form video use.</p>
+          <ul>
+            <li>Give clear reasons for setting limits.</li>
+            <li>Suggest practical habits students can try.</li>
+            <li>End with a call to action.</li>
+          </ul>
+        </div>
+        <p class="stance">Practice stance: not &ldquo;delete forever&rdquo; — promote sensible daily limits.</p>
+        <p class="why">Why 2027: digital wellbeing / media literacy is a strong modern argument theme.</p>
+      </article>
+
+      <article class="task-card theme-panel" data-theme="d">
+        <span class="task-num">Topic D · Article / speech</span>
+        <h3>Mental health education in schools</h3>
+        <div class="task-official">
+          <p>More Hong Kong students report stress and anxiety, yet some schools still treat mental health as a private family matter. Supporters want regular wellbeing lessons and easier access to counselling. Critics say the curriculum is already full and that such topics may worry students further.</p>
+          <p><strong>Write an article</strong> for your school magazine arguing whether secondary schools should make mental health education a regular part of school life.</p>
+          <ul>
+            <li>State your view clearly.</li>
+            <li>Give developed reasons with school-based examples.</li>
+            <li>Respond briefly to one concern.</li>
+          </ul>
+        </div>
+        <p class="stance">Practice stance: yes — regular, practical education (not one-off talks only).</p>
+        <p class="why">Why 2027: student wellbeing and counselling access stay high on the education agenda.</p>
+      </article>
+
+      <article class="task-card theme-panel" data-theme="e">
+        <span class="task-num">Topic E · Letter / proposal</span>
+        <h3>Compulsory money skills</h3>
+        <div class="task-official">
+          <p>Many Form 6 leavers start university or work with little confidence in budgeting, saving or spotting online scams. Some educators want financial literacy to be a compulsory secondary-school module. Others argue that parents should teach money skills at home.</p>
+          <p><strong>Write a letter</strong> to the Education Bureau recommending compulsory financial literacy lessons in secondary schools.</p>
+          <ul>
+            <li>Explain why school teaching is needed.</li>
+            <li>Give practical topic examples.</li>
+            <li>Address the &ldquo;leave it to parents&rdquo; objection.</li>
+          </ul>
+        </div>
+        <p class="stance">Practice stance: support a short compulsory module for all forms.</p>
+        <p class="why">Why 2027: scams, online shopping and early money decisions are everyday student realities.</p>
+      </article>
+
+      <article class="task-card theme-panel" data-theme="f">
+        <span class="task-num">Topic F · School magazine essay</span>
+        <h3>Study abroad or stay in Hong Kong?</h3>
+        <div class="task-official">
+          <p>Some families see overseas university study as the best path to a global career. Others argue that staying in Hong Kong offers strong local networks, lower cost and equally good prospects. The debate remains common among Form 6 students.</p>
+          <p><strong>Write an essay</strong> for a young people&rsquo;s magazine. Give your view on whether studying abroad is always better than staying in Hong Kong for university.</p>
+          <ul>
+            <li>Take a clear stance (not &ldquo;it depends&rdquo; with no decision).</li>
+            <li>Support your view with two or three developed reasons.</li>
+            <li>Respond briefly to the opposite view.</li>
+          </ul>
+        </div>
+        <p class="stance">Practice stance for demos: staying in Hong Kong can be equally beneficial — not always weaker.</p>
+        <p class="why">Why 2027: JUPAS / overseas offers remain a classic high-frequency Paper 2 theme.</p>
+      </article>
+    </section>
+
+    <section>
+      <h2>常用句型</h2>
+      <div class="phrase-grid">
+        <div class="phrase">開場設情境 → <code>In recent years, … has sparked heated debate among …</code></div>
+        <div class="phrase">清晰立場 → <code>I am convinced that …, provided that …</code></div>
+        <div class="phrase">第 1 點 → <code>First and foremost, from a &hellip; perspective, …</code>（次序 + 角度，可以一齊用）</div>
+        <div class="phrase">第 2 點 → <code>Secondly, from a &hellip; perspective, …</code> / <code>Secondly, in terms of …,</code></div>
+        <div class="phrase">舉例 → <code>A clear example is … / Take … as a case in point.</code></div>
+        <div class="phrase">反駁 → <code>Critics may argue that … While this concern is understandable, …</code></div>
+        <div class="phrase">收結 → <code>To conclude, …</code> / <code>To summarise, …</code></div>
+      </div>
+    </section>
+
+    <!-- TOPIC A -->
+    <section id="topic-a" class="theme-panel is-active" data-theme="a">
+      <div class="topic-block">
+        <h2 class="topic-head">Topic A — Generative AI</h2>
+        <p class="note">粵語 = 英文 demo 翻譯。試寫成英文，再 ▶。</p>
+
+        <article class="para-card">
+          <span class="para-label">A1 · Introduction</span>
+          <p class="guide">
+            近年，生成式人工智能喺中學引起咗激烈討論。有啲老師視佢為有用嘅學習輔助工具，但亦有人擔心佢會鼓勵抄襲，並削弱學生嘅思考能力。我相信應該容許學生用 AI 做功課，前提係學校訂下清晰指引，而且學生仍然要交出自己嘅作品。<br>
+            <span class="kw">has sparked heated debate</span>、
+            <span class="kw">learning aid</span>、
+            <span class="kw">undermine</span>、
+            <span class="kw">I am convinced that</span>、
+            <span class="kw">provided that</span>、
+            <span class="kw">clear guidelines</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="a1" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="a1" hidden>
+            <span class="demo-tag">Demo · A intro</span>
+            In recent years, generative AI has sparked heated debate in secondary schools. Some teachers see it as a useful learning aid, while others fear it will encourage plagiarism and undermine students&rsquo; thinking skills. I am convinced that students should be allowed to use AI for schoolwork, provided that schools set clear guidelines and students still produce work of their own.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">A2 · Body 1 · guided learning</span>
+          <p class="guide">
+            首先，從學術角度來看，AI 可以幫助學生拆解困難概念，並即時得到有建設性嘅回饋。一個清楚例子係用 AI 工具解釋一篇較難嘅閱讀篇章，然後用自己文字重寫重點。咁用嘅話，AI 係支援理解，而唔係用來抄襲。<br>
+            <span class="kw">First and foremost</span>、
+            <span class="kw">from an academic perspective</span>、
+            <span class="kw">break down difficult concepts</span>、
+            <span class="kw">A clear example is</span>、
+            <span class="kw">rather than copying</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="a2" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="a2" hidden>
+            <span class="demo-tag">Demo · A body 1</span>
+            First and foremost, from an academic perspective, AI can help students break down difficult concepts and receive quick, constructive feedback. A clear example is using an AI tool to explain a dense reading passage, then rewriting the main points in one&rsquo;s own words. Used in this way, AI supports understanding rather than copying.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">A3 · Body 2 · future readiness</span>
+          <p class="guide">
+            其次，實際上嚟講，AI 工具喺大學同工作場所越來越普遍。如果學校全面禁止，學生可能中學畢業後都唔識負責任咁使用。以大學專題為例：好多課程已期望學生能妥善運用數碼工具，所以及早培養數碼素養好重要。<br>
+            <span class="kw">Secondly</span>、
+            <span class="kw">Practically speaking</span>、
+            <span class="kw">increasingly common</span>、
+            <span class="kw">responsible use</span>、
+            <span class="kw">Take &hellip; as a case in point</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="a3" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="a3" hidden>
+            <span class="demo-tag">Demo · A body 2</span>
+            Secondly, practically speaking, AI tools are becoming increasingly common in universities and workplaces. If schools ban them completely, students may leave secondary education without learning responsible use. Take university project work as a case in point: many courses already expect students to use digital tools wisely, so early training in digital literacy is essential.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">A4 · Rebuttal</span>
+          <p class="guide">
+            批評者可能認為 AI 只會令作弊更容易，並削弱學生寫作。呢個擔心雖然可以理解，但可以透過學校政策處理。可以要求學生申報有冇用 AI，而關鍵評核仍然可以喺課堂限時完成，喺冇工具幫助下測試真正能力。<br>
+            <span class="kw">Critics may argue that</span>、
+            <span class="kw">While this concern is understandable</span>、
+            <span class="kw">it can be addressed by</span>、
+            <span class="kw">declare AI assistance</span>、
+            <span class="kw">under timed conditions</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="a4" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="a4" hidden>
+            <span class="demo-tag">Demo · A rebuttal</span>
+            Critics may argue that AI will simply make cheating easier and weaken students&rsquo; writing. While this concern is understandable, it can be addressed by school policy. Students can be required to declare AI assistance, and key assessments can still be completed under timed conditions in class, where genuine ability is tested without tools.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">A5 · Conclusion</span>
+          <p class="guide">
+            總括而言，生成式 AI 既唔應該被禁止，亦唔應該被無視。因此我建議中學教學生點樣負責任咁使用，同時堅持要誠實、獨立完成作業。有清晰規則，AI 可以加強學習，而唔係取而代之。<br>
+            <span class="kw">To conclude</span>、
+            <span class="kw">neither ban nor ignore</span>、
+            <span class="kw">I therefore recommend</span>、
+            <span class="kw">honest independent work</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="a5" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="a5" hidden>
+            <span class="demo-tag">Demo · A conclusion</span>
+            To conclude, generative AI should be neither banned nor ignored. I therefore recommend that secondary schools teach students how to use it responsibly, while still insisting on honest, independent work. With clear rules, AI can strengthen learning instead of replacing it.
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TOPIC B -->
+    <section id="topic-b" class="theme-panel" data-theme="b">
+      <div class="topic-block">
+        <h2 class="topic-head">Topic B — Later school start times</h2>
+        <p class="note">粵語 = 英文 demo 翻譯。試寫成英文，再 ▶。</p>
+
+        <article class="para-card">
+          <span class="para-label">B1 · Opening + purpose</span>
+          <p class="guide">
+            校長您好：我寫信係想建議短期試行較遲嘅上課時間。我哋好多人八點前已開始上課，但青少年往往需要多過而家得到嘅睡眠。一個仔細計劃嘅改變，可以同時改善學習同身心健康。<br>
+            <span class="kw">I am writing to recommend</span>、
+            <span class="kw">a short trial</span>、
+            <span class="kw">need more sleep</span>、
+            <span class="kw">before 8 a.m.</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="b1" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="b1" hidden>
+            <span class="demo-tag">Demo · B opening</span>
+            Dear Principal,<br><br>
+            I am writing to recommend a short trial of later school start times. Many of us begin lessons before 8 a.m., yet teenagers often need more sleep than they currently get. A carefully planned change could improve both learning and wellbeing.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">B2 · Body 1 · learning &amp; health</span>
+          <p class="guide">
+            首先，從健康同學習角度來看，睡眠直接影響警覺、記性同情緒。一個清楚例子係每日第一堂：學生攰到嚟校，好難專注，又易犯本可避免嘅錯誤。就算遲半小時開課，都可能幫更多人帶住狀態嚟學。<br>
+            <span class="kw">First and foremost</span>、
+            <span class="kw">from a health and learning perspective</span>、
+            <span class="kw">alertness</span>、
+            <span class="kw">A clear example is</span>、
+            <span class="kw">ready to learn</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="b2" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="b2" hidden>
+            <span class="demo-tag">Demo · B body 1</span>
+            First and foremost, from a health and learning perspective, sleep directly affects alertness, memory and mood. A clear example is the first lesson of the day: when students arrive exhausted, they struggle to concentrate and make avoidable mistakes. Starting even 30 minutes later could help more of us arrive ready to learn.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">B3 · Body 2 · safer routines</span>
+          <p class="guide">
+            其次，實際上嚟講，較遲開課亦可以令早上更安全、更從容。例如，而家要摸黑出門趕早車嘅學生，會有多啲時間小心行路同食早餐，而唔使半醒咁趕過全日。<br>
+            <span class="kw">Secondly</span>、
+            <span class="kw">Practically speaking</span>、
+            <span class="kw">safer and calmer morning routine</span>、
+            <span class="kw">For example</span>、
+            <span class="kw">half-awake</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="b3" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="b3" hidden>
+            <span class="demo-tag">Demo · B body 2</span>
+            Secondly, practically speaking, a later start could also create a safer and calmer morning routine. For example, students who currently leave home in the dark to catch early transport would have a little more time to travel carefully and eat breakfast, instead of rushing through the day half-awake.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">B4 · Rebuttal + trial plan</span>
+          <p class="guide">
+            有啲家長可能擔心交通接駁、補習同家庭時間表。呢個顧慮係合理嘅，但半年試行可以令學校小心調動時間表，並喺永久決定前收集意見。放學時間只要同步延遲同樣幅度就得。<br>
+            <span class="kw">Some parents may worry that</span>、
+            <span class="kw">While this concern is fair</span>、
+            <span class="kw">a six-month trial</span>、
+            <span class="kw">collect feedback</span>、
+            <span class="kw">Dismissal times</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="b4" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="b4" hidden>
+            <span class="demo-tag">Demo · B rebuttal</span>
+            Some parents may worry about transport links, tutorial classes and family schedules. While this concern is fair, a six-month trial would allow the school to adjust the timetable carefully and collect feedback before making any permanent decision. Dismissal times could simply shift later by the same amount.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">B5 · Closing</span>
+          <p class="guide">
+            希望你會為學生健康同學業進度考慮呢個建議。短期試行可以畀我哋實證，而唔係空估。謝謝你嘅時間。<br>
+            此致<br>
+            Chris Wong<br>
+            中五丙<br>
+            <span class="kw">I hope you will consider</span>、
+            <span class="kw">in the best interests of</span>、
+            <span class="kw">evidence rather than speculation</span>、
+            <span class="kw">Yours sincerely</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="b5" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="b5" hidden>
+            <span class="demo-tag">Demo · B closing</span>
+            I hope you will consider this proposal in the best interests of students&rsquo; health and academic progress. A short trial would give us evidence rather than speculation. Thank you for your time.<br><br>
+            Yours sincerely,<br>
+            Chris Wong<br>
+            Form 5C
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TOPIC C -->
+    <section id="topic-c" class="theme-panel" data-theme="c">
+      <div class="topic-block">
+        <h2 class="topic-head">Topic C — Short-form video limits (speech)</h2>
+        <p class="note">粵語 = 英文 demo 翻譯。試寫成英文，再 ▶。</p>
+
+        <article class="para-card">
+          <span class="para-label">C1 · Opening</span>
+          <p class="guide">
+            各位早晨。短片 Apps 的確好玩，我今晚唔係叫大家刪走佢哋。我係想大家訂更健康嘅使用限制，因為不停刷片正靜靜咁消耗我哋嘅睡眠、專注同真正嘅空閒時間。<br>
+            <span class="kw">Good morning</span>、
+            <span class="kw">I am not asking you to delete</span>、
+            <span class="kw">set healthier limits</span>、
+            <span class="kw">endless scrolling</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="c1" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="c1" hidden>
+            <span class="demo-tag">Demo · C opening</span>
+            Good morning, everyone. Short-form video apps can be entertaining, and I am not asking you to delete them tonight. I am asking you to set healthier limits, because endless scrolling is quietly costing us sleep, focus and real free time.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">C2 · Body 1 · concentration</span>
+          <p class="guide">
+            首先，從學術角度來看，呢啲 Apps 訓練我哋大腦期待短暫嘅娛樂刺激。咁會令課堂同溫習時更難長時間專注。一個好熟嘅例子係溫書時開 App「只睇一條」，然後半個鐘先察覺。<br>
+            <span class="kw">First and foremost</span>、
+            <span class="kw">from an academic perspective</span>、
+            <span class="kw">short bursts of entertainment</span>、
+            <span class="kw">sustained concentration</span>、
+            <span class="kw">A familiar example is</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="c2" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="c2" hidden>
+            <span class="demo-tag">Demo · C body 1</span>
+            First and foremost, from an academic perspective, these apps train our brains to expect short bursts of entertainment. That makes sustained concentration harder in class and during revision. A familiar example is opening an app for &ldquo;just one video&rdquo; during homework and losing half an hour before we notice.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">C3 · Body 2 · sleep &amp; mood</span>
+          <p class="guide">
+            其次，喺身心健康方面，臨瞓前刷片往往損害睡眠質素。例如，我哋好多人都睇到半夜過後，第二朝就攰同易嬲。睡前設更好限制，可以保護休息同情緒。<br>
+            <span class="kw">Secondly</span>、
+            <span class="kw">In terms of wellbeing</span>、
+            <span class="kw">late-night scrolling</span>、
+            <span class="kw">sleep quality</span>、
+            <span class="kw">irritable</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="c3" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="c3" hidden>
+            <span class="demo-tag">Demo · C body 2</span>
+            Secondly, in terms of wellbeing, late-night scrolling often damages sleep quality. For example, many of us keep watching until well after midnight, then feel tired and irritable the next morning. Better limits before bedtime would protect both rest and mood.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">C4 · Practical habits + soft rebuttal</span>
+          <p class="guide">
+            當然，呢啲 Apps 唔係全部都有害；有啲短片可以學技能或者幫人放鬆。真正問題係失控使用。我哋可以設每日螢幕時間上限，溫書時開 focus mode，同埋至少瞓前一小時停止刷片。細習慣比突然全面禁止、又守唔到更有用。<br>
+            <span class="kw">Of course, these apps are not all harmful</span>、
+            <span class="kw">The real issue is</span>、
+            <span class="kw">screen-time limits</span>、
+            <span class="kw">focus mode</span>、
+            <span class="kw">an hour before bed</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="c4" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="c4" hidden>
+            <span class="demo-tag">Demo · C habits</span>
+            Of course, these apps are not all harmful; some clips can teach skills or help us unwind. The real issue is uncontrolled use. We can set daily screen-time limits, switch on focus mode during revision, and stop scrolling at least an hour before bed. Small habits matter more than sudden bans we cannot keep.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">C5 · Call to action</span>
+          <p class="guide">
+            總括而言，短片好好玩，但只限於我哋仍然掌控佢。我呼籲大家呢個星期揀一個實際每日限額，然後堅持。一齊奪回我哋嘅時間、睡眠同注意力。多謝。<br>
+            <span class="kw">To conclude</span>、
+            <span class="kw">I urge you</span>、
+            <span class="kw">choose a realistic daily limit</span>、
+            <span class="kw">take back control</span>、
+            <span class="kw">Thank you</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="c5" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="c5" hidden>
+            <span class="demo-tag">Demo · C closing</span>
+            To conclude, short-form video is enjoyable, but only if we stay in charge of it. I urge you to choose a realistic daily limit this week and stick to it. Let&rsquo;s take back control of our time, our sleep and our attention. Thank you.
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TOPIC D -->
+    <section id="topic-d" class="theme-panel" data-theme="d">
+      <div class="topic-block">
+        <h2 class="topic-head">Topic D — Mental health education</h2>
+        <p class="note">粵語 = 英文 demo 翻譯。試寫成英文，再 ▶。</p>
+
+        <article class="para-card">
+          <span class="para-label">D1 · Introduction</span>
+          <p class="guide">
+            香港中學生嘅壓力已到咗難以忽視嘅地步。有啲人仍然當精神健康係私人家庭事務，但我相信學校應將精神健康教育列為常規校園生活一部分，而唔係只靠一次集會講座。<br>
+            <span class="kw">has become impossible to ignore</span>、
+            <span class="kw">a private family matter</span>、
+            <span class="kw">I am convinced that</span>、
+            <span class="kw">a regular part of school life</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="d1" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="d1" hidden>
+            <span class="demo-tag">Demo · D intro</span>
+            Stress among Hong Kong secondary students has become impossible to ignore. Some people still treat mental health as a private family matter, but I am convinced that schools should make mental health education a regular part of school life, not a one-off assembly talk.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">D2 · Body 1 · early support</span>
+          <p class="guide">
+            首先，從身心健康角度來看，常規課堂幫助學生識別壓力早期警號，並知道點樣求助。一個清楚例子係考試季節：如果學生喺問題惡化前已明白焦慮同輔導選擇，佢哋較少會默默受苦。<br>
+            <span class="kw">First and foremost</span>、
+            <span class="kw">from a wellbeing perspective</span>、
+            <span class="kw">early warning signs</span>、
+            <span class="kw">A clear example is</span>、
+            <span class="kw">exam season</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="d2" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="d2" hidden>
+            <span class="demo-tag">Demo · D body 1</span>
+            First and foremost, from a wellbeing perspective, regular lessons help students recognise early warning signs of stress and know how to seek help. A clear example is exam season: if students understand anxiety and counselling options before problems escalate, they are less likely to suffer in silence.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">D3 · Body 2 · reduce stigma</span>
+          <p class="guide">
+            其次，喺校園文化方面，公開討論可以減少污名。例如，當老師用正常、尊重嘅語氣講輔導時，學生較唔會覺得求助係弱嘅表現。呢種轉變同任何工作紙一樣重要。<br>
+            <span class="kw">Secondly</span>、
+            <span class="kw">In terms of school culture</span>、
+            <span class="kw">reduce stigma</span>、
+            <span class="kw">a sign of weakness</span>、
+            <span class="kw">For example</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="d3" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="d3" hidden>
+            <span class="demo-tag">Demo · D body 2</span>
+            Secondly, in terms of school culture, open discussion can reduce stigma. For example, when teachers talk about counselling in a normal, respectful way, students are less likely to see asking for help as a sign of weakness. That shift matters as much as any worksheet.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">D4 · Rebuttal</span>
+          <p class="guide">
+            批評者可能認為課程已經太擠迫，又或者講精神健康會令學生更擔心。呢個顧慮雖然可以理解，但短而實用嘅單元唔一定要取代核心科目。清晰指引通常會令學生安心，而唔係嚇親佢哋。<br>
+            <span class="kw">Critics may argue that</span>、
+            <span class="kw">overcrowded curriculum</span>、
+            <span class="kw">While this concern is understandable</span>、
+            <span class="kw">short practical modules</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="d4" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="d4" hidden>
+            <span class="demo-tag">Demo · D rebuttal</span>
+            Critics may argue that the curriculum is already overcrowded, or that talking about mental health will make students worry more. While this concern is understandable, short practical modules need not replace core subjects. Clear guidance usually reassures students rather than frightening them.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">D5 · Conclusion</span>
+          <p class="guide">
+            總括而言，精神健康教育應該屬於中學校園生活。因此我建議有常規、實用嘅課堂，同更易接觸輔導服務，令學生可以同時保護身心健康同學習。<br>
+            <span class="kw">To conclude</span>、
+            <span class="kw">I therefore recommend</span>、
+            <span class="kw">regular and practical</span>、
+            <span class="kw">easier access to counselling</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="d5" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="d5" hidden>
+            <span class="demo-tag">Demo · D conclusion</span>
+            To conclude, mental health education belongs in secondary school life. I therefore recommend regular, practical lessons and easier access to counselling, so students can protect both their wellbeing and their learning.
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TOPIC E -->
+    <section id="topic-e" class="theme-panel" data-theme="e">
+      <div class="topic-block">
+        <h2 class="topic-head">Topic E — Compulsory money skills</h2>
+        <p class="note">粵語 = 英文 demo 翻譯。試寫成英文，再 ▶。</p>
+
+        <article class="para-card">
+          <span class="para-label">E1 · Opening</span>
+          <p class="guide">
+            先生／女士您好：我寫信建議中學設必修理財教育課。好多學生離開學校時都能合格考試，卻唔肯定點樣編預算、儲蓄，或者認出網上騙案。<br>
+            <span class="kw">I am writing to recommend</span>、
+            <span class="kw">compulsory financial literacy</span>、
+            <span class="kw">budget, save</span>、
+            <span class="kw">online scams</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="e1" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="e1" hidden>
+            <span class="demo-tag">Demo · E opening</span>
+            Dear Sir or Madam,<br><br>
+            I am writing to recommend compulsory financial literacy lessons in secondary schools. Many students leave school able to pass exams, yet unsure how to budget, save or spot online scams.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">E2 · Body 1 · real-life need</span>
+          <p class="guide">
+            首先，實際上嚟講，學生一開始工作或者上大學，金錢技能就影響日常決定。一個清楚例子係第一份兼職人工：如果冇基本預算能力，好易喺生活開支上使過度，之後連交通或者課本費都吃力。<br>
+            <span class="kw">First and foremost</span>、
+            <span class="kw">Practically speaking</span>、
+            <span class="kw">everyday decisions</span>、
+            <span class="kw">A clear example is</span>、
+            <span class="kw">first part-time wage</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="e2" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="e2" hidden>
+            <span class="demo-tag">Demo · E body 1</span>
+            First and foremost, practically speaking, money skills affect everyday decisions as soon as students start work or university. A clear example is a first part-time wage: without basic budgeting, it is easy to overspend on lifestyle costs and then struggle with transport or course materials.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">E3 · Body 2 · equal access</span>
+          <p class="guide">
+            其次，喺公平方面，唔係每個家庭都有同樣信心或者時間教理財。一個短暫必修單元可以畀所有學生平等接觸呢項核心生活技能，而唔使靠運氣。<br>
+            <span class="kw">Secondly</span>、
+            <span class="kw">In terms of fairness</span>、
+            <span class="kw">not every family</span>、
+            <span class="kw">equal access</span>、
+            <span class="kw">core life skill</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="e3" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="e3" hidden>
+            <span class="demo-tag">Demo · E body 2</span>
+            Secondly, in terms of fairness, not every family can teach money management with the same confidence or time. A short compulsory module would give all students equal access to a core life skill, instead of leaving it to chance.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">E4 · Rebuttal</span>
+          <p class="guide">
+            有人認為金錢技能應喺屋企教。父母雖然仍然重要，但學校可以涵蓋家庭未必解釋得好嘅現代風險，例如釣魚短訊、假投資 App，同埋不安全嘅網購習慣。<br>
+            <span class="kw">Some people argue that</span>、
+            <span class="kw">should be taught at home</span>、
+            <span class="kw">While parents remain important</span>、
+            <span class="kw">schools can cover</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="e4" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="e4" hidden>
+            <span class="demo-tag">Demo · E rebuttal</span>
+            Some people argue that money skills should be taught at home. While parents remain important, schools can cover modern risks that households may not explain well, such as phishing messages, fake investment apps and unsafe online shopping habits.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">E5 · Closing</span>
+          <p class="guide">
+            希望教育局會考慮為中學生設短暫必修理財單元。更好金錢技能可以幫年輕人帶住更大信心、更少代價高昂錯誤進入成年。<br>
+            此致<br>
+            Alex Chan<br>
+            中五學生<br>
+            <span class="kw">I hope the Bureau will consider</span>、
+            <span class="kw">a short compulsory module</span>、
+            <span class="kw">enter adulthood</span>、
+            <span class="kw">Yours faithfully</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="e5" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="e5" hidden>
+            <span class="demo-tag">Demo · E closing</span>
+            I hope the Bureau will consider a short compulsory financial literacy module for secondary students. Better money skills would help young people enter adulthood with more confidence and fewer costly mistakes.<br><br>
+            Yours faithfully,<br>
+            Alex Chan<br>
+            Secondary 5 student
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TOPIC F -->
+    <section id="topic-f" class="theme-panel" data-theme="f">
+      <div class="topic-block">
+        <h2 class="topic-head">Topic F — Study abroad vs stay in Hong Kong</h2>
+        <p class="note">粵語 = 英文 demo 翻譯。試寫成英文，再 ▶。</p>
+
+        <article class="para-card">
+          <span class="para-label">F1 · Introduction</span>
+          <p class="guide">
+            到海外升學經常被講成有志向中六生嘅最佳出路。雖然海外讀書可以好有價值，但我唔同意佢一定更好。好多情況下，喺香港讀大學同樣有益。<br>
+            <span class="kw">is often presented as</span>、
+            <span class="kw">the best path</span>、
+            <span class="kw">I disagree that</span>、
+            <span class="kw">equally beneficial</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="f1" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="f1" hidden>
+            <span class="demo-tag">Demo · F intro</span>
+            Studying abroad is often presented as the best path for ambitious Form 6 students. While overseas study can be valuable, I disagree that it is always better. In many cases, staying in Hong Kong for university can be equally beneficial.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">F2 · Body 1 · networks &amp; opportunity</span>
+          <p class="guide">
+            首先，從事業角度來看，喺香港升學幫學生及早建立本地網絡。一個清楚例子係暑假實習：學生可以見僱主、參與本地項目、了解就業市場，又唔使承受海外生活額外成本同簽證限制。<br>
+            <span class="kw">First and foremost</span>、
+            <span class="kw">from a career perspective</span>、
+            <span class="kw">local networks</span>、
+            <span class="kw">A clear example is</span>、
+            <span class="kw">internships</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="f2" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="f2" hidden>
+            <span class="demo-tag">Demo · F body 1</span>
+            First and foremost, from a career perspective, studying in Hong Kong helps students build local networks early. A clear example is summer internships: students can meet employers, join local projects and understand the job market without the extra cost and visa limits of living overseas.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">F3 · Body 2 · cost &amp; family</span>
+          <p class="guide">
+            其次，實際上嚟講，留港可以減輕家庭財務壓力。海外學費同生活費往往高好多。例如，留喺本地升學嘅學生可能少啲擔心債務，更能穩定專注學位。<br>
+            <span class="kw">Secondly</span>、
+            <span class="kw">Practically speaking</span>、
+            <span class="kw">financial pressure</span>、
+            <span class="kw">tuition and living costs</span>、
+            <span class="kw">For example</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="f3" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="f3" hidden>
+            <span class="demo-tag">Demo · F body 2</span>
+            Secondly, practically speaking, staying in Hong Kong can reduce financial pressure on families. Tuition and living costs abroad are often far higher. For example, students who remain local may worry less about debt and focus more steadily on their degree.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">F4 · Rebuttal</span>
+          <p class="guide">
+            支持海外升學嘅人認為，只有住喺外地先有真正全球視野。呢個好處雖然真實，但唔係唯一途徑。好多香港大學都有交換計劃、國際同學同暑期海外課程，因此學生仍可獲得更廣經驗，而唔使整個學位都出國。<br>
+            <span class="kw">Supporters of overseas study argue that</span>、
+            <span class="kw">global exposure</span>、
+            <span class="kw">While this benefit is real</span>、
+            <span class="kw">exchange programmes</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="f4" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="f4" hidden>
+            <span class="demo-tag">Demo · F rebuttal</span>
+            Supporters of overseas study argue that only living abroad gives true global exposure. While this benefit is real, it is not the only route. Many Hong Kong universities offer exchange programmes, international classmates and overseas summer schools, so students can still gain wider experience without studying abroad for the full degree.
+          </div>
+        </article>
+
+        <article class="para-card">
+          <span class="para-label">F5 · Conclusion</span>
+          <p class="guide">
+            總括而言，出國升學唔係自動更優勝。對好多中六生嚟講，留喺香港仍然係穩健而明智嘅選擇，一樣可以支持志向、機會同個人成長。<br>
+            <span class="kw">To conclude</span>、
+            <span class="kw">not automatically superior</span>、
+            <span class="kw">a strong and sensible choice</span>
+          </p>
+          <button type="button" class="reveal-btn" aria-expanded="false" aria-controls="f5" aria-label="Reveal demo">▶</button>
+          <div class="demo" id="f5" hidden>
+            <span class="demo-tag">Demo · F conclusion</span>
+            To conclude, studying abroad is not automatically superior. For many Form 6 students, staying in Hong Kong remains a strong and sensible choice that still supports ambition, opportunity and personal growth.
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Self-check before you finish</h2>
+      <ul class="tips">
+        <li>Stance 清唔清晰？有冇條件式立場（e.g. allow AI <em>with rules</em>）？</li>
+        <li>每段有冇具體例子（唔得淨係 happier / interested）？</li>
+        <li>有冇短 rebuttal？</li>
+        <li>用詞自然未？寧願準確短句，唔好硬塞生僻字。</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+(function () {
+  function closeAllDemos() {
+    document.querySelectorAll('.reveal-btn').forEach(function (btn) {
+      var id = btn.getAttribute('aria-controls');
+      var panel = id && document.getElementById(id);
+      btn.setAttribute('aria-expanded', 'false');
+      btn.textContent = '▶';
+      btn.setAttribute('aria-label', 'Reveal demo');
+      if (panel) {
+        panel.classList.remove('show');
+        panel.hidden = true;
+      }
+    });
+  }
+
+  function setTheme(theme) {
+    document.querySelectorAll('.theme-btn').forEach(function (btn) {
+      var on = btn.getAttribute('data-theme') === theme;
+      btn.classList.toggle('is-active', on);
+      btn.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    document.querySelectorAll('.theme-panel').forEach(function (panel) {
+      panel.classList.toggle('is-active', panel.getAttribute('data-theme') === theme);
+    });
+    closeAllDemos();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function syncThemeBarOffset() {
+    var bar = document.querySelector('.theme-bar');
+    if (!bar) return;
+    document.documentElement.style.setProperty('--theme-bar-offset', bar.offsetHeight + 'px');
+  }
+
+  document.querySelectorAll('.theme-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      setTheme(btn.getAttribute('data-theme'));
+    });
+  });
+
+  syncThemeBarOffset();
+  window.addEventListener('resize', syncThemeBarOffset);
+
+  document.querySelectorAll('.reveal-btn').forEach(function (btn) {
+    var id = btn.getAttribute('aria-controls');
+    var panel = id && document.getElementById(id);
+    if (!panel) return;
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      if (open) {
+        btn.setAttribute('aria-expanded', 'false');
+        btn.textContent = '▶';
+        btn.setAttribute('aria-label', 'Reveal demo');
+        panel.classList.remove('show');
+        panel.hidden = true;
+      } else {
+        btn.setAttribute('aria-expanded', 'true');
+        btn.textContent = '▼';
+        btn.setAttribute('aria-label', 'Hide demo');
+        panel.hidden = false;
+        panel.classList.add('show');
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>
