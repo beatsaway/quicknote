@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article &mdash; is Australia a dangerous place to live?</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #e3f2fd;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .task-bullets {
+      margin: 0.5rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .task-bullets li { margin: 0.3rem 0; }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: var(--accent); }
+    .word-list-compact {
+      display: block;
+      line-height: 1.5;
+      font-size: 0.82rem;
+    }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter h3 {
+      margin: 0 0 0.85rem;
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .flip.show-correct.show-note {
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .flip-popup {
+      display: none;
+      position: absolute;
+      z-index: 20;
+      left: 0;
+      top: calc(100% + 6px);
+      min-width: 14rem;
+      max-width: 18rem;
+      padding: 0.55rem 0.65rem;
+      background: #fff;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .flip-popup.show { display: block; cursor: pointer; }
+    .flip-popup .note-en,
+    .flip-popup .note-yue { margin: 0 0 0.45rem; }
+    .flip-popup .note-yue:last-child { margin-bottom: 0; }
+    .flip-popup .lang-tag {
+      display: inline-block;
+      margin-right: 0.3rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .flip-wrap {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead { margin: 0 0 0.5rem; font-size: 0.88rem; }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.65rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 6px;
+      border-left: 4px solid transparent;
+    }
+    .comment-bilingual .comment-pair:last-child { margin-bottom: 0; }
+    .comment-pair-praise {
+      background: #e8f5e9;
+      border-left-color: #43a047;
+    }
+    .comment-pair-upgrade {
+      background: #fff8e1;
+      border-left-color: #f9a825;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue { margin: 0 0 0.55rem; }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child { margin-bottom: 0; }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="box">
+      <h2>About this piece</h2>
+      <p class="topic">School magazine article &mdash; Australia</p>
+      <div class="stimulus">
+        <p class="prompt" style="margin:0 0 0.55rem;color:var(--text)"><strong>Task.</strong> Some people think Australia is dangerous because of wildlife and natural disasters. Others say it is a safe developed country to live in.</p>
+        <p class="prompt" style="margin:0;color:var(--text)">Write an article for your school magazine. <strong>Do you agree or disagree that Australia is a dangerous place to live?</strong> Give three reasons.</p>
+      </div>
+      <ul class="task-bullets">
+        <li><strong>Success criteria:</strong> clear agree or disagree; introduction; three reasons; conclusion.</li>
+        <li>Only short <strong>yellow</strong> phrases are suggested edits; the rest is the draft as written.</li>
+        <li>Click flow. <strong>Yellow</strong> &rarr; green + comment. Only one comment at a time. Click the comment box, elsewhere, or green again to hide it. Click green with comment open to go back to yellow.</li>
+      </ul>
+      <div class="word-list">
+        <strong>Useful words</strong>
+        <span class="word-list-compact">venomous, statistics, coastal, antivenom, habitat, reputation, developed country, medical care, social welfare, modern infrastructure, extreme heatwave, sense of community, crime rate, bushfire, caution, risk, quality of life, rare, agree, disagree, for example, First of all, Last but not least</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <p class="prompt fb-praise-lead">Clear disagree + intro, three reasons, and a closing question.</p>
+          <ul>
+            <li>❌ <strong>Disagree.</strong> &ldquo;I absolutely do not agree&rdquo; is easy for markers to tick.</li>
+            <li>🕷️ <strong>Reputation vs risk.</strong> You challenge the venomous-spider image with a statistics-style claim.</li>
+            <li>🦘 <strong>Real risk.</strong> Road kangaroos at night feels more practical than movie myths.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong>Linkers.</strong> Use <em>First of all / Second / Last but not least</em> instead of Number one / two / three.</li>
+            <li>💡 <strong>For example.</strong> Add one concrete example under each reason.</li>
+            <li>💡 <strong>Conclusion label.</strong> Start the last paragraph with <em>In conclusion</em> or <em>To summarise</em>.</li>
+            <li>💡 <strong>Word bank.</strong> Weave in <em>statistics</em>, <em>habitat</em>, <em>coastal</em>, <em>reputation</em>, or <em>rare</em>.</li>
+            <li>💡 <strong>Typos.</strong> Fix incomplete phrases (<em>in the might</em>, <em>the e drivers</em>, <em>no hunt</em>).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <h3>Is Australia a dangerous place to live?</h3>
+
+        <p>Many netizens say that Australia is a dangerous place to live, and I absolutely do not agree with that.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Number one," data-r="First of all," data-note-en="Success criteria prefer First of all." data-note-yue="成功準則用 First of all。">Number one,</span><span class="flip-popup" role="tooltip"></span></span> people are aware that the venomous creatures <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="in the might kill them" data-r="in Australia might kill them" data-note-en="The phrase was incomplete — add Australia (or that)." data-note-yue="句子唔完整 — 加 Australia（或 that）。">in the might kill them</span><span class="flip-popup" role="tooltip"></span></span>. But researchers have found that most of the people killed by animals are <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="widely killed by kangaroos, and different mammals" data-r="killed by kangaroos and other mammals" data-note-en="Drop widely killed (awkward double). Other mammals is clearer than different mammals. Add For example + a statistics claim if you can." data-note-yue="唔使 widely killed。other mammals 比 different mammals 清楚。可加 For example + statistics。">widely killed by kangaroos, and different mammals</span><span class="flip-popup" role="tooltip"></span></span>, and <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="zero case has been linked up to a venomous spider" data-r="zero cases have been linked to a venomous spider" data-note-en="Plural: zero cases have. Linked to (not linked up to)." data-note-yue="複數：zero cases have。linked to（唔使 up）。">zero case has been linked up to a venomous spider</span><span class="flip-popup" role="tooltip"></span></span>.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Number two," data-r="Second," data-note-en="Second / Secondly both work; Second matches many checklists." data-note-yue="Second／Secondly 都得；Second 啱好多 checklist。">Number two,</span><span class="flip-popup" role="tooltip"></span></span> many people in Australia live near the coastal areas, where the sharks and crocodiles are. But they are easy to avoid, since the city areas are near the coast it will make more sense for the government to pay more attention. Since the city is near the coastal areas <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="the natural habitats live in the middle of the country" data-r="many wildlife habitats are inland, in the middle of the country" data-note-en="Habitats do not live — animals / wildlife live in habitats. Inland matches the word-bank idea of habitat." data-note-yue="habitats 唔會 live — 動物住喺 habitat。inland 啱字庫 habitat 概念。">the natural habitats live in the middle of the country</span><span class="flip-popup" role="tooltip"></span></span>, not near the people at all.😃</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Number three," data-r="Last but not least," data-note-en="Use Last but not least for the final reason." data-note-yue="最後一點用 Last but not least。">Number three,</span><span class="flip-popup" role="tooltip"></span></span> most of the creatures there are naturally shy, they do their own thing. They don&rsquo;t bother the people. So it made sense for the people to <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="no hunt them" data-r="not hunt them" data-note-en="Use not (or not to hunt them)." data-note-yue="用 not（或 not to hunt them）。">no hunt them</span><span class="flip-popup" role="tooltip"></span></span> since they don&rsquo;t disturb them. The creature they should be looking out for is the kangaroo, <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="it&amp;apos;s not cause of the au boxing kangaroos" data-r="it&amp;apos;s not because of boxing kangaroos" data-note-en="Because of (not cause of). Drop au — boxing kangaroos is the movie myth." data-note-yue="because of（唔係 cause of）。唔使 au — boxing kangaroos 係電影神話。">it&apos;s not cause of the au boxing kangaroos</span><span class="flip-popup" role="tooltip"></span></span>. But they cross the street when it&rsquo;s night time and <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="the e drivers" data-r="drivers" data-note-en="Typo: drop the stray e." data-note-yue="打錯字：刪走多餘 e。">the e drivers</span><span class="flip-popup" role="tooltip"></span></span> don&rsquo;t notice them.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="So is Australia really a dangerous place to live in? I don&amp;apos;t think so" data-r="In conclusion, is Australia really a dangerous place to live? I don&amp;apos;t think so." data-note-en="Label the ending In conclusion. Add the full stop." data-note-yue="結尾標 In conclusion。記得句號。">So is Australia really a dangerous place to live in? I don&apos;t think so</span><span class="flip-popup" role="tooltip"></span></span></p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">You already have intro, disagree, three reasons, and a close. Tighten grammar and swap Number one/two/three for the success-criteria linkers.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Clear disagree.</strong> Absolute stance in the opening line — markers see it immediately.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>立場清楚。</strong> 開頭就 disagree，改卷一眼見到。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Smart angle.</strong> Challenging the venomous-spider reputation with a safer-statistics idea fits the task.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>角度好。</strong> 挑戰毒蜘蛛「惡名」，用統計式說法啱題。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Linkers + for example.</strong> Use <em>First of all / Second / Last but not least</em>, and add <em>For example, &hellip;</em> under each reason.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>連接詞 + for example。</strong> 用 <em>First of all / Second / Last but not least</em>，每點加 <em>For example, &hellip;</em>。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Word bank.</strong> Try <em>statistics</em>, <em>habitat</em>, <em>coastal</em>, <em>reputation</em>, or <em>rare</em> once each if they fit.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>字庫。</strong> 可試 <em>statistics</em>、<em>habitat</em>、<em>coastal</em>、<em>reputation</em>、<em>rare</em>。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Kangaroo roads.</strong> Night crossings are a stronger &ldquo;real risk&rdquo; than boxing myths — keep that idea.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>袋鼠馬路。</strong> 夜晚過馬路比拳擊袋鼠神話更真實 — 呢點留低。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+
+  function hideComment(wrap) {
+    if (!wrap) return;
+    var flip = wrap.querySelector('.flip');
+    var popup = wrap.querySelector('.flip-popup');
+    if (flip) flip.classList.remove('show-note');
+    if (flip) flip.setAttribute('aria-expanded', 'false');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function hideAllComments(exceptWrap) {
+    document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+      if (wrap === exceptWrap) return;
+      hideComment(wrap);
+    });
+  }
+
+  function openComment(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    hideAllComments(wrap);
+    el.classList.add('show-note');
+    el.setAttribute('aria-expanded', 'true');
+    fillPopup(popup, el);
+    popup.classList.add('show');
+  }
+
+  function fillPopup(popup, el) {
+    var en = decode(el.getAttribute('data-note-en') || '');
+    var yue = decode(el.getAttribute('data-note-yue') || '');
+    popup.innerHTML = '';
+    if (en) {
+      var pEn = document.createElement('p');
+      pEn.className = 'note-en';
+      pEn.innerHTML = '<span class="lang-tag">EN</span>' + en;
+      popup.appendChild(pEn);
+    }
+    if (yue) {
+      var pYue = document.createElement('p');
+      pYue.className = 'note-yue';
+      pYue.innerHTML = '<span class="lang-tag">粵</span>' + yue;
+      popup.appendChild(pYue);
+    }
+  }
+
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+
+  function resetFlip(el) {
+    var w = el.getAttribute('data-w');
+    if (!w) return;
+    el.textContent = decode(w);
+    el.classList.remove('show-note');
+    el.setAttribute('aria-expanded', 'false');
+    syncClass(el);
+    var popup = el.parentElement && el.parentElement.querySelector('.flip-popup');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function handleFlip(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    var w = decode(el.getAttribute('data-w') || '');
+    var r = decode(el.getAttribute('data-r') || '');
+    if (!w || !r) return;
+
+    var isGreen = el.textContent === r;
+    var commentOpen = popup && popup.classList.contains('show');
+
+    if (!isGreen) {
+      hideAllComments(wrap);
+      el.textContent = r;
+      syncClass(el);
+      openComment(el);
+      return;
+    }
+
+    if (!commentOpen) {
+      openComment(el);
+      return;
+    }
+
+    resetFlip(el);
+  }
+
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function (e) {
+      e.stopPropagation();
+      handleFlip(el);
+    });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleFlip(el);
+      }
+    });
+  });
+
+  document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+    var popup = wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    popup.addEventListener('click', function (e) {
+      e.stopPropagation();
+      hideComment(wrap);
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.flip-wrap')) return;
+    hideAllComments(null);
+  });
+})();
+  </script>
+</body>
+</html>
