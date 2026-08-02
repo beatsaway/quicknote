@@ -25,7 +25,8 @@
       margin-left: auto;
       margin-right: auto;
     }
-    h1 { font-size: 1.1rem; font-weight: 600; margin: 0 0 1rem; color: var(--accent); }
+    h1 { font-size: 1.1rem; font-weight: 600; margin: 0 0 0.35rem; color: var(--accent); }
+    .sort-note { font-size: 0.82rem; color: var(--muted); margin: 0 0 1rem; }
     ul { list-style: none; margin: 0; padding: 0; }
     li { margin-bottom: 0.75rem; }
     a {
@@ -38,125 +39,155 @@
       padding: 0.85rem 1rem;
     }
     a:hover { border-color: var(--accent); }
+    a .date {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+      opacity: 0.85;
+    }
     a strong { display: block; font-size: 1rem; margin-bottom: 0.3rem; color: var(--accent); }
-    a span { font-size: 0.88rem; color: var(--muted); }
+    a span.desc { font-size: 0.88rem; color: var(--muted); }
   </style>
 </head>
 <body>
   <h1>DSE English — Paper 2</h1>
+  <p class="sort-note">Newest first (date added to this folder).</p>
   <ul>
-    <li>
-      <a href="mock-nomination-house-captain.html">
-        <strong>Mock Part A &mdash; House Captain nomination</strong>
-        <span>Notice-board statement; subheadings; flip edits + CLO + bilingual comments.</span>
-      </a>
-    </li>
-    <li>
-      <a href="level-evaluation-demos.html">
-        <strong>Practice &mdash; evaluate argument essays (CLO)</strong>
-        <span>6 argumentative essays at mixed levels. Guess bands, then reveal teacher notes.</span>
-      </a>
-    </li>
-    <li>
-      <a href="essay-online-learning-passing-fad.html">
-        <strong>Essay &mdash; online learning (passing fad?)</strong>
-        <span>Structure feedback from lesson; CLO + bilingual comments; yellow language flips.</span>
-      </a>
-    </li>
-    <li>
-      <a href="essay-part-time-jobs.html">
-        <strong>Essay &mdash; part-time jobs for students</strong>
-        <span>Form 6 argument; flip + comment popups; CLO + bilingual comments.</span>
-      </a>
-    </li>
-    <li>
-      <a href="essay-food-warning-labels.html">
-        <strong>Essay &mdash; food warning labels (debating)</strong>
-        <span>Argue for/against effectiveness; flip + comment popups; CLO + bilingual comments.</span>
-      </a>
-    </li>
-    <li>
+    <li data-date="2026-08-02">
       <a href="worksheet-food-labels-grammar.html">
+        <span class="date">2 Aug 2026</span>
         <strong>Worksheet &mdash; food labels grammar &amp; vocab</strong>
-        <span>Printable follow-up: rewrite, fill-in, match, error hunt + answer key.</span>
+        <span class="desc">Click wrong words / blanks to reveal; model answers for writing &amp; oral.</span>
       </a>
     </li>
-    <li>
-      <a href="exercise-sentence-structures.html">
-        <strong>Exercise &mdash; Part B sentence structures</strong>
-        <span>Reuse demo frames (To commence with, By contrast, To conclude); 3 topics + transfer writing.</span>
+    <li data-date="2026-08-02">
+      <a href="essay-food-warning-labels.html">
+        <span class="date">2 Aug 2026</span>
+        <strong>Essay &mdash; food warning labels (debating)</strong>
+        <span class="desc">Argue for/against effectiveness; flip + comment popups; CLO + bilingual comments.</span>
       </a>
     </li>
-    <li>
+    <li data-date="2026-07-15">
+      <a href="essay-part-time-jobs.html">
+        <span class="date">15 Jul 2026</span>
+        <strong>Essay &mdash; part-time jobs for students</strong>
+        <span class="desc">Form 6 argument; flip + comment popups; CLO + bilingual comments.</span>
+      </a>
+    </li>
+    <li data-date="2026-07-08">
+      <a href="essay-online-learning-passing-fad.html">
+        <span class="date">8 Jul 2026</span>
+        <strong>Essay &mdash; online learning (passing fad?)</strong>
+        <span class="desc">Structure feedback from lesson; CLO + bilingual comments; yellow language flips.</span>
+      </a>
+    </li>
+    <li data-date="2026-07-08">
+      <a href="level-evaluation-demos.html">
+        <span class="date">8 Jul 2026</span>
+        <strong>Practice &mdash; evaluate argument essays (CLO)</strong>
+        <span class="desc">6 argumentative essays at mixed levels. Guess bands, then reveal teacher notes.</span>
+      </a>
+    </li>
+    <li data-date="2026-07-05">
       <a href="mock-article-study-hk-university.html">
+        <span class="date">5 Jul 2026</span>
         <strong>Homework &mdash; staying in HK for university</strong>
-        <span>School magazine article; disagree side; flip edits + demo writing + bilingual comments.</span>
+        <span class="desc">School magazine article; disagree side; flip edits + demo writing + bilingual comments.</span>
       </a>
     </li>
-    <li>
+    <li data-date="2026-06-28">
+      <a href="mock-nomination-house-captain.html">
+        <span class="date">28 Jun 2026</span>
+        <strong>Mock Part A &mdash; House Captain nomination</strong>
+        <span class="desc">Notice-board statement; subheadings; flip edits + CLO + bilingual comments.</span>
+      </a>
+    </li>
+    <li data-date="2026-06-28">
       <a href="mock-proposal-traditional-shops.html">
+        <span class="date">28 Jun 2026</span>
         <strong>Mock Part B &mdash; Traditional shops proposal</strong>
-        <span>District Council proposal; heritage club; flip edits + CLO + bilingual comments.</span>
+        <span class="desc">District Council proposal; heritage club; flip edits + CLO + bilingual comments.</span>
       </a>
     </li>
-    <li>
+    <li data-date="2026-06-27">
       <a href="writing-practice-argument-advice.html">
+        <span class="date">27 Jun 2026</span>
         <strong>Writing practice &mdash; argument &amp; advice letters</strong>
-        <span>6 DSE tasks with vocab lists, sentence starters, and weekly plan for Curtis.</span>
+        <span class="desc">6 DSE tasks with vocab lists, sentence starters, and weekly plan for Curtis.</span>
       </a>
     </li>
-    <li>
+    <li data-date="2026-06-21">
       <a href="essay-facing-fears.html">
+        <span class="date">21 Jun 2026</span>
         <strong>Essay &mdash; facing fears and coping with challenges</strong>
-        <span>Songwriter quote; personal examples; flip edits + CLO + bilingual comments.</span>
+        <span class="desc">Songwriter quote; personal examples; flip edits + CLO + bilingual comments.</span>
       </a>
     </li>
-    <li>
+    <li data-date="2026-06-14">
       <a href="wellness-week-speech.html">
+        <span class="date">14 Jun 2026</span>
         <strong>Practice &mdash; Wellness Week speech</strong>
-        <span>Student Union opening ceremony; stress, peer support; highlights + model speech.</span>
+        <span class="desc">Student Union opening ceremony; stress, peer support; highlights + model speech.</span>
       </a>
     </li>
-    <li>
-      <a href="pta-tablets-school-board-letter.html">
-        <strong>Practice &mdash; PTA / tablets vs textbooks</strong>
-        <span>Letter to the school board; screen time &amp; benefits; highlights + model letter.</span>
+    <li data-date="2026-06-07">
+      <a href="exercise-sentence-structures.html">
+        <span class="date">7 Jun 2026</span>
+        <strong>Exercise &mdash; Part B sentence structures</strong>
+        <span class="desc">Reuse demo frames (To commence with, By contrast, To conclude); 3 topics + free writing.</span>
       </a>
     </li>
-    <li>
-      <a href="smartphone-ban-survey-letter.html">
-        <strong>Practice &mdash; Smartphone ban survey</strong>
-        <span>Letter to the principal; Student Union survey; highlights + model letter.</span>
-      </a>
-    </li>
-    <li>
+    <li data-date="2026-05-31">
       <a href="munsang-centenary-diary.html">
+        <span class="date">31 May 2026</span>
         <strong>Practice &mdash; Munsang centenary diary</strong>
-        <span>Open Day volunteer diary; flip edits + bilingual comments.</span>
+        <span class="desc">Open Day volunteer diary; flip edits + bilingual comments.</span>
       </a>
     </li>
-    <li>
+    <li data-date="2026-05-25">
+      <a href="smartphone-ban-survey-letter.html">
+        <span class="date">25 May 2026</span>
+        <strong>Practice &mdash; Smartphone ban survey</strong>
+        <span class="desc">Letter to the principal; Student Union survey; highlights + model letter.</span>
+      </a>
+    </li>
+    <li data-date="2026-05-10">
+      <a href="pta-tablets-school-board-letter.html">
+        <span class="date">10 May 2026</span>
+        <strong>Practice &mdash; PTA / tablets vs textbooks</strong>
+        <span class="desc">Letter to the school board; screen time &amp; benefits; highlights + model letter.</span>
+      </a>
+    </li>
+    <li data-date="2026-04-26">
       <a href="2018-marathon-blog.html">
+        <span class="date">26 Apr 2026</span>
         <strong>2018 &mdash; Hong Kong Marathon blog</strong>
-        <span>First-time runner; encourage young people; partial highlights + feedback.</span>
+        <span class="desc">First-time runner; encourage young people; partial highlights + feedback.</span>
       </a>
     </li>
-    <li>
-      <a href="2015-harbour-editor-letter.html">
-        <strong>2015 Part B Q5 — Harbour / open space</strong>
-        <span>Letter to the editor; toggle grammar fixes; model letter below.</span>
-      </a>
-    </li>
-    <li>
-      <a href="2018-advice-letter-jc.html">
-        <strong>2018 Part B Q4 — Advice to J.C.</strong>
-        <span>Personal letter; same highlight practice + model answer.</span>
-      </a>
-    </li>
-    <li>
+    <li data-date="2026-04-12">
       <a href="2016-young-post-monitoring-letter.html">
+        <span class="date">12 Apr 2026</span>
         <strong>2016 Part B Q4 — Young Post / phone monitoring</strong>
-        <span>Letter to the editor; debating module; highlights + model letter.</span>
+        <span class="desc">Letter to the editor; debating module; highlights + model letter.</span>
+      </a>
+    </li>
+    <li data-date="2026-03-27">
+      <a href="2015-harbour-editor-letter.html">
+        <span class="date">27 Mar 2026</span>
+        <strong>2015 Part B Q5 — Harbour / open space</strong>
+        <span class="desc">Letter to the editor; toggle grammar fixes; model letter below.</span>
+      </a>
+    </li>
+    <li data-date="2026-03-27">
+      <a href="2018-advice-letter-jc.html">
+        <span class="date">27 Mar 2026</span>
+        <strong>2018 Part B Q4 — Advice to J.C.</strong>
+        <span class="desc">Personal letter; same highlight practice + model answer.</span>
       </a>
     </li>
   </ul>
