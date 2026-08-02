@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Build a Level 5 argument essay — student task</title>
+  <title>Building essay — later school start — Level 5</title>
+
   <style>
     :root {
       --bg: #f7f5f0;
@@ -44,6 +45,49 @@
     }
     nav a:hover { background: rgba(255,255,255,0.35); }
     main { max-width: 42rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+
+    .exam-task {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .exam-task .paper {
+      margin: 0 0 0.45rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .exam-task h2 {
+      margin: 0 0 0.65rem;
+      font-size: 1.02rem;
+      color: var(--text);
+      font-weight: 650;
+    }
+    .exam-task .q-label {
+      margin: 0 0 0.35rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .exam-task .situation,
+    .exam-task .task-line {
+      margin: 0 0 0.65rem;
+      font-size: 0.92rem;
+    }
+    .exam-task .task-line { margin-bottom: 0.35rem; }
+    .exam-task ul {
+      margin: 0.35rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .exam-task li { margin-bottom: 0.2rem; }
 
     .progress-wrap {
       margin-bottom: 1rem;
@@ -118,8 +162,6 @@
       border-radius: 6px;
       font-size: 0.84rem;
     }
-    .bank strong { display: block; color: #1565c0; font-size: 0.76rem; margin-bottom: 0.25rem; }
-
     .choices { display: grid; gap: 0.45rem; margin: 0.5rem 0 0.75rem; }
     .choice {
       text-align: left;
@@ -136,113 +178,86 @@
     .choice:hover { border-color: var(--accent); }
     .choice.correct { background: #e8f5e9; border-color: var(--ok-b); }
     .choice.wrong { background: #ffebee; border-color: var(--bad-b); }
-    .choice:disabled { cursor: default; }
-
     .fb {
       display: none;
-      margin: 0.35rem 0 0.75rem;
-      padding: 0.65rem 0.75rem;
+      margin: 0 0 0.75rem;
+      padding: 0.55rem 0.7rem;
       border-radius: 6px;
-      font-size: 0.88rem;
-      line-height: 1.5;
-      background: #fff8e1;
-      border: 1px solid #f0d78c;
-      border-left: 4px solid #f9a825;
-      color: var(--text);
+      font-size: 0.86rem;
     }
     .fb.show { display: block; }
-    .fb .note-label {
-      display: inline-block;
+    .fb.ok { background: #e8f5e9; border: 1px solid #a5d6a7; }
+    .fb.no { background: #fff8e1; border: 1px solid #ffe082; }
+    .note-label {
+      display: block;
       font-size: 0.72rem;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-right: 0.35rem;
-      color: #b28600;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.2rem;
+      opacity: 0.85;
     }
-    .fb.ok { border-left-color: #43a047; background: #f1f8e9; border-color: #c5e1a5; }
-    .fb.ok .note-label { color: #2e7d32; }
-    .fb.no { border-left-color: #f9a825; }
-
     .fill-line {
-      margin: 0.65rem 0;
-      font-size: 0.92rem;
+      margin: 0.65rem 0 0.85rem;
+      font-size: 0.9rem;
       line-height: 1.85;
     }
     select.dd {
       font: inherit;
       font-size: 0.88rem;
+      padding: 0.2rem 0.35rem;
+      border: 1px solid var(--border);
+      border-radius: 5px;
       max-width: 100%;
-      padding: 0.25rem 0.35rem;
-      border: 1px solid #999;
-      border-radius: 4px;
       background: #fff;
-      color: var(--text);
-      vertical-align: baseline;
     }
-    select.dd.ok { background: var(--ok); border-color: var(--ok-b); }
-    select.dd.no { background: var(--bad); border-color: var(--bad-b); }
-
+    select.dd.ok { background: #e8f5e9; border-color: var(--ok-b); }
+    select.dd.no { background: #ffebee; border-color: var(--bad-b); }
     .para {
       margin: 0 0 0.75rem;
-      padding: 0.65rem 0.75rem;
-      background: #fafafa;
-      border: 1px dashed var(--border);
+      padding: 0.55rem 0.7rem;
+      background: #faf8f4;
       border-radius: 6px;
-      font-size: 0.9rem;
-      line-height: 1.85;
-    }
-    .q-block {
-      margin: 0 0 0.85rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid #eee;
-    }
-    .q-block:last-of-type { border-bottom: 0; }
-    .q-block h3 {
-      margin: 0 0 0.4rem;
       font-size: 0.88rem;
-      color: var(--text);
-      font-weight: 600;
+      color: var(--muted);
     }
-
+    .q-block h3 {
+      margin: 0 0 0.45rem;
+      font-size: 0.95rem;
+    }
     .essay {
-      margin: 0;
-      padding: 0.75rem 0.85rem;
-      background: #fafafa;
-      border: 1px solid var(--border);
-      border-radius: 8px;
       font-size: 0.92rem;
-      line-height: 1.7;
     }
-    .essay p { margin: 0 0 0.85rem; }
-    .essay p:last-child { margin-bottom: 0; }
     .essay h3 {
       margin: 0 0 0.75rem;
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: var(--accent);
     }
-
+    .essay p { margin: 0 0 0.75rem; }
     .actions {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-top: 0.85rem;
+      align-items: center;
+      margin-top: 0.35rem;
     }
     .btn {
       font: inherit;
       font-size: 0.88rem;
-      font-weight: 600;
-      border: 0;
-      border-radius: 8px;
-      padding: 0.55rem 0.9rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      border: 1px solid transparent;
       cursor: pointer;
     }
-    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
     .btn-primary:disabled { opacity: 0.45; cursor: default; }
     .btn-secondary {
       background: #fff;
-      color: var(--accent);
-      border: 1px solid var(--accent);
+      border-color: var(--border);
+      color: var(--text);
     }
     .score-chip {
       font-size: 0.82rem;
@@ -259,11 +274,12 @@
       font-size: 0.92rem;
     }
   </style>
+
 </head>
 <body>
   <header>
-    <h1>Build a Level 5 argument essay</h1>
-    <p>Student task &mdash; MC and dropdowns only. Use the 60-min toolkit frames. <em>Space</em> = auto-fill this stage.</p>
+    <h1>Building essay — later school start</h1>
+    <p>MC and dropdowns only. Use the 60-min toolkit frames. <em>Space</em> = auto-fill this stage.</p>
     <nav>
       <a href="index.html">Hub</a>
       <a href="lesson-level5-paragraph-60min.html">60-min lesson</a>
@@ -271,21 +287,31 @@
   </header>
 
   <main>
+    <section class="exam-task" aria-label="Exam task">
+      <p class="paper">HKDSE English Language &mdash; Paper 2 Part B</p>
+      <h2>Question &mdash; Later school start times</h2>
+      <p class="q-label">Situation</p>
+      <p class="situation">Your school magazine is inviting student views on senior secondary timetables. Some schools are considering a later morning start for senior forms so that students can sleep longer.</p>
+      <p class="q-label">Task</p>
+      <p class="task-line"><strong>Write an argumentative essay</strong> for the magazine. <strong>Do you agree or disagree</strong> that senior secondary students should start school later? Give reasons and examples to support your view.</p>
+      <ul>
+        <li>Write about 400 words.</li>
+        <li>State your view clearly, support it with reasons and examples, and deal with the other side.</li>
+      </ul>
+    </section>
+
     <div class="progress-wrap">
       <div class="progress-label">
         <span>Stage <strong id="stage-num">1</strong> / 7</span>
-        <span id="stage-name">Mission</span>
+        <span id="stage-name">Plan</span>
       </div>
       <div class="bar"><span id="bar-fill"></span></div>
     </div>
 
-    <!-- 1 -->
-    <section class="stage active" data-stage="1" data-name="Mission">
+
+    <section class="stage active" data-stage="1" data-name="Plan">
       <span class="tag">MC</span>
-      <h2>1. Know the mission</h2>
-      <div class="prompt">
-        <strong>Task.</strong> Some schools are considering a later start time for senior secondary students. Write an argumentative essay. <strong>Do you agree or disagree?</strong> Give reasons and examples.
-      </div>
+      <h2>1. Know the plan</h2>
       <p class="hint">All three plans look organised. Which one best matches a strong HKDSE argument essay?</p>
       <div class="choices" data-mc="1" data-need="1">
         <button type="button" class="choice" data-correct="0" data-note="Almost Level 5 shape, but stuffing the rebuttal into the conclusion is weak. Markers want a clear rebuttal paragraph before you close.">Intro with a clear stance → reason 1 → reason 2 → conclusion that quietly answers critics in the final sentence only</button>
@@ -300,7 +326,6 @@
       </div>
     </section>
 
-    <!-- 2 -->
     <section class="stage" data-stage="2" data-name="Introduction">
       <span class="tag">MC + dropdown</span>
       <h2>2. Build the introduction</h2>
@@ -328,7 +353,6 @@
       </div>
     </section>
 
-    <!-- 3 -->
     <section class="stage" data-stage="3" data-name="Reason 1">
       <span class="tag">Dropdown rebuild</span>
       <h2>3. Upgrade Reason 1</h2>
@@ -367,7 +391,6 @@
       </div>
     </section>
 
-    <!-- 4 -->
     <section class="stage" data-stage="4" data-name="Reason 2">
       <span class="tag">Dropdown</span>
       <h2>4. Build Reason 2</h2>
@@ -411,7 +434,6 @@
       </div>
     </section>
 
-    <!-- 5 -->
     <section class="stage" data-stage="5" data-name="Rebuttal">
       <span class="tag">MC + dropdown</span>
       <h2>5. Handle the other side</h2>
@@ -455,17 +477,16 @@
       </div>
     </section>
 
-    <!-- 6 -->
     <section class="stage" data-stage="6" data-name="Conclusion">
       <span class="tag">MC + dropdown</span>
       <h2>6. Close like Level 5</h2>
       <div class="q-block">
         <h3>Which conclusion is strongest?</h3>
         <div class="choices" data-mc="6" data-need="1">
-          <button type="button" class="choice" data-correct="0" data-note="Too vague. Advantages and disadvantages + think carefully does not restate your stance or give a clear recommendation.">In conclusion, later start times have many advantages and disadvantages, so schools should think carefully about everything.</button>
-          <button type="button" class="choice" data-correct="0" data-note="Almost Level 5, but the ending piles on new reforms (transport, tutoring, exams). Conclusions should not open new topics.">In conclusion, a later start can improve focus and reduce stress. While schedule concerns are valid, the benefits are clear, so schools should redesign transport, tutoring and exam timetables as well.</button>
-          <button type="button" class="choice" data-correct="1" data-note="Strong close: echo the benefits, admit the concern is valid, then give a focused next step (trial for senior forms first).">In conclusion, a later start can improve focus and reduce stress. While schedule concerns are valid, the benefits are clear, so schools should trial the change for senior forms first.</button>
-          <button type="button" class="choice" data-correct="0" data-note="Off-task. Banning homework and shortening the school year are new ideas — keep the conclusion on the later-start question.">To conclude, I hope the government will also ban homework and shorten the school year to help students even more.</button>
+        <button type="button" class="choice" data-correct="0" data-note="Too vague. Advantages and disadvantages + think carefully does not restate your stance or give a clear recommendation.">In conclusion, later start times have many advantages and disadvantages, so schools should think carefully about everything.</button>
+        <button type="button" class="choice" data-correct="0" data-note="Almost Level 5, but the ending piles on new reforms (transport, tutoring, exams). Conclusions should not open new topics.">In conclusion, a later start can improve focus and reduce stress. While schedule concerns are valid, the benefits are clear, so schools should redesign transport, tutoring and exam timetables as well.</button>
+        <button type="button" class="choice" data-correct="1" data-note="Strong close: echo the benefits, admit the concern is valid, then give a focused next step (trial for senior forms first).">In conclusion, a later start can improve focus and reduce stress. While schedule concerns are valid, the benefits are clear, so schools should trial the change for senior forms first.</button>
+        <button type="button" class="choice" data-correct="0" data-note="Off-task. Banning homework and shortening the school year are new ideas — keep the conclusion on the later-start question.">To conclude, I hope the government will also ban homework and shorten the school year to help students even more.</button>
         </div>
         <div class="fb" id="fb-6"></div>
       </div>
@@ -499,7 +520,6 @@
       </div>
     </section>
 
-    <!-- 7 -->
     <section class="stage" data-stage="7" data-name="Model essay">
       <span class="tag">Unlock</span>
       <h2>7. Level 5 model</h2>
@@ -517,11 +537,12 @@
         First and foremost · For example · As a result · Secondly · By -ing · In turn · Critics may argue · However · Therefore · In conclusion · While &hellip; is valid
       </div>
       <div class="actions">
-        <button type="button" class="btn btn-secondary" id="restart">Play again</button>
+        <button type="button" class="btn btn-secondary" id="restart">Try again</button>
         <a class="btn btn-primary" href="lesson-level5-paragraph-60min.html" style="text-decoration:none;display:inline-block">Back to 60-min lesson</a>
         <span class="score-chip">Final score <strong id="score-final">0</strong></span>
       </div>
     </section>
+
   </main>
 
   <script>
@@ -670,5 +691,6 @@
   updateProgress();
 })();
   </script>
+
 </body>
 </html>

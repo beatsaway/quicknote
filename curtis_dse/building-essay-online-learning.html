@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building essay — online learning — Level 5</title>
+
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --panel: #fff;
+      --accent: #0d5c4a;
+      --border: #dcd6cb;
+      --ok: #c8e6c9;
+      --ok-b: #2e7d32;
+      --bad: #ffcdd2;
+      --bad-b: #c62828;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.55;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.05rem; margin: 0 0 0.3rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.86rem; opacity: 0.95; }
+    nav { margin-top: 0.65rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    nav a {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+    }
+    nav a:hover { background: rgba(255,255,255,0.35); }
+    main { max-width: 42rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+
+    .exam-task {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .exam-task .paper {
+      margin: 0 0 0.45rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .exam-task h2 {
+      margin: 0 0 0.65rem;
+      font-size: 1.02rem;
+      color: var(--text);
+      font-weight: 650;
+    }
+    .exam-task .q-label {
+      margin: 0 0 0.35rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .exam-task .situation,
+    .exam-task .task-line {
+      margin: 0 0 0.65rem;
+      font-size: 0.92rem;
+    }
+    .exam-task .task-line { margin-bottom: 0.35rem; }
+    .exam-task ul {
+      margin: 0.35rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .exam-task li { margin-bottom: 0.2rem; }
+
+    .progress-wrap {
+      margin-bottom: 1rem;
+      padding: 0.65rem 0.85rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+    .progress-label strong { color: var(--accent); }
+    .bar {
+      height: 8px;
+      background: #e8e4dc;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .bar > span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      border-radius: 99px;
+      transition: width 0.25s ease;
+    }
+
+    .stage {
+      display: none;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.15rem;
+      margin-bottom: 1rem;
+    }
+    .stage.active { display: block; }
+    .stage h2 {
+      margin: 0 0 0.55rem;
+      font-size: 1.05rem;
+      color: var(--accent);
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      background: #f0f7f4;
+      border: 1px solid #c5ddd2;
+      border-radius: 4px;
+      padding: 0.12rem 0.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .hint { font-size: 0.86rem; color: var(--muted); margin: 0 0 0.75rem; }
+    .prompt {
+      margin: 0 0 0.85rem;
+      padding: 0.65rem 0.75rem;
+      background: #f0f7f4;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.9rem;
+    }
+    .bank {
+      margin: 0.75rem 0 0;
+      padding: 0.55rem 0.7rem;
+      background: #e3f2fd;
+      border-radius: 6px;
+      font-size: 0.84rem;
+    }
+    .choices { display: grid; gap: 0.45rem; margin: 0.5rem 0 0.75rem; }
+    .choice {
+      text-align: left;
+      font: inherit;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      color: var(--text);
+    }
+    .choice:hover { border-color: var(--accent); }
+    .choice.correct { background: #e8f5e9; border-color: var(--ok-b); }
+    .choice.wrong { background: #ffebee; border-color: var(--bad-b); }
+    .fb {
+      display: none;
+      margin: 0 0 0.75rem;
+      padding: 0.55rem 0.7rem;
+      border-radius: 6px;
+      font-size: 0.86rem;
+    }
+    .fb.show { display: block; }
+    .fb.ok { background: #e8f5e9; border: 1px solid #a5d6a7; }
+    .fb.no { background: #fff8e1; border: 1px solid #ffe082; }
+    .note-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.2rem;
+      opacity: 0.85;
+    }
+    .fill-line {
+      margin: 0.65rem 0 0.85rem;
+      font-size: 0.9rem;
+      line-height: 1.85;
+    }
+    select.dd {
+      font: inherit;
+      font-size: 0.88rem;
+      padding: 0.2rem 0.35rem;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      max-width: 100%;
+      background: #fff;
+    }
+    select.dd.ok { background: #e8f5e9; border-color: var(--ok-b); }
+    select.dd.no { background: #ffebee; border-color: var(--bad-b); }
+    .para {
+      margin: 0 0 0.75rem;
+      padding: 0.55rem 0.7rem;
+      background: #faf8f4;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .q-block h3 {
+      margin: 0 0 0.45rem;
+      font-size: 0.95rem;
+    }
+    .essay {
+      font-size: 0.92rem;
+    }
+    .essay h3 {
+      margin: 0 0 0.75rem;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+    .essay p { margin: 0 0 0.75rem; }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      margin-top: 0.35rem;
+    }
+    .btn {
+      font: inherit;
+      font-size: 0.88rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:disabled { opacity: 0.45; cursor: default; }
+    .btn-secondary {
+      background: #fff;
+      border-color: var(--border);
+      color: var(--text);
+    }
+    .score-chip {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-left: auto;
+      align-self: center;
+    }
+    .score-chip strong { color: var(--accent); }
+    .done-banner {
+      margin: 0 0 0.85rem;
+      padding: 0.75rem;
+      background: #e8f5e9;
+      border-radius: 8px;
+      font-size: 0.92rem;
+    }
+  </style>
+
+</head>
+<body>
+  <header>
+    <h1>Building essay — online learning</h1>
+    <p>MC and dropdowns only. Use the 60-min toolkit frames. <em>Space</em> = auto-fill this stage.</p>
+    <nav>
+      <a href="index.html">Hub</a>
+      <a href="lesson-level5-paragraph-60min.html">60-min lesson</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="exam-task" aria-label="Exam task">
+      <p class="paper">HKDSE English Language &mdash; Paper 2 Part B</p>
+      <h2>Question &mdash; Online learning: fad or future?</h2>
+      <p class="q-label">Situation</p>
+      <p class="situation">In recent years, online learning has grown quickly. Some people believe it will shape the future of education. Others think it is only a short-lived trend.</p>
+      <p class="q-label">Task</p>
+      <p class="task-line"><strong>Write an argumentative essay.</strong> <strong>What is your view?</strong> Explain your opinion with reasons and examples.</p>
+      <ul>
+        <li>Write about 400 words.</li>
+        <li>State your view clearly, support it with reasons and examples, and deal with the other side.</li>
+      </ul>
+    </section>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Stage <strong id="stage-num">1</strong> / 7</span>
+        <span id="stage-name">Plan</span>
+      </div>
+      <div class="bar"><span id="bar-fill"></span></div>
+    </div>
+
+
+    <section class="stage active" data-stage="1" data-name="Plan">
+      <span class="tag">MC</span>
+      <h2>1. Know the plan</h2>
+      <div class="choices" data-mc="1" data-need="1">
+        <button type="button" class="choice" data-correct="1" data-note="Strong DSE shape for a clear opinion task.">Intro with stance → reason 1 → reason 2 → rebuttal → conclusion that echoes the stance</button>
+        <button type="button" class="choice" data-correct="0" data-note="Too narrow — answer the big question: fad or future?">Write only about Zoom technical problems for four paragraphs</button>
+        <button type="button" class="choice" data-correct="0" data-note="Announce your view early.">Stay neutral until the last sentence</button>
+        <button type="button" class="choice" data-correct="0" data-note="Definition dumps score poorly. Argue with reasons.">Copy definitions of e-learning for 400 words</button>
+      </div>
+      <div class="fb" id="fb-1"></div>
+      <div class="actions">
+        <button type="button" class="btn btn-primary next-btn" disabled>Next</button>
+        <span class="score-chip">Score <strong id="score">0</strong></span>
+      </div>
+    </section>
+
+    <section class="stage" data-stage="2" data-name="Introduction">
+      <span class="tag">MC + dropdown</span>
+      <h2>2. Build the introduction</h2>
+      <div class="choices" data-mc="2" data-need="1">
+        <button type="button" class="choice" data-correct="0" data-note="Therefore is too early. Use In my view.">Online learning grew quickly in recent years. While some call it a short-lived trend, it can support flexible study. Therefore, I agree it will shape the future.</button>
+        <button type="button" class="choice" data-correct="0" data-note="Absolute and off-register for Level 5.">Online learning is boring and teachers should delete it forever.</button>
+        <button type="button" class="choice" data-correct="1" data-note="Measured stance: future role as blended, not all-or-nothing.">Online learning grew quickly in recent years. While some call it a short-lived trend, it can support flexible study when used wisely. In my view, online learning will shape education as part of a blended model, not as a total replacement.</button>
+        <button type="button" class="choice" data-correct="0" data-note="No clear stance.">There are many views on online learning and I will list them.</button>
+      </div>
+      <div class="fb" id="fb-2"></div>
+      <p class="fill-line">
+        <select class="dd" data-ans="In my view">
+          <option value="">— choose —</option>
+          <option>Therefore</option>
+          <option>In my view</option>
+          <option>In a whole</option>
+          <option>As a result</option>
+        </select>,
+        online learning will shape education as part of a blended model.
+      </p>
+      <div class="actions">
+        <button type="button" class="btn btn-primary next-btn" disabled>Next</button>
+      </div>
+    </section>
+
+    <section class="stage" data-stage="3" data-name="Reason 1">
+      <span class="tag">Dropdown rebuild</span>
+      <h2>3. Upgrade Reason 1</h2>
+      <div class="para"><em>Weak draft:</em> First, online is good. Like replay videos. By the way students happy.</div>
+      <p class="fill-line">
+        <select class="dd" data-ans="First and foremost">
+          <option value="">— choose —</option>
+          <option>First of all</option>
+          <option>First and foremost</option>
+          <option>At first</option>
+          <option>In the first place of all</option>
+        </select>,
+        online tools increase flexibility.
+        <select class="dd" data-ans="For example">
+          <option value="">— choose —</option>
+          <option>Like</option>
+          <option>Such as</option>
+          <option>For example</option>
+          <option>As example of me</option>
+        </select>,
+        students can revisit recorded explanations before tests.
+        <select class="dd" data-ans="As a result">
+          <option value="">— choose —</option>
+          <option>As a result</option>
+          <option>After all</option>
+          <option>In this time</option>
+          <option>By the way</option>
+        </select>,
+        weaker topics become easier to catch up.
+      </p>
+      <div class="actions">
+        <button type="button" class="btn btn-primary next-btn" disabled>Next</button>
+      </div>
+    </section>
+
+    <section class="stage" data-stage="4" data-name="Reason 2">
+      <span class="tag">Dropdown</span>
+      <h2>4. Build Reason 2</h2>
+      <p class="fill-line">
+        <select class="dd" data-ans="Secondly">
+          <option value="">— choose —</option>
+          <option>Second of all</option>
+          <option>Secondly</option>
+          <option>On the second hand</option>
+          <option>Next of all</option>
+        </select>,
+        digital classrooms build skills for later study and work.
+        <select class="dd" data-ans="By">
+          <option value="">— choose —</option>
+          <option>With</option>
+          <option>By</option>
+          <option>Through to</option>
+          <option>From</option>
+        </select>
+        collaborating on shared documents, students may
+        <select class="dd" data-ans="discourage">
+          <option value="">— choose —</option>
+          <option>push away</option>
+          <option>discourage</option>
+          <option>refuse</option>
+          <option>delete</option>
+        </select>
+        fear of new tools.
+        <select class="dd" data-ans="In turn">
+          <option value="">— choose —</option>
+          <option>so</option>
+          <option>In turn</option>
+          <option>which means that</option>
+          <option>Suddenly</option>
+        </select>,
+        they become more ready for tertiary learning.
+      </p>
+      <div class="actions">
+        <button type="button" class="btn btn-primary next-btn" disabled>Next</button>
+      </div>
+    </section>
+
+    <section class="stage" data-stage="5" data-name="Rebuttal">
+      <span class="tag">MC + dropdown</span>
+      <h2>5. Handle the other side</h2>
+      <div class="choices" data-mc="5" data-need="1">
+        <button type="button" class="choice" data-correct="0" data-note="You name isolation, then ignore it with an extreme campus shutdown.">Critics may argue that online lessons reduce face-to-face interaction. However, videos are useful, so schools should close all campuses permanently.</button>
+        <button type="button" class="choice" data-correct="0" data-note="Vague and childish.">Some people hate online class, so they are wrong.</button>
+        <button type="button" class="choice" data-correct="0" data-note="Not a real answer to the interaction concern.">Although critics worry, I already gave two reasons.</button>
+        <button type="button" class="choice" data-correct="1" data-note="Answers the social/interaction worry with blended learning — measured and on-point.">Critics may argue that online lessons reduce face-to-face interaction. However, a blended timetable can keep campus discussion while using online tools for practice.</button>
+      </div>
+      <div class="fb" id="fb-5"></div>
+      <p class="fill-line">
+        <select class="dd" data-ans="Critics may argue that">
+          <option value="">— choose —</option>
+          <option>Some people say</option>
+          <option>Someone may argue</option>
+          <option>Critics may argue that</option>
+          <option>Everybody knows that</option>
+        </select>
+        online study is only a fad.
+        <select class="dd" data-ans="However">
+          <option value="">— choose —</option>
+          <option>But</option>
+          <option>However</option>
+          <option>And</option>
+          <option>So</option>
+        </select>,
+        blended use has lasting value.
+        <select class="dd" data-ans="Therefore">
+          <option value="">— choose —</option>
+          <option>In a whole</option>
+          <option>At last</option>
+          <option>Therefore</option>
+          <option>Suddenly</option>
+        </select>,
+        schools should keep developing it carefully.
+      </p>
+      <div class="actions">
+        <button type="button" class="btn btn-primary next-btn" disabled>Next</button>
+      </div>
+    </section>
+
+    <section class="stage" data-stage="6" data-name="Conclusion">
+      <span class="tag">MC + dropdown</span>
+      <h2>6. Close like Level 5</h2>
+      <div class="q-block">
+        <h3>Which conclusion is strongest?</h3>
+        <div class="choices" data-mc="6" data-need="1">
+        <button type="button" class="choice" data-correct="0" data-note="No clear stance echo or next step.">In conclusion, online learning has advantages and disadvantages.</button>
+        <button type="button" class="choice" data-correct="1" data-note="Echoes stance and keeps the measured blended answer.">In conclusion, online tools add flexibility and future skills. While interaction concerns are valid, a blended model remains the practical path.</button>
+        <button type="button" class="choice" data-correct="0" data-note="Extreme and off-task.">In conclusion, delete all textbooks and teach only on phones.</button>
+        <button type="button" class="choice" data-correct="0" data-note="New unrelated idea.">To conclude, teachers should also raise every exam fee.</button>
+        </div>
+        <div class="fb" id="fb-6"></div>
+      </div>
+      <p class="fill-line">
+        <select class="dd" data-ans="In conclusion">
+          <option value="">— choose —</option>
+          <option>In a whole</option>
+          <option>In conclusion</option>
+          <option>Finally speaking</option>
+          <option>As above</option>
+        </select>,
+        online tools add flexibility and future skills. While interaction concerns are
+        <select class="dd" data-ans="valid">
+          <option value="">— choose —</option>
+          <option>true always</option>
+          <option>valid</option>
+          <option>wrong</option>
+          <option>impossible</option>
+        </select>,
+        a blended model remains the practical
+        <select class="dd" data-ans="path">
+          <option value="">— choose —</option>
+          <option>joke</option>
+          <option>path</option>
+          <option>ban</option>
+          <option>secret</option>
+        </select>.
+      </p>
+      <div class="actions">
+        <button type="button" class="btn btn-primary next-btn" disabled>Next</button>
+      </div>
+    </section>
+
+    <section class="stage" data-stage="7" data-name="Model essay">
+      <span class="tag">Unlock</span>
+      <h2>7. Level 5 model</h2>
+      <div class="done-banner">You chose the building blocks. Read the full essay and notice the frames.</div>
+      <div class="essay">
+        <h3>Is online learning a passing fad or the future of education?</h3>
+        <p>Online learning grew quickly in recent years. While some call it a short-lived trend, it can support flexible study when used wisely. In my view, online learning will shape education as part of a blended model, not as a total replacement.</p>
+        <p>First and foremost, online tools increase flexibility. For example, students can revisit recorded explanations before tests. As a result, weaker topics become easier to catch up.</p>
+        <p>Secondly, digital classrooms build skills for later study and work. By collaborating on shared documents, students may discourage fear of new tools. In turn, they become more ready for tertiary learning.</p>
+        <p>Critics may argue that online lessons reduce face-to-face interaction. However, a blended timetable can keep campus discussion while using online tools for practice. Therefore, schools should keep developing it carefully.</p>
+        <p>In conclusion, online tools add flexibility and future skills. While interaction concerns are valid, a blended model remains the practical path.</p>
+      </div>
+      <div class="bank">
+        <strong>Frames used</strong>
+        First and foremost · For example · As a result · Secondly · By -ing · In turn · Critics may argue · However · Therefore · In conclusion · While &hellip; is valid
+      </div>
+      <div class="actions">
+        <button type="button" class="btn btn-secondary" id="restart">Try again</button>
+        <a class="btn btn-primary" href="lesson-level5-paragraph-60min.html" style="text-decoration:none;display:inline-block">Back to 60-min lesson</a>
+        <span class="score-chip">Final score <strong id="score-final">0</strong></span>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+(function () {
+  var score = 0;
+  var stages = Array.prototype.slice.call(document.querySelectorAll('.stage'));
+  var bar = document.getElementById('bar-fill');
+  var stageNum = document.getElementById('stage-num');
+  var stageName = document.getElementById('stage-name');
+  var scoreEl = document.getElementById('score');
+  var scoreFinal = document.getElementById('score-final');
+
+  function currentStage() {
+    return document.querySelector('.stage.active');
+  }
+
+  function updateProgress() {
+    var stage = currentStage();
+    var n = Number(stage.getAttribute('data-stage'));
+    stageNum.textContent = String(n);
+    stageName.textContent = stage.getAttribute('data-name') || '';
+    bar.style.width = Math.round((n / stages.length) * 100) + '%';
+    if (scoreEl) scoreEl.textContent = String(score);
+    if (scoreFinal) scoreFinal.textContent = String(score);
+  }
+
+  function goTo(n) {
+    stages.forEach(function (s) {
+      s.classList.toggle('active', Number(s.getAttribute('data-stage')) === n);
+    });
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showFb(id, ok, text) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.className = 'fb show ' + (ok ? 'ok' : 'no');
+    el.innerHTML = '<span class="note-label">' + (ok ? 'Why this works' : 'Why not') + '</span>' + text;
+  }
+
+  function stageReady(stage) {
+    var needMc = stage.querySelector('[data-mc]');
+    var mcOk = !needMc || !!stage.querySelector('.choice.correct');
+    var dds = stage.querySelectorAll('select.dd');
+    var ddOk = true;
+    if (dds.length) {
+      dds.forEach(function (dd) {
+        if (!dd.classList.contains('ok')) ddOk = false;
+      });
+    }
+    var next = stage.querySelector('.next-btn');
+    if (!next) return;
+    if (dds.length && needMc) next.disabled = !(mcOk && ddOk);
+    else if (dds.length) next.disabled = !ddOk;
+    else next.disabled = !mcOk;
+  }
+
+  document.querySelectorAll('[data-mc]').forEach(function (group) {
+    var scored = false;
+    group.querySelectorAll('.choice').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var ok = btn.getAttribute('data-correct') === '1';
+        var fbId = 'fb-' + group.getAttribute('data-mc');
+        var note = btn.getAttribute('data-note') || '';
+
+        if (ok) {
+          btn.classList.add('correct');
+          if (!scored) {
+            scored = true;
+            score += 1;
+          }
+          showFb(fbId, true, note || 'Yes — that choice is more Level 5.');
+          stageReady(group.closest('.stage'));
+          updateProgress();
+          return;
+        }
+
+        btn.classList.add('wrong');
+        showFb(fbId, false, note || 'Not this one — try another option.');
+        stageReady(group.closest('.stage'));
+        updateProgress();
+      });
+    });
+  });
+
+  function applyDropdown(dd) {
+    var ans = dd.getAttribute('data-ans') || '';
+    var wasOk = dd.classList.contains('ok');
+    var empty = !dd.value;
+    var ok = dd.value === ans;
+    dd.classList.toggle('ok', ok);
+    dd.classList.toggle('no', !empty && !ok);
+    if (ok && !wasOk) score += 1;
+    else if (!ok && wasOk) score = Math.max(0, score - 1);
+    stageReady(dd.closest('.stage'));
+    updateProgress();
+  }
+
+  document.querySelectorAll('select.dd').forEach(function (dd) {
+    dd.addEventListener('change', function () {
+      applyDropdown(dd);
+    });
+  });
+
+  function autoDoneStage() {
+    var stage = currentStage();
+    if (!stage) return;
+    if (stage.getAttribute('data-stage') === '7') return;
+
+    var correctBtn = stage.querySelector('.choice[data-correct="1"]');
+    if (correctBtn && !stage.querySelector('.choice.correct')) {
+      correctBtn.click();
+    }
+
+    stage.querySelectorAll('select.dd').forEach(function (dd) {
+      var ans = dd.getAttribute('data-ans') || '';
+      if (dd.value !== ans) {
+        dd.value = ans;
+        applyDropdown(dd);
+      }
+    });
+
+    stageReady(stage);
+    updateProgress();
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.code !== 'Space' && e.key !== ' ') return;
+    if (e.repeat) return;
+    e.preventDefault();
+    autoDoneStage();
+  });
+
+  document.querySelectorAll('.next-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var n = Number(btn.closest('.stage').getAttribute('data-stage'));
+      goTo(n + 1);
+    });
+  });
+
+  document.getElementById('restart').addEventListener('click', function () {
+    location.reload();
+  });
+
+  updateProgress();
+})();
+  </script>
+
+</body>
+</html>
