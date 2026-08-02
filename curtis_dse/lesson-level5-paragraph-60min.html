@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curtis timed lesson — reusable Level 5 language (60 min)</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --panel: #fff;
+      --accent: #0d5c4a;
+      --border: #dcd6cb;
+      --line: #c5c0b5;
+      --ok: #c8e6c9;
+      --ok-b: #2e7d32;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.55;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.05rem; margin: 0 0 0.3rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.86rem; opacity: 0.95; }
+    nav { margin-top: 0.65rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    nav a {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+    }
+    nav a:hover { background: rgba(255,255,255,0.35); }
+    main { max-width: 42rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      font-size: 0.88rem;
+      margin-bottom: 1rem;
+      padding: 0.65rem 0.85rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .meta span { color: var(--muted); }
+    .meta strong { color: var(--accent); }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.15rem;
+      margin-bottom: 1rem;
+    }
+    section.box h2 {
+      margin: 0 0 0.55rem;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+    .time {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: #f0f7f4;
+      border: 1px solid #c5ddd2;
+      border-radius: 4px;
+      padding: 0.15rem 0.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .hint { font-size: 0.86rem; color: var(--muted); margin: 0 0 0.75rem; }
+    .goal {
+      margin: 0 0 0.75rem;
+      padding: 0.65rem 0.75rem;
+      background: #f0f7f4;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.92rem;
+    }
+    .bank {
+      margin: 0 0 0.75rem;
+      padding: 0.55rem 0.7rem;
+      background: #e3f2fd;
+      border-radius: 6px;
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+    .bank strong {
+      color: #1565c0;
+      display: block;
+      margin-bottom: 0.3rem;
+      font-size: 0.78rem;
+    }
+    .ban {
+      margin: 0 0 0.75rem;
+      padding: 0.55rem 0.7rem;
+      background: #fff5f5;
+      border-radius: 6px;
+      font-size: 0.86rem;
+      color: #8a1f1f;
+    }
+    .ban strong { display: block; margin-bottom: 0.25rem; font-size: 0.78rem; }
+    ol.q, ul.check { margin: 0; padding-left: 1.2rem; }
+    ol.q li, ul.check li { margin: 0.45rem 0; font-size: 0.9rem; }
+    .lines { margin: 0.35rem 0 0.55rem; }
+    .lines div {
+      border-bottom: 1px solid var(--line);
+      height: 1.5rem;
+      margin-bottom: 0.2rem;
+    }
+    .frame {
+      margin: 0 0 0.65rem;
+      padding: 0.55rem 0.7rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.88rem;
+    }
+    .frame code {
+      font-family: inherit;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .timeline {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0.88rem;
+    }
+    .timeline li {
+      display: grid;
+      grid-template-columns: 4.5rem 1fr;
+      gap: 0.5rem;
+      margin: 0.35rem 0;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .timeline li:last-child { border-bottom: 0; }
+    .timeline .t { font-weight: 600; color: var(--accent); }
+    .tap {
+      font: inherit;
+      color: inherit;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      cursor: inherit;
+      text-decoration: none;
+    }
+    .tap:hover, .tap:focus { outline: none; background: transparent; color: inherit; }
+    .tap.revealed {
+      background: var(--ok);
+      border-bottom: 2px solid var(--ok-b);
+      border-radius: 2px;
+      padding: 0 1px;
+    }
+    .tap-block {
+      margin-top: 0.45rem;
+      padding: 0.55rem 0.65rem;
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+      background: #fafafa;
+      cursor: inherit;
+    }
+    .tap-block:hover, .tap-block:focus { outline: none; background: #fafafa; }
+    .tap-block .placeholder {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+    .tap-block .model {
+      display: none;
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+    .tap-block.revealed {
+      background: #f1f8f4;
+      border-style: solid;
+      border-color: #a5d6a7;
+    }
+    .tap-block.revealed .placeholder { display: none; }
+    .tap-block.revealed .model { display: block; }
+    .grid-2 {
+      display: grid;
+      gap: 0.65rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 640px) {
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+    }
+    .mini {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.55rem 0.65rem;
+      background: #fafafa;
+      font-size: 0.84rem;
+    }
+    .mini h3 {
+      margin: 0 0 0.35rem;
+      font-size: 0.8rem;
+      color: var(--accent);
+    }
+    .mini ul { margin: 0; padding-left: 1.05rem; }
+    .mini li { margin: 0.2rem 0; }
+    @media print {
+      body { background: #fff; }
+      header { background: #fff; color: #000; border-bottom: 2px solid #000; padding: 0.5rem 0; }
+      header p, nav { display: none; }
+      header h1 { color: #000; }
+      main { max-width: none; padding: 0; }
+      section.box { break-inside: avoid; border: 1px solid #999; margin-bottom: 0.65rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Curtis timed lesson &mdash; reusable Level 5 language</h1>
+    <p>60 minutes. Build frames, vocab and sentence upgrades you can reuse in any Paper 2 task.</p>
+    <nav>
+      <a href="index.html">Hub</a>
+      <a href="game-build-level5-essay.html">Build Level 5 essay</a>
+    </nav>
+  </header>
+  <main>
+    <div class="meta">
+      <span><strong>Name:</strong> ________________</span>
+      <span><strong>Date:</strong> ________________</span>
+      <span><strong>Aim:</strong> HKDSE Writing Level 5 language</span>
+    </div>
+
+    <section class="box">
+      <h2>Today&rsquo;s goal</h2>
+      <p class="goal">Leave with a <strong>personal toolkit</strong>: 8 reusable sentence frames + 10 Level 5 words/phrases you can drop into letters, articles, proposals or essays.</p>
+      <ul class="timeline">
+        <li><span class="t">0&ndash;5</span><span>Goal + ban list</span></li>
+        <li><span class="t">5&ndash;18</span><span>Upgrade weak &rarr; Level 5 wording</span></li>
+        <li><span class="t">18&ndash;35</span><span>Build 8 reusable frames (any topic)</span></li>
+        <li><span class="t">35&ndash;50</span><span>Write one body paragraph using the toolkit</span></li>
+        <li><span class="t">50&ndash;60</span><span>Rebuttal frame + self-check</span></li>
+      </ul>
+      <div class="ban">
+        <strong>Ban today (Level 4 traps)</strong>
+        some people say &middot; someone may argue &middot; Second of all &middot; more worse &middot; a information &middot; In a whole &middot; make sb to do
+      </div>
+    </section>
+
+    <section class="box">
+      <span class="time">5&ndash;18 min</span>
+      <h2>1. Upgrade bank &mdash; click the weak bit</h2>
+      <p class="hint">These upgrades work in almost every DSE writing task. Say the better version aloud, then click.</p>
+      <ol class="q">
+        <li><span class="tap" tabindex="0" role="button" data-w="Some people say" data-r="Critics argue">Some people say</span> that the plan will fail.</li>
+        <li><span class="tap" tabindex="0" role="button" data-w="Second of all" data-r="Secondly">Second of all</span>, students need more rest.</li>
+        <li>This can <span class="tap" tabindex="0" role="button" data-w="make parents to worry" data-r="make parents worry / cause parents to worry">make parents to worry</span>.</li>
+        <li>There was a <span class="tap" tabindex="0" role="button" data-w="reduce" data-r="reduction">reduce</span> in complaints.</li>
+        <li>Rules can <span class="tap" tabindex="0" role="button" data-w="push away students for" data-r="discourage students from">push away students for</span> breaking them.</li>
+        <li>Labels give <span class="tap" tabindex="0" role="button" data-w="a useful information" data-r="useful information">a useful information</span>.</li>
+        <li><span class="tap" tabindex="0" role="button" data-w="In a whole" data-r="In conclusion / To summarise">In a whole</span>, I support the idea.</li>
+        <li>The policy may <span class="tap" tabindex="0" role="button" data-w="get more worse" data-r="get even worse">get more worse</span> without support.</li>
+        <li><span class="tap" tabindex="0" role="button" data-w="This" data-r="These">This</span> measures are effective.</li>
+        <li>We should change <span class="tap" tabindex="0" role="button" data-w="customers" data-r="customers&amp;apos;">customers</span> habits carefully.</li>
+      </ol>
+      <div class="bank">
+        <strong>Keep these upgrades</strong>
+        Critics / Opponents argue &middot; Secondly / Furthermore &middot; a reduction in &middot; discourage &hellip; from &middot; encourage &hellip; to &middot; In conclusion &middot; get even worse &middot; useful information (no <em>a</em>)
+      </div>
+    </section>
+
+    <section class="box">
+      <span class="time">18&ndash;35 min</span>
+      <h2>2. Build your Level 5 toolkit (any topic)</h2>
+      <p class="hint">Complete each frame with your own idea. Same frames work for essays, letters, articles and proposals.</p>
+
+      <div class="grid-2">
+        <div class="mini">
+          <h3>Openers / sequence</h3>
+          <ul>
+            <li>First and foremost, &hellip;</li>
+            <li>Secondly / Furthermore, &hellip;</li>
+            <li>Last but not least, &hellip;</li>
+          </ul>
+        </div>
+        <div class="mini">
+          <h3>Evidence / example</h3>
+          <ul>
+            <li>For example, &hellip;</li>
+            <li>This can be seen when &hellip;</li>
+            <li>As a result, &hellip;</li>
+          </ul>
+        </div>
+        <div class="mini">
+          <h3>Contrast / rebuttal</h3>
+          <ul>
+            <li>Critics may argue that &hellip;</li>
+            <li>However, &hellip;</li>
+            <li>While this concern is valid, &hellip;</li>
+          </ul>
+        </div>
+        <div class="mini">
+          <h3>Level 5 glue</h3>
+          <ul>
+            <li>By + -ing, &hellip;</li>
+            <li>&hellip;, which means that &hellip;</li>
+            <li>&hellip;, so &hellip;</li>
+            <li>This allows &hellip;</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="hint" style="margin-top:0.85rem">Write one full sentence for each frame. Click the writing space to check a model.</p>
+      <ol class="q">
+        <li>
+          <div class="frame"><code>First and foremost,</code></div>
+          <div class="tap-block" tabindex="0" role="button" aria-expanded="false">
+            <p class="placeholder">_______________________________<br>_______________________________</p>
+            <p class="model">First and foremost, clear school rules help students manage their time.</p>
+          </div>
+        </li>
+        <li>
+          <div class="frame"><code>For example,</code></div>
+          <div class="tap-block" tabindex="0" role="button" aria-expanded="false">
+            <p class="placeholder">_______________________________<br>_______________________________</p>
+            <p class="model">For example, a homework timetable can reduce last-minute stress.</p>
+          </div>
+        </li>
+        <li>
+          <div class="frame"><code>As a result,</code></div>
+          <div class="tap-block" tabindex="0" role="button" aria-expanded="false">
+            <p class="placeholder">_______________________________<br>_______________________________</p>
+            <p class="model">As a result, students may sleep better and focus more in class.</p>
+          </div>
+        </li>
+        <li>
+          <div class="frame"><code>By -ing,</code></div>
+          <div class="tap-block" tabindex="0" role="button" aria-expanded="false">
+            <p class="placeholder">_______________________________<br>_______________________________</p>
+            <p class="model">By setting priorities, teenagers can balance study and rest.</p>
+          </div>
+        </li>
+        <li>
+          <div class="frame"><code>..., which means that</code></div>
+          <div class="tap-block" tabindex="0" role="button" aria-expanded="false">
+            <p class="placeholder">_______________________________<br>_______________________________</p>
+            <p class="model">This builds better habits, which means that long-term performance improves.</p>
+          </div>
+        </li>
+        <li>
+          <div class="frame"><code>Critics may argue that</code></div>
+          <div class="tap-block" tabindex="0" role="button" aria-expanded="false">
+            <p class="placeholder">_______________________________<br>_______________________________</p>
+            <p class="model">Critics may argue that strict rules limit freedom.</p>
+          </div>
+        </li>
+        <li>
+          <div class="frame"><code>However,</code> / <code>While this concern is valid,</code></div>
+          <div class="tap-block" tabindex="0" role="button" aria-expanded="false">
+            <p class="placeholder">_______________________________<br>_______________________________</p>
+            <p class="model">However, structure can create more free time, not less.</p>
+          </div>
+        </li>
+        <li>
+          <div class="frame"><code>In conclusion,</code> / <code>To summarise,</code></div>
+          <div class="tap-block" tabindex="0" role="button" aria-expanded="false">
+            <p class="placeholder">_______________________________<br>_______________________________</p>
+            <p class="model">In conclusion, practical routines are more useful than vague advice.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="box">
+      <span class="time">35&ndash;50 min</span>
+      <h2>3. Put the toolkit into one paragraph</h2>
+      <p class="hint">Choose <strong>one</strong> topic. Write 110&ndash;140 words. Use at least <strong>5 frames</strong> from Section 2.</p>
+      <div class="bank">
+        <strong>Pick one prompt</strong>
+        A) Should secondary students have a later school start time?<br>
+        B) Is it better to study in Hong Kong for university?<br>
+        C) Should schools limit smartphone use during the day?
+      </div>
+      <div class="bank">
+        <strong>Must include</strong>
+        topic sentence &middot; <em>For example</em> &middot; one result link (<em>As a result</em> / <em>so</em> / <em>This allows</em> &mdash; pick <strong>one</strong>, do not stack) &middot; one precise word from today&rsquo;s upgrades
+      </div>
+      <div class="lines">
+        <div></div><div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div><div></div>
+      </div>
+      <div class="tap-block" tabindex="0" role="button" aria-expanded="false">
+        <p class="placeholder">Click for a transferable model paragraph (later start time)</p>
+        <p class="model">First and foremost, a later school start time can improve students&rsquo; focus. For example, teenagers who sleep longer often concentrate better in morning lessons. By starting at nine instead of eight, schools may also reduce lateness. As a result, both marks and well-being can improve. While some critics argue that families&rsquo; schedules would be disrupted, a small change in timetable can still bring clear academic benefits.</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <span class="time">50&ndash;60 min</span>
+      <h2>4. Rebuttal kit + self-check</h2>
+      <p class="hint">Write exactly 3 sentences on the same topic you chose.</p>
+      <ol class="q">
+        <li><em>Critics may argue that&hellip;</em><div class="lines"><div></div><div></div></div></li>
+        <li><em>However, / While this concern is valid,&hellip;</em><div class="lines"><div></div><div></div></div></li>
+        <li><em>Therefore, / In conclusion,&hellip;</em><div class="lines"><div></div><div></div></div></li>
+      </ol>
+      <div class="tap-block" tabindex="0" role="button" aria-expanded="false">
+        <p class="placeholder">Click for a model rebuttal kit</p>
+        <p class="model">Critics may argue that a later start time would make the school day finish too late. However, better sleep can raise learning quality, so the extra hour is worthwhile. Therefore, schools should trial a later start for senior forms first.</p>
+      </div>
+      <ul class="check" style="margin-top:0.85rem">
+        <li>☐ I used 5+ reusable frames (not only topic words)</li>
+        <li>☐ No banned Level 4 phrases</li>
+        <li>☐ One concrete <em>For example</em></li>
+        <li>☐ One result link (<em>As a result</em> / <em>so</em> / <em>This allows</em>) &mdash; not two stacked</li>
+        <li>☐ Rebuttal uses <em>Critics</em> / <em>Opponents</em>, not <em>some people</em></li>
+        <li>☐ I can reuse today&rsquo;s 8 frames in next week&rsquo;s task</li>
+      </ul>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncTap(el) {
+    var w = decode(el.getAttribute('data-w') || '');
+    var r = decode(el.getAttribute('data-r') || '');
+    el.textContent = el.classList.contains('revealed') ? r : w;
+  }
+  document.querySelectorAll('.tap').forEach(function (el) {
+    syncTap(el);
+    el.addEventListener('click', function (e) {
+      e.stopPropagation();
+      el.classList.toggle('revealed');
+      syncTap(el);
+    });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        el.classList.toggle('revealed');
+        syncTap(el);
+      }
+    });
+  });
+  document.querySelectorAll('.tap-block').forEach(function (el) {
+    function toggle() {
+      var on = el.classList.toggle('revealed');
+      el.setAttribute('aria-expanded', on ? 'true' : 'false');
+    }
+    el.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggle();
+    });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>
