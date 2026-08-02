@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curtis worksheet — food labels grammar &amp; vocab</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --panel: #fff;
+      --accent: #0d5c4a;
+      --border: #dcd6cb;
+      --line: #c5c0b5;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.55;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.05rem; margin: 0 0 0.3rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.86rem; opacity: 0.95; }
+    nav { margin-top: 0.65rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    nav a, nav button {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    nav a:hover, nav button:hover { background: rgba(255,255,255,0.35); }
+    main { max-width: 42rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      font-size: 0.88rem;
+      margin-bottom: 1rem;
+      padding: 0.65rem 0.85rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .meta span { color: var(--muted); }
+    .meta strong { color: var(--accent); }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.15rem;
+      margin-bottom: 1rem;
+    }
+    section.box h2 {
+      margin: 0 0 0.65rem;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+    .hint { font-size: 0.86rem; color: var(--muted); margin: 0 0 0.75rem; }
+    ol.q, ul.q { margin: 0; padding-left: 1.25rem; }
+    ol.q li, ul.q li { margin: 0.55rem 0; font-size: 0.92rem; }
+    .blank {
+      display: inline-block;
+      min-width: 6.5rem;
+      border-bottom: 1.5px solid var(--line);
+      margin: 0 0.15rem;
+      vertical-align: baseline;
+    }
+    .bank {
+      margin: 0 0 0.75rem;
+      padding: 0.55rem 0.7rem;
+      background: #f0f7f4;
+      border-radius: 6px;
+      font-size: 0.86rem;
+    }
+    .bank strong { color: var(--accent); }
+    table.match {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-top: 0.35rem;
+    }
+    table.match th, table.match td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.55rem;
+      text-align: left;
+    }
+    table.match th { background: #f0f7f4; color: var(--accent); font-size: 0.82rem; }
+    .lines { margin: 0.45rem 0 0.85rem; }
+    .lines div {
+      border-bottom: 1px solid var(--line);
+      height: 1.55rem;
+      margin-bottom: 0.25rem;
+    }
+    .para {
+      margin: 0;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .answers {
+      background: #fffef5;
+      border-color: #e6d9a8;
+    }
+    .answers h2 { color: #8a6d00; }
+    .answers ol, .answers ul { margin: 0 0 0.75rem; padding-left: 1.2rem; font-size: 0.88rem; }
+    .answers li { margin: 0.3rem 0; }
+    .answers p { margin: 0 0 0.45rem; font-size: 0.88rem; }
+    body.hide-answers .answers { display: none; }
+    @media print {
+      body { background: #fff; }
+      header { background: #fff; color: #000; border-bottom: 2px solid #000; padding: 0.5rem 0; }
+      header p, nav { display: none; }
+      header h1 { color: #000; }
+      main { max-width: none; padding: 0; }
+      section.box {
+        break-inside: avoid;
+        border: 1px solid #999;
+        box-shadow: none;
+        margin-bottom: 0.75rem;
+      }
+      .answers { break-before: page; }
+      body.hide-answers .answers { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Curtis worksheet &mdash; grammar &amp; vocab</h1>
+    <p>Food warning labels essay follow-up. Print student copy with answers hidden.</p>
+    <nav>
+      <a href="index.html">Hub</a>
+      <a href="essay-food-warning-labels.html">Essay feedback</a>
+      <button type="button" id="toggle-answers">Hide answer key</button>
+      <button type="button" onclick="window.print()">Print</button>
+    </nav>
+  </header>
+  <main>
+    <div class="meta">
+      <span><strong>Name:</strong> ________________</span>
+      <span><strong>Date:</strong> ________________</span>
+      <span><strong>Time:</strong> ~25&ndash;30 min</span>
+    </div>
+
+    <section class="box">
+      <h2>A. Grammar &mdash; rewrite each sentence</h2>
+      <p class="hint">Correct the grammar. Keep the meaning.</p>
+      <ol class="q">
+        <li>In a market fill with many snacks, labels help shoppers.<div class="lines"><div></div></div></li>
+        <li>Labels give a quick, simple information.<div class="lines"><div></div></div></li>
+        <li>This simple but powerful labels can guide people.<div class="lines"><div></div></div></li>
+        <li>Studies show a reduce in sales of unhealthy food.<div class="lines"><div></div></div></li>
+        <li>Labels push away consumers for choosing junk food.<div class="lines"><div></div></div></li>
+        <li>Companies want to avoid negative labelings.<div class="lines"><div></div></div></li>
+        <li>This can lead to healthier food more widely and easier available.<div class="lines"><div></div></div></li>
+        <li>Other countries with warning labels shows good results.<div class="lines"><div></div></div></li>
+        <li>Labels influence customers choices of buying.<div class="lines"><div></div></div></li>
+        <li>Labels make manufacturers to reformulate their products.<div class="lines"><div></div></div></li>
+        <li>While warning labels look like simple, they matter.<div class="lines"><div></div></div></li>
+        <li>Changing is a complex process, warning labels are only part of it.<div class="lines"><div></div></div></li>
+      </ol>
+    </section>
+
+    <section class="box">
+      <h2>B. Vocab fill-in</h2>
+      <p class="bank"><strong>Word bank:</strong> discourage · reformulate · reduction · accessible · saturated · awareness · nutritional · consumer · effective · uncountable</p>
+      <ol class="q">
+        <li>Sugar, salt and <span class="blank"></span> fat often get warning labels.</li>
+        <li>A red label raises <span class="blank"></span> of health risks.</li>
+        <li>Labels can <span class="blank"></span> shoppers from buying sweets.</li>
+        <li>Japan saw a <span class="blank"></span> in sales of some unhealthy snacks.</li>
+        <li>Factories may <span class="blank"></span> recipes to remove the warning.</li>
+        <li>Healthier options should be more widely <span class="blank"></span>.</li>
+        <li>Labels show <span class="blank"></span> content in a simple way.</li>
+        <li>A careful <span class="blank"></span> looks at the label before buying.</li>
+        <li>I argue that the policy is <span class="blank"></span> in changing habits.</li>
+        <li><em>Information</em> is <span class="blank"></span> &mdash; don&rsquo;t write &ldquo;an information&rdquo;.</li>
+      </ol>
+    </section>
+
+    <section class="box">
+      <h2>C. Collocation match</h2>
+      <p class="hint">Draw a line / write the letter.</p>
+      <table class="match">
+        <thead>
+          <tr><th>A</th><th>Match</th><th>B</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1. filled</td><td>_____</td><td>a. from doing something</td></tr>
+          <tr><td>2. a reduction</td><td>_____</td><td>b. with options</td></tr>
+          <tr><td>3. discourage someone</td><td>_____</td><td>c. in sales</td></tr>
+          <tr><td>4. remind someone</td><td>_____</td><td>d. of the health risks</td></tr>
+          <tr><td>5. encourage companies</td><td>_____</td><td>e. to reformulate</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="box">
+      <h2>D. Circle the correct option</h2>
+      <ol class="q">
+        <li>Labels provide <strong>(a / &mdash;)</strong> clear information.</li>
+        <li><strong>(This / These)</strong> labels help customers.</li>
+        <li>Zero cases <strong>(has / have)</strong> been linked to this claim.</li>
+        <li>Other countries <strong>(show / shows)</strong> that education helps.</li>
+        <li>We should change <strong>(customer / customers&rsquo;)</strong> choices.</li>
+      </ol>
+    </section>
+
+    <section class="box">
+      <h2>E. Short writing</h2>
+      <ol class="q">
+        <li>
+          Write <strong>3 sentences</strong> arguing <strong>for</strong> food warning labels. Use <em>First of all / For example / Therefore</em>.
+          <div class="lines"><div></div><div></div><div></div><div></div></div>
+        </li>
+        <li>
+          Write <strong>2 sentences</strong> for the opposite view, then <strong>1 rebuttal</strong> starting with <em>However</em>.
+          <div class="lines"><div></div><div></div><div></div><div></div></div>
+        </li>
+        <li>
+          Rewrite more naturally: <em>&ldquo;It can lead to a better future when customers see high in sugar.&rdquo;</em>
+          <div class="lines"><div></div><div></div></div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="box">
+      <h2>F. Error hunt &mdash; find and fix 6 mistakes</h2>
+      <p class="para">Food warning labels give a useful informations. In a market fill with snacks, this labels remind the risks of health. They can push away consumers for choosing candy and make companies to change recipes. Other countries shows a reduce in sales. While labels look like simple, they help customers choices.</p>
+      <p class="hint" style="margin-top:0.75rem">Your corrected version:</p>
+      <div class="lines"><div></div><div></div><div></div><div></div><div></div></div>
+    </section>
+
+    <section class="box">
+      <h2>G. Oral warm-up (speak aloud)</h2>
+      <ol class="q">
+        <li>Are food warning labels effective? Why / why not?</li>
+        <li>Give one example of a label you have seen.</li>
+        <li>What else (besides labels) can change eating habits?</li>
+      </ol>
+    </section>
+
+    <section class="box answers" id="answer-key">
+      <h2>Answer key (teacher)</h2>
+
+      <p><strong>A (sample answers)</strong></p>
+      <ol>
+        <li>In a market <em>filled with</em> many snacks, labels help shoppers.</li>
+        <li>Labels give <em>quick, simple information</em>.</li>
+        <li><em>These</em> simple but powerful labels can guide people.</li>
+        <li>Studies show <em>a reduction</em> in sales of unhealthy food.</li>
+        <li>Labels <em>discourage consumers from choosing</em> junk food.</li>
+        <li>Companies want to avoid negative <em>labels</em> / <em>labelling</em>.</li>
+        <li>This can <em>make healthier food more widely available</em>.</li>
+        <li>Other countries with warning labels <em>show</em> good results.</li>
+        <li>Labels influence <em>customers&rsquo; choices</em> when buying.</li>
+        <li>Labels <em>encourage manufacturers to reformulate</em> &hellip; / <em>make manufacturers reformulate</em> &hellip;</li>
+        <li>While warning labels <em>look simple</em>, they matter.</li>
+        <li>Changing is a complex process<span>;</span> warning labels are only part of it. / &hellip; process<span>, and</span> warning labels &hellip;</li>
+      </ol>
+
+      <p><strong>B</strong></p>
+      <ol>
+        <li>saturated</li>
+        <li>awareness</li>
+        <li>discourage</li>
+        <li>reduction</li>
+        <li>reformulate</li>
+        <li>accessible</li>
+        <li>nutritional</li>
+        <li>consumer</li>
+        <li>effective</li>
+        <li>uncountable</li>
+      </ol>
+
+      <p><strong>C</strong> 1-b · 2-c · 3-a · 4-d · 5-e</p>
+
+      <p><strong>D</strong> 1 — · 2 These · 3 have · 4 show · 5 customers&rsquo;</p>
+
+      <p><strong>E3 (sample)</strong> When customers see a &ldquo;high in sugar&rdquo; warning, they may rethink the purchase and choose a healthier option.</p>
+
+      <p><strong>F (6+ fixes)</strong></p>
+      <ul>
+        <li>a useful informations &rarr; useful information</li>
+        <li>fill with &rarr; filled with</li>
+        <li>this labels &rarr; these labels</li>
+        <li>remind the risks of health &rarr; remind them of the health risks</li>
+        <li>push away &hellip; for choosing &rarr; discourage &hellip; from choosing</li>
+        <li>make companies to change &rarr; make companies change / encourage companies to change</li>
+        <li>shows &rarr; show</li>
+        <li>a reduce &rarr; a reduction</li>
+        <li>look like simple &rarr; look simple</li>
+        <li>customers choices &rarr; customers&rsquo; choices</li>
+      </ul>
+    </section>
+  </main>
+  <script>
+(function () {
+  var btn = document.getElementById('toggle-answers');
+  var hidden = false;
+  btn.addEventListener('click', function () {
+    hidden = !hidden;
+    document.body.classList.toggle('hide-answers', hidden);
+    btn.textContent = hidden ? 'Show answer key' : 'Hide answer key';
+  });
+})();
+  </script>
+</body>
+</html>
