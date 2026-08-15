@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz &mdash; HK weather blog language fixes</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --ok: #e8f5e9;
+      --ok-b: #2e7d32;
+      --bad: #ffebee;
+      --bad-b: #c62828;
+      --note: #fff8e1;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.55;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 1.25rem;
+    }
+    header h1 { font-size: 1.05rem; margin: 0 0 0.3rem; font-weight: 600; }
+    header p { margin: 0; font-size: 0.86rem; opacity: 0.95; }
+    nav { margin-top: 0.65rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    nav a {
+      color: #fff;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.2);
+    }
+    nav a:hover { background: rgba(255,255,255,0.35); }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+
+    .progress-wrap {
+      margin-bottom: 1rem;
+      padding: 0.65rem 0.85rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+    .progress-label strong { color: var(--accent); }
+    .bar {
+      height: 8px;
+      background: #e8e4dc;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .bar > span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      border-radius: 99px;
+      transition: width 0.25s ease;
+    }
+
+    .q-card {
+      display: none;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.15rem;
+      margin-bottom: 1rem;
+    }
+    .q-card.active { display: block; }
+    .q-card h2 {
+      margin: 0 0 0.45rem;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      background: #e3f2fd;
+      border: 1px solid #90caf9;
+      border-radius: 4px;
+      padding: 0.12rem 0.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .stem {
+      margin: 0 0 0.75rem;
+      padding: 0.65rem 0.75rem;
+      background: #faf8f4;
+      border-radius: 6px;
+      font-size: 0.92rem;
+    }
+    .stem em { font-style: normal; background: #fff3bf; padding: 0 2px; border-radius: 2px; }
+    .choices { display: grid; gap: 0.45rem; margin: 0 0 0.75rem; }
+    .choice {
+      text-align: left;
+      font: inherit;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      color: var(--text);
+    }
+    .choice:hover { border-color: var(--accent); }
+    .choice.correct { background: var(--ok); border-color: var(--ok-b); }
+    .choice.wrong { background: var(--bad); border-color: var(--bad-b); }
+    .fb {
+      display: none;
+      margin: 0 0 0.75rem;
+      padding: 0.55rem 0.7rem;
+      border-radius: 6px;
+      font-size: 0.86rem;
+    }
+    .fb.show { display: block; }
+    .fb.ok { background: var(--ok); border: 1px solid #a5d6a7; }
+    .fb.no { background: var(--note); border: 1px solid #ffe082; }
+    .note-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.2rem;
+      opacity: 0.85;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .btn {
+      font: inherit;
+      font-size: 0.88rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:disabled { opacity: 0.45; cursor: default; }
+    .btn-secondary {
+      background: #fff;
+      border-color: var(--border);
+      color: var(--text);
+      text-decoration: none;
+      display: inline-block;
+    }
+    .score-chip {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .score-chip strong { color: var(--accent); }
+    .done-banner {
+      margin: 0 0 0.85rem;
+      padding: 0.75rem;
+      background: var(--ok);
+      border-radius: 8px;
+      font-size: 0.92rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Quiz &mdash; language from the HK weather blog</h1>
+    <p>Pick the best fix. You can still tap wrong options to read why. <em>Space</em> = reveal correct answer.</p>
+    <nav>
+      <a href="view.html">Hub</a>
+      <a href="blog-hk-weather-crazy.html">Back to blog feedback</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Question <strong id="q-num">1</strong> / <span id="q-total">10</span></span>
+        <span>Score <strong id="score">0</strong></span>
+      </div>
+      <div class="bar"><span id="bar-fill"></span></div>
+    </div>
+
+    <section class="q-card active" data-q="1">
+      <span class="tag">Articles</span>
+      <h2>1. A few &hellip;</h2>
+      <p class="stem">Sorry for not updating my blog for <em>few weeks</em>.</p>
+      <div class="choices" data-mc="1">
+        <button type="button" class="choice" data-correct="0" data-note="Missing a. We say a few weeks.">few weeks</button>
+        <button type="button" class="choice" data-correct="1" data-note="Yes — a few + plural noun.">a few weeks</button>
+        <button type="button" class="choice" data-correct="0" data-note="a little is for uncountable nouns (a little time), not weeks.">a little weeks</button>
+        <button type="button" class="choice" data-correct="0" data-note="few weeks without a sounds too negative / incomplete here.">few of weeks</button>
+      </div>
+      <div class="fb" id="fb-1"></div>
+      <div class="actions">
+        <button type="button" class="btn btn-primary next-btn" disabled>Next</button>
+      </div>
+    </section>
+
+    <section class="q-card" data-q="2">
+      <span class="tag">These / have been</span>
+      <h2>2. Recent weeks</h2>
+      <p class="stem"><em>this few weeks are</em> very hot that I didn&rsquo;t hang out.</p>
+      <div class="choices" data-mc="2">
+        <button type="button" class="choice" data-correct="0" data-note="this + are does not match plural weeks.">this few weeks are</button>
+        <button type="button" class="choice" data-correct="0" data-note="Closer, but these weeks need a verb that fits a period up to now.">these few weeks are</button>
+        <button type="button" class="choice" data-correct="1" data-note="these + have been = recent period continuing to now.">these few weeks have been</button>
+        <button type="button" class="choice" data-correct="0" data-note="Wrong demonstrative and wrong verb form.">that few weeks was</button>
+      </div>
+      <div class="fb" id="fb-2"></div>
+      <div class="actions">
+        <button type="button" class="btn btn-primary next-btn" disabled>Next</button>
+      </div>
+    </section>
+
+    <section class="q-card" data-q="3">
+      <span class="tag">Spelling</span>
+      <h2>3. stepped / rugby / except</h2>
+      <p class="stem">Which spelling set is all correct?</p>
+      <div class="choices" data-mc="3">
+        <button type="button" class="choice" data-correct="0" data-note="steped and rubigy and excect are all wrong.">steped · rubigy · excect</button>
+        <button type="button" class="choice" data-correct="1" data-note="stepped, rugby, except — all standard spellings.">stepped · rugby · except</button>
+        <button type="button" class="choice" data-correct="0" data-note="rugbey and acept are wrong.">stepped · rugbey · acept</button>
+        <button type="button" class="choice" data-correct="0" data-note="stept is not the usual past form here.">stept · rugby · except</button>
+      </div>
+      <div class="fb" id="fb-3"></div>
+      <div class="actions">
+        <button type="button" class="btn btn-primary next-btn" disabled>Next</button>
+      </div>
+    </section>
+
+    <section class="q-card" data-q="4">
+      <span class="tag">Past tense</span>
+      <h2>4. Yesterday + story verbs</h2>
+      <p class="stem">Yesterday, <em>it&rsquo;s</em> the first day &hellip; so we <em>skip</em> one station! So we <em>have to</em> run.</p>
+      <div class="choices" data-mc="4">
+        <button type="button" class="choice" data-correct="0" data-note="Yesterday needs past: not it&rsquo;s / skip / have to.">it&rsquo;s · skip · have to</button>
+        <button type="button" class="choice" data-correct="1" data-note="it was · skipped · had to — all past for yesterday.">it was · skipped · had to</button>
+        <button type="button" class="choice" data-correct="0" data-note="Mixed tenses — keep the whole story day in the past.">it was · skip · had to</button>
+        <button type="button" class="choice" data-correct="0" data-note="it is is present — wrong after Yesterday.">it is · skipped · have to</button>
+      </div>
+      <div class="fb" id="fb-4"></div>
+      <div class="actions">
+        <button type="button" class="btn btn-primary next-btn" disabled>Next</button>
+      </div>
+    </section>
+
+    <section class="q-card" data-q="5">
+      <span class="tag">Place name</span>
+      <h2>5. MTR station</h2>
+      <p class="stem">The station that we dropped off is <em>Ho Man fin</em> station!</p>
+      <div class="choices" data-mc="5">
+        <button type="button" class="choice" data-correct="0" data-note="fin is wrong — it is Tin.">Ho Man fin</button>
+        <button type="button" class="choice" data-correct="0" data-note="Wrong place name.">Ho Man Thin</button>
+        <button type="button" class="choice" data-correct="1" data-note="Ho Man Tin is the MTR station name.">Ho Man Tin</button>
+        <button type="button" class="choice" data-correct="0" data-note="Not the station near King&rsquo;s Park in this story.">Mong Kok</button>
+      </div>
+      <div class="fb" id="fb-5"></div>
+      <div class="actions">
+        <button type="button" class="btn btn-primary next-btn" disabled>Next</button>
+      </div>
+    </section>
+
+    <section class="q-card" data-q="6">
+      <span class="tag">avoid + -ing</span>
+      <h2>6. Avoid being late</h2>
+      <p class="stem">So we had to run there to <em>avoid late</em>.</p>
+      <div class="choices" data-mc="6">
+        <button type="button" class="choice" data-correct="0" data-note="avoid needs a noun or -ing form — not bare late.">avoid late</button>
+        <button type="button" class="choice" data-correct="1" data-note="avoid being late is the natural pattern.">avoid being late</button>
+        <button type="button" class="choice" data-correct="0" data-note="avoid to be is not the usual pattern.">avoid to be late</button>
+        <button type="button" class="choice" data-correct="0" data-note="Wrong structure after avoid.">avoid for late</button>
+      </div>
+      <div class="fb" id="fb-6"></div>
+      <div class="actions">
+        <button type="button" class="btn btn-primary next-btn" disabled>Next</button>
+      </div>
+    </section>
+
+    <section class="q-card" data-q="7">
+      <span class="tag">no people</span>
+      <h2>7. Empty pitch</h2>
+      <p class="stem">There were <em>none people</em>, <em>excect</em> a coach and <em>few older</em> children.</p>
+      <div class="choices" data-mc="7">
+        <button type="button" class="choice" data-correct="0" data-note="none people / excect / few older are all off.">none people · excect · few older</button>
+        <button type="button" class="choice" data-correct="1" data-note="no people · except · a few older — all fixed.">no people · except · a few older</button>
+        <button type="button" class="choice" data-correct="0" data-note="nobody is OK alone, but except spelling and a few are still needed in the full fix.">nobody · except · few older</button>
+        <button type="button" class="choice" data-correct="0" data-note="no any people is unnatural.">no any people · except · a few older</button>
+      </div>
+      <div class="fb" id="fb-7"></div>
+      <div class="actions">
+        <button type="button" class="btn btn-primary next-btn" disabled>Next</button>
+      </div>
+    </section>
+
+    <section class="q-card" data-q="8">
+      <span class="tag">Subject + was</span>
+      <h2>8. Shocked!</h2>
+      <p class="stem">The coach said the lesson starts on 31 August! <em>suddenly shocked</em> and <em>even can&rsquo;t</em> say a word!</p>
+      <div class="choices" data-mc="8">
+        <button type="button" class="choice" data-correct="0" data-note="Missing subject; can&rsquo;t is present.">suddenly shocked · even can&rsquo;t</button>
+        <button type="button" class="choice" data-correct="1" data-note="I was suddenly shocked · couldn&rsquo;t even — subject + past.">I was suddenly shocked · couldn&rsquo;t even</button>
+        <button type="button" class="choice" data-correct="0" data-note="I am is present; story day is past.">I am suddenly shocked · can&rsquo;t even</button>
+        <button type="button" class="choice" data-correct="0" data-note="Need was + I; word order for couldn&rsquo;t even.">was suddenly shocked · even couldn&rsquo;t</button>
+      </div>
+      <div class="fb" id="fb-8"></div>
+      <div class="actions">
+        <button type="button" class="btn btn-primary next-btn" disabled>Next</button>
+      </div>
+    </section>
+
+    <section class="q-card" data-q="9">
+      <span class="tag">Sweat / ice / skin</span>
+      <h2>9. Cooling down</h2>
+      <p class="stem"><em>I&rsquo;ve been sweated</em> a lot &hellip; Luckily, <em>there had ice take</em> &hellip; When the plastic bag <em>touched down me</em></p>
+      <div class="choices" data-mc="9">
+        <button type="button" class="choice" data-correct="0" data-note="All three phrases need fixing.">I&rsquo;ve been sweated · there had ice take · touched down me</button>
+        <button type="button" class="choice" data-correct="1" data-note="I had sweated · there was ice · touched my skin.">I had sweated · there was ice · touched my skin</button>
+        <button type="button" class="choice" data-correct="0" data-note="I was sweated is passive and odd for this meaning.">I was sweated · there was ice · touched my skin</button>
+        <button type="button" class="choice" data-correct="0" data-note="touched on me is not natural.">I had sweated · there was ice · touched on me</button>
+      </div>
+      <div class="fb" id="fb-9"></div>
+      <div class="actions">
+        <button type="button" class="btn btn-primary next-btn" disabled>Next</button>
+      </div>
+    </section>
+
+    <section class="q-card" data-q="10">
+      <span class="tag">Clear phrasing</span>
+      <h2>10. Going home</h2>
+      <p class="stem"><em>Later.</em> We &hellip; then we <em>rode back train to back home</em>.</p>
+      <div class="choices" data-mc="10">
+        <button type="button" class="choice" data-correct="0" data-note="Full stop after Later breaks the sentence; ride phrasing is awkward.">Later. · rode back train to back home</button>
+        <button type="button" class="choice" data-correct="1" data-note="Later, + took the train back home — clear and natural.">Later, · took the train back home</button>
+        <button type="button" class="choice" data-correct="0" data-note="Comma is good, but ride train back home is still awkward.">Later, · ride train back home</button>
+        <button type="button" class="choice" data-correct="0" data-note="went back by the train is heavy; Later. still wrong.">Later. · went back by the train to home</button>
+      </div>
+      <div class="fb" id="fb-10"></div>
+      <div class="actions">
+        <button type="button" class="btn btn-primary next-btn" disabled>Next</button>
+      </div>
+    </section>
+
+    <section class="q-card" data-q="11" id="done-card">
+      <span class="tag">Done</span>
+      <h2>Nice work</h2>
+      <div class="done-banner">You practised the same fixes as the yellow flips on the blog page.</div>
+      <p class="stem" style="margin-bottom:1rem">Final score: <strong id="score-final">0</strong> / 10</p>
+      <div class="actions">
+        <button type="button" class="btn btn-secondary" id="restart">Try again</button>
+        <a class="btn btn-primary" href="blog-hk-weather-crazy.html" style="text-decoration:none">Back to blog feedback</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+(function () {
+  var score = 0;
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.q-card'));
+  var quizCards = cards.filter(function (c) { return c.getAttribute('data-q') !== '11'; });
+  var bar = document.getElementById('bar-fill');
+  var qNum = document.getElementById('q-num');
+  var qTotal = document.getElementById('q-total');
+  var scoreEl = document.getElementById('score');
+  var scoreFinal = document.getElementById('score-final');
+
+  qTotal.textContent = String(quizCards.length);
+
+  function currentCard() {
+    return document.querySelector('.q-card.active');
+  }
+
+  function updateProgress() {
+    var card = currentCard();
+    var n = Number(card.getAttribute('data-q'));
+    if (n === 11) {
+      qNum.textContent = String(quizCards.length);
+      bar.style.width = '100%';
+    } else {
+      qNum.textContent = String(n);
+      bar.style.width = Math.round((n / quizCards.length) * 100) + '%';
+    }
+    if (scoreEl) scoreEl.textContent = String(score);
+    if (scoreFinal) scoreFinal.textContent = String(score);
+  }
+
+  function goTo(n) {
+    cards.forEach(function (c) {
+      c.classList.toggle('active', Number(c.getAttribute('data-q')) === n);
+    });
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showFb(id, ok, text) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.className = 'fb show ' + (ok ? 'ok' : 'no');
+    el.innerHTML = '<span class="note-label">' + (ok ? 'Why this works' : 'Why not') + '</span>' + text;
+  }
+
+  document.querySelectorAll('[data-mc]').forEach(function (group) {
+    var scored = false;
+    group.querySelectorAll('.choice').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var ok = btn.getAttribute('data-correct') === '1';
+        var fbId = 'fb-' + group.getAttribute('data-mc');
+        var note = btn.getAttribute('data-note') || '';
+        var card = group.closest('.q-card');
+        var next = card.querySelector('.next-btn');
+
+        if (ok) {
+          btn.classList.add('correct');
+          if (!scored) {
+            scored = true;
+            score += 1;
+          }
+          showFb(fbId, true, note);
+          if (next) next.disabled = false;
+          updateProgress();
+          return;
+        }
+
+        btn.classList.add('wrong');
+        showFb(fbId, false, note);
+        updateProgress();
+      });
+    });
+  });
+
+  function autoReveal() {
+    var card = currentCard();
+    if (!card || card.getAttribute('data-q') === '11') return;
+    var correct = card.querySelector('.choice[data-correct="1"]');
+    if (correct && !card.querySelector('.choice.correct')) correct.click();
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.code !== 'Space' && e.key !== ' ') return;
+    if (e.repeat) return;
+    e.preventDefault();
+    autoReveal();
+  });
+
+  document.querySelectorAll('.next-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var n = Number(btn.closest('.q-card').getAttribute('data-q'));
+      goTo(n + 1);
+    });
+  });
+
+  document.getElementById('restart').addEventListener('click', function () {
+    location.reload();
+  });
+
+  updateProgress();
+})();
+  </script>
+</body>
+</html>
