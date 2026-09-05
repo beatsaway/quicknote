@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article &mdash; which dinosaur would you keep as a pet?</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #e3f2fd;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .task-bullets {
+      margin: 0.5rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .task-bullets li { margin: 0.3rem 0; }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: var(--accent); }
+    .word-list-compact {
+      display: block;
+      line-height: 1.5;
+      font-size: 0.82rem;
+    }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter h3 {
+      margin: 0 0 0.85rem;
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .letter h4 {
+      margin: 1rem 0 0.4rem;
+      font-size: 0.95rem;
+      color: var(--accent);
+      font-weight: 650;
+      line-height: 1.35;
+    }
+    .letter h4:first-of-type { margin-top: 0.75rem; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .flip.show-correct.show-note {
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .flip-popup {
+      display: none;
+      position: absolute;
+      z-index: 20;
+      left: 0;
+      top: calc(100% + 6px);
+      min-width: 14rem;
+      max-width: 18rem;
+      padding: 0.55rem 0.65rem;
+      background: #fff;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .flip-popup.show { display: block; cursor: pointer; }
+    .flip-popup .note-en,
+    .flip-popup .note-yue { margin: 0 0 0.45rem; }
+    .flip-popup .note-yue:last-child { margin-bottom: 0; }
+    .flip-popup .lang-tag {
+      display: inline-block;
+      margin-right: 0.3rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .flip-wrap {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead { margin: 0 0 0.5rem; font-size: 0.88rem; }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.65rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 6px;
+      border-left: 4px solid transparent;
+    }
+    .comment-bilingual .comment-pair:last-child { margin-bottom: 0; }
+    .comment-pair-praise {
+      background: #e8f5e9;
+      border-left-color: #43a047;
+    }
+    .comment-pair-upgrade {
+      background: #fff8e1;
+      border-left-color: #f9a825;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue { margin: 0 0 0.55rem; }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child { margin-bottom: 0; }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="box">
+      <h2>About this piece</h2>
+      <p class="topic">School magazine article &mdash; which dinosaur would you keep as a pet?</p>
+      <div class="stimulus">
+        <p class="prompt" style="margin:0 0 0.55rem;color:var(--text)"><strong>Meet the dinosaurs (Six Hats).</strong> Are chickens dinosaurs? Some dinosaurs (and pterosaurs) would make terrible pets. Size, food, danger and space all matter. Birds are living dinosaur relatives &mdash; but that does not mean a T-rex belongs in a flat.</p>
+        <p class="prompt" style="margin:0;color:var(--text)"><strong>Task.</strong> Write an article for your school magazine. If you could keep one as a pet &mdash; a pterosaur, a Triceratops, a Dreadnoughtus, a T-rex, or another kind &mdash; which would you choose? Give three reasons.</p>
+      </div>
+      <ul class="task-bullets">
+        <li><strong>Success criteria:</strong> clear choice; 3 reasons; introduction and conclusion.</li>
+        <li>Only short <strong>yellow</strong> phrases are suggested edits; the rest is the draft as written.</li>
+        <li>Click flow. <strong>Yellow</strong> &rarr; green + comment. Only one comment at a time.</li>
+      </ul>
+      <div class="word-list">
+        <strong>Useful words</strong>
+        <span class="word-list-compact">pet, space / flat, feed / diet, dangerous, trainable, responsibility, cost, neighbour, chicken / bird, descendant, realistic, choose, First of all, Secondly, Thirdly, In conclusion</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <p class="prompt fb-praise-lead">Clear choice + three practical reasons — strong magazine plan.</p>
+          <ul>
+            <li>🐔 <strong>Hook.</strong> Chickens as living dinosaur relatives opens the topic well.</li>
+            <li>🦖 <strong>Smart contrast.</strong> T-rex / Dreadnoughtus / pterosaur show why size and danger matter.</li>
+            <li>🌱 <strong>Plant-eater detail.</strong> Lawnmower + leftover salad makes the pet idea feel realistic.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong>Linkers.</strong> First of all / Secondly / Thirdly / In conclusion.</li>
+            <li>💡 <strong>Broken sentence.</strong> Fix <em>Need a large park to move</em> — add a subject.</li>
+            <li>💡 <strong>everyday vs every day.</strong> everyday = adjective; every day = each day.</li>
+            <li>💡 <strong>Smooth connectors.</strong> <em>Better the&hellip;</em> &rarr; <em>Even better,&hellip;</em></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <h3>The Ultimate Prehistoric Companion: Why a Protoceratops Belongs in Your Backyard</h3>
+
+        <p>Chickens show us <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="everyday" data-r="every day" data-note-en="every day = each day. everyday (one word) is an adjective, e.g. everyday clothes." data-note-yue="every day = 每一日。everyday（一個字）係形容詞，例如 everyday clothes。">everyday</span><span class="flip-popup" role="tooltip"></span></span> that living dinosaur relatives still <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="walk around.." data-r="walk around." data-note-en="One full stop is enough." data-note-yue="一個句號就夠。">walk around..</span><span class="flip-popup" role="tooltip"></span></span> Bringing a real ancient animal into a suburban <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="neighborhood" data-r="neighbourhood" data-note-en="HK / UK spelling: neighbourhood." data-note-yue="港／英式串法：neighbourhood。">neighborhood</span><span class="flip-popup" role="tooltip"></span></span> is hard. A T&#8209;rex would turn the street into a buffet. A Dreadnoughtus would not fit on a football field. A huge pterosaur would cut power lines. If I could bring one animal back to live with me I would choose the Protoceratops. The Protoceratops is a sheep&#8209;sized cousin of the well&#8209;known Triceratops.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="First the" data-r="First of all, the" data-note-en="Mark your first reason with First of all," data-note-yue="第一個理由用 First of all,">First the</span><span class="flip-popup" role="tooltip"></span></span> Protoceratops is small enough for a home. It is six feet long and about knee&#8209;high. That size is similar to a dog. The Protoceratops will not break floorboards. <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Need a large park to move." data-r="It does not need a large park to move." data-note-en="This was a fragment — add It does not&hellip;" data-note-yue="呢句缺主語 — 加 It does not&hellip;">Need a large park to move.</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Better the" data-r="Even better, the" data-note-en="Even better, &hellip; connects the next point smoothly." data-note-yue="Even better, &hellip; 接下一點更順。">Better the</span><span class="flip-popup" role="tooltip"></span></span> Protoceratops only eats plants. You will not need a truck of meat to feed it. The Protoceratops will eat lawn clippings, garden weeds and leftover salad. It can act like a lawnmower.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Second the" data-r="Secondly, the" data-note-en="Secondly, for your second reason." data-note-yue="第二個理由用 Secondly,">Second the</span><span class="flip-popup" role="tooltip"></span></span> Protoceratops acts like a guard dog but with dinosaur style. Its strong neck frill and sharp beak look fierce. The Protoceratops is safe for the family. The tough beak and frill would stop porch thieves and pests. This gives the home a strong pet that has the majestic look of a Triceratops but no heavy damage.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Third the" data-r="Thirdly, the" data-note-en="Thirdly, for your third reason." data-note-yue="第三個理由用 Thirdly,">Third the</span><span class="flip-popup" role="tooltip"></span></span> Protoceratops is a low&#8209;maintenance, backyard companion. High&#8209;strung mammals shed fur on furniture. Predators need a lot of training. The Protoceratops only needs sunshine, a shelter and plants. Watching the Protoceratops <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="bask, on" data-r="bask on" data-note-en="No comma between bask and on." data-note-yue="bask 同 on 之間唔使逗號。">bask, on</span><span class="flip-popup" role="tooltip"></span></span> patio bricks or dig nests in the garden turns the home into a living science lab.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Giant carnivores belong in movies." data-r="In conclusion, giant carnivores belong in movies." data-note-en="Label the ending with In conclusion." data-note-yue="結尾標 In conclusion。">Giant carnivores belong in movies.</span><span class="flip-popup" role="tooltip"></span></span> Huge sauropods belong in parks. The small Protoceratops balances wonder and everyday practicality. The Protoceratops brings the Mesozoic Era to the back porch. It shows that the right choice can <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="keep a pet safe" data-r="keep a pet — and the family — safe" data-note-en="Clearer: the pet choice keeps the family safe too (responsibility)." data-note-yue="清楚啲：揀啱寵物，屋企人都安全（責任）。">keep a pet safe</span><span class="flip-popup" role="tooltip"></span></span>.</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">Fun, clear choice with three practical reasons. Fix the fragment and mark First of all / Secondly / Thirdly / In conclusion.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Clear choice.</strong> Protoceratops (not T-rex) matches the task — realistic size and diet.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>揀得清楚。</strong> Protoceratops（唔係 T-rex）合題 — 體型同飲食都實際。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Three reasons.</strong> Size / plant diet, guard-dog style, low maintenance — easy for readers to follow.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>三個理由。</strong> 體型／吃草、守衛、易打理 — 讀者好跟。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Fragment.</strong> Change <em>Need a large park to move</em> to <em>It does not need a large park to move</em>.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>唔完整句。</strong> <em>Need a large park to move</em> 改 <em>It does not need a large park to move</em>。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Linkers.</strong> First of all &rarr; Secondly &rarr; Thirdly &rarr; In conclusion.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>連接詞。</strong> First of all &rarr; Secondly &rarr; Thirdly &rarr; In conclusion。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Small polish.</strong> <em>every day</em>, <em>neighbourhood</em>, <em>Even better,</em>, drop the comma in <em>bask on</em>.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>細修飾。</strong> <em>every day</em>、<em>neighbourhood</em>、<em>Even better,</em>、<em>bask on</em> 唔使逗號。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+
+  function hideComment(wrap) {
+    if (!wrap) return;
+    var flip = wrap.querySelector('.flip');
+    var popup = wrap.querySelector('.flip-popup');
+    if (flip) flip.classList.remove('show-note');
+    if (flip) flip.setAttribute('aria-expanded', 'false');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function hideAllComments(exceptWrap) {
+    document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+      if (wrap === exceptWrap) return;
+      hideComment(wrap);
+    });
+  }
+
+  function openComment(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    hideAllComments(wrap);
+    el.classList.add('show-note');
+    el.setAttribute('aria-expanded', 'true');
+    fillPopup(popup, el);
+    popup.classList.add('show');
+  }
+
+  function fillPopup(popup, el) {
+    var en = decode(el.getAttribute('data-note-en') || '');
+    var yue = decode(el.getAttribute('data-note-yue') || '');
+    popup.innerHTML = '';
+    if (en) {
+      var pEn = document.createElement('p');
+      pEn.className = 'note-en';
+      pEn.innerHTML = '<span class="lang-tag">EN</span>' + en;
+      popup.appendChild(pEn);
+    }
+    if (yue) {
+      var pYue = document.createElement('p');
+      pYue.className = 'note-yue';
+      pYue.innerHTML = '<span class="lang-tag">粵</span>' + yue;
+      popup.appendChild(pYue);
+    }
+  }
+
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+
+  function resetFlip(el) {
+    var w = el.getAttribute('data-w');
+    if (!w) return;
+    el.textContent = decode(w);
+    el.classList.remove('show-note');
+    el.setAttribute('aria-expanded', 'false');
+    syncClass(el);
+    var popup = el.parentElement && el.parentElement.querySelector('.flip-popup');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function handleFlip(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    var w = decode(el.getAttribute('data-w') || '');
+    var r = decode(el.getAttribute('data-r') || '');
+    if (!w || !r) return;
+
+    var isGreen = el.textContent === r;
+    var commentOpen = popup && popup.classList.contains('show');
+
+    if (!isGreen) {
+      hideAllComments(wrap);
+      el.textContent = r;
+      syncClass(el);
+      openComment(el);
+      return;
+    }
+
+    if (!commentOpen) {
+      openComment(el);
+      return;
+    }
+
+    resetFlip(el);
+  }
+
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function (e) {
+      e.stopPropagation();
+      handleFlip(el);
+    });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleFlip(el);
+      }
+    });
+  });
+
+  document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+    var popup = wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    popup.addEventListener('click', function (e) {
+      e.stopPropagation();
+      hideComment(wrap);
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.flip-wrap')) return;
+    hideAllComments(null);
+  });
+})();
+  </script>
+</body>
+</html>
