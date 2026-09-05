@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prepositions — about / for / with</title>
+  <style>
+    :root {
+      --bg: #fff;
+      --text: #1a1a1a;
+      --muted: #555;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --ok: #e8f5e9;
+      --ok-b: #2e7d32;
+      --bad: #ffebee;
+      --bad-b: #c62828;
+      --bank: #e3f2fd;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.55;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.45rem 0.75rem;
+    }
+    .home-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      font-size: 1rem;
+      text-decoration: none;
+      border-radius: 4px;
+      flex-shrink: 0;
+      color: #fff;
+    }
+    .home-link:hover { background: rgba(255, 255, 255, 0.15); }
+    header h1 {
+      margin: 0;
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+    header .sub {
+      margin-left: 0.4rem;
+      font-size: 0.78rem;
+      font-weight: 400;
+      opacity: 0.9;
+    }
+    main {
+      max-width: 40rem;
+      margin: 0 auto;
+      padding: 1rem 1.1rem 2.5rem;
+    }
+    .section {
+      background: transparent;
+      border: none;
+      padding: 0.25rem 0 1.15rem;
+      margin-bottom: 0.75rem;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #fff;
+      background: #2e7d32;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 0.45rem;
+    }
+    .section h2 {
+      margin: 0 0 0.55rem;
+      font-size: 0.98rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .marks {
+      float: right;
+      font-size: 0.82rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.2rem 0.5rem;
+      margin-top: -0.15rem;
+    }
+    .word-bank {
+      margin: 0 0 0.85rem;
+      padding: 0.55rem 0.75rem;
+      background: var(--bank);
+      border: 1px dashed var(--accent);
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #0d47a1;
+      letter-spacing: 0.02em;
+    }
+    .item {
+      margin: 0 0 0.85rem;
+      font-size: 0.94rem;
+      line-height: 1.85;
+    }
+    .item:last-child { margin-bottom: 0; }
+    .item-num {
+      display: inline-block;
+      min-width: 1.35rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .speaker {
+      font-weight: 700;
+      color: var(--text);
+    }
+    .blank-wrap {
+      display: inline-block;
+      vertical-align: baseline;
+      margin: 0 1px;
+    }
+    .blank-select {
+      font: inherit;
+      font-size: 0.88rem;
+      min-width: 5.2em;
+      max-width: 7em;
+      padding: 2px 4px;
+      border: 1px solid #bbb;
+      border-radius: 4px;
+      background: #fffef8;
+      vertical-align: baseline;
+    }
+    .blank-select:hover,
+    .blank-select:focus {
+      border-color: var(--accent);
+      outline: none;
+      background: #fff;
+    }
+    .blank-select.correct {
+      border-color: var(--ok-b);
+      background: var(--ok);
+    }
+    .blank-select.incorrect {
+      border-color: var(--bad-b);
+      background: var(--bad);
+    }
+    .collocations {
+      margin-top: 0.75rem;
+      padding-top: 0.65rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .collocations strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: var(--accent);
+      font-size: 0.78rem;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      margin-top: 0.25rem;
+    }
+    button {
+      font-family: inherit;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.85rem;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+    }
+    button.secondary {
+      background: #fff;
+      color: var(--accent);
+    }
+    .score {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .score.done { color: var(--ok-b); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="home-link" aria-label="Grammar hub" title="Grammar hub">←</a>
+    <h1>Prepositions <span class="sub">about · for · with · to · from · at</span></h1>
+  </header>
+  <main>
+    <section class="section" id="part-a">
+      <span class="marks" id="marks-a">Marks: — / 11</span>
+      <div class="section-label">A</div>
+      <h2>Fill in the blanks with <em>about</em>, <em>for</em> or <em>with</em>.</h2>
+      <div class="word-bank">about &nbsp;·&nbsp; for &nbsp;·&nbsp; with</div>
+
+      <p class="item"><span class="item-num">1.</span> My aunt is talking <span data-blank data-answer="with" data-bank="a"></span> my cousin Ben. They think Ben needs to learn <span data-blank data-answer="about" data-bank="a"></span> tidying his room and sharing toys <span data-blank data-answer="with" data-bank="a"></span> his brother.</p>
+
+      <p class="item"><span class="item-num">2.</span> Mr Wong was busy last night. He asked his daughter Mei <span data-blank data-answer="for" data-bank="a"></span> help. He hoped she could care <span data-blank data-answer="for" data-bank="a"></span> her little brother.</p>
+
+      <p class="item"><span class="item-num">3.</span> Lisa talked <span data-blank data-answer="about" data-bank="a"></span> her trip to the Science Museum. We all agreed <span data-blank data-answer="with" data-bank="a"></span> her that the robot show was amazing.</p>
+
+      <p class="item"><span class="item-num">4.</span> Mum baked cookies for our class party. She decorated them <span data-blank data-answer="with" data-bank="a"></span> chocolate chips and icing. Now we are waiting <span data-blank data-answer="for" data-bank="a"></span> the oven timer.</p>
+
+      <p class="item"><span class="item-num">5.</span> Sam dreamed <span data-blank data-answer="about" data-bank="a"></span> his future job last night. In his dream, he became a vet and cared <span data-blank data-answer="for" data-bank="a"></span> sick cats and dogs.</p>
+
+      <div class="collocations">
+        <strong>Handy phrases</strong>
+        talk with · learn about · share with · ask for · care for · talk about · agree with · decorate with · wait for · dream about
+      </div>
+    </section>
+
+    <section class="section" id="part-b">
+      <span class="marks" id="marks-b">Marks: — / 11</span>
+      <div class="section-label">B</div>
+      <h2>Dialogue — fill in the blanks.</h2>
+      <div class="word-bank">about &nbsp;·&nbsp; with &nbsp;·&nbsp; for &nbsp;·&nbsp; to &nbsp;·&nbsp; from &nbsp;·&nbsp; at</div>
+
+      <p class="item"><span class="speaker">Amy:</span> Ken, can I ask you <span data-blank data-answer="for" data-bank="b"></span> a favour?</p>
+      <p class="item"><span class="speaker">Ken:</span> Sure! How can I help you?</p>
+      <p class="item"><span class="speaker">Amy:</span> Thanks! I want to borrow a comic <span data-blank data-answer="from" data-bank="b"></span> you. The comic is called <em>Pumpkin Detective</em>.</p>
+      <p class="item"><span class="speaker">Ken:</span> Oh! That comic belongs <span data-blank data-answer="to" data-bank="b"></span> my elder brother. It is a fun story.</p>
+      <p class="item"><span class="speaker">Amy:</span> Yes. The comic talks <span data-blank data-answer="about" data-bank="b"></span> a detective pumpkin and how he finds clues. He can spot a ghost when he stares <span data-blank data-answer="at" data-bank="b"></span> the shadows. I think it is a perfect story to share <span data-blank data-answer="with" data-bank="b"></span> my friends at Halloween.</p>
+      <p class="item"><span class="speaker">Ken:</span> I agree <span data-blank data-answer="with" data-bank="b"></span> you! It also talks about how people escape <span data-blank data-answer="from" data-bank="b"></span> the haunted library, and how the detective saves everyone <span data-blank data-answer="from" data-bank="b"></span> the ghosts. It is very exciting.</p>
+      <p class="item"><span class="speaker">Amy:</span> Yes! It&rsquo;s really perfect for Halloween!</p>
+      <p class="item"><span class="speaker">Ken:</span> OK. I&rsquo;ll ask my brother to lend the comic <span data-blank data-answer="to" data-bank="b"></span> you. Let me text him now.</p>
+      <p class="item"><span class="speaker">Amy:</span> Thank you, Ken. I hope he will reply <span data-blank data-answer="to" data-bank="b"></span> you soon.</p>
+
+      <div class="collocations">
+        <strong>Handy phrases</strong>
+        ask for · borrow from · belong to · talk about · stare at · share with · agree with · escape from · save &hellip; from · lend &hellip; to · reply to
+      </div>
+    </section>
+
+    <div class="actions">
+      <button type="button" id="btn-check">Check answers</button>
+      <button type="button" class="secondary" id="btn-reset">Reset</button>
+      <span class="score" id="score">Total: — / 22</span>
+    </div>
+  </main>
+
+  <script>
+(function () {
+  var banks = {
+    a: ["about", "for", "with"],
+    b: ["about", "with", "for", "to", "from", "at"]
+  };
+
+  function buildSelects() {
+    document.querySelectorAll("[data-blank]").forEach(function (el, i) {
+      var bankKey = el.getAttribute("data-bank");
+      var words = banks[bankKey] || [];
+      var sel = document.createElement("select");
+      sel.className = "blank-select";
+      sel.setAttribute("aria-label", "Blank " + (i + 1));
+      sel.setAttribute("data-answer", el.getAttribute("data-answer"));
+      sel.setAttribute("data-part", bankKey);
+      var opt0 = document.createElement("option");
+      opt0.value = "";
+      opt0.textContent = "—";
+      sel.appendChild(opt0);
+      words.forEach(function (w) {
+        var o = document.createElement("option");
+        o.value = w;
+        o.textContent = w;
+        sel.appendChild(o);
+      });
+      el.className = "blank-wrap";
+      el.appendChild(sel);
+    });
+  }
+
+  function clearMarks() {
+    document.querySelectorAll(".blank-select").forEach(function (sel) {
+      sel.classList.remove("correct", "incorrect");
+    });
+    document.getElementById("marks-a").textContent = "Marks: — / 11";
+    document.getElementById("marks-b").textContent = "Marks: — / 11";
+    var score = document.getElementById("score");
+    score.textContent = "Total: — / 22";
+    score.classList.remove("done");
+  }
+
+  function check() {
+    var aOk = 0, bOk = 0;
+    document.querySelectorAll(".blank-select").forEach(function (sel) {
+      var val = sel.value;
+      var ans = sel.getAttribute("data-answer");
+      var part = sel.getAttribute("data-part");
+      sel.classList.remove("correct", "incorrect");
+      if (!val) {
+        sel.classList.add("incorrect");
+        return;
+      }
+      if (val === ans) {
+        sel.classList.add("correct");
+        if (part === "a") aOk++;
+        else bOk++;
+      } else {
+        sel.classList.add("incorrect");
+      }
+    });
+    document.getElementById("marks-a").textContent = "Marks: " + aOk + " / 11";
+    document.getElementById("marks-b").textContent = "Marks: " + bOk + " / 11";
+    var total = aOk + bOk;
+    var score = document.getElementById("score");
+    score.textContent = "Total: " + total + " / 22";
+    if (total === 22) score.classList.add("done");
+    else score.classList.remove("done");
+  }
+
+  function reset() {
+    document.querySelectorAll(".blank-select").forEach(function (sel) {
+      sel.value = "";
+    });
+    clearMarks();
+  }
+
+  buildSelects();
+  document.getElementById("btn-check").addEventListener("click", check);
+  document.getElementById("btn-reset").addEventListener("click", reset);
+})();
+  </script>
+</body>
+</html>

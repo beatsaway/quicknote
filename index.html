@@ -3,61 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fill in the blanks</title>
+  <title>Kenote</title>
   <style>
     :root {
-      --bg: #f7f5f0;
+      --bg: #fff;
       --text: #1a1a1a;
       --muted: #555;
-      --panel: #fff;
-      --accent: #1a5276;
-      --border: #dcd6cb;
+      --accent: #1565c0;
       --font: "Segoe UI", system-ui, sans-serif;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: var(--font);
-      line-height: 1.6;
+      line-height: 1.55;
       color: var(--text);
       background: var(--bg);
     }
     header {
       background: var(--accent);
       color: #fff;
-      padding: 1.25rem 1.5rem;
+      padding: 0.4rem 0.85rem;
+      min-height: 2.25rem;
+      display: flex;
+      align-items: center;
     }
-    header h1 { margin: 0; font-size: 1.2rem; font-weight: 600; }
-    header p { margin: 0.35rem 0 0; font-size: 0.9rem; opacity: 0.95; }
+    header h1 {
+      margin: 0;
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
     main {
       max-width: 32rem;
       margin: 0 auto;
-      padding: 1.5rem 1.25rem 2.5rem;
+      padding: 1.25rem 1.15rem 2.5rem;
     }
     ul {
       list-style: none;
       margin: 0;
       padding: 0;
     }
-    li { margin-bottom: 0.65rem; }
+    li { margin-bottom: 0.85rem; }
     a {
       display: block;
-      padding: 0.85rem 1rem;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 10px;
+      padding: 0.35rem 0;
+      background: transparent;
+      border: none;
       color: var(--accent);
       text-decoration: none;
       font-weight: 600;
       font-size: 0.95rem;
     }
-    a:hover {
-      border-color: var(--accent);
-      background: #f0f7fc;
-    }
+    a:hover { text-decoration: underline; }
     a span {
       display: block;
-      margin-top: 0.25rem;
+      margin-top: 0.15rem;
       font-weight: 400;
       font-size: 0.82rem;
       color: var(--muted);
@@ -66,14 +66,28 @@
 </head>
 <body>
   <header>
-<a href="https://docs.google.com/document/d/1afu6jK37mfs1si0QYKfLegCSSyRUagqqcw4uJLCQHb4/edit?usp=sharing">
-          doc link temp
-</a>
-      <h1>Fill in the blanks</h1>
-    <p>填空格練習</p>
+    <h1>Kenote</h1>
   </header>
   <main>
     <ul>
+      <li>
+        <a href="discussion/index.html">
+          Discussion
+          <span>Topic branches · fact / opinion / pros / cons / how / what-if · 討論</span>
+        </a>
+      </li>
+      <li>
+        <a href="reading/index.html">
+          Reading
+          <span>News · text types · TV programmes · 閱讀練習</span>
+        </a>
+      </li>
+      <li>
+        <a href="grammar/index.html">
+          Grammar
+          <span>Prepositions · school worksheet-style fill-in blanks · 文法填空</span>
+        </a>
+      </li>
       <li>
         <a href="fil%20in%20blanks/index.html">
           Fill in the blanks

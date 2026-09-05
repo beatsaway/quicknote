@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reading</title>
+  <style>
+    :root {
+      --bg: #fff;
+      --text: #1a1a1a;
+      --muted: #555;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.5;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.4rem 0.75rem;
+      min-height: 2.25rem;
+    }
+    .home-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      font-size: 1rem;
+      text-decoration: none;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .home-link:hover { background: rgba(255, 255, 255, 0.15); }
+    header h1 { margin: 0; font-size: 0.92rem; font-weight: 600; }
+    .header-sub {
+      margin-left: 0.45rem;
+      font-size: 0.78rem;
+      opacity: 0.88;
+    }
+    main {
+      max-width: 32rem;
+      margin: 0 auto;
+      padding: 0.85rem 1rem 2rem;
+    }
+    ul { list-style: none; margin: 0; padding: 0; }
+    li { margin-bottom: 0.5rem; }
+    a.card {
+      display: block;
+      padding: 0.55rem 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+    a.card:hover {
+      text-decoration: underline;
+    }
+    a.card span {
+      display: block;
+      margin-top: 0.2rem;
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="../index.html" class="home-link" aria-label="Home" title="Home">🏠</a>
+    <h1>Reading <span class="header-sub">閱讀練習</span></h1>
+  </header>
+  <main>
+    <ul>
+      <li>
+        <a class="card" href="news-tv-programmes.html">
+          News announcement + TV programmes
+          <span>Main idea · text type · TV guide · news vocab</span>
+        </a>
+      </li>
+    </ul>
+  </main>
+</body>
+</html>

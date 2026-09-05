@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discussion — phones at school</title>
+  <style>
+    :root {
+      --bg: #fff;
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #1565c0;
+      --fact: #546e7a;
+      --opinion: #c62828;
+      --pros: #f9a825;
+      --cons: #37474f;
+      --how: #1565c0;
+      --whatif: #2e7d32;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.55;
+      color: var(--text);
+      background: var(--bg);
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.45rem 0.75rem;
+    }
+    .home-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      font-size: 1rem;
+      text-decoration: none;
+      border-radius: 4px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .home-link:hover { background: rgba(255, 255, 255, 0.15); }
+    header h1 { margin: 0; font-size: 0.92rem; font-weight: 600; }
+    main {
+      max-width: 40rem;
+      margin: 0 auto;
+      padding: 1rem 1.1rem 2.5rem;
+    }
+    .topic {
+      margin: 0 0 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    h2 {
+      margin: 0 0 0.45rem;
+      font-size: 1.15rem;
+      font-weight: 650;
+      line-height: 1.35;
+      color: var(--text);
+    }
+    .intro {
+      margin: 0 0 1.25rem;
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .set {
+      margin: 0 0 2rem;
+      padding: 0;
+    }
+    .branch {
+      margin: 0 0 0.65rem;
+      font-size: 1rem;
+      font-weight: 650;
+      color: var(--accent);
+      line-height: 1.35;
+    }
+    .text {
+      margin: 0 0 1rem;
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+    .text p { margin: 0 0 0.75rem; }
+    .text p:last-child { margin-bottom: 0; }
+    .vocab { margin: 0 0 1.1rem; }
+    .vocab h4,
+    .discuss h4 {
+      margin: 0 0 0.45rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .vocab ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .vocab li {
+      margin: 0.35rem 0;
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+    .vocab .en { font-weight: 600; }
+    .vocab .yue {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    .vocab .def {
+      display: block;
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-top: 0.1rem;
+    }
+    .q {
+      margin: 0 0 1rem;
+      padding: 0 0 0.15rem;
+    }
+    .hat {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 0.12rem 0.45rem;
+      border-radius: 3px;
+      margin-bottom: 0.3rem;
+    }
+    .hat-fact { background: var(--fact); }
+    .hat-opinion { background: var(--opinion); }
+    .hat-pros { background: var(--pros); color: #212121; }
+    .hat-cons { background: var(--cons); }
+    .hat-how { background: var(--how); }
+    .hat-whatif { background: var(--whatif); }
+    .q p {
+      margin: 0;
+      font-size: 0.94rem;
+      line-height: 1.5;
+    }
+    .q .prompt-yue {
+      margin: 0.25rem 0 0;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .notes {
+      width: 100%;
+      margin-top: 0.4rem;
+      min-height: 2.6rem;
+      font: inherit;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      padding: 0.4rem 0.5rem;
+      border: none;
+      border-bottom: 1px solid #ddd;
+      background: transparent;
+      resize: vertical;
+    }
+    .notes:focus {
+      outline: none;
+      border-bottom-color: var(--accent);
+    }
+    .notes::placeholder { color: #aaa; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="home-link" aria-label="Discussion hub" title="Discussion hub">←</a>
+    <h1>Discussion</h1>
+  </header>
+  <main id="main"></main>
+  <script src="phones-at-school-data.js"></script>
+  <script src="topic-render.js"></script>
+  <script>
+    window.renderDiscussionTopic(window.DISCUSSION_TOPIC, document.getElementById("main"));
+  </script>
+</body>
+</html>
