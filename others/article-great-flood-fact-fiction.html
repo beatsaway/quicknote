@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article &mdash; The Great Flood. Fact, fiction or something in between?</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #e3f2fd;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .task-bullets {
+      margin: 0.5rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .task-bullets li { margin: 0.3rem 0; }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: var(--accent); }
+    .word-list-compact {
+      display: block;
+      line-height: 1.5;
+      font-size: 0.82rem;
+    }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter h3 {
+      margin: 0 0 0.85rem;
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .letter h4 {
+      margin: 1rem 0 0.4rem;
+      font-size: 0.95rem;
+      color: var(--accent);
+      font-weight: 650;
+      line-height: 1.35;
+    }
+    .letter h4:first-of-type { margin-top: 0.75rem; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .flip.show-correct.show-note {
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .flip-popup {
+      display: none;
+      position: absolute;
+      z-index: 20;
+      left: 0;
+      top: calc(100% + 6px);
+      min-width: 14rem;
+      max-width: 18rem;
+      padding: 0.55rem 0.65rem;
+      background: #fff;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .flip-popup.show { display: block; cursor: pointer; }
+    .flip-popup .note-en,
+    .flip-popup .note-yue { margin: 0 0 0.45rem; }
+    .flip-popup .note-yue:last-child { margin-bottom: 0; }
+    .flip-popup .lang-tag {
+      display: inline-block;
+      margin-right: 0.3rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .flip-wrap {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead { margin: 0 0 0.5rem; font-size: 0.88rem; }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.65rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 6px;
+      border-left: 4px solid transparent;
+    }
+    .comment-bilingual .comment-pair:last-child { margin-bottom: 0; }
+    .comment-pair-praise {
+      background: #e8f5e9;
+      border-left-color: #43a047;
+    }
+    .comment-pair-upgrade {
+      background: #fff8e1;
+      border-left-color: #f9a825;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue { margin: 0 0 0.55rem; }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child { margin-bottom: 0; }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="box">
+      <h2>About this piece</h2>
+      <p class="topic">Opinion article. The Great Flood. Fact, fiction or something in between?</p>
+      <div class="stimulus">
+        <p class="prompt" style="margin:0 0 0.55rem;color:var(--text)"><strong>Topic.</strong> The Great Flood. Fact, fiction or something in between?</p>
+        <p class="prompt" style="margin:0;color:var(--text)">Give your view. Use cultural stories, religious meaning, and science. Say whether one flood covered the whole Earth.</p>
+      </div>
+      <ul class="task-bullets">
+        <li><strong>Success criteria.</strong> Clear stance, three kinds of reasons, and a conclusion.</li>
+        <li>Only short <strong>yellow</strong> phrases are suggested edits. The rest is the draft as written.</li>
+        <li>Click flow. <strong>Yellow</strong> to green plus comment. Only one comment at a time.</li>
+      </ul>
+      <div class="word-list">
+        <strong>Useful words</strong>
+        <span class="word-list-compact">flood myth, Mesopotamia, Atrahasis, deluge, religious lesson, geology, sediment, Ice Age, glacier, sea level, In conclusion, First, Second, Third</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <p class="prompt fb-praise-lead">Strong three-part plan. Culture, religion, and science all support one clear &ldquo;no&rdquo;.</p>
+          <ul>
+            <li>🌍 <strong>Wide examples.</strong> Atrahasis, Fuxi and Nuwa, Maya, Noah and Nuh show real reading.</li>
+            <li>🧊 <strong>Ice Age science.</strong> Melting glaciers and broken ice dams make the ending solid.</li>
+            <li>🧠 <strong>Balanced view.</strong> Myths matter, but they are not proof of one worldwide flood.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong>Name each claim.</strong> cultural / religious / scientific (not only <em>the claim</em>).</li>
+            <li>💡 <strong>Commas after openers.</strong> <em>First,</em> <em>However,</em> <em>In conclusion,</em></li>
+            <li>💡 <strong>Double full stops.</strong> Change <em>..</em> to one <em>.</em></li>
+            <li>💡 <strong>Tight endings.</strong> Fix <em>past, their beliefs</em> and drop the comma in <em>place in nature</em>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <h3>The Great Flood. Fact, Fiction or Something in Between?</h3>
+
+        <p>If you travel back in time and visit parts of the world<span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w=" you will discover" data-r=", you will discover" data-note-en="Add a comma before you will." data-note-yue="you will 前面加逗號。"> you will discover</span><span class="flip-popup" role="tooltip"></span></span> a fear that has been passed down through many generations: the fear of rising waters. From Mesopotamia to the Americas<span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w=" stories about a massive flood" data-r=", stories about a massive flood" data-note-en="Add a comma after Americas." data-note-yue="Americas 後面加逗號。"> stories about a massive flood</span><span class="flip-popup" role="tooltip"></span></span> are deeply embedded in <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="human history.." data-r="human history." data-note-en="One full stop is enough." data-note-yue="一個句號就夠。">human history..</span><span class="flip-popup" role="tooltip"></span></span> This makes us wonder: Did a single Great Flood once cover the Earth?</p>
+
+        <p>After studying the evidence<span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w=" I believe" data-r=", I believe" data-note-en="Add a comma after evidence." data-note-yue="evidence 後面加逗號。"> I believe</span><span class="flip-popup" role="tooltip"></span></span> the answer is <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="no—there was probably not" data-r="no. There was probably not" data-note-en="Start a new sentence after no. Avoid the long dash here." data-note-yue="no 後面開新句。呢度唔使長破折號。">no—there was probably not</span><span class="flip-popup" role="tooltip"></span></span> one flood that covered all the highest mountains at the same time. <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="However early humans" data-r="However, early humans" data-note-en="Comma after However." data-note-yue="However 後面加逗號。">However early humans</span><span class="flip-popup" role="tooltip"></span></span> did experience floods that were so devastating they felt like the end of the world for those who lived through them. My view is based on three kinds of reasons.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="First there is the claim." data-r="First, there is the cultural claim." data-note-en="First, plus name the claim. cultural claim." data-note-yue="First, 加逗號，並講明係 cultural claim。">First there is the claim.</span><span class="flip-popup" role="tooltip"></span></span> Across the globe ancient civilizations tell flood myths. In Mesopotamia there is the story of Atrahasis. In China legends speak of Fuxi and Nuwa surviving a deluge. The ancient Maya also have tales of a flood sent to destroy humanity. Does this mean all these groups <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="saw the rainstorm" data-r="saw the same flood" data-note-en="the same flood matches your worldwide question better than rainstorm." data-note-yue="the same flood 更啱你問嘅全球洪水，好過 rainstorm。">saw the rainstorm</span><span class="flip-popup" role="tooltip"></span></span>? <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Probably not.." data-r="Probably not." data-note-en="One full stop is enough." data-note-yue="一個句號就夠。">Probably not..</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="From a point of view early societies" data-r="From one point of view, early societies" data-note-en="From one point of view, needs an article and a comma." data-note-yue="From one point of view, 要冠詞同逗號。">From a point of view early societies</span><span class="flip-popup" role="tooltip"></span></span> almost always settled near rivers and coastlines because water was essential for life. When a river flooded and wiped out everything people felt like the whole world was ending. Survivors told the story across generations. These shared stories show a shared trauma<span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="—not proof of one flood" data-r=". They are not proof of one flood" data-note-en="A full stop is clearer than a long dash here." data-note-yue="呢度用句號清楚過長破折號。">—not proof of one flood</span><span class="flip-popup" role="tooltip"></span></span>.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Second there is the claim." data-r="Second, there is the religious claim." data-note-en="Second, plus name the claim. religious claim." data-note-yue="Second, 加逗號，並講明係 religious claim。">Second there is the claim.</span><span class="flip-popup" role="tooltip"></span></span> Many of the world’s religions include a flood story with a chosen survivor. The story of Noah in Judaism and Christianity or Nuh in Islam stands out. When we look at these stories<span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w=" we must remember" data-r=", we must remember" data-note-en="Add a comma after stories." data-note-yue="stories 後面加逗號。"> we must remember</span><span class="flip-popup" role="tooltip"></span></span> their purpose. Religious claims are not meant to be read as records. They teach lessons about morality, divine justice, mercy and second chances. The truth of the story of Noah or Nuh lies in what it says about faith and doing good <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="in a world not in proving" data-r="in the world, not in proving" data-note-en="Add a comma. in the world sounds more natural." data-note-yue="加逗號。in the world 更自然。">in a world not in proving</span><span class="flip-popup" role="tooltip"></span></span> whether sea levels changed thousands of years ago.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Third we come to the claim." data-r="Third, we come to the scientific claim." data-note-en="Third, plus name the claim. scientific claim." data-note-yue="Third, 加逗號，並講明係 scientific claim。">Third we come to the claim.</span><span class="flip-popup" role="tooltip"></span></span> Geologists study the Earth’s past through rocks, sediment layers and fossils. Their findings show that there is no record of a flood that covered the entire planet at once. If such an event had happened<span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w=" we would expect" data-r=", we would expect" data-note-en="Add a comma after happened." data-note-yue="happened 後面加逗號。"> we would expect</span><span class="flip-popup" role="tooltip"></span></span> to see a layer of flood material on Earth. <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="That does not exist.." data-r="That does not exist." data-note-en="One full stop is enough." data-note-yue="一個句號就夠。">That does not exist..</span><span class="flip-popup" role="tooltip"></span></span> Science does confirm that huge floods occurred at the end of the Ice Age. Around 10,000 to 15,000 years ago glaciers melted quickly. Sea levels rose fast. Giant ice dams broke, releasing lakes. These sudden floods drowned coastlines. They destroyed valleys in days. For the people living then it really did feel like the end of the world.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="So in conclusion I do not think" data-r="In conclusion, I do not think" data-note-en="In conclusion, is enough. Add the comma." data-note-yue="In conclusion, 就夠。記得逗號。">So in conclusion I do not think</span><span class="flip-popup" role="tooltip"></span></span> there was one flood that covered <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="the Earth.." data-r="the Earth." data-note-en="One full stop is enough." data-note-yue="一個句號就夠。">the Earth..</span><span class="flip-popup" role="tooltip"></span></span> The idea of the Great Flood is not a simple myth. The cultural stories reflect our shared history of living near waters. The religious stories offer lessons about survival and <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="belief.." data-r="belief." data-note-en="One full stop is enough." data-note-yue="一個句號就夠。">belief..</span><span class="flip-popup" role="tooltip"></span></span> The scientific facts show that real terrifying floods changed the world around us. The Great Flood may not be <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="one event.." data-r="one event." data-note-en="One full stop is enough." data-note-yue="一個句號就夠。">one event..</span><span class="flip-popup" role="tooltip"></span></span> It is a real part of how humans understand <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="their past their beliefs and their place, in nature" data-r="their past, their beliefs and their place in nature" data-note-en="Comma after past. No comma before in nature." data-note-yue="past 後面加逗號。in nature 前面唔使逗號。">their past their beliefs and their place, in nature</span><span class="flip-popup" role="tooltip"></span></span>.</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">Clear, mature essay with culture, religion and science. Name each claim, fix commas, and clean up double full stops.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Clear stance.</strong> You say no to one mountain-high worldwide flood, but yes to real local disasters.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>立場清楚。</strong> 你否定「一座山咁高、覆蓋全球」嘅單一洪水，但承認有真正地區災難。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Three lenses.</strong> Cultural myths, religious meaning, and geology make a full argument.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>三個角度。</strong> 文化神話、宗教意義、同地質學，令論證好齊。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Fair ending.</strong> You respect stories and still trust science. That is a strong student voice.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>結尾公道。</strong> 你尊重故事，又信科學。呢個學生聲音好。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Name the claims.</strong> Write <em>cultural claim</em>, <em>religious claim</em>, and <em>scientific claim</em>.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>講明三點。</strong> 寫 <em>cultural claim</em>、<em>religious claim</em>、同 <em>scientific claim</em>。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Punctuation.</strong> Commas after <em>However</em>, <em>First</em>, and long openers. Change every <em>..</em> to one <em>.</em></p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>標點。</strong> <em>However</em>、<em>First</em> 同長開首句加逗號。每個 <em>..</em> 改成一個 <em>.</em></p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Last line.</strong> <em>their past, their beliefs and their place in nature</em>.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>最後一句。</strong> <em>their past, their beliefs and their place in nature</em>。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+
+  function hideComment(wrap) {
+    if (!wrap) return;
+    var flip = wrap.querySelector('.flip');
+    var popup = wrap.querySelector('.flip-popup');
+    if (flip) flip.classList.remove('show-note');
+    if (flip) flip.setAttribute('aria-expanded', 'false');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function hideAllComments(exceptWrap) {
+    document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+      if (wrap === exceptWrap) return;
+      hideComment(wrap);
+    });
+  }
+
+  function openComment(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    hideAllComments(wrap);
+    el.classList.add('show-note');
+    el.setAttribute('aria-expanded', 'true');
+    fillPopup(popup, el);
+    popup.classList.add('show');
+  }
+
+  function fillPopup(popup, el) {
+    var en = decode(el.getAttribute('data-note-en') || '');
+    var yue = decode(el.getAttribute('data-note-yue') || '');
+    popup.innerHTML = '';
+    if (en) {
+      var pEn = document.createElement('p');
+      pEn.className = 'note-en';
+      pEn.innerHTML = '<span class="lang-tag">EN</span>' + en;
+      popup.appendChild(pEn);
+    }
+    if (yue) {
+      var pYue = document.createElement('p');
+      pYue.className = 'note-yue';
+      pYue.innerHTML = '<span class="lang-tag">粵</span>' + yue;
+      popup.appendChild(pYue);
+    }
+  }
+
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+
+  function resetFlip(el) {
+    var w = el.getAttribute('data-w');
+    if (!w) return;
+    el.textContent = decode(w);
+    el.classList.remove('show-note');
+    el.setAttribute('aria-expanded', 'false');
+    syncClass(el);
+    var popup = el.parentElement && el.parentElement.querySelector('.flip-popup');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function handleFlip(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    var w = decode(el.getAttribute('data-w') || '');
+    var r = decode(el.getAttribute('data-r') || '');
+    if (!w || !r) return;
+
+    var isGreen = el.textContent === r;
+    var commentOpen = popup && popup.classList.contains('show');
+
+    if (!isGreen) {
+      hideAllComments(wrap);
+      el.textContent = r;
+      syncClass(el);
+      openComment(el);
+      return;
+    }
+
+    if (!commentOpen) {
+      openComment(el);
+      return;
+    }
+
+    resetFlip(el);
+  }
+
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function (e) {
+      e.stopPropagation();
+      handleFlip(el);
+    });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleFlip(el);
+      }
+    });
+  });
+
+  document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+    var popup = wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    popup.addEventListener('click', function (e) {
+      e.stopPropagation();
+      hideComment(wrap);
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.flip-wrap')) return;
+    hideAllComments(null);
+  });
+})();
+  </script>
+</body>
+</html>
