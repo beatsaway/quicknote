@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article &mdash; the school rules</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #e3f2fd;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .task-bullets {
+      margin: 0.5rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .task-bullets li { margin: 0.3rem 0; }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: var(--accent); }
+    .word-list-compact {
+      display: block;
+      line-height: 1.5;
+      font-size: 0.82rem;
+    }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter h3 {
+      margin: 0 0 0.85rem;
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .letter h4 {
+      margin: 1rem 0 0.4rem;
+      font-size: 0.95rem;
+      color: var(--accent);
+      font-weight: 650;
+      line-height: 1.35;
+    }
+    .letter h4:first-of-type { margin-top: 0.75rem; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .flip.show-correct.show-note {
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .flip-popup {
+      display: none;
+      position: absolute;
+      z-index: 20;
+      left: 0;
+      top: calc(100% + 6px);
+      min-width: 14rem;
+      max-width: 18rem;
+      padding: 0.55rem 0.65rem;
+      background: #fff;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .flip-popup.show { display: block; cursor: pointer; }
+    .flip-popup .note-en,
+    .flip-popup .note-yue { margin: 0 0 0.45rem; }
+    .flip-popup .note-yue:last-child { margin-bottom: 0; }
+    .flip-popup .lang-tag {
+      display: inline-block;
+      margin-right: 0.3rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .flip-wrap {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead { margin: 0 0 0.5rem; font-size: 0.88rem; }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.65rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 6px;
+      border-left: 4px solid transparent;
+    }
+    .comment-bilingual .comment-pair:last-child { margin-bottom: 0; }
+    .comment-pair-praise {
+      background: #e8f5e9;
+      border-left-color: #43a047;
+    }
+    .comment-pair-upgrade {
+      background: #fff8e1;
+      border-left-color: #f9a825;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue { margin: 0 0 0.55rem; }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child { margin-bottom: 0; }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="box">
+      <h2>About this piece</h2>
+      <p class="topic">Opinion writing. The school rules</p>
+      <div class="stimulus">
+        <p class="prompt" style="margin:0 0 0.55rem;color:var(--text)"><strong>Topic.</strong> The school rules. What do you think of the school rules? Are they strict or lenient?</p>
+        <p class="prompt" style="margin:0;color:var(--text)">Give your view. Use examples of rules you like and rules you find too strict.</p>
+      </div>
+      <ul class="task-bullets">
+        <li><strong>Success criteria.</strong> Clear stance. Examples. A short conclusion.</li>
+        <li>Only short <strong>yellow</strong> phrases are suggested edits. The rest is the draft as written.</li>
+        <li>Click flow. <strong>Yellow</strong> to green plus comment. Only one comment at a time.</li>
+      </ul>
+      <div class="word-list">
+        <strong>Useful words</strong>
+        <span class="word-list-compact">strict, lenient, appearance, eyebrows, fringe, prefect, phone, lunchtime, face to face, come back, Although, First of all, Secondly, What I like most, In conclusion</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <p class="prompt fb-praise-lead">Balanced view. One strict rule, one phone rule, and one rule you like.</p>
+          <ul>
+            <li>💇 <strong>Hair detail.</strong> Fringe and eyebrows makes the appearance rule feel real.</li>
+            <li>📱 <strong>Phone example.</strong> Coupons vs lunch chat shows you understand the school&rsquo;s worry.</li>
+            <li>🍜 <strong>Lunch out.</strong> Form 1 going out to eat is a clear plus.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong>Spelling.</strong> <em>appearance</em>, <em>eyebrows</em>, <em>disciplined</em>, <em>always</em>.</li>
+            <li>💡 <strong>Agreement.</strong> <em>Are they</em> (rules). <em>doesn&rsquo;t have</em>. <em>won&rsquo;t happen</em>.</li>
+            <li>💡 <strong>Linkers.</strong> First of all / Secondly / What I like most / In conclusion.</li>
+            <li>💡 <strong>Although.</strong> Do not use <em>Although &hellip; but</em> in the same sentence.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <h3>The school rules</h3>
+
+        <p>What do you think of the school rules? <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Is it strict or lenient?" data-r="Are they strict or lenient?" data-note-en="rules is plural, so Are they." data-note-yue="rules 係複數，用 Are they。">Is it strict or lenient?</span><span class="flip-popup" role="tooltip"></span></span> For me, I think <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="it's quite strict sometimes, especially appearence" data-r="they are quite strict sometimes, especially the appearance rules" data-note-en="they = the rules. Spelling: appearance." data-note-yue="they = 校規。串法：appearance。">it's quite strict sometimes, especially appearence</span><span class="flip-popup" role="tooltip"></span></span>! However, I think there are also some rules <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="quite good" data-r="that are quite good" data-note-en="that are quite good completes the sentence." data-note-yue="that are quite good 令句子完整。">quite good</span><span class="flip-popup" role="tooltip"></span></span>.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="For me, I think the appetirence rules are really strict" data-r="First of all, I think the appearance rules are really strict" data-note-en="First of all for your first example. Spelling: appearance. You already said For me." data-note-yue="第一個例子用 First of all。串法：appearance。開頭已講過 For me。">For me, I think the appetirence rules are really strict</span><span class="flip-popup" role="tooltip"></span></span>! For example, the fringe <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="cannot over the eyebrowns" data-r="cannot go over the eyebrows" data-note-en="cannot go over. Spelling: eyebrows." data-note-yue="cannot go over。串法：eyebrows。">cannot over the eyebrowns</span><span class="flip-popup" role="tooltip"></span></span>, which our <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="disclipired teachers and prefect alway- catch me" data-r="disciplined teachers and prefects always catch me for" data-note-en="disciplined. prefects (plural). always. catch me for (need for)." data-note-yue="disciplined。prefects（複數）。always。catch me for。">disclipired teachers and prefect alway- catch me</span><span class="flip-popup" role="tooltip"></span></span>! I really hate it! I think if it <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="won't disturb others, then why they should catch us" data-r="does not disturb others, why should they catch us" data-note-en="does not for a general rule. why should they (question word order)." data-note-yue="一般規則用 does not。why should they（問句詞序）。">won't disturb others, then why they should catch us</span><span class="flip-popup" role="tooltip"></span></span>?</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="The second one is that we can't use phone during lunch time" data-r="Secondly, we cannot use phones during lunchtime" data-note-en="Secondly. phones (plural). lunchtime (one word)." data-note-yue="Secondly。phones（複數）。lunchtime（一個字）。">The second one is that we can't use phone during lunch time</span><span class="flip-popup" role="tooltip"></span></span>. We can only use <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="it during using coupons to buy lunch" data-r="them when we use coupons to buy lunch" data-note-en="them = phones. when we use (not during using)." data-note-yue="them = 手機。when we use（唔係 during using）。">it during using coupons to buy lunch</span><span class="flip-popup" role="tooltip"></span></span>. Our school said that they <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="scared we will lose the face-to-face relationships" data-r="are afraid we will lose face-to-face relationships" data-note-en="are afraid (not scared we). face-to-face relationships." data-note-yue="are afraid（唔係 scared we）。face-to-face relationships。">scared we will lose the face-to-face relationships</span><span class="flip-popup" role="tooltip"></span></span>. <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="However I think it won't happened" data-r="However, I think that will not happen" data-note-en="Comma after However. will not happen (not happened)." data-note-yue="However 後面加逗號。will not happen（唔係 happened）。">However I think it won't happened</span><span class="flip-popup" role="tooltip"></span></span> because we also want to play and chat with friends during lunch time.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="What I like the most is that we can go out to eat lunch outside in Form. !!" data-r="What I like most is that we can go out for lunch in Form 1!" data-note-en="like most (drop the). Form 1. One exclamation mark. go out for lunch is enough." data-note-yue="like most（唔使 the）。Form 1。一個感嘆號。go out for lunch 就夠。">What I like the most is that we can go out to eat lunch outside in Form. !!</span><span class="flip-popup" role="tooltip"></span></span> It's because our class teacher said that our school <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="don't have any shopping malls nearby so they trust us won't forget to back to school" data-r="does not have any shopping malls nearby, so they trust we will not forget to come back to school" data-note-en="school does not (singular). come back (not back to). they trust we will not." data-note-yue="school does not（單數）。come back（唔係 back to）。they trust we will not。">don't have any shopping malls nearby so they trust us won't forget to back to school</span><span class="flip-popup" role="tooltip"></span></span>.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Although I know school rules are mostly strict but I know the school also want us to be good students and be plain but I hope they can strict rules to become less strict in some days" data-r="In conclusion, although I know school rules are mostly strict, I also know the school wants us to be good, well-behaved students. I still hope they can make some rules less strict someday" data-note-en="Do not use Although + but. wants (singular). well-behaved (not plain). make &hellip; less strict. someday." data-note-yue="唔好 Although + but。wants（單數）。well-behaved（唔係 plain）。make &hellip; less strict。someday。">Although I know school rules are mostly strict but I know the school also want us to be good students and be plain but I hope they can strict rules to become less strict in some days</span><span class="flip-popup" role="tooltip"></span></span>.</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">Clear view with three school-rule examples. Fix spelling, agreement, and Although &hellip; but.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Balanced view.</strong> You say the rules are strict, but you also name a rule you like.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>立場平衡。</strong> 你話校規嚴，但又講到一條你鍾意嘅規則。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Real examples.</strong> Fringe, phones at lunch, and eating out make the piece personal.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>例子真實。</strong> 瀏海、午飯用手機、出街食飯，令文章好個人。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Spelling.</strong> <em>appearance</em>, <em>eyebrows</em>, <em>disciplined</em>, <em>always</em>, <em>Form 1</em>.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>串法。</strong> <em>appearance</em>、<em>eyebrows</em>、<em>disciplined</em>、<em>always</em>、<em>Form 1</em>。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Grammar.</strong> <em>Are they</em>, <em>cannot go over</em>, <em>why should they</em>, <em>will not happen</em>, <em>does not have</em>, <em>come back</em>.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>文法。</strong> <em>Are they</em>、<em>cannot go over</em>、<em>why should they</em>、<em>will not happen</em>、<em>does not have</em>、<em>come back</em>。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Ending.</strong> Do not write <em>Although &hellip; but</em>. Try <em>In conclusion, although &hellip;, I still hope &hellip;</em></p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>結尾。</strong> 唔好 <em>Although &hellip; but</em>。試 <em>In conclusion, although &hellip;, I still hope &hellip;</em></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+
+  function hideComment(wrap) {
+    if (!wrap) return;
+    var flip = wrap.querySelector('.flip');
+    var popup = wrap.querySelector('.flip-popup');
+    if (flip) flip.classList.remove('show-note');
+    if (flip) flip.setAttribute('aria-expanded', 'false');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function hideAllComments(exceptWrap) {
+    document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+      if (wrap === exceptWrap) return;
+      hideComment(wrap);
+    });
+  }
+
+  function openComment(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    hideAllComments(wrap);
+    el.classList.add('show-note');
+    el.setAttribute('aria-expanded', 'true');
+    fillPopup(popup, el);
+    popup.classList.add('show');
+  }
+
+  function fillPopup(popup, el) {
+    var en = decode(el.getAttribute('data-note-en') || '');
+    var yue = decode(el.getAttribute('data-note-yue') || '');
+    popup.innerHTML = '';
+    if (en) {
+      var pEn = document.createElement('p');
+      pEn.className = 'note-en';
+      pEn.innerHTML = '<span class="lang-tag">EN</span>' + en;
+      popup.appendChild(pEn);
+    }
+    if (yue) {
+      var pYue = document.createElement('p');
+      pYue.className = 'note-yue';
+      pYue.innerHTML = '<span class="lang-tag">粵</span>' + yue;
+      popup.appendChild(pYue);
+    }
+  }
+
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+
+  function resetFlip(el) {
+    var w = el.getAttribute('data-w');
+    if (!w) return;
+    el.textContent = decode(w);
+    el.classList.remove('show-note');
+    el.setAttribute('aria-expanded', 'false');
+    syncClass(el);
+    var popup = el.parentElement && el.parentElement.querySelector('.flip-popup');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function handleFlip(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    var w = decode(el.getAttribute('data-w') || '');
+    var r = decode(el.getAttribute('data-r') || '');
+    if (!w || !r) return;
+
+    var isGreen = el.textContent === r;
+    var commentOpen = popup && popup.classList.contains('show');
+
+    if (!isGreen) {
+      hideAllComments(wrap);
+      el.textContent = r;
+      syncClass(el);
+      openComment(el);
+      return;
+    }
+
+    if (!commentOpen) {
+      openComment(el);
+      return;
+    }
+
+    resetFlip(el);
+  }
+
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function (e) {
+      e.stopPropagation();
+      handleFlip(el);
+    });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleFlip(el);
+      }
+    });
+  });
+
+  document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+    var popup = wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    popup.addEventListener('click', function (e) {
+      e.stopPropagation();
+      hideComment(wrap);
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.flip-wrap')) return;
+    hideAllComments(null);
+  });
+})();
+  </script>
+</body>
+</html>
