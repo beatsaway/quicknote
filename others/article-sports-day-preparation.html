@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article &mdash; the preparation of sports day</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #e3f2fd;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .task-bullets {
+      margin: 0.5rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .task-bullets li { margin: 0.3rem 0; }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: var(--accent); }
+    .word-list-compact {
+      display: block;
+      line-height: 1.5;
+      font-size: 0.82rem;
+    }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter h3 {
+      margin: 0 0 0.85rem;
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .letter h4 {
+      margin: 1rem 0 0.4rem;
+      font-size: 0.95rem;
+      color: var(--accent);
+      font-weight: 650;
+      line-height: 1.35;
+    }
+    .letter h4:first-of-type { margin-top: 0.75rem; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .flip.show-correct.show-note {
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .flip-popup {
+      display: none;
+      position: absolute;
+      z-index: 20;
+      left: 0;
+      top: calc(100% + 6px);
+      min-width: 14rem;
+      max-width: 18rem;
+      padding: 0.55rem 0.65rem;
+      background: #fff;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .flip-popup.show { display: block; cursor: pointer; }
+    .flip-popup .note-en,
+    .flip-popup .note-yue { margin: 0 0 0.45rem; }
+    .flip-popup .note-yue:last-child { margin-bottom: 0; }
+    .flip-popup .lang-tag {
+      display: inline-block;
+      margin-right: 0.3rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .flip-wrap {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead { margin: 0 0 0.5rem; font-size: 0.88rem; }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.65rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 6px;
+      border-left: 4px solid transparent;
+    }
+    .comment-bilingual .comment-pair:last-child { margin-bottom: 0; }
+    .comment-pair-praise {
+      background: #e8f5e9;
+      border-left-color: #43a047;
+    }
+    .comment-pair-upgrade {
+      background: #fff8e1;
+      border-left-color: #f9a825;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue { margin: 0 0 0.55rem; }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child { margin-bottom: 0; }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="box">
+      <h2>About this piece</h2>
+      <p class="topic">Personal recount. The preparation of sports day</p>
+      <div class="stimulus">
+        <p class="prompt" style="margin:0 0 0.55rem;color:var(--text)"><strong>Topic.</strong> The preparation of sports day</p>
+        <p class="prompt" style="margin:0;color:var(--text)">Write about how you trained for sports day. Include what you did, how you felt, and what you hope for.</p>
+      </div>
+      <ul class="task-bullets">
+        <li><strong>Success criteria.</strong> Clear goal. Training details. Feelings. A short hope or conclusion.</li>
+        <li>Only short <strong>yellow</strong> phrases are suggested edits. The rest is the draft as written.</li>
+        <li>Click flow. <strong>Yellow</strong> to green plus comment. Only one comment at a time.</li>
+      </ul>
+      <div class="word-list">
+        <strong>Useful words</strong>
+        <span class="word-list-compact">sports day, MVP, C grade, long jump, sprint, every Sunday, exhausted, exhausting, Sports Ground, Although, in vain, I hope</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <p class="prompt fb-praise-lead">Clear goal plus two Sunday training days with real places.</p>
+          <ul>
+            <li>🏅 <strong>Clear target.</strong> MVP for C grade girls is a strong wish.</li>
+            <li>🏃 <strong>Places.</strong> King&rsquo;s Park, Choi Wing Road, Hammer Hill make the training feel real.</li>
+            <li>💪 <strong>Feelings.</strong> Exhausted / drained shows how hard you worked.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong>wish / hope.</strong> <em>I hope I can</em> or <em>I wish I could</em>.</li>
+            <li>💡 <strong>exhausted vs exhausting.</strong> You feel <em>exhausted</em>. Training is <em>exhausting</em>.</li>
+            <li>💡 <strong>Sunday.</strong> <em>every Sunday</em> (not every Sundays). <em>on Sunday</em>.</li>
+            <li>💡 <strong>Although.</strong> Do not use <em>Although &hellip; but</em>. Add <em>be</em> in <em>won&rsquo;t be in vain</em>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <h3>The preparation of sports day</h3>
+
+        <p>We will hold a sports day on the 13th-14th of October. This year, <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="I wish I can get the MVP of Сgrade girls record" data-r="I hope I can get the MVP for the C grade girls' record" data-note-en="hope I can (or wish I could). C grade (not Сgrade). for the &hellip; girls' record." data-note-yue="hope I can（或 wish I could）。C grade。for the &hellip; girls' record。">I wish I can get the MVP of Сgrade girls record</span><span class="flip-popup" role="tooltip"></span></span> so I <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="train running and long Jump with my friends on every Sundays" data-r="train running and long jump with my friends every Sunday" data-note-en="long jump (small j). every Sunday (not on every Sundays)." data-note-yue="long jump（細階 j）。every Sunday（唔係 on every Sundays）。">train running and long Jump with my friends on every Sundays</span><span class="flip-popup" role="tooltip"></span></span>.</p>
+
+        <p>The first Sunday, we went to King's Park to practise <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="short run" data-r="sprints" data-note-en="sprints / short-distance running sounds more natural." data-note-yue="sprints／短跑 更自然。">short run</span><span class="flip-popup" role="tooltip"></span></span> in the morning. Then we went to Choi Wing Road <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Sports ground" data-r="Sports Ground" data-note-en="Capital G in Sports Ground (place name)." data-note-yue="地名 Sports Ground 的 G 要大階。">Sports ground</span><span class="flip-popup" role="tooltip"></span></span> to practise long run. <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="I' think Sunday is most exhausting" data-r="I think Sunday is the most exhausting" data-note-en="I think (no '). the most exhausting." data-note-yue="I think（唔使 '）。the most exhausting。">I' think Sunday is most exhausting</span><span class="flip-popup" role="tooltip"></span></span> because <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="in the weekdays you still sit" data-r="on weekdays you still sit" data-note-en="on weekdays (not in the weekdays)." data-note-yue="on weekdays（唔係 in the weekdays）。">in the weekdays you still sit</span><span class="flip-popup" role="tooltip"></span></span> in classroom to listen and write. <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="However in Sunday, you need move so I feel very exhausting" data-r="However, on Sunday, you need to move, so I feel very exhausted" data-note-en="However, on Sunday. need to move. exhausted = how you feel. exhausting = how hard the day is." data-note-yue="However, on Sunday。need to move。exhausted = 你覺得好攰。exhausting = 活動好攰人。">However in Sunday, you need move so I feel very exhausting</span><span class="flip-popup" role="tooltip"></span></span>!</p>
+
+        <p>The second Sunday, we went to Hammer Hill <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Sports ground to train Long jump" data-r="Sports Ground to train long jump" data-note-en="Sports Ground. long jump (small letters)." data-note-yue="Sports Ground。long jump（細階）。">Sports ground to train Long jump</span><span class="flip-popup" role="tooltip"></span></span>. This Sunday made me feel more drained because I need to use a lot of power to jump.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Although it's so exhausting in these two Sundays but I think my work won't in vain" data-r="Although it was so exhausting on these two Sundays, I think my work won't be in vain" data-note-en="No Although + but. on these two Sundays. won't be in vain (need be)." data-note-yue="唔好 Although + but。on these two Sundays。won't be in vain（要 be）。">Although it's so exhausting in these two Sundays but I think my work won't in vain</span><span class="flip-popup" role="tooltip"></span></span>. I hope I can be the MVP in <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="C grade record" data-r="the C grade girls' record" data-note-en="Match your opening. the C grade girls' record." data-note-yue="同開頭一致。the C grade girls' record。">C grade record</span><span class="flip-popup" role="tooltip"></span></span>!</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">Lively sports-day training recount with clear Sundays and a strong MVP wish. Fix hope/wish, exhausted, and Although &hellip; but.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Clear goal.</strong> You want the MVP for the C grade girls&rsquo; record. Readers know why you train.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>目標清楚。</strong> 你想攞 C 級女仔紀錄 MVP。讀者知你點解練。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Two Sundays.</strong> King&rsquo;s Park, Choi Wing Road, and Hammer Hill make the preparation concrete.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>兩個星期日。</strong> 京士柏、彩榮路、斧山，令準備過程好具體。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>wish / hope.</strong> Use <em>I hope I can</em> or <em>I wish I could</em>. Also <em>every Sunday</em> and <em>long jump</em>.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>wish／hope。</strong> 用 <em>I hope I can</em> 或 <em>I wish I could</em>。另 <em>every Sunday</em> 同 <em>long jump</em>。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>exhausted.</strong> You feel <em>exhausted</em>. The training is <em>exhausting</em>. Also <em>need to move</em> and <em>on Sunday</em>.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>exhausted。</strong> 你覺得 <em>exhausted</em>。訓練係 <em>exhausting</em>。另 <em>need to move</em> 同 <em>on Sunday</em>。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Ending.</strong> Do not write <em>Although &hellip; but</em>. Change to <em>Although &hellip;, I think &hellip;</em> and <em>won&rsquo;t be in vain</em>.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>結尾。</strong> 唔好 <em>Although &hellip; but</em>。改 <em>Although &hellip;, I think &hellip;</em> 同 <em>won&rsquo;t be in vain</em>。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+
+  function hideComment(wrap) {
+    if (!wrap) return;
+    var flip = wrap.querySelector('.flip');
+    var popup = wrap.querySelector('.flip-popup');
+    if (flip) flip.classList.remove('show-note');
+    if (flip) flip.setAttribute('aria-expanded', 'false');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function hideAllComments(exceptWrap) {
+    document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+      if (wrap === exceptWrap) return;
+      hideComment(wrap);
+    });
+  }
+
+  function openComment(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    hideAllComments(wrap);
+    el.classList.add('show-note');
+    el.setAttribute('aria-expanded', 'true');
+    fillPopup(popup, el);
+    popup.classList.add('show');
+  }
+
+  function fillPopup(popup, el) {
+    var en = decode(el.getAttribute('data-note-en') || '');
+    var yue = decode(el.getAttribute('data-note-yue') || '');
+    popup.innerHTML = '';
+    if (en) {
+      var pEn = document.createElement('p');
+      pEn.className = 'note-en';
+      pEn.innerHTML = '<span class="lang-tag">EN</span>' + en;
+      popup.appendChild(pEn);
+    }
+    if (yue) {
+      var pYue = document.createElement('p');
+      pYue.className = 'note-yue';
+      pYue.innerHTML = '<span class="lang-tag">粵</span>' + yue;
+      popup.appendChild(pYue);
+    }
+  }
+
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+
+  function resetFlip(el) {
+    var w = el.getAttribute('data-w');
+    if (!w) return;
+    el.textContent = decode(w);
+    el.classList.remove('show-note');
+    el.setAttribute('aria-expanded', 'false');
+    syncClass(el);
+    var popup = el.parentElement && el.parentElement.querySelector('.flip-popup');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function handleFlip(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    var w = decode(el.getAttribute('data-w') || '');
+    var r = decode(el.getAttribute('data-r') || '');
+    if (!w || !r) return;
+
+    var isGreen = el.textContent === r;
+    var commentOpen = popup && popup.classList.contains('show');
+
+    if (!isGreen) {
+      hideAllComments(wrap);
+      el.textContent = r;
+      syncClass(el);
+      openComment(el);
+      return;
+    }
+
+    if (!commentOpen) {
+      openComment(el);
+      return;
+    }
+
+    resetFlip(el);
+  }
+
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function (e) {
+      e.stopPropagation();
+      handleFlip(el);
+    });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleFlip(el);
+      }
+    });
+  });
+
+  document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+    var popup = wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    popup.addEventListener('click', function (e) {
+      e.stopPropagation();
+      hideComment(wrap);
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.flip-wrap')) return;
+    hideAllComments(null);
+  });
+})();
+  </script>
+</body>
+</html>
