@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opinion &mdash; why I love Halloween</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #e3f2fd;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .task-bullets {
+      margin: 0.5rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .task-bullets li { margin: 0.3rem 0; }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: var(--accent); }
+    .word-list-compact {
+      display: block;
+      line-height: 1.5;
+      font-size: 0.82rem;
+    }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter h3 {
+      margin: 0 0 0.85rem;
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .flip.show-correct.show-note {
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .flip-popup {
+      display: none;
+      position: absolute;
+      z-index: 20;
+      left: 0;
+      top: calc(100% + 6px);
+      min-width: 14rem;
+      max-width: 18rem;
+      padding: 0.55rem 0.65rem;
+      background: #fff;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .flip-popup.show { display: block; cursor: pointer; }
+    .flip-popup .note-en,
+    .flip-popup .note-yue { margin: 0 0 0.45rem; }
+    .flip-popup .note-yue:last-child { margin-bottom: 0; }
+    .flip-popup .lang-tag {
+      display: inline-block;
+      margin-right: 0.3rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .flip-wrap {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead { margin: 0 0 0.5rem; font-size: 0.88rem; }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.65rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 6px;
+      border-left: 4px solid transparent;
+    }
+    .comment-bilingual .comment-pair:last-child { margin-bottom: 0; }
+    .comment-pair-praise {
+      background: #e8f5e9;
+      border-left-color: #43a047;
+    }
+    .comment-pair-upgrade {
+      background: #fff8e1;
+      border-left-color: #f9a825;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue { margin: 0 0 0.55rem; }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child { margin-bottom: 0; }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="box">
+      <h2>About this piece</h2>
+      <p class="topic">Opinion. The reason why I love Halloween</p>
+      <div class="stimulus">
+        <p class="prompt" style="margin:0 0 0.55rem;color:var(--text)"><strong>Topic.</strong> The reason why I love Halloween</p>
+        <p class="prompt" style="margin:0;color:var(--text)">Give the reasons why you love Halloween. Explain each one with an example, then end with a sentence that sums up how you feel.</p>
+      </div>
+      <ul class="task-bullets">
+        <li><strong>Success criteria.</strong> Three clear reasons. Each one explained. A closing sentence that says what the day means to you.</li>
+        <li>Only short <strong>yellow</strong> phrases are suggested edits; the rest is the draft as written.</li>
+        <li>Click flow. <strong>Yellow</strong> &rarr; green + comment. Only one comment at a time. Click the comment box, elsewhere, or green again to hide it. Click green with comment open to go back to yellow.</li>
+      </ul>
+      <div class="word-list">
+        <strong>Useful words</strong>
+        <span class="word-list-compact">cosplay, dress up, play tricks on someone, trick or treat, silly photos, get away with, entrance, unforgettable, school hall, ton of candy</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <p class="prompt fb-praise-lead">Three reasons, one per paragraph, and each comes with a story that only you could tell.</p>
+          <ul>
+            <li>🎯 <strong>Clear reasons.</strong> The first, second and third reasons are easy to follow, so the reader never loses the thread.</li>
+            <li>😂 <strong>Funny detail.</strong> Emoji photos in the toilet and a teacher who never caught you make the writing feel real.</li>
+            <li>🎭 <strong>Concrete examples.</strong> Shoes, clowns and pumpkins as costumes are pictures, not just labels.</li>
+            <li>🗣️ <strong>Your own voice.</strong> Short exclamations and the dare to trick your friends sound like you talking.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong>Spelling.</strong> <em>teens</em>, <em>funny</em>, <em>candies</em>, <em>entrance</em>. Four words to learn by heart.</li>
+            <li>💡 <strong>Reason sentences.</strong> <em>The first reason I love Halloween is that</em>, not <em>reason why &hellip; because</em>.</li>
+            <li>💡 <strong>Although.</strong> <em>Although this year I have no time to go to Ocean Park, I can still dress up at school.</em> One sentence, one comma.</li>
+            <li>💡 <strong>Word choice.</strong> <em>abstracted</em> means deep in thought. For a strange costume, say <em>weird</em>.</li>
+            <li>💡 <strong>Title.</strong> You give three reasons, so the title wants the plural, <em>reasons</em>.</li>
+            <li>💡 <strong>Last line.</strong> Add one wish for next year, such as a plan to go to Ocean Park at last.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <h3><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="The reason why I love... Halloween." data-r="The reasons why I love Halloween." data-note-en="Three reasons follow, so use the plural. Drop the ellipsis too, because the full name now appears." data-note-yue="下面有三個原因，所以用複數。順便刪走省略號，因為已經寫出全名。">The reason why I love... Halloween.</span><span class="flip-popup" role="tooltip"></span></span></h3>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Most of the people" data-r="Most people" data-note-en="Most people. No the, and no of." data-note-yue="Most people。唔使 the，唔使 of。">Most of the people</span><span class="flip-popup" role="tooltip"></span></span> in Hong Kong don't celebrate Halloween seriously like Chinese New Year and Christmas. <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="However there are" data-r="However, there are" data-note-en="However starts the sentence, so the comma follows it." data-note-yue="However 開句，後面加逗號。">However there are</span><span class="flip-popup" role="tooltip"></span></span> also some people, <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="especially, teeps, like me who" data-r="especially teens like me, who" data-note-en="teens is the spelling. The commas sit around the example, and who needs a comma before it because the clause adds information." data-note-yue="teens 先係正確串法。逗號夾住例子，who 前面要逗號，因為子句係補充資料。">especially, teeps, like me who</span><span class="flip-popup" role="tooltip"></span></span> love to celebrate Halloween!</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="The first reason why I love Halloween because" data-r="The first reason I love Halloween is that" data-note-en="A reason needs is that. After reason, why is extra, and because repeats the reason twice." data-note-yue="reason 後面要 is that。reason 之後 why 係多餘，because 又講多一次原因。">The first reason why I love Halloween because</span><span class="flip-popup" role="tooltip"></span></span> I can play tricks on my friends, and they won't report to teachers! We will play tricks <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="with each others" data-r="on each other" data-note-en="Play tricks on someone. each other never takes an s." data-note-yue="play tricks on someone。each other 唔加 s。">with each others</span><span class="flip-popup" role="tooltip"></span></span>. <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="One the most is that we use our phone after school and go to toilet to take people's silly photos and make with emojis" data-r="One of the best tricks is using our phones after school to take silly photos of people in the toilet and add emojis to them" data-note-en="One of the best, not One the most. Use our phones, go to the toilet, and add emojis to photos. We do not make with emojis." data-note-yue="用 One of the best，唔係 One the most。用 our phones、the toilet，係 add emojis to photos。唔會 make with emojis。">One the most is that we use our phone after school and go to toilet to take people's silly photos and make with emojis</span><span class="flip-popup" role="tooltip"></span></span>. It was really <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="farmy" data-r="funny" data-note-en="funny. Spelling." data-note-yue="funny。串法。">farmy</span><span class="flip-popup" role="tooltip"></span></span>! <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="fortunately teachers didn't find us" data-r="Fortunately, the teachers didn't catch us" data-note-en="Capital F and a comma after Fortunately. catch us is better than find us, and teachers takes the." data-note-yue="Fortunately 大階加逗號。catch us 好過 find us，teachers 前面要 the。">fortunately teachers didn't find us</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="playing phones" data-r="using our phones" data-note-en="We use a phone. You cannot play a phone." data-note-yue="電話係 use，唔係 play。">playing phones</span><span class="flip-popup" role="tooltip"></span></span> in the toilet.</p>
+
+        <p>The second reason is that I can cosplay <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="different abstracted characters, for example," data-r="all kinds of weird characters, such as" data-note-en="abstracted means deep in thought, not strange-looking. such as introduces the examples that follow." data-note-yue="abstracted 解沉思，唔係怪相。such as 引出後面嘅例子。">different abstracted characters, for example,</span><span class="flip-popup" role="tooltip"></span></span> shoes, clowns and pumpkins. <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Although this year I have no time to go to Ocean Park to play. I can play it in the school." data-r="Although this year I have no time to go to Ocean Park, I can still dress up at school." data-note-en="Although joins the two halves in one sentence, so a comma replaces the full stop. at school is enough, and dress up is the verb you need here." data-note-yue="Although 將兩半連成一句，所以用逗號代替句號。at school 就夠，呢度用 dress up。">Although this year I have no time to go to Ocean Park to play. I can play it in the school.</span><span class="flip-popup" role="tooltip"></span></span> My class teacher said we were crazy<span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w=" but was." data-r=", but it was" data-note-en="was needs a subject, so add it. The full stop in the middle becomes a comma, which keeps one sentence." data-note-yue="was 要有主語，加 it。中間個句號改逗號，成句連返埋。"> but was.</span><span class="flip-popup" role="tooltip"></span></span> an unforgettable memory.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="The third reason is because" data-r="The third reason is that" data-note-en="is that. is because says the reason twice." data-note-yue="用 is that。is because 講咗兩次原因。">The third reason is because</span><span class="flip-popup" role="tooltip"></span></span> I can get a ton of <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="candices" data-r="candies" data-note-en="candies. The y changes to i and then you add es. Same fix for the other two below." data-note-yue="candies。y 變 i 再加 es。下面兩個一樣改。">candices</span><span class="flip-popup" role="tooltip"></span></span> at school by <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="&quot;tricks or treats!" data-r="saying &quot;trick or treat!&quot;" data-note-en="Add saying and close the quotation mark. The phrase is trick or treat, with no s on either word." data-note-yue="加 saying 同收引號。句子係 trick or treat，兩個字都冇 s。">"tricks or treats!</span><span class="flip-popup" role="tooltip"></span></span> Our school will celebrate Halloween and give out <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="candices" data-r="candies" data-note-en="candies. Same spelling as above." data-note-yue="candies。同上面一樣。">candices</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="in the morning at the school enterance" data-r="at the school entrance in the morning" data-note-en="entrance has no a. Put the place before the time." data-note-yue="entrance 唔使 a 字喺中間。地點放時間前面。">in the morning at the school enterance</span><span class="flip-popup" role="tooltip"></span></span> every year. If my classmates or friends <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="don't give candices I will trick. them same as my friends too" data-r="don't give me candy, I will trick them, just like my friends do" data-note-en="Give me candy, then a comma closes the If clause. trick them is one verb and object. just like my friends do finishes the idea." data-note-yue="give me candy，然後用逗號收 If 子句。trick them 係動詞加受詞。just like my friends do 講完個意思。">don't give candices I will trick. them same as my friends too</span><span class="flip-popup" role="tooltip"></span></span>!</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Halloween let me create a lot of unforgettable memories so I love it" data-r="Halloween lets me create a lot of unforgettable memories, so I love it" data-note-en="Halloween is one thing, so the verb takes an s. Add the comma before so." data-note-yue="Halloween 係單數，動詞加 s。so 前面加逗號。">Halloween let me create a lot of unforgettable memories so I love it</span><span class="flip-popup" role="tooltip"></span></span> a lot.</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">Three reasons, three stories, one clear voice. The fixes are mostly spelling and sentence shapes, so the ideas can stand out.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Clear order.</strong> First, second, third, one paragraph each. A reader can find every reason without hunting.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>次序清楚。</strong>第一、第二、第三，每段一個原因，讀者一眼就搵到。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Real stories.</strong> The emoji photos and the candy at the gate are moments a reader remembers, not just reasons.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>故事真實。</strong>廁所影相、門口派糖，係讀者記得嘅畫面，唔止係理由。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Your voice.</strong> Exclamations and the dare to trick your friends sound like you, which makes the piece fun to read.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>有你嘅聲音。</strong>感嘆號同「唔派糖就捉弄你」好有你嘅口氣，讀落好有趣。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Spelling.</strong> <em>teens</em>, <em>funny</em>, <em>candies</em>, <em>entrance</em>. Copy each one three times and they will stay.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>串字。</strong><em>teens</em>、<em>funny</em>、<em>candies</em>、<em>entrance</em>。每個抄三次就記得。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Reason sentences.</strong> <em>The first reason I love Halloween is that I can play tricks on my friends.</em> One verb, no because.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>原因句。</strong><em>The first reason I love Halloween is that I can play tricks on my friends.</em> 一個動詞，唔使 because。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>One wish for next year.</strong> You say Ocean Park did not happen this year. Close with a plan, and the ending will look forward instead of only looking back.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>明年嘅願望。</strong>你話今年去唔到海洋公園。結尾加個計劃，文章就會望向前，唔止回顧過去。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+
+  function hideComment(wrap) {
+    if (!wrap) return;
+    var flip = wrap.querySelector('.flip');
+    var popup = wrap.querySelector('.flip-popup');
+    if (flip) flip.classList.remove('show-note');
+    if (flip) flip.setAttribute('aria-expanded', 'false');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function hideAllComments(exceptWrap) {
+    document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+      if (wrap === exceptWrap) return;
+      hideComment(wrap);
+    });
+  }
+
+  function openComment(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    hideAllComments(wrap);
+    el.classList.add('show-note');
+    el.setAttribute('aria-expanded', 'true');
+    fillPopup(popup, el);
+    popup.classList.add('show');
+    var rect = popup.getBoundingClientRect();
+    if (rect.right > window.innerWidth - 8) {
+      popup.style.left = 'auto';
+      popup.style.right = '0';
+    } else {
+      popup.style.left = '0';
+      popup.style.right = 'auto';
+    }
+  }
+
+  function fillPopup(popup, el) {
+    var en = decode(el.getAttribute('data-note-en') || '');
+    var yue = decode(el.getAttribute('data-note-yue') || '');
+    popup.innerHTML = '';
+    if (en) {
+      var pEn = document.createElement('p');
+      pEn.className = 'note-en';
+      pEn.innerHTML = '<span class="lang-tag">EN</span>' + en;
+      popup.appendChild(pEn);
+    }
+    if (yue) {
+      var pYue = document.createElement('p');
+      pYue.className = 'note-yue';
+      pYue.innerHTML = '<span class="lang-tag">粵</span>' + yue;
+      popup.appendChild(pYue);
+    }
+  }
+
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+
+  function resetFlip(el) {
+    var w = el.getAttribute('data-w');
+    if (!w) return;
+    el.textContent = decode(w);
+    el.classList.remove('show-note');
+    el.setAttribute('aria-expanded', 'false');
+    syncClass(el);
+    var popup = el.parentElement && el.parentElement.querySelector('.flip-popup');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function handleFlip(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    var w = decode(el.getAttribute('data-w') || '');
+    var r = decode(el.getAttribute('data-r') || '');
+    if (!w || !r) return;
+
+    var isGreen = el.textContent === r;
+    var commentOpen = popup && popup.classList.contains('show');
+
+    if (!isGreen) {
+      hideAllComments(wrap);
+      el.textContent = r;
+      syncClass(el);
+      openComment(el);
+      return;
+    }
+
+    if (!commentOpen) {
+      openComment(el);
+      return;
+    }
+
+    resetFlip(el);
+  }
+
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function (e) {
+      e.stopPropagation();
+      handleFlip(el);
+    });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleFlip(el);
+      }
+    });
+  });
+
+  document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+    var popup = wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    popup.addEventListener('click', function (e) {
+      e.stopPropagation();
+      hideComment(wrap);
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.flip-wrap')) return;
+    hideAllComments(null);
+  });
+})();
+  </script>
+</body>
+</html>
