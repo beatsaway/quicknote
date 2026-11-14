@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article &mdash; is mewing going to help with your face?</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .stimulus {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      border-left: 3px solid var(--accent);
+      background: #e3f2fd;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .task-bullets {
+      margin: 0.5rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .task-bullets li { margin: 0.3rem 0; }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: var(--accent); }
+    .word-list-compact {
+      display: block;
+      line-height: 1.5;
+      font-size: 0.82rem;
+    }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter h3 {
+      margin: 0 0 0.85rem;
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .letter h4 {
+      margin: 1rem 0 0.4rem;
+      font-size: 0.95rem;
+      color: var(--accent);
+      font-weight: 650;
+      line-height: 1.35;
+    }
+    .letter h4:first-of-type { margin-top: 0.75rem; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .flip.show-correct.show-note {
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .flip-popup {
+      display: none;
+      position: absolute;
+      z-index: 20;
+      left: 0;
+      top: calc(100% + 6px);
+      min-width: 14rem;
+      max-width: 18rem;
+      padding: 0.55rem 0.65rem;
+      background: #fff;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .flip-popup.show { display: block; cursor: pointer; }
+    .flip-popup .note-en,
+    .flip-popup .note-yue { margin: 0 0 0.45rem; }
+    .flip-popup .note-yue:last-child { margin-bottom: 0; }
+    .flip-popup .lang-tag {
+      display: inline-block;
+      margin-right: 0.3rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .flip-wrap {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead { margin: 0 0 0.5rem; font-size: 0.88rem; }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.65rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 6px;
+      border-left: 4px solid transparent;
+    }
+    .comment-bilingual .comment-pair:last-child { margin-bottom: 0; }
+    .comment-pair-praise {
+      background: #e8f5e9;
+      border-left-color: #43a047;
+    }
+    .comment-pair-upgrade {
+      background: #fff8e1;
+      border-left-color: #f9a825;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue { margin: 0 0 0.55rem; }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child { margin-bottom: 0; }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="box">
+      <h2>About this piece</h2>
+      <p class="topic">Magazine article. Is mewing going to help with your face?</p>
+      <div class="stimulus">
+        <p class="prompt" style="margin:0 0 0.55rem;color:var(--text)"><strong>Topic.</strong> Is mewing going to help with your face?</p>
+        <p class="prompt" style="margin:0;color:var(--text)">Explain what mewing is, say whether young people should practise it, then separate the online hype from the medical facts.</p>
+      </div>
+      <ul class="task-bullets">
+        <li><strong>Success criteria.</strong> Definition. A clear answer. Reasons with evidence. Advice a reader can act on.</li>
+        <li>Only short <strong>yellow</strong> phrases are suggested edits; the rest is the draft as written.</li>
+        <li>Click flow. <strong>Yellow</strong> &rarr; green + comment. Only one comment at a time. Click the comment box, elsewhere, or green again to hide it. Click green with comment open to go back to yellow.</li>
+      </ul>
+      <div class="word-list">
+        <strong>Useful words</strong>
+        <span class="word-list-compact">mewing, palate, jaw, orthodontist, bone structure, alignment, excessive force, hype, myth, debunk, nose breathing, dental health</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <p class="prompt fb-praise-lead">A question in the title, a clear answer, then the evidence. That is how a health article should work.</p>
+          <ul>
+            <li>🎯 <strong>Structure.</strong> What it is, is it good for kids, three reasons, fact against trend. The reader always knows where they are.</li>
+            <li>🦷 <strong>Expert voice.</strong> Naming orthodontists and dentists gives your answer weight that a video does not have.</li>
+            <li>⚠️ <strong>Real risks.</strong> Pain, headaches and teeth pushed out of alignment are concrete, and they answer the question in the title.</li>
+            <li>🙋 <strong>Useful ending.</strong> Telling readers when to see a dentist turns the article into advice, not just information.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong>Name your source.</strong> <em>Orthodontists and dentists are saying</em> is still vague. One named study or one named professional would make the claim harder to argue with.</li>
+            <li>💡 <strong>Cut the repeat.</strong> Reason one says <em>no scientific proof</em> twice in three sentences. Keep the first version.</li>
+            <li>💡 <strong>Long sentences.</strong> Reason three is one sentence of 45 words. Split it into a statement and an explanation.</li>
+            <li>💡 <strong>Typing slips.</strong> A double space after <em>of</em>, a hyphen used as a full stop, and a full-width <em>？</em> on the first heading.</li>
+            <li>💡 <strong>Chinese-style capitals.</strong> <em>There's No reason for Kids to Spend Time</em> capitalises words that English only capitalises in titles.</li>
+            <li>💡 <strong>Spelling.</strong> In HK English the verb is <em>practise</em>, the noun is <em>practice</em>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <h3>Is mewing going to help with your face?</h3>
+
+        <p>You see a lot of videos online and people talking about how &ldquo;mewing&rdquo; can change your face to make you look more sigma. Before we can get into whether or not mewing is good <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="for kids we have to learn" data-r="for kids, we have to learn" data-note-en="The Before we can get into phrase needs a comma where it ends." data-note-yue="Before we can get into 呢個片語結束要加逗號。">for kids we have to learn</span><span class="flip-popup" role="tooltip"></span></span> about what mewing is and how it works.</p>
+
+        <h4><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="What Is Mewing？" data-r="What is mewing?" data-note-en="Use a normal question mark. The wide ？ comes from Chinese input. Headings inside an article use sentence case, so only the first word takes a capital." data-note-yue="用普通問號。呢個全形 ？ 係中文輸入法打出嚟。文章內小標題用 sentence case，只有第一個字大階。">What Is Mewing？</span><span class="flip-popup" role="tooltip"></span></span></h4>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="As for what mewing is, basically you close your lips and push your teeth together and then press" data-r="Basically, mewing is closing your lips, pushing your teeth together and pressing" data-note-en="As for what mewing is says the same thing as the sentence after it. Start with Basically, then name the action. The list needs commas, not and twice." data-note-yue="As for what mewing is 同後面句意思重複。用 Basically, 開頭再講動作。列點用逗號，唔好連用兩個 and。">As for what mewing is, basically you close your lips and push your teeth together and then press</span><span class="flip-popup" role="tooltip"></span></span> your tongue to the roof of your mouth. Lots of people have been led to believe that if you hold your tongue <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="to the roof of your mouth every day" data-r="against the roof of your mouth every day" data-note-en="The tongue presses against the roof, not to it." data-note-yue="脷係壓喺上顎，用 against，唔係 to。">to the roof of your mouth every day</span><span class="flip-popup" role="tooltip"></span></span>, then your face will start to change and your jaw will get stronger.</p>
+
+        <h4><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="Is Mewing Good Practice for Kids?" data-r="Is mewing good practice for kids?" data-note-en="Sentence case for an article heading. Only the first word takes a capital." data-note-yue="文章小標題用 sentence case，只有第一個字大階。">Is Mewing Good Practice for Kids?</span><span class="flip-popup" role="tooltip"></span></span></h4>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="There's No reason for Kids to Spend Time Practicing Mewing for a better face shape." data-r="There is no reason for kids to spend time practising mewing for a better face shape." data-note-en="This sentence is not a title, so most words stay lowercase. There is is fuller than There's, and the verb is practising in HK English." data-note-yue="呢句唔係標題，大部分字要細階。There is 完整過 There's，港式英文動詞用 practising。">There's No reason for Kids to Spend Time Practicing Mewing for a better face shape.</span><span class="flip-popup" role="tooltip"></span></span> All healthy children and teens need to do with their mouths closed is nose breathing, and that is all that is recommended. Keep in mind that forcing your tongue up against <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="your bone" data-r="the roof of your mouth" data-note-en="Readers cannot see which bone you mean. Name the place, which is the roof of your mouth." data-note-yue="讀者唔知你講邊塊骨。講清楚位置：上顎。">your bone</span><span class="flip-popup" role="tooltip"></span></span> can be very painful and even cause harm to teeth and gums.</p>
+
+        <p>Here are three reasons why kids should not <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="practice mewing" data-r="practise mewing" data-note-en="practise with an s is the verb. practice with a c is the noun, as in good practice." data-note-yue="practise 有 s 係動詞。practice 有 c 係名詞，例如 good practice。">practice mewing</span><span class="flip-popup" role="tooltip"></span></span>:</p>
+
+        <p><strong>1. No scientific proof.</strong> Orthodontists and dentists are saying that there is no scientific proof to <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="the claim made by tongue exercising that their practice can change" data-r="the claim that tongue exercises can change" data-note-en="tongue exercising is not a person, so it cannot make a claim. Tongue exercises are the thing that is claimed to work." data-note-yue="tongue exercising 唔係人，唔可以提出 claim。真正被講成有效嘅係 tongue exercises。">the claim made by tongue exercising that their practice can change</span><span class="flip-popup" role="tooltip"></span></span> the bone structure of the lower jaw. This is also what I have read, that there is no proof to back up these claims.</p>
+
+        <p><strong>2. Kids' faces are already growing naturally.</strong> As children and teens grow, their jaws develop and teeth shift. Forcing pressure in the mouth will not make natural growth <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="appear sooner" data-r="happen sooner" data-note-en="Growth happens. It does not appear, which is what a thing does when it comes into view." data-note-yue="生長係 happen。appear 係「出現喺眼前」，唔係講生長。">appear sooner</span><span class="flip-popup" role="tooltip"></span></span> or better.</p>
+
+        <p><strong><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="3. Dangers of  excessive force-As you can see adding" data-r="3. Dangers of excessive force. Adding" data-note-en="Two spaces after of, and a hyphen is not a full stop. The label is a heading, so it ends with a full stop and the explanation starts fresh." data-note-yue="of 後面有兩個空格，而 hyphen 唔係句號。標題用句號收，解釋另起一句。">3. Dangers of  excessive force-As you can see adding</span><span class="flip-popup" role="tooltip"></span></span> excessive force with your tongue to push your teeth together can lead to a variety of <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="problems including pain in your jaw muscles and even headaches and in extreme cases push your teeth out of alignment" data-r="problems, including jaw-muscle pain, headaches and, in extreme cases, teeth pushed out of alignment" data-note-en="The list needs commas instead of and twice. As you can see also goes, because the sentence already shows the reader." data-note-yue="列點用逗號，唔好連用兩個 and。As you can see 都可以刪，句子本身已經展示畀讀者睇。">problems including pain in your jaw muscles and even headaches and in extreme cases push your teeth out of alignment</span><span class="flip-popup" role="tooltip"></span></span>.</p>
+
+        <h4>Fact vs. Online Trend</h4>
+
+        <p>I separated the hype from <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="the fact you can read in this writing" data-r="the facts in this piece" data-note-en="facts is plural because there is more than one. this piece is the usual word for an article." data-note-yue="facts 用複數，因為唔止一個事實。文章叫 this piece。">the fact you can read in this writing</span><span class="flip-popup" role="tooltip"></span></span>.</p>
+
+        <p><strong>The Fact:</strong> Resting your tongue gently on the roof of your mouth (with lips closed) and breathing through your nose is normal. <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="The natural position of the tongue of mouth breathing over years can affect" data-r="Over the years, mouth breathing instead of nose breathing can affect" data-note-en="The sentence is about mouth breathing, not about the position of the tongue. Name the habit, then say what it can affect." data-note-yue="呢句講嘅係用口呼吸，唔係舌頭位置。講清楚個習慣，再講影響。">The natural position of the tongue of mouth breathing over years can affect</span><span class="flip-popup" role="tooltip"></span></span> dental health and sleep quality.</p>
+
+        <p><strong><span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="The Online Trend Most importantly," data-r="The online trend. Most importantly," data-note-en="The Online Trend is a label, not part of the sentence. End it with a full stop so the next sentence can start." data-note-yue="The Online Trend 係標籤，唔屬於句子。加句號收，下一句先開始。">The Online Trend Most importantly,</span><span class="flip-popup" role="tooltip"></span></span> the hype around <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="&ldquo;Mewing&rdquo; as a way to beautify your face to change the shape of your jaw or become more attractive by using it as an alternative to orthodontics (braces) to straighten teeth" data-r="mewing as a way to reshape your jaw, become more attractive or straighten your teeth instead of wearing braces" data-note-en="Three claims are tangled in one chain of to phrases. List them, then say what mewing is offered as a replacement for. Quote marks are not needed because this is your own sentence." data-note-yue="三個講法纏埋一齊。先列出三個講法，再講 mewing 被當成咩嘅替代品。唔使加引號，因為呢句係你自己寫。">“Mewing” as a way to beautify your face to change the shape of your jaw or become more attractive by using it as an alternative to orthodontics (braces) to straighten teeth</span><span class="flip-popup" role="tooltip"></span></span> is simply an internet trend <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="and myth" data-r="and a myth" data-note-en="a myth. Two nouns joined by and each need their article." data-note-yue="a myth。兩個名詞用 and 連接，各自都要有冠詞。">and myth</span><span class="flip-popup" role="tooltip"></span></span> that needs to be debunked!</p>
+
+        <p>If you have trouble breathing through your nose, if your jaw clicks or even aches, or if you are worried about how your teeth <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="line up then" data-r="line up, then" data-note-en="A comma before then, where the long If list ends and the advice begins." data-note-yue="then 前面加逗號，長長嘅 If 列點喺呢度結束，建議開始。">line up then</span><span class="flip-popup" role="tooltip"></span></span> forget about the videos and talk to a dentist or orthodontist. They can <span class="flip-wrap"><span class="flip" tabindex="0" role="button" aria-expanded="false" data-w="check on the growth" data-r="check the growth" data-note-en="check something. check on is for making sure a person or thing is safe." data-note-yue="check something。check on 係睇下人或嘢安唔安全。">check on the growth</span><span class="flip-popup" role="tooltip"></span></span> of your jaw and give you some real and effective advice on how to sort out your teeth!</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">A real magazine shape. You answer the question in the title and you back the answer with dentists rather than influencers. The fixes are typing slips, long sentences and two places where the wording hides your meaning.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Article shape.</strong> Definition, verdict, three reasons, then fact against trend. A reader who only wants the answer gets it, and a curious reader keeps going.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>文章結構。</strong>定義、結論、三個原因，再到事實對比潮流。想睇結論嘅人有答案，想深入了解嘅人繼續讀。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Trustworthy sources.</strong> Orthodontists and dentists carry weight here, and that is exactly the contrast the piece needs against TikTok advice.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>資料來源可信。</strong>牙科矯正醫生同牙醫有份量，正好同 TikTok 建議形成對比。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Advice you can act on.</strong> The last paragraph tells readers exactly when to stop watching videos and see someone. That is what makes an article useful.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>可以跟住做。</strong>最後一段清楚講幾時停止睇片、去搵專業人士，呢個就係文章有用嘅地方。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>One named source.</strong> <em>Orthodontists say</em> is better than a video, but a named body or study would be stronger still. Try the Hong Kong Dental Association or a published review.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>寫出一個具體來源。</strong><em>Orthodontists say</em> 好過影片，但有具名機構或研究更強。可以試香港牙醫學會或一篇已發表嘅綜述。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Tighten reason three.</strong> Start with the claim, then explain. <em>Adding excessive force can cause jaw-muscle pain, headaches and, in extreme cases, teeth pushed out of alignment.</em></p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>精簡第三個原因。</strong>先講結論再解釋。<em>Adding excessive force can cause jaw-muscle pain, headaches and, in extreme cases, teeth pushed out of alignment.</em></p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Read it aloud.</strong> A double space, a hyphen standing in for a full stop and a wide ？ all come from fast typing. One read-through out loud catches every one of them.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>讀出聲。</strong>兩個空格、用 hyphen 當句號、全形 ？，都係打得快造成。慢慢讀一次就捉到。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+
+  function hideComment(wrap) {
+    if (!wrap) return;
+    var flip = wrap.querySelector('.flip');
+    var popup = wrap.querySelector('.flip-popup');
+    if (flip) flip.classList.remove('show-note');
+    if (flip) flip.setAttribute('aria-expanded', 'false');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function hideAllComments(exceptWrap) {
+    document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+      if (wrap === exceptWrap) return;
+      hideComment(wrap);
+    });
+  }
+
+  function openComment(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    hideAllComments(wrap);
+    el.classList.add('show-note');
+    el.setAttribute('aria-expanded', 'true');
+    fillPopup(popup, el);
+    popup.classList.add('show');
+    var rect = popup.getBoundingClientRect();
+    if (rect.right > window.innerWidth - 8) {
+      popup.style.left = 'auto';
+      popup.style.right = '0';
+    } else {
+      popup.style.left = '0';
+      popup.style.right = 'auto';
+    }
+  }
+
+  function fillPopup(popup, el) {
+    var en = decode(el.getAttribute('data-note-en') || '');
+    var yue = decode(el.getAttribute('data-note-yue') || '');
+    popup.innerHTML = '';
+    if (en) {
+      var pEn = document.createElement('p');
+      pEn.className = 'note-en';
+      pEn.innerHTML = '<span class="lang-tag">EN</span>' + en;
+      popup.appendChild(pEn);
+    }
+    if (yue) {
+      var pYue = document.createElement('p');
+      pYue.className = 'note-yue';
+      pYue.innerHTML = '<span class="lang-tag">粵</span>' + yue;
+      popup.appendChild(pYue);
+    }
+  }
+
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+
+  function resetFlip(el) {
+    var w = el.getAttribute('data-w');
+    if (!w) return;
+    el.textContent = decode(w);
+    el.classList.remove('show-note');
+    el.setAttribute('aria-expanded', 'false');
+    syncClass(el);
+    var popup = el.parentElement && el.parentElement.querySelector('.flip-popup');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function handleFlip(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    var w = decode(el.getAttribute('data-w') || '');
+    var r = decode(el.getAttribute('data-r') || '');
+    if (!w || !r) return;
+
+    var isGreen = el.textContent === r;
+    var commentOpen = popup && popup.classList.contains('show');
+
+    if (!isGreen) {
+      hideAllComments(wrap);
+      el.textContent = r;
+      syncClass(el);
+      openComment(el);
+      return;
+    }
+
+    if (!commentOpen) {
+      openComment(el);
+      return;
+    }
+
+    resetFlip(el);
+  }
+
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function (e) {
+      e.stopPropagation();
+      handleFlip(el);
+    });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleFlip(el);
+      }
+    });
+  });
+
+  document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+    var popup = wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    popup.addEventListener('click', function (e) {
+      e.stopPropagation();
+      hideComment(wrap);
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.flip-wrap')) return;
+    hideAllComments(null);
+  });
+})();
+  </script>
+</body>
+</html>
