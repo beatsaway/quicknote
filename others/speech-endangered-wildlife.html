@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Endangered wildlife speech &mdash; writing &amp; proofreading</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: var(--accent); }
+    .word-list-compact {
+      display: block;
+      line-height: 1.5;
+      font-size: 0.82rem;
+    }
+    .word-list .vocab-note {
+      display: inline;
+      margin: 0;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter h3 {
+      margin: 0 0 0.85rem;
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .letter ul { margin: 0 0 0.9rem; padding-left: 1.15rem; }
+    .letter li { margin: 0.5rem 0; }
+    .task-bullets {
+      margin: 0.5rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .task-bullets li { margin: 0.3rem 0; }
+    .stats { font-size: 0.82rem; color: var(--muted); margin-top: 0.65rem; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead {
+      margin: 0 0 0.5rem;
+      font-size: 0.88rem;
+    }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.65rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 6px;
+      border-left: 4px solid transparent;
+    }
+    .comment-bilingual .comment-pair:last-child {
+      margin-bottom: 0;
+    }
+    .comment-pair-praise {
+      background: #e8f5e9;
+      border-left-color: #43a047;
+    }
+    .comment-pair-upgrade {
+      background: #fff8e1;
+      border-left-color: #f9a825;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue {
+      margin: 0 0 0.55rem;
+    }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child {
+      margin-bottom: 0;
+    }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="box">
+      <h2>About this piece</h2>
+      <p class="topic">School assembly speech about endangered wildlife</p>
+      <p class="prompt">You are giving a speech at a school assembly about <strong>endangered wildlife</strong>. Explain why these animals are disappearing, give <strong>at least two reasons</strong> to protect them, and finish with a <strong>clear call to action</strong>. Your audience is the Principal, your teachers and your schoolmates, so keep the sentences short enough to say aloud.</p>
+      <ul class="task-bullets">
+        <li>The audience is a whole-school assembly. The tone is personal, honest and persuasive.</li>
+        <li>Only the <strong>yellow</strong> word groups are suggested edits; the rest is the student&rsquo;s draft as written.</li>
+      </ul>
+      <p class="stats">Draft length (student), about <strong>397 words</strong> &middot; about <strong>2,219 characters</strong> &middot; about <strong>24 sentences</strong> &middot; about <strong>8 paragraphs</strong>.</p>
+      <div class="word-list">
+        <strong>Useful words (from the task)</strong> <span class="prompt vocab-note">(English &middot; 粵語)</span>
+        <span class="word-list-compact">endangered(瀕危), extinct(絕種), extinction(絕種), species(物種), wildlife(野生動物), ecosystem(生態系統), predator(捕食者), demand(需求), poaching(偷獵), ivory(象牙), shark fin(魚翅), habitat(棲息地), conservation(保育)</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <p class="prompt fb-praise-lead">It has the shape of a real assembly speech. A greeting, a question to the audience, reasons, and a clear ask at the end.</p>
+          <ul>
+            <li>🎯 <strong>Task fit.</strong> Greeting, examples (sharks, tigers, elephants, crocodiles), two reasons, and a call to action. Everything a school speech needs is here.</li>
+            <li>❤️ <strong>Honesty.</strong> Saying the problem is &ldquo;us&rdquo; takes courage and makes listeners lean in. The crocodile bags and shark-fin soup are concrete, not abstract.</li>
+            <li>🔗 <strong>Cause and effect.</strong> The chain from buyers to hunters to money is easy to follow, and the shark and seaweed example shows why one missing species matters.</li>
+            <li>📏 <strong>Length.</strong> About 397 words is roughly three minutes at speaking pace. That suits an assembly slot.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong>Spoken sentences.</strong> Break the long chains into short sentences. Several places are fragments or run-ons, and those are hard to say aloud in front of a hall.</li>
+            <li>💡 <strong>Word forms.</strong> <em>Extinct</em> is an adjective and <em>extinction</em> is the noun. <em>Extincted</em> is not a word. Use <em>fewer</em> with countable things (<em>fewer animals</em>) and <em>less</em> with uncountable ones (<em>less demand</em>).</li>
+            <li>💡 <strong>Facts.</strong> The dodo died out in the 17th century, not the 18th. For the &ldquo;four or five species a day&rdquo; claim, add <em>scientists estimate</em> so the number sounds researched rather than guessed.</li>
+            <li>💡 <strong>Repetition.</strong> &ldquo;Do you know that&rdquo; opens two paragraphs in a row. Vary the second hook.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <h3>Speech to the school (draft)</h3>
+        <p>Good morning, Principal, teachers and fellow students. Do you know that <span class="flip" tabindex="0" role="button" data-w="there are at least 4-5 enlarged wildlife species extincted every day" data-r="at least four or five endangered wildlife species become extinct every day">there are at least 4-5 enlarged wildlife species extincted every day</span>? Today I would like to give you a speech about endangered wildlife species.</p>
+
+        <p>Do you know that <span class="flip" tabindex="0" role="button" data-w="in this recent years" data-r="in recent years">in this recent years</span>, many animals are <span class="flip" tabindex="0" role="button" data-w="listed in &quot;endangered animals species?" data-r="listed as endangered species,">listed in &quot;endangered animals species?</span> and <span class="flip" tabindex="0" role="button" data-w="a lot of animals extinct in this world." data-r="more are becoming extinct around the world.">a lot of animals extinct in this world.</span> <span class="flip" tabindex="0" role="button" data-w="Including, the sharks, tigers, whale, elephants and crocodiles." data-r="They include sharks, tigers, whales, elephants and crocodiles.">Including, the sharks, tigers, whale, elephants and crocodiles.</span> <span class="flip" tabindex="0" role="button" data-w="These animals are the names we always hear but" data-r="We hear these names all the time, but">These animals are the names we always hear but</span> at the same time, their numbers are decreasing rapidly.</p>
+
+        <p><span class="flip" tabindex="0" role="button" data-w="Why they are decreasing rapidly?" data-r="Why are they decreasing so rapidly?">Why they are decreasing rapidly?</span> <span class="flip" tabindex="0" role="button" data-w="Then that's because of us- &quot;humans&quot;." data-r="The answer is us, humans.">Then that's because of us- &quot;humans&quot;.</span> <span class="flip" tabindex="0" role="button" data-w="Some People" data-r="Some people">Some People</span> want to be <span class="flip" tabindex="0" role="button" data-w="fashion" data-r="fashionable,">fashion</span> so they buy crocodile bags, tiger-skin clothes, ivory chopsticks. Some people want to eat shark-fin soup. <span class="flip" tabindex="0" role="button" data-w="When there are needs in the market" data-r="When there is demand in the market">When there are needs in the market</span>, <span class="flip" tabindex="0" role="button" data-w="then the hunters to kill those animals to sell and earn a huge amount. of money." data-r="hunters kill these animals, sell them and earn a huge amount of money.">then the hunters to kill those animals to sell and earn a huge amount. of money.</span> <span class="flip" tabindex="0" role="button" data-w="However if no one have any require to buy these things so no one will hunt the animals because they can't earn money." data-r="However, if no one wants to buy these things, no one will hunt the animals, because hunters cannot earn money.">However if no one have any require to buy these things so no one will hunt the animals because they can't earn money.</span></p>
+
+        <p><span class="flip" tabindex="0" role="button" data-w="The first reason to protect the endangered species because" data-r="The first reason to protect endangered species is that">The first reason to protect the endangered species because</span> <span class="flip" tabindex="0" role="button" data-w="if some species extinct, then the ecosystem will become unbalanced for example," data-r="if a species becomes extinct, the ecosystem will become unbalanced. For example,">if some species extinct, then the ecosystem will become unbalanced for example,</span> <span class="flip" tabindex="0" role="button" data-w="if there are no more sharks in the sea then the small fish don't have or have less predator" data-r="if there are no more sharks in the sea, small fish have fewer predators,">if there are no more sharks in the sea then the small fish don't have or have less predator</span> <span class="flip" tabindex="0" role="button" data-w="so the number of small fish will increase" data-r="so their numbers will increase">so the number of small fish will increase</span>, and they will eat up all the seaweed and <span class="flip" tabindex="0" role="button" data-w="others" data-r="other plants">others</span> <span class="flip" tabindex="0" role="button" data-w="which leans to a unbalanced ecosystem in the result." data-r=", which leads to an unbalanced ecosystem.">which leans to a unbalanced ecosystem in the result.</span></p>
+
+        <p><span class="flip" tabindex="0" role="button" data-w="The second reason is because" data-r="The second reason is that">The second reason is because</span> <span class="flip" tabindex="0" role="button" data-w="if some species extinct, then we can't let our next generation to see or to know what are those." data-r="if a species becomes extinct, our next generation will never see it or know what it was.">if some species extinct, then we can't let our next generation to see or to know what are those.</span> For instance, <span class="flip" tabindex="0" role="button" data-w="Dodo birds were extincted in the 18th centery" data-r="the dodo became extinct in the 17th century,">Dodo birds were extincted in the 18th centery</span> <span class="flip" tabindex="0" role="button" data-w="so now I can't the real Dodo birds," data-r="so today I cannot see a real dodo.">so now I can't the real Dodo birds,</span> I can <span class="flip" tabindex="0" role="button" data-w="just see Deco birds from photo from the internet." data-r="only see dodos in photos on the internet.">just see Deco birds from photo from the internet.</span></p>
+
+        <p><span class="flip" tabindex="0" role="button" data-w="To prevent less endurgered wildlife species extinct" data-r="To stop more endangered wildlife species from becoming extinct">To prevent less endurgered wildlife species extinct</span>, <span class="flip" tabindex="0" role="button" data-w="the way we can do" data-r="the best thing we can do">the way we can do</span> is to <span class="flip" tabindex="0" role="button" data-w="say 'no'. and reject." data-r="say no and refuse.">say 'no'. and reject.</span> If anyone <span class="flip" tabindex="0" role="button" data-w="give or ask you to eat or to buy any products make from endangered wildlife species" data-r="offers you, or asks you to eat or buy, any product made from endangered wildlife species">give or ask you to eat or to buy any products make from endangered wildlife species</span>, we should <span class="flip" tabindex="0" role="button" data-w="reject them" data-r="refuse">reject them</span>, <span class="flip" tabindex="0" role="button" data-w="so there are less requirement on the market" data-r="so there will be less demand in the market">so there are less requirement on the market</span> <span class="flip" tabindex="0" role="button" data-w="then less people will hunt and kill them" data-r="and fewer people will hunt and kill them,">then less people will hunt and kill them</span> <span class="flip" tabindex="0" role="button" data-w="so there are less animals die." data-r="so fewer animals will die.">so there are less animals die.</span></p>
+
+        <p><span class="flip" tabindex="0" role="button" data-w="Wow! You really pay a lot of attention to my presentation!" data-r="Thank you! You have really paid a lot of attention to my presentation!">Wow! You really pay a lot of attention to my presentation!</span> If you have any further questions, you can <span class="flip" tabindex="0" role="button" data-w="feel free to go to 2D classroom to find me" data-r="come and find me in the 2D classroom">feel free to go to 2D classroom to find me</span>.</p>
+
+        <p>Last but not least, from now on, let's say 'no' to <span class="flip" tabindex="0" role="button" data-w="the products make from endangered species" data-r="products made from endangered species">the products make from endangered species</span> to save those animals!</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">This already sounds like something you could stand up and deliver. The structure is clear, the examples are concrete, and the ending gives the audience something to do. Tighten the long sentences, fix a few word forms, and check one date, and the speech will land well in a school hall.</p>
+      <p class="prompt">Yellow spans are optional <strong>upgrades</strong>. Click to compare. The rest is your draft as written.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Strong opening.</strong> Greeting the Principal, teachers and classmates first is exactly right for an assembly. The question about four or five species a day makes people sit up.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>開場好。</strong> 先稱呼校長、老師同同學，完全符合集會演講嘅場合。用「每日有四、五種動物絕種」做問題，好快就吸引到全場注意。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Clear chain of cause and effect.</strong> You trace the problem from crocodile bags and shark-fin soup to demand, hunters and money. Classmates can follow that logic, and the shark and seaweed example shows why one missing species matters.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>因果清楚。</strong> 由鱷魚皮袋、魚翅講到市場需求、獵人同金錢，條理好易跟。鯊魚同海藻嘅例子亦解釋咗點解少一種動物會影響整個生態。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>A call people can act on.</strong> Saying no is simple, memorable and possible for a student audience. Ending with where to find you makes the speech feel personal.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>行動呼籲具體。</strong> 叫人「說不」簡單易記，同學都做得到。最後叫人有問題去 2D 課室搵你，令演講更親切。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Short sentences for speaking.</strong> At the assembly you need to breathe. Split the long &ldquo;However if&hellip;&rdquo; and &ldquo;To prevent&hellip;&rdquo; sentences into two or three short ones. Turn &ldquo;Including, the sharks&hellip;&rdquo; into a full sentence.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>演講要用短句。</strong> 喺台上要透氣，將「However if&hellip;」同「To prevent&hellip;」兩句拆成兩三句短句。「Including, the sharks&hellip;」要改成完整句子。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Word forms.</strong> Use <em>become extinct</em> as the verb phrase, <em>extinction</em> as the noun, and <em>endangered</em> as the adjective. Say <em>fewer animals</em> and <em>fewer people</em>, but <em>less demand</em> and <em>less money</em>.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>詞形要啱。</strong> <em>Become extinct</em> 係動詞詞組，<em>extinction</em> 係名詞，<em>endangered</em> 係形容詞。動物同人用 <em>fewer</em>，需求同金錢用 <em>less</em>。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Check the facts.</strong> The dodo is usually said to have died out in the 17th century, with the last sightings in the 1660s. Before the daily figure, add <em>scientists estimate</em> and name a source if you can.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>資料要查清楚。</strong> 渡渡鳥一般認為喺十七世紀絕種，最後目擊記錄喺 1660 年代。講「每日四、五種」之前加 <em>scientists estimate</em>，最好講埋資料來源。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+  function toggle(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.textContent = el.textContent === r ? w : r;
+    syncClass(el);
+  }
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    syncClass(el);
+    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(el);
+      }
+    });
+  });
+})();
+  </script>
+</body>
+</html>
