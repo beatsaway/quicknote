@@ -90,6 +90,43 @@
       background: var(--flip-ok);
       border-bottom-color: var(--flip-ok-b);
     }
+    .flip.show-correct.show-note {
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .flip-popup {
+      display: none;
+      position: absolute;
+      z-index: 20;
+      left: 0;
+      top: calc(100% + 6px);
+      min-width: 14rem;
+      max-width: 18rem;
+      padding: 0.55rem 0.65rem;
+      background: #fff;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .flip-popup.show { display: block; cursor: pointer; }
+    .flip-popup .note-en,
+    .flip-popup .note-yue { margin: 0 0 0.45rem; }
+    .flip-popup .note-yue:last-child { margin-bottom: 0; }
+    .flip-popup .lang-tag {
+      display: inline-block;
+      margin-right: 0.3rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .flip-wrap {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+    }
     .fb-grid {
       display: grid;
       gap: 0.75rem;
@@ -165,7 +202,7 @@
       <p class="prompt">You are giving a speech at a school assembly about <strong>endangered wildlife</strong>. Explain why these animals are disappearing, give <strong>at least two reasons</strong> to protect them, and finish with a <strong>clear call to action</strong>. Your audience is the Principal, your teachers and your schoolmates, so keep the sentences short enough to say aloud.</p>
       <ul class="task-bullets">
         <li>The audience is a whole-school assembly. The tone is personal, honest and persuasive.</li>
-        <li>Only the <strong>yellow</strong> word groups are suggested edits; the rest is the student&rsquo;s draft as written.</li>
+        <li>Only the <strong>yellow</strong> word groups are suggested edits; the rest is the student&rsquo;s draft as written. Click a yellow phrase to flip it and read a short note.</li>
       </ul>
       <p class="stats">Draft length (student), about <strong>397 words</strong> &middot; about <strong>2,219 characters</strong> &middot; about <strong>24 sentences</strong> &middot; about <strong>8 paragraphs</strong>.</p>
       <div class="word-list">
@@ -201,28 +238,28 @@
     <section class="box">
       <div class="letter">
         <h3>Speech to the school (draft)</h3>
-        <p>Good morning, Principal, teachers and fellow students. Do you know that <span class="flip" tabindex="0" role="button" data-w="there are at least 4-5 enlarged wildlife species extincted every day" data-r="at least four or five endangered wildlife species become extinct every day">there are at least 4-5 enlarged wildlife species extincted every day</span>? Today I would like to give you a speech about endangered wildlife species.</p>
+        <p>Good morning, Principal, teachers and fellow students. Do you know that <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="there are at least 4-5 enlarged wildlife species extincted every day" data-r="at least four or five endangered wildlife species become extinct every day" data-note-en="Drop there are. Species become extinct, and extincted is not a word. Spell numbers out for a speech." data-note-yue="刪 there are。用 become extinct，唔係 extincted。演講將數字寫成英文。">there are at least 4-5 enlarged wildlife species extincted every day</span><span class="flip-popup" role="tooltip"></span></span>? Today I would like to give you a speech about endangered wildlife species.</p>
 
-        <p>Do you know that <span class="flip" tabindex="0" role="button" data-w="in this recent years" data-r="in recent years">in this recent years</span>, many animals are <span class="flip" tabindex="0" role="button" data-w="listed in &quot;endangered animals species?" data-r="listed as endangered species,">listed in &quot;endangered animals species?</span> and <span class="flip" tabindex="0" role="button" data-w="a lot of animals extinct in this world." data-r="more are becoming extinct around the world.">a lot of animals extinct in this world.</span> <span class="flip" tabindex="0" role="button" data-w="Including, the sharks, tigers, whale, elephants and crocodiles." data-r="They include sharks, tigers, whales, elephants and crocodiles.">Including, the sharks, tigers, whale, elephants and crocodiles.</span> <span class="flip" tabindex="0" role="button" data-w="These animals are the names we always hear but" data-r="We hear these names all the time, but">These animals are the names we always hear but</span> at the same time, their numbers are decreasing rapidly.</p>
+        <p>Do you know that <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="in this recent years" data-r="in recent years" data-note-en="recent years is already plural, so no this." data-note-yue="recent years 已經係複數，唔使 this。">in this recent years</span><span class="flip-popup" role="tooltip"></span></span>, many animals are <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="listed in &quot;endangered animals species?" data-r="listed as endangered species," data-note-en="listed as, not listed in. The quote is never closed, and a comma joins the next clause." data-note-yue="用 listed as（唔係 in）。引號未閂，逗號連接下一句。">listed in &quot;endangered animals species?</span><span class="flip-popup" role="tooltip"></span></span> and <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="a lot of animals extinct in this world." data-r="more are becoming extinct around the world." data-note-en="a lot of is too casual. Use more are becoming extinct, and around the world rather than in this world." data-note-yue="a lot of 太口語。用 more are becoming extinct，around the world（唔係 in this world）。">a lot of animals extinct in this world.</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="Including, the sharks, tigers, whale, elephants and crocodiles." data-r="They include sharks, tigers, whales, elephants and crocodiles." data-note-en="This is a fragment. Start a full sentence with They include, and whale should be whales." data-note-yue="呢句唔完整。用 They include 開新句。whale 要轉複數 whales。">Including, the sharks, tigers, whale, elephants and crocodiles.</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="These animals are the names we always hear but" data-r="We hear these names all the time, but" data-note-en="Animals are not names. We hear these names, with a comma before but." data-note-yue="動物唔係名。用 We hear these names，but 前面加逗號。">These animals are the names we always hear but</span><span class="flip-popup" role="tooltip"></span></span> at the same time, their numbers are decreasing rapidly.</p>
 
-        <p><span class="flip" tabindex="0" role="button" data-w="Why they are decreasing rapidly?" data-r="Why are they decreasing so rapidly?">Why they are decreasing rapidly?</span> <span class="flip" tabindex="0" role="button" data-w="Then that's because of us- &quot;humans&quot;." data-r="The answer is us, humans.">Then that's because of us- &quot;humans&quot;.</span> <span class="flip" tabindex="0" role="button" data-w="Some People" data-r="Some people">Some People</span> want to be <span class="flip" tabindex="0" role="button" data-w="fashion" data-r="fashionable,">fashion</span> so they buy crocodile bags, tiger-skin clothes, ivory chopsticks. Some people want to eat shark-fin soup. <span class="flip" tabindex="0" role="button" data-w="When there are needs in the market" data-r="When there is demand in the market">When there are needs in the market</span>, <span class="flip" tabindex="0" role="button" data-w="then the hunters to kill those animals to sell and earn a huge amount. of money." data-r="hunters kill these animals, sell them and earn a huge amount of money.">then the hunters to kill those animals to sell and earn a huge amount. of money.</span> <span class="flip" tabindex="0" role="button" data-w="However if no one have any require to buy these things so no one will hunt the animals because they can't earn money." data-r="However, if no one wants to buy these things, no one will hunt the animals, because hunters cannot earn money.">However if no one have any require to buy these things so no one will hunt the animals because they can't earn money.</span></p>
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="Why they are decreasing rapidly?" data-r="Why are they decreasing so rapidly?" data-note-en="Question word order: Why are they, not Why they are." data-note-yue="問句詞序：Why are they，唔係 Why they are。">Why they are decreasing rapidly?</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="Then that's because of us- &quot;humans&quot;." data-r="The answer is us, humans." data-note-en="Drop Then and the broken dash. The answer is us, humans. reads cleanly." data-note-yue="刪 Then 同破折號。The answer is us, humans. 就順。">Then that's because of us- &quot;humans&quot;.</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="Some People" data-r="Some people" data-note-en="A capital P in the middle of a sentence is a typo." data-note-yue="句中 People 大階係手誤。">Some People</span><span class="flip-popup" role="tooltip"></span></span> want to be <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="fashion" data-r="fashionable," data-note-en="fashion is a noun. You need the adjective fashionable, and a comma before so." data-note-yue="fashion 係名詞。要用形容詞 fashionable，so 前面加逗號。">fashion</span><span class="flip-popup" role="tooltip"></span></span> so they buy crocodile bags, tiger-skin clothes, ivory chopsticks. Some people want to eat shark-fin soup. <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="When there are needs in the market" data-r="When there is demand in the market" data-note-en="demand is the natural word here. It is uncountable, so there is, not there are." data-note-yue="呢度用 demand 最自然。demand 不可數，所以 there is，唔係 there are。">When there are needs in the market</span><span class="flip-popup" role="tooltip"></span></span>, <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="then the hunters to kill those animals to sell and earn a huge amount. of money." data-r="hunters kill these animals, sell them and earn a huge amount of money." data-note-en="The old sentence has no main verb. hunters kill, sell and earn. amount of money is one phrase." data-note-yue="舊句冇主要動詞。hunters kill, sell and earn。amount of money 要連住。">then the hunters to kill those animals to sell and earn a huge amount. of money.</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="However if no one have any require to buy these things so no one will hunt the animals because they can't earn money." data-r="However, if no one wants to buy these things, no one will hunt the animals, because hunters cannot earn money." data-note-en="Long run-on. Add a comma after However. No one wants to buy is enough, and hunters is clearer than they." data-note-yue="句子太長。However 後加逗號。用 no one wants to buy 就夠，主語用 hunters 清楚啲。">However if no one have any require to buy these things so no one will hunt the animals because they can't earn money.</span><span class="flip-popup" role="tooltip"></span></span></p>
 
-        <p><span class="flip" tabindex="0" role="button" data-w="The first reason to protect the endangered species because" data-r="The first reason to protect endangered species is that">The first reason to protect the endangered species because</span> <span class="flip" tabindex="0" role="button" data-w="if some species extinct, then the ecosystem will become unbalanced for example," data-r="if a species becomes extinct, the ecosystem will become unbalanced. For example,">if some species extinct, then the ecosystem will become unbalanced for example,</span> <span class="flip" tabindex="0" role="button" data-w="if there are no more sharks in the sea then the small fish don't have or have less predator" data-r="if there are no more sharks in the sea, small fish have fewer predators,">if there are no more sharks in the sea then the small fish don't have or have less predator</span> <span class="flip" tabindex="0" role="button" data-w="so the number of small fish will increase" data-r="so their numbers will increase">so the number of small fish will increase</span>, and they will eat up all the seaweed and <span class="flip" tabindex="0" role="button" data-w="others" data-r="other plants">others</span> <span class="flip" tabindex="0" role="button" data-w="which leans to a unbalanced ecosystem in the result." data-r=", which leads to an unbalanced ecosystem.">which leans to a unbalanced ecosystem in the result.</span></p>
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="The first reason to protect the endangered species because" data-r="The first reason to protect endangered species is that" data-note-en="The reason &amp;hellip; because does not work. Use The reason &amp;hellip; is that." data-note-yue="The reason &amp;hellip; because 唔啱。用 The reason &amp;hellip; is that。">The first reason to protect the endangered species because</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="if some species extinct, then the ecosystem will become unbalanced for example," data-r="if a species becomes extinct, the ecosystem will become unbalanced. For example," data-note-en="a species becomes extinct (singular verb). Start a new sentence at For example." data-note-yue="a species becomes extinct（單數動詞）。For example 開新句。">if some species extinct, then the ecosystem will become unbalanced for example,</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="if there are no more sharks in the sea then the small fish don't have or have less predator" data-r="if there are no more sharks in the sea, small fish have fewer predators," data-note-en="fewer predators (plural, countable). Drop then so one if has one result." data-note-yue="fewer predators（複數、可數）。刪 then，一個 if 一個結果。">if there are no more sharks in the sea then the small fish don't have or have less predator</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="so the number of small fish will increase" data-r="so their numbers will increase" data-note-en="their numbers is shorter and avoids repeating small fish." data-note-yue="their numbers 更簡潔，唔使重覆 small fish。">so the number of small fish will increase</span><span class="flip-popup" role="tooltip"></span></span>, and they will eat up all the seaweed and <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="others" data-r="other plants" data-note-en="others alone is vague. Name what the fish eat: other plants." data-note-yue="others 太模糊。講清楚魚食嘅嘢：other plants。">others</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="which leans to a unbalanced ecosystem in the result." data-r=", which leads to an unbalanced ecosystem." data-note-en="leads, not leans. an unbalanced takes an, and in the result is extra." data-note-yue="用 leads，唔係 leans。an unbalanced 用 an，in the result 可以刪。">which leans to a unbalanced ecosystem in the result.</span><span class="flip-popup" role="tooltip"></span></span></p>
 
-        <p><span class="flip" tabindex="0" role="button" data-w="The second reason is because" data-r="The second reason is that">The second reason is because</span> <span class="flip" tabindex="0" role="button" data-w="if some species extinct, then we can't let our next generation to see or to know what are those." data-r="if a species becomes extinct, our next generation will never see it or know what it was.">if some species extinct, then we can't let our next generation to see or to know what are those.</span> For instance, <span class="flip" tabindex="0" role="button" data-w="Dodo birds were extincted in the 18th centery" data-r="the dodo became extinct in the 17th century,">Dodo birds were extincted in the 18th centery</span> <span class="flip" tabindex="0" role="button" data-w="so now I can't the real Dodo birds," data-r="so today I cannot see a real dodo.">so now I can't the real Dodo birds,</span> I can <span class="flip" tabindex="0" role="button" data-w="just see Deco birds from photo from the internet." data-r="only see dodos in photos on the internet.">just see Deco birds from photo from the internet.</span></p>
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="The second reason is because" data-r="The second reason is that" data-note-en="the reason is that, not the reason is because." data-note-yue="用 the reason is that，唔係 is because。">The second reason is because</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="if some species extinct, then we can't let our next generation to see or to know what are those." data-r="if a species becomes extinct, our next generation will never see it or know what it was." data-note-en="can&#x27;t let &amp;hellip; to see is wrong. Our next generation will never see it says it clearly." data-note-yue="can&#x27;t let &amp;hellip; to see 唔啱。Our next generation will never see it 最清楚。">if some species extinct, then we can't let our next generation to see or to know what are those.</span><span class="flip-popup" role="tooltip"></span></span> For instance, <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="Dodo birds were extincted in the 18th centery" data-r="the dodo became extinct in the 17th century," data-note-en="became extinct, not were extincted. The dodo died out in the 17th century, and centery is a misspelling." data-note-yue="用 became extinct（唔係 were extincted）。渡渡鳥十七世紀絕種，centery 串錯。">Dodo birds were extincted in the 18th centery</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="so now I can't the real Dodo birds," data-r="so today I cannot see a real dodo." data-note-en="can&#x27;t the birds is missing the verb see. One dodo is enough here." data-note-yue="can&#x27;t the birds 漏咗動詞 see。呢度用 a dodo 就夠。">so now I can't the real Dodo birds,</span><span class="flip-popup" role="tooltip"></span></span> I can <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="just see Deco birds from photo from the internet." data-r="only see dodos in photos on the internet." data-note-en="Deco is a misspelling of dodo. Use in photos on the internet." data-note-yue="Deco 係 dodo 串錯。用 in photos on the internet。">just see Deco birds from photo from the internet.</span><span class="flip-popup" role="tooltip"></span></span></p>
 
-        <p><span class="flip" tabindex="0" role="button" data-w="To prevent less endurgered wildlife species extinct" data-r="To stop more endangered wildlife species from becoming extinct">To prevent less endurgered wildlife species extinct</span>, <span class="flip" tabindex="0" role="button" data-w="the way we can do" data-r="the best thing we can do">the way we can do</span> is to <span class="flip" tabindex="0" role="button" data-w="say 'no'. and reject." data-r="say no and refuse.">say 'no'. and reject.</span> If anyone <span class="flip" tabindex="0" role="button" data-w="give or ask you to eat or to buy any products make from endangered wildlife species" data-r="offers you, or asks you to eat or buy, any product made from endangered wildlife species">give or ask you to eat or to buy any products make from endangered wildlife species</span>, we should <span class="flip" tabindex="0" role="button" data-w="reject them" data-r="refuse">reject them</span>, <span class="flip" tabindex="0" role="button" data-w="so there are less requirement on the market" data-r="so there will be less demand in the market">so there are less requirement on the market</span> <span class="flip" tabindex="0" role="button" data-w="then less people will hunt and kill them" data-r="and fewer people will hunt and kill them,">then less people will hunt and kill them</span> <span class="flip" tabindex="0" role="button" data-w="so there are less animals die." data-r="so fewer animals will die.">so there are less animals die.</span></p>
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="To prevent less endurgered wildlife species extinct" data-r="To stop more endangered wildlife species from becoming extinct" data-note-en="endangered is the spelling. stop &amp;hellip; from becoming extinct is the correct pattern." data-note-yue="串法係 endangered。用 stop &amp;hellip; from becoming extinct。">To prevent less endurgered wildlife species extinct</span><span class="flip-popup" role="tooltip"></span></span>, <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="the way we can do" data-r="the best thing we can do" data-note-en="the way we can do is not English. Use The best thing we can do is &amp;hellip;" data-note-yue="the way we can do 唔係英文。用 The best thing we can do is &amp;hellip;">the way we can do</span><span class="flip-popup" role="tooltip"></span></span> is to <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="say 'no'. and reject." data-r="say no and refuse." data-note-en="One sentence, one full stop. Say no and refuse is a clean pair of verbs." data-note-yue="一句一個句號。refuse 係動詞，reject 通常要受詞。">say 'no'. and reject.</span><span class="flip-popup" role="tooltip"></span></span> If anyone <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="give or ask you to eat or to buy any products make from endangered wildlife species" data-r="offers you, or asks you to eat or buy, any product made from endangered wildlife species" data-note-en="offers you, not gives you. products made from, not make. any product reads better after any." data-note-yue="用 offers you（唔係 gives you）。products made from（唔係 make）。any 之後用 product。">give or ask you to eat or to buy any products make from endangered wildlife species</span><span class="flip-popup" role="tooltip"></span></span>, we should <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="reject them" data-r="refuse" data-note-en="refuse works without an object here and repeats the say no idea." data-note-yue="refuse 唔使受詞，同 say no 意思一致。">reject them</span><span class="flip-popup" role="tooltip"></span></span>, <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="so there are less requirement on the market" data-r="so there will be less demand in the market" data-note-en="requirement is the wrong word. Use demand, and less demand is uncountable so it is correct." data-note-yue="requirement 用錯字。用 demand，less demand（不可數）先啱。">so there are less requirement on the market</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="then less people will hunt and kill them" data-r="and fewer people will hunt and kill them," data-note-en="People are countable, so fewer people." data-note-yue="人係可數，所以用 fewer people。">then less people will hunt and kill them</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="so there are less animals die." data-r="so fewer animals will die." data-note-en="fewer animals, and will die rather than are die." data-note-yue="用 fewer animals，will die（唔係 are die）。">so there are less animals die.</span><span class="flip-popup" role="tooltip"></span></span></p>
 
-        <p><span class="flip" tabindex="0" role="button" data-w="Wow! You really pay a lot of attention to my presentation!" data-r="Thank you! You have really paid a lot of attention to my presentation!">Wow! You really pay a lot of attention to my presentation!</span> If you have any further questions, you can <span class="flip" tabindex="0" role="button" data-w="feel free to go to 2D classroom to find me" data-r="come and find me in the 2D classroom">feel free to go to 2D classroom to find me</span>.</p>
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="Wow! You really pay a lot of attention to my presentation!" data-r="Thank you! You have really paid a lot of attention to my presentation!" data-note-en="Wow sounds like surprise. Thank you is the natural way to open the closing." data-note-yue="Wow 好似好驚訝。用 Thank you 開結尾最自然。">Wow! You really pay a lot of attention to my presentation!</span><span class="flip-popup" role="tooltip"></span></span> If you have any further questions, you can <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="feel free to go to 2D classroom to find me" data-r="come and find me in the 2D classroom" data-note-en="Add the before 2D classroom. come and find me is friendlier than go to &amp;hellip; to find me." data-note-yue="2D classroom 前加 the。come and find me 親切過 go to &amp;hellip; to find me。">feel free to go to 2D classroom to find me</span><span class="flip-popup" role="tooltip"></span></span>.</p>
 
-        <p>Last but not least, from now on, let's say 'no' to <span class="flip" tabindex="0" role="button" data-w="the products make from endangered species" data-r="products made from endangered species">the products make from endangered species</span> to save those animals!</p>
+        <p>Last but not least, from now on, let's say 'no' to <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="the products make from endangered species" data-r="products made from endangered species" data-note-en="made is the past participle, and products does not need the here." data-note-yue="用 made（過去分詞），products 前面唔使 the。">the products make from endangered species</span><span class="flip-popup" role="tooltip"></span></span> to save those animals!</p>
       </div>
     </section>
 
     <section class="box">
       <h2>Comments</h2>
       <p class="prompt">This already sounds like something you could stand up and deliver. The structure is clear, the examples are concrete, and the ending gives the audience something to do. Tighten the long sentences, fix a few word forms, and check one date, and the speech will land well in a school hall.</p>
-      <p class="prompt">Yellow spans are optional <strong>upgrades</strong>. Click to compare. The rest is your draft as written.</p>
+      <p class="prompt">Yellow spans are optional <strong>upgrades</strong>. Click one to flip it and read the note. The rest is your draft as written.</p>
       <div class="comment-bilingual">
         <div class="comment-pair comment-pair-praise">
           <p class="comment-en"><span class="lang-tag">EN</span><strong>Strong opening.</strong> Greeting the Principal, teachers and classmates first is exactly right for an assembly. The question about four or five species a day makes people sit up.</p>
@@ -258,6 +295,52 @@
     t.innerHTML = s;
     return t.value;
   }
+
+  function hideComment(wrap) {
+    if (!wrap) return;
+    var flip = wrap.querySelector('.flip');
+    var popup = wrap.querySelector('.flip-popup');
+    if (flip) flip.classList.remove('show-note');
+    if (flip) flip.setAttribute('aria-expanded', 'false');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function hideAllComments(exceptWrap) {
+    document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+      if (wrap === exceptWrap) return;
+      hideComment(wrap);
+    });
+  }
+
+  function openComment(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    hideAllComments(wrap);
+    el.classList.add('show-note');
+    el.setAttribute('aria-expanded', 'true');
+    fillPopup(popup, el);
+    popup.classList.add('show');
+  }
+
+  function fillPopup(popup, el) {
+    var en = decode(el.getAttribute('data-note-en') || '');
+    var yue = decode(el.getAttribute('data-note-yue') || '');
+    popup.innerHTML = '';
+    if (en) {
+      var pEn = document.createElement('p');
+      pEn.className = 'note-en';
+      pEn.innerHTML = '<span class="lang-tag">EN</span>' + en;
+      popup.appendChild(pEn);
+    }
+    if (yue) {
+      var pYue = document.createElement('p');
+      pYue.className = 'note-yue';
+      pYue.innerHTML = '<span class="lang-tag">粵</span>' + yue;
+      popup.appendChild(pYue);
+    }
+  }
+
   function syncClass(el) {
     var w = el.getAttribute('data-w');
     var r = el.getAttribute('data-r');
@@ -266,26 +349,73 @@
     r = decode(r);
     el.classList.toggle('show-correct', el.textContent === r);
   }
-  function toggle(el) {
+
+  function resetFlip(el) {
     var w = el.getAttribute('data-w');
-    var r = el.getAttribute('data-r');
-    if (!w || !r) return;
-    w = decode(w);
-    r = decode(r);
-    el.textContent = el.textContent === r ? w : r;
+    if (!w) return;
+    el.textContent = decode(w);
+    el.classList.remove('show-note');
+    el.setAttribute('aria-expanded', 'false');
     syncClass(el);
+    var popup = el.parentElement && el.parentElement.querySelector('.flip-popup');
+    if (popup) popup.classList.remove('show');
   }
+
+  function handleFlip(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    var w = decode(el.getAttribute('data-w') || '');
+    var r = decode(el.getAttribute('data-r') || '');
+    if (!w || !r) return;
+
+    var isGreen = el.textContent === r;
+    var commentOpen = popup && popup.classList.contains('show');
+
+    if (!isGreen) {
+      hideAllComments(wrap);
+      el.textContent = r;
+      syncClass(el);
+      openComment(el);
+      return;
+    }
+
+    if (!commentOpen) {
+      openComment(el);
+      return;
+    }
+
+    resetFlip(el);
+  }
+
   document.querySelectorAll('.flip').forEach(function (el) {
     var w = el.getAttribute('data-w');
     if (w) el.textContent = decode(w);
+    el.setAttribute('aria-expanded', 'false');
     syncClass(el);
-    el.addEventListener('click', function () { toggle(el); });
+    el.addEventListener('click', function (e) {
+      e.stopPropagation();
+      handleFlip(el);
+    });
     el.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        toggle(el);
+        handleFlip(el);
       }
     });
+  });
+
+  document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+    var popup = wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    popup.addEventListener('click', function (e) {
+      e.stopPropagation();
+      hideComment(wrap);
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.flip-wrap')) return;
+    hideAllComments(null);
   });
 })();
   </script>
