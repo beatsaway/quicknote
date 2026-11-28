@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chinese white dolphins speech &mdash; writing &amp; proofreading</title>
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #555;
+      --flip-bg: #fff3bf;
+      --flip-border: #d4a012;
+      --flip-ok: #c8e6c9;
+      --flip-ok-b: #2e7d32;
+      --panel: #fff;
+      --accent: #1565c0;
+      --border: #dcd6cb;
+      --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.25rem 1.25rem 2.5rem; }
+    section.box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    section.box h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--accent); }
+    .topic { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 0.5rem; }
+    .prompt { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .prompt:last-child { margin-bottom: 0; }
+    .word-list {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
+    .word-list strong { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: var(--accent); }
+    .word-list-compact {
+      display: block;
+      line-height: 1.5;
+      font-size: 0.82rem;
+    }
+    .word-list .vocab-note {
+      display: inline;
+      margin: 0;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .letter p { margin: 0 0 0.9rem; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter h3 {
+      margin: 0 0 0.85rem;
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .letter ul { margin: 0 0 0.9rem; padding-left: 1.15rem; }
+    .letter li { margin: 0.5rem 0; }
+    .task-bullets {
+      margin: 0.5rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .task-bullets li { margin: 0.3rem 0; }
+    .stats { font-size: 0.82rem; color: var(--muted); margin-top: 0.65rem; }
+    .flip {
+      background: var(--flip-bg);
+      border-bottom: 2px solid var(--flip-border);
+      cursor: pointer;
+      padding: 0 1px;
+      border-radius: 2px;
+      transition: background 0.15s ease;
+    }
+    .flip:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .flip.show-correct {
+      background: var(--flip-ok);
+      border-bottom-color: var(--flip-ok-b);
+    }
+    .flip.show-correct.show-note {
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .flip-popup {
+      display: none;
+      position: absolute;
+      z-index: 20;
+      left: 0;
+      top: calc(100% + 6px);
+      min-width: 14rem;
+      max-width: 18rem;
+      padding: 0.55rem 0.65rem;
+      background: #fff;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .flip-popup.show { display: block; cursor: pointer; }
+    .flip-popup .note-en,
+    .flip-popup .note-yue { margin: 0 0 0.45rem; }
+    .flip-popup .note-yue:last-child { margin-bottom: 0; }
+    .flip-popup .lang-tag {
+      display: inline-block;
+      margin-right: 0.3rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .flip-wrap {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+    }
+    .fb-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .fb-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .fb-block {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+    }
+    .fb-block h3 { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--accent); }
+    .fb-block ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
+    .fb-block li { margin: 0.25rem 0; }
+    .fb-praise-lead {
+      margin: 0 0 0.5rem;
+      font-size: 0.88rem;
+    }
+    .comment-bilingual {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.75rem;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .comment-bilingual .comment-pair {
+      margin: 0 0 0.65rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 6px;
+      border-left: 4px solid transparent;
+    }
+    .comment-bilingual .comment-pair:last-child {
+      margin-bottom: 0;
+    }
+    .comment-pair-praise {
+      background: #e8f5e9;
+      border-left-color: #43a047;
+    }
+    .comment-pair-upgrade {
+      background: #fff8e1;
+      border-left-color: #f9a825;
+    }
+    .comment-bilingual .comment-en,
+    .comment-bilingual .comment-yue {
+      margin: 0 0 0.55rem;
+    }
+    .comment-bilingual .comment-yue:last-child,
+    .comment-bilingual .comment-en:last-child {
+      margin-bottom: 0;
+    }
+    .comment-bilingual .lang-tag {
+      display: inline-block;
+      margin-right: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="box">
+      <h2>About this piece</h2>
+      <p class="topic">Persuasive speech about Chinese white dolphins</p>
+      <p class="prompt">You are giving a persuasive speech at a school assembly about <strong>Chinese white dolphins</strong>, the pink dolphins that live around Lantau Island. Explain what they are like, why they are endangered, and what your audience can do. End with a strong <strong>call to action</strong>.</p>
+      <ul class="task-bullets">
+        <li>The audience is a whole-school assembly. The tone is persuasive and personal.</li>
+        <li>Only the <strong>yellow</strong> word groups are suggested edits; the rest is the student&rsquo;s draft as written. Click a yellow phrase to flip it and read a short note.</li>
+      </ul>
+      <p class="stats">Draft length (student), about <strong>238 words</strong> &middot; about <strong>1,388 characters</strong> &middot; about <strong>20 sentences</strong> &middot; about <strong>7 paragraphs</strong>.</p>
+      <div class="word-list">
+        <strong>Useful words (from the task)</strong> <span class="prompt vocab-note">(English &middot; 粵語)</span>
+        <span class="word-list-compact">Chinese white dolphin(中華白海豚), habitat(棲息地), endangered(瀕危), predator(捕食者), food chain(食物鏈), overfishing(過度捕魚), water pollution(水污染), toxic(有毒), extinct(絕種), rubbish(垃圾), marine(海洋的), conserve(保育)</span>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="fb-grid">
+        <div class="fb-block">
+          <h3>What went well</h3>
+          <p class="prompt fb-praise-lead">You sound like someone who really likes these dolphins, and that warmth carries the whole speech.</p>
+          <ul>
+            <li>🎯 <strong>Structure.</strong> Greeting and name, facts, two threats, two solutions, and a call to action. That is the full persuasive shape.</li>
+            <li>📊 <strong>Evidence.</strong> About 40 dolphins and a 70% drop turn a big idea into a number the audience can feel.</li>
+            <li>❤️ <strong>Voice.</strong> &ldquo;Cute and friendly&rdquo; and &ldquo;Act now&rdquo; speak straight to your schoolmates.</li>
+            <li>🐬 <strong>Knowledge.</strong> Top predator and food chain show you understand why this species matters.</li>
+          </ul>
+        </div>
+        <div class="fb-block">
+          <h3>Could be even better</h3>
+          <ul>
+            <li>💡 <strong>Sentences.</strong> A few fragments and run-ons need splitting, for example &ldquo;The first threat that they are facing which is overfishing.&rdquo; One idea per sentence is easier to say aloud.</li>
+            <li>💡 <strong>Word forms.</strong> <em>habitat</em>, <em>bodies</em>, <em>numbers</em>, <em>fish</em> and <em>squid</em>. Use <em>prevent something</em>, not <em>prevent something happen</em>.</li>
+            <li>💡 <strong>Facts.</strong> The 40 dolphins are the Hong Kong population, not the world population. Say <em>in Hong Kong waters</em>.</li>
+            <li>💡 <strong>Persuasion.</strong> Add one more direct &ldquo;you&rdquo; line early, for example &ldquo;Every plastic bottle you drop can end up in their home.&rdquo;</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="letter">
+        <h3>Speech to the school (draft)</h3>
+        <p>Good morning, Principal, teachers and fellow students. I&rsquo;m Michelle Luk. Today I want to talk about Chinese white dolphins.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="The characteristic of Chinese white dolphins are friendly, they love to play with us." data-r="Chinese white dolphins are friendly. They love to play with us." data-note-en="A characteristic is not friendly. Say the dolphins are friendly, then start a new sentence for the second idea." data-note-yue="characteristic 唔會 friendly。直接講 dolphins are friendly，第二個意思開新句。">The characteristic of Chinese white dolphins are friendly, they love to play with us.</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="Their body are in pink colour" data-r="Their bodies are pink" data-note-en="One dolphin has a body, many have bodies. pink colour is just pink." data-note-yue="一隻用 body，多過一隻用 bodies。pink colour 直接講 pink 就夠。">Their body are in pink colour</span><span class="flip-popup" role="tooltip"></span></span> and they usually <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="feed on fishes and squids" data-r="feed on fish and squid" data-note-en="fish and squid stay the same in the plural here." data-note-yue="呢度 fish 同 squid 複數都唔加 s。">feed on fishes and squids</span><span class="flip-popup" role="tooltip"></span></span>. <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="Their hokitats are in the seas around Lantau Island." data-r="Their habitat is the sea around Lantau Island." data-note-en="Spelling: habitat. One habitat, so is, and the sea reads better than the seas." data-note-yue="串法係 habitat。一個 habitat 用 is，the sea 順過 the seas。">Their hokitats are in the seas around Lantau Island.</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="They are so important because they are the top predator" data-r="They are important because they are the top predators" data-note-en="so sounds casual in a formal speech, and there is more than one dolphin, so predators." data-note-yue="正式演講少用 so。海豚唔止一隻，所以用 predators。">They are so important because they are the top predator</span><span class="flip-popup" role="tooltip"></span></span> in the local food chain.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="In these recent years" data-r="In recent years" data-note-en="recent years is already plural, so no these." data-note-yue="recent years 已經係複數，唔使 these。">In these recent years</span><span class="flip-popup" role="tooltip"></span></span>, Chinese white dolphins <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="are listed in the endangered animals. species." data-r="are listed as an endangered species." data-note-en="listed as, not listed in. One species, so an endangered species, and the full stop belongs at the end." data-note-yue="用 listed as（唔係 in）。一個 species，所以 an endangered species，句號放最後。">are listed in the endangered animals. species.</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="There are only around 40 dolphins in the world" data-r="There are only about 40 dolphins in Hong Kong waters" data-note-en="The 40 is the Hong Kong population, not the world population. Chinese white dolphins also live in other countries." data-note-yue="40 隻係香港族群，唔係全世界。其他國家都有中華白海豚。">There are only around 40 dolphins in the world</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="which is 70% less compared with 10 years ago" data-r=", which is about 70% fewer than 10 years ago" data-note-en="70% fewer than is the usual pattern when you compare a countable number." data-note-yue="同可數數字比較，用 70% fewer than。">which is 70% less compared with 10 years ago</span><span class="flip-popup" role="tooltip"></span></span>.</p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="The first threat that they are facing which is overfishing." data-r="The first threat they face is overfishing." data-note-en="The sentence has two verbs and no main clause. The first threat they face is &hellip; is clean." data-note-yue="句入面兩個動詞，冇主要子句。用 The first threat they face is &hellip; 就清楚。">The first threat that they are facing which is overfishing.</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="The fishers always werfishing around those areas" data-r="Fishers often overfish in these areas," data-note-en="werfishing is not a word; you mean overfish. often fits better than always." data-note-yue="werfishing 唔係字；你想講 overfish。often 好過 always。">The fishers always werfishing around those areas</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="which the dolphins can't have enough food for them to eat and survive." data-r="so the dolphins cannot find enough food to eat and survive." data-note-en="which does not join these ideas. Use so, and drop the extra for them." data-note-yue="which 連唔到兩句。用 so，同埋刪 for them。">which the dolphins can't have enough food for them to eat and survive.</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="Then they will starve to death so their number decreased rapidly." data-r="They then starve to death, so their numbers fall rapidly." data-note-en="Then at the start is loose. Use the present tense fall, and numbers in the plural." data-note-yue="Then 開頭好鬆散。用現在式 fall，number 轉複數 numbers。">Then they will starve to death so their number decreased rapidly.</span><span class="flip-popup" role="tooltip"></span></span></p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="The second threat is water pollution People throw the rubbish," data-r="The second threat is water pollution. People throw rubbish," data-note-en="Start a new sentence after pollution. rubbish is uncountable, so no the." data-note-yue="pollution 之後開新句。rubbish 不可數，唔使 the。">The second threat is water pollution People throw the rubbish,</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="like plastic bottles tissues and leftover food" data-r="such as plastic bottles, tissues and leftover food," data-note-en="such as is more formal than like. Add commas between the items in the list." data-note-yue="such as 正式過 like。清單之間加逗號。">like plastic bottles tissues and leftover food</span><span class="flip-popup" role="tooltip"></span></span> into the sea. <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="When the dolphins eat them, they bodies will sick and toxic so increase the death." data-r="When the dolphins eat this rubbish, their bodies become sick and poisoned, which leads to more deaths." data-note-en="them is unclear. bodies need their, and which leads to more deaths finishes the idea." data-note-yue="them 指代唔清。bodies 前面用 their，再用 which leads to more deaths 收尾。">When the dolphins eat them, they bodies will sick and toxic so increase the death.</span><span class="flip-popup" role="tooltip"></span></span></p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="To prevent this situation happen" data-r="To stop this from happening" data-note-en="prevent &hellip; happen is wrong. stop &hellip; from happening is the pattern." data-note-yue="prevent &hellip; happen 唔啱。用 stop &hellip; from happening。">To prevent this situation happen</span><span class="flip-popup" role="tooltip"></span></span>, <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="we should throw the rubbish into rubbish bins but not into the sea" data-r="we should put our rubbish in bins instead of throwing it into the sea" data-note-en="instead of is clearer than but not here, and it avoids repeating rubbish." data-note-yue="instead of 清楚過 but not，亦唔使重覆 rubbish。">we should throw the rubbish into rubbish bins but not into the sea</span><span class="flip-popup" role="tooltip"></span></span>. And <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="we can also buy Ash in other countries or less fish" data-r="we can also buy fish from other countries or eat less fish" data-note-en="Ash looks like a typo. buy fish from other countries, and eat less fish keeps both verbs." data-note-yue="Ash 似乎係手誤。用 buy fish from other countries，同 eat less fish。">we can also buy Ash in other countries or less fish</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="so It can prevent overfishing and water pollution happen." data-r="so that we can prevent overfishing and water pollution." data-note-en="Capital I mid-sentence. prevent X, not prevent X happen, and so that we can is clearer." data-note-yue="句中 I 唔應該大階。prevent 後面唔使 happen，用 so that we can 更清楚。">so It can prevent overfishing and water pollution happen.</span><span class="flip-popup" role="tooltip"></span></span></p>
+
+        <p><span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="If you don't want the cute and friendly Chinese White dolphins extinct." data-r="If you do not want these cute and friendly Chinese white dolphins to become extinct," data-note-en="want &hellip; extinct needs to become extinct. Keep white lowercase, as in the rest of the speech, and join this clause to Act now with a comma." data-note-yue="want &hellip; extinct 要用 to become extinct。white 保持細階，同前文一致，用逗號連去 Act now。">If you don't want the cute and friendly Chinese White dolphins extinct.</span><span class="flip-popup" role="tooltip"></span></span> <span class="flip-wrap"><span class="flip" tabindex="0" role="button" data-w="Act now before it's too late!." data-r="act now before it is too late!" data-note-en="Lowercase act, because it continues the if clause. One exclamation mark, no extra full stop." data-note-yue="act 要細階，因為接住 if 子句。一個感嘆號就夠，唔好再加句號。">Act now before it's too late!.</span><span class="flip-popup" role="tooltip"></span></span> Thank you!</p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Comments</h2>
+      <p class="prompt">This is a warm, clear speech with a real call to action. The facts and the structure already persuade; now tighten the sentences, fix a few word forms, and check the population claim.</p>
+      <p class="prompt">Yellow spans are optional <strong>upgrades</strong>. Click one to flip it and read the note. The rest is your draft as written.</p>
+      <div class="comment-bilingual">
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Strong structure.</strong> Greeting, name, facts, two threats, two solutions and a call to action. Your audience knows where the speech is going.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>結構完整。</strong> 稱呼、自我介紹、資料、兩個威脅、兩個解決方法同呼籲，觀眾完全跟得到。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Warm voice.</strong> &ldquo;Cute and friendly&rdquo; and &ldquo;Act now&rdquo; make the dolphins feel real and close to your schoolmates.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>語氣親切。</strong> 「Cute and friendly」同「Act now」令海豚好似好近，同學會有感覺。</p>
+        </div>
+        <div class="comment-pair comment-pair-praise">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Convincing numbers.</strong> Around 40 dolphins and a 70% drop turn a big issue into something the hall can picture.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>數字有說服力。</strong> 大約 40 隻同跌七成，將大問題變成全場都想像得到嘅畫面。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Sentence control.</strong> Split &ldquo;The first threat that they are facing which is overfishing&rdquo; into one clean sentence. Keep one idea per sentence so you can breathe at the assembly.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>控制句式。</strong> 將「The first threat that they are facing which is overfishing」拆成一句清楚嘅句子。一句一個意思，台上先透到氣。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Word forms.</strong> <em>habitat</em>, <em>bodies</em>, <em>numbers</em>, <em>fish</em> and <em>squid</em>. Use <em>prevent something</em> or <em>stop something from happening</em>, not <em>prevent something happen</em>.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>詞形。</strong> <em>habitat</em>、<em>bodies</em>、<em>numbers</em>、<em>fish</em>、<em>squid</em>。用 <em>prevent something</em> 或 <em>stop something from happening</em>，唔好寫 <em>prevent something happen</em>。</p>
+        </div>
+        <div class="comment-pair comment-pair-upgrade">
+          <p class="comment-en"><span class="lang-tag">EN</span><strong>Fact check.</strong> The 40 dolphins are the Hong Kong population, not the world population. Say <em>in Hong Kong waters</em>, and keep the 70% only if your source supports it.</p>
+          <p class="comment-yue"><span class="lang-tag">粵</span><strong>查證資料。</strong> 40 隻係香港族群，唔係全世界。講 <em>in Hong Kong waters</em>，七成跌幅有來源先好保留。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+<script>
+(function () {
+  function decode(s) {
+    var t = document.createElement('textarea');
+    t.innerHTML = s;
+    return t.value;
+  }
+
+  function hideComment(wrap) {
+    if (!wrap) return;
+    var flip = wrap.querySelector('.flip');
+    var popup = wrap.querySelector('.flip-popup');
+    if (flip) flip.classList.remove('show-note');
+    if (flip) flip.setAttribute('aria-expanded', 'false');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function hideAllComments(exceptWrap) {
+    document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+      if (wrap === exceptWrap) return;
+      hideComment(wrap);
+    });
+  }
+
+  function openComment(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    hideAllComments(wrap);
+    el.classList.add('show-note');
+    el.setAttribute('aria-expanded', 'true');
+    fillPopup(popup, el);
+    popup.classList.add('show');
+  }
+
+  function fillPopup(popup, el) {
+    var en = decode(el.getAttribute('data-note-en') || '');
+    var yue = decode(el.getAttribute('data-note-yue') || '');
+    popup.innerHTML = '';
+    if (en) {
+      var pEn = document.createElement('p');
+      pEn.className = 'note-en';
+      pEn.innerHTML = '<span class="lang-tag">EN</span>' + en;
+      popup.appendChild(pEn);
+    }
+    if (yue) {
+      var pYue = document.createElement('p');
+      pYue.className = 'note-yue';
+      pYue.innerHTML = '<span class="lang-tag">粵</span>' + yue;
+      popup.appendChild(pYue);
+    }
+  }
+
+  function syncClass(el) {
+    var w = el.getAttribute('data-w');
+    var r = el.getAttribute('data-r');
+    if (!w || !r) return;
+    w = decode(w);
+    r = decode(r);
+    el.classList.toggle('show-correct', el.textContent === r);
+  }
+
+  function resetFlip(el) {
+    var w = el.getAttribute('data-w');
+    if (!w) return;
+    el.textContent = decode(w);
+    el.classList.remove('show-note');
+    el.setAttribute('aria-expanded', 'false');
+    syncClass(el);
+    var popup = el.parentElement && el.parentElement.querySelector('.flip-popup');
+    if (popup) popup.classList.remove('show');
+  }
+
+  function handleFlip(el) {
+    var wrap = el.parentElement;
+    var popup = wrap && wrap.querySelector('.flip-popup');
+    var w = decode(el.getAttribute('data-w') || '');
+    var r = decode(el.getAttribute('data-r') || '');
+    if (!w || !r) return;
+
+    var isGreen = el.textContent === r;
+    var commentOpen = popup && popup.classList.contains('show');
+
+    if (!isGreen) {
+      hideAllComments(wrap);
+      el.textContent = r;
+      syncClass(el);
+      openComment(el);
+      return;
+    }
+
+    if (!commentOpen) {
+      openComment(el);
+      return;
+    }
+
+    resetFlip(el);
+  }
+
+  document.querySelectorAll('.flip').forEach(function (el) {
+    var w = el.getAttribute('data-w');
+    if (w) el.textContent = decode(w);
+    el.setAttribute('aria-expanded', 'false');
+    syncClass(el);
+    el.addEventListener('click', function (e) {
+      e.stopPropagation();
+      handleFlip(el);
+    });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleFlip(el);
+      }
+    });
+  });
+
+  document.querySelectorAll('.flip-wrap').forEach(function (wrap) {
+    var popup = wrap.querySelector('.flip-popup');
+    if (!popup) return;
+    popup.addEventListener('click', function (e) {
+      e.stopPropagation();
+      hideComment(wrap);
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.flip-wrap')) return;
+    hideAllComments(null);
+  });
+})();
+  </script>
+</body>
+</html>
